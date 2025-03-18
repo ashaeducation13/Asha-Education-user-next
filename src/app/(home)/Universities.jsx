@@ -1,20 +1,145 @@
-import React from 'react'
+"use client";
+
+import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import PartnerCard from "@/components/home/PartnerCard";
+
+// University & Course Data
+const universityData = [
+    {
+        id: 1,
+        name: "DY Patil",
+        logo: "/home/partnersection/dpu.png",
+        courses: [
+            { id: 1, image: "/home/partnersection/cardimg1.webp", title: "MBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 2, image: "/home/partnersection/cardimg2.webp", title: "BBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 3, image: "/home/partnersection/cardimg3.webp", title: "BCOM", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 4, image: "/home/partnersection/cardimg4.webp", title: "BCA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+        ],
+    },
+    {
+        id: 2,
+        name: "NMIMS",
+        logo: "/home/partnersection/nmims.png",
+        courses: [
+            { id: 1, image: "/home/partnersection/cardimg1.webp", title: "AI & ML", subtitle: "Stanford AI Program" },
+            { id: 2, image: "/home/partnersection/cardimg2.webp", title: "Entrepreneurship", subtitle: "Stanford GSB" },
+            { id: 3, image: "/home/partnersection/cardimg3.webp", title: "Robotics", subtitle: "Stanford Robotics Lab" },
+            { id: 4, image: "/home/partnersection/cardimg4.webp", title: "Design", subtitle: "Stanford d.school" },
+        ],
+    },
+    {
+        id: 3,
+        name: "Amity",
+        logo: "/home/partnersection/amity.png",
+        courses: [
+            { id: 1, image: "/home/partnersection/cardimg1.webp", title: "Aerospace", subtitle: "MIT AeroAstro" },
+            { id: 2, image: "/home/partnersection/cardimg2.webp", title: "Physics", subtitle: "MIT Physics Department" },
+            { id: 3, image: "/home/partnersection/cardimg3.webp", title: "Data Science", subtitle: "MIT Data Science" },
+            { id: 4, image: "/home/partnersection/cardimg4.webp", title: "BioTech", subtitle: "MIT BioEngineering" },
+        ],
+    },
+    {
+        id: 4,
+        name: "Manipal University",
+        logo: "/home/partnersection/manipal.png",
+        courses: [
+            { id: 1, image: "/home/partnersection/cardimg1.webp", title: "Philosophy", subtitle: "Oxford Humanities" },
+            { id: 2, image: "/home/partnersection/cardimg2.webp", title: "History", subtitle: "Oxford History Faculty" },
+            { id: 3, image: "/home/partnersection/cardimg3.webp", title: "Literature", subtitle: "Oxford English Lit" },
+            { id: 4, image: "/home/partnersection/cardimg4.webp", title: "Economics", subtitle: "Oxford Business School" },
+        ],
+    },
+];
 
 const Universities = () => {
+    const [selectedUniversity, setSelectedUniversity] = useState(universityData[0]);
+
     return (
         <>
-            <section className="relative py-20 px-6 md:px-12 text-center">
-                <div className="relative  max-w-4xl mx-auto">
-                    <h1 className="text-4xl md:text-[30px] font-semibold text-gray-900">
+            <div className="relative max-w-4xl mx-auto text-center my-10">
+                <h1 className="text-4xl md:text-[30px] font-semibold text-gray-900">
                     Our Prestigious Partner Universities
-                    </h1>
-                    <p className="mt-4 text-[16px] text-gray-600 w-[52%] mx-auto font-inter font-normal leading-[24px]">
-                    Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam neque ultrices.
-                    </p>
+                </h1>
+                <p className="mt-4 text-[16px] text-gray-600 w-[52%] mx-auto font-rubik font-normal leading-[24px]">
+                    Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
+                    phasellus mollis sit aliquam sit nullam neque ultrices.
+                </p>
+            </div>
+            <section className="relative pb-40 px-6 md:px-12 flex gap-6">
+
+
+                {/* Left: University Buttons (20%) */}
+                <div className="w-[20%] flex flex-col gap-4 ml-16">
+                    {universityData.map((university) => (
+                        <button
+                            key={university.id}
+                            className={`flex items-center gap-3 px-4 py-2 border rounded-md text-black text-[16px] font-normal transition-all font-rubik text-left 
+                            ${selectedUniversity.id === university.id ? "border-[#0A0078] text-black" : "border-gray-300 bg-white hover:bg-gray-100"}
+                          `}
+                            onClick={() => setSelectedUniversity(university)}
+                        >
+                            <img src={university.logo} alt={university.name} className="h-8 w-8 object-contain" />
+                            <span>{university.name}</span>
+                        </button>
+                    ))}
+                    <button
+                        className="flex items-center font-inter font-semibold gap-2 text-white px-6 py-3 rounded-lg shadow-md transition duration-300 text-[14px]"
+                        style={{
+                            backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
+                        }}
+                    >
+                        Browse all Programs
+                        <img
+                            src="/home/herosection/Arrow.svg"
+                            alt="Arrow"
+                            className="w-[8.4px] h-[8.24px]"
+                        />
+                    </button>
+
+                    <button
+                        className="flex items-center font-inter font-semibold gap-2  px-6 py-3 rounded-lg shadow-md transition duration-300 text-[14px]"
+                        
+                    >
+                        Compare Universities
+                        <img
+                            src="/home/partnersection/darkarrowright.svg"
+                            alt="Arrow"
+                            className="w-[8.4px] h-[8.24px]"
+                        />
+                    </button>
+                </div>
+
+
+                {/* Right: Swiper Carousel (80%) */}
+                <div className="w-[80%] pl-16">
+                    <Swiper
+                        slidesPerView={1}
+                        spaceBetween={0}
+                        loop={true}
+                        autoplay={{ delay: 3000 }}
+                        breakpoints={{
+                            640: { slidesPerView: 1 },
+                            768: { slidesPerView: 2 },
+                            1024: { slidesPerView: 3.5 },
+                        }}
+                        className="w-full"
+                    >
+                        {selectedUniversity.courses.map((course) => (
+                            <SwiperSlide key={course.id} className="flex justify-center">
+                                <PartnerCard {...course} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
                 </div>
             </section>
         </>
-    )
-}
 
-export default Universities
+    );
+};
+
+export default Universities;
