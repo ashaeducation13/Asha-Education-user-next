@@ -3,16 +3,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 const images = [
-  "/herosection/img1.webp",
-  "/herosection/img2.webp",
-  "/herosection/img3.webp",
-  "/herosection/img4.webp",
-  "/herosection/img5.webp",
-  "/herosection/img1.webp",
-  "/herosection/img2.webp",
-  "/herosection/img3.webp",
-  "/herosection/img4.webp",
-  "/herosection/img5.webp",
+  "/home/herosection/img1.webp",
+  "/home/herosection/img2.webp",
+  "/home/herosection/img3.webp",
+  "/home/herosection/img4.webp",
+  "/home/herosection/img5.webp",
+  "/home/herosection/img1.webp",
+  "/home/herosection/img2.webp",
+  "/home/herosection/img3.webp",
+  "/home/herosection/img4.webp",
+  "/home/herosection/img5.webp",
 ];
 
 export default function HeroCarousel() {
@@ -46,11 +46,11 @@ export default function HeroCarousel() {
         else marginTopClass = "mt-20"; // Outermost visible slides
         
         return (
-          <SwiperSlide key={index} className={`flex justify-center items-center transition-all duration-500 ${marginTopClass}`}>
+          <SwiperSlide key={index} className={`flex justify-center items-center transition-all duration-700 ease-in-out transform ${marginTopClass}`}>
             <img 
               src={src} 
               alt={`Slide ${index + 1}`} 
-              className={`h-[223px] max-w-[223px] object-cover rounded-lg ${position === 0 ? "scale-110" : ""}`} 
+              className={`h-[223px] max-w-[223px] object-cover rounded-lg transition-transform duration-700 ease-in-out ${position === 0 ? "scale-110" : ""}`} 
             />
           </SwiperSlide>
         );
