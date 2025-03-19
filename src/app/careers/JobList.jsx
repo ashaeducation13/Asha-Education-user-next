@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Arrow from "../../../public/careers/apply.svg";
-import Work from "../../../public/careers/work.svg";
-import Toggles from "../../../public/careers/vector.svg";
+import Arrow from "../../assets/careers/apply.svg";
+import Work from "../../assets/careers/work.svg";
+import Toggles from "../../assets/careers/vector.svg";
 
 
 import NormalForm from '@/components/Forms/NormalForm'
@@ -83,7 +83,7 @@ function JobList() {
             <button
               key={filter.value}
               onClick={() => { setCurrentFilter(filter.value); setCurrentPage(1); }}
-              className={`px-4 py-2 border rounded-[8px] transition-all duration-300 text-sm ${currentFilter === filter.value ? "text-white bg-gradient-to-r from-blue-700 to-red-500" : "border-gray-500 text-gray-700"}`}
+              className={`px-4 py-2 border rounded-[8px] font-inter transition-all duration-300 text-sm ${currentFilter === filter.value ? "text-white bg-gradient-to-r from-blue-700 to-red-500" : "border-gray-500 text-gray-700"}`}
             >
               {filter.label}
             </button>
@@ -94,12 +94,12 @@ function JobList() {
           <div key={job.id} className="py-6 border-b border-gray-300">
             <div className="flex justify-between items-center cursor-pointer" onClick={() => toggleExpand(job.id)}>
             <div className="flex items-center gap-4">
-                <h1 className="font-bold text-lg text-gray-900">{job.title}</h1>
+                <h1 className="font-bold font-open-sans text-lg text-gray-900">{job.title}</h1>
                 
                 {/* Job Type (Icon + Text) */}
                 <div className="flex items-center gap-2 border border-red-500 rounded-md px-3 py-1">
                 <Image height={20} width={20} src={Work} alt="Work Type" />
-                <span className="text-sm font-medium text-red-600">{job.type}</span>
+                <span className="text-sm  font-inter-medium text-red-600">{job.type}</span>
                 </div>
 
              </div>
@@ -112,7 +112,7 @@ function JobList() {
                 />
               <div className="flex gap-[5px] pr-[20px] mt-[-30px] " onClick={toggleModal}  >
               <p
-                className="font-normal text-[14px] md:text-[16px] lg:text-[20px] leading-[100%] text-transparent bg-clip-text"
+                className="font-open-sans-normal text-[14px] md:text-[16px] lg:text-[20px] leading-[100%] text-transparent bg-clip-text"
                 style={{
                     backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
                     WebkitBackgroundClip: "text",
@@ -126,14 +126,15 @@ function JobList() {
 
             
             </div>
-            <p className="mt-2 text-sm text-black-700">We are looking for an experienced engineering manager to join our team</p>
-
+            <p className="mt-2 font-inter text-sm text-black-700">We are looking for an experienced engineering manager to join our team</p>
+            
+           
             {expandedJobs[job.id] && ( // Show description only if expanded
               <>
-               <div className="flex text-[14px] leading-[21px] flex-col font-roboto-medium mt-4">
+               <div className="flex text-[14px] leading-[21px] flex-col font-inter-medium mt-4">
                       {/* <p className="text-sm text-gray-700 ">{job.description}</p> */}
                 <h6 className="text-[14px] leading-[21px]">Main things you will be doing</h6>
-                <p className="w-[60%] text-sm text-black-700 ">
+                <p className="w-[60%] font-inter text-sm text-black-700 ">
                 Preparation and coordination of controlled documentation within Flight Operations (i.e., Manuals, DPM, Forms, Documents and Publication) to ensure standardization
                 Ensure that documents are produced to the highest quality standards considering human factors principles in coordination with Document Owner to provide user-friendly and effective documentations.<br/>
                 Monitor compliance and the adequacy of procedures based on regulatory, IOSA and company requirements
@@ -171,7 +172,7 @@ function JobList() {
 
             <div className="bg-white p-6 rounded-lg w-[80%] h-[407px]  relative">
               {/* Close Button */}
-              <button onClick={toggleModal} className="absolute top-2 right-3 text-xl font-bold text-red-500">✖</button>
+              <button onClick={toggleModal} className="absolute top-2 right-3 text-xl font-bold text-red-700">✖</button>
               {/* Normal Form */}
               <NormalForm />
             </div>

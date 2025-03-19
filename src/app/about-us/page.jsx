@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import MissionVision from './MissionVision'
 import WhyStudent from './WhyStudent'
 import SuccessfullStudents from './SuccessfullStudents'
+import WeHelp from './WeHelp'
 
 function page() {
   return (
@@ -14,6 +15,7 @@ function page() {
       <MissionVision/>
       <WhyStudent/>
       <SuccessfullStudents/>
+      <WeHelp/>
       <Footer/>
     </div>
   )
