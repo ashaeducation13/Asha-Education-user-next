@@ -1,15 +1,24 @@
+import Image from "next/image";
+import ring from '../../assets/contact-us/ring.png'
+import globe from '../../assets/contact-us/globe.png'
+import heroImg from '../../assets/contact-us/heroImg.png'
+import topright from '../../../public/topright.svg'
+import topleft from '../../../public/topleft.svg'
+import bottomright from '../../../public/bottomright.svg'
+import bottomleft from '../../../public/bottomleft.svg'
+
 export default function HeroSection() {
   return (
     <div className="relative grid grid-cols-1 md:grid-cols-2 bg-white">
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[326px] h-[326px]">
-        <img
-          src="/contact-us/ring.png"
-          alt="Green Ring"
-          className="absolute inset-0 w-full h-full scale-[1.1]"
-        />
+        <Image
+        src={ring}
+        alt="Green Ring"
+        className="absolute inset-0 w-full h-full scale-[1.1]"
+         />
         {/* Globe Image */}
-        <img
-          src="/contact-us/globe.png"
+        <Image
+          src={globe}
           alt="Globe"
           className="absolute inset-0 w-full h-full"
         />
@@ -17,29 +26,29 @@ export default function HeroSection() {
       {/* <img src="/contact-us/globe.png" alt="Globe" className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[326px] h-[326px]" /> */}
       <div className="flex flex-col items-center justify-center ">
         <div className="relative flex flex-col space-y-2  h-[500px] w-[400px] items-center justify-center">
-          <img
-            src="/topleft.svg"
+          <Image
+            src={topleft}
             alt="Top Left Decoration"
             className="absolute top-0 left-0 w-[30px] h-[30px]"
           />
 
           {/* Top Right Corner */}
-          <img
-            src="/topright.svg"
+          <Image
+            src={topright}
             alt="Top Right Decoration"
             className="absolute top-0 right-0 w-[30px] h-[30px]"
           />
 
           {/* Bottom Left Corner */}
-          <img
-            src="/bottomleft.svg"
+          <Image
+            src={bottomleft}
             alt="Bottom Left Decoration"
             className="absolute bottom-0 left-0 w-[30px] h-[30px]"
           />
 
           {/* Bottom Right Corner */}
-          <img
-            src="/bottomright.svg"
+          <Image
+            src={bottomright}
             alt="Bottom Right Decoration"
             className="absolute bottom-0 right-0 w-[30px] h-[30px]"
           />
@@ -71,7 +80,7 @@ export default function HeroSection() {
         </div>
       </div>
       <div>
-        <img src="/contact-us/heroImg.png" alt="" className="w-full" />
+        <Image src={heroImg} alt="" className="w-full" />
       </div>
     </div>
   );
