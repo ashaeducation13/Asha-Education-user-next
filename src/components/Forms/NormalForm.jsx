@@ -75,12 +75,12 @@ function NormalForm() {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-[20px]'>
             {/* Name Field */}
             <div className='flex flex-col gap-2'>
-              <p className='text-[12px] md:text-[14px] leading-[12px] font-[roboto-regular] text-red-500'>Name</p>
+              <p className='text-[12px] md:text-[14px] leading-[12px] font-inter text-red-500'>Name</p>
               <input
                 name='name'
                 value={formData.name}
                 onChange={handleInputChange} 
-                className='w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-[roboto-regular] placeholder:text-[13px] md:placeholder:text-[15px] placeholder:text-[#BABABA] focus:outline-none'
+                className='w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter placeholder:text-[13px] md:placeholder:text-[15px] placeholder:text-[#BABABA] focus:outline-none'
                 placeholder='Enter Your Name'
                 type='text'
               />
@@ -88,12 +88,12 @@ function NormalForm() {
 
             {/* Position Field */}
             <div className='flex flex-col gap-2'>
-              <p className='text-[12px] md:text-[14px] leading-[12px] font-[roboto-regular] text-red-500'>Position</p>
+              <p className='text-[12px] md:text-[14px] leading-[12px] font-inter text-red-500'>Position</p>
               <select
                 name='position'
                 value={selectedPosition}
                 onChange={handlePositionChange}
-                className={`w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-[roboto-regular] focus:outline-none ${
+                className={`w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter focus:outline-none ${
                   selectedPosition ? 'text-black' : 'text-[#BABABA]'
                 }`}
               >
@@ -110,12 +110,12 @@ function NormalForm() {
 
             {/* Phone Field */}
             <div className='flex flex-col gap-2'>
-              <p className='text-[12px] md:text-[14px] leading-[12px] font-[roboto-regular] text-red-500'>Phone No</p>
+              <p className='text-[12px] md:text-[14px] leading-[12px] font-inter text-red-500'>Phone No</p>
               <input
                 name='phone'
                 value={formData.phone}
                 onChange={handleInputChange}
-                className='w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-[roboto-regular] placeholder:text-[13px] md:placeholder:text-[15px] placeholder:text-[#BABABA] focus:outline-none'
+                className='w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter placeholder:text-[13px] md:placeholder:text-[15px] placeholder:text-[#BABABA] focus:outline-none'
                 placeholder='Enter Phone Number'
                 type='number'
               />
@@ -123,12 +123,12 @@ function NormalForm() {
 
             {/* Location Field */}
             <div className='flex flex-col gap-2'>
-              <p className='text-[12px] md:text-[14px] leading-[12px] font-[roboto-regular] text-red-500'>Location</p>
+              <p className='text-[12px] md:text-[14px] leading-[12px] font-inter text-red-500'>Location</p>
               <select
                 name='location'
                 value={selectedLocation}
                 onChange={handleLocationChange}
-                className={`w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-[roboto-regular] focus:outline-none ${
+                className={`w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter focus:outline-none ${
                   selectedLocation ? 'text-black' : 'text-[#BABABA]'
                 }`}
               >
@@ -145,12 +145,12 @@ function NormalForm() {
 
             {/* Email Field */}
             <div className='flex flex-col gap-2'>
-              <p className='text-[12px] md:text-[14px] leading-[12px] font-[roboto-regular] text-red-500'>Email</p>
+              <p className='text-[12px] md:text-[14px] leading-[12px] font-inter text-red-500'>Email</p>
               <input
                 name='email'
                 value={formData.email}
                 onChange={handleInputChange}
-                className='w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-[roboto-regular] placeholder:text-[13px] md:placeholder:text-[15px] placeholder:text-[#BABABA] focus:outline-none'
+                className='w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter placeholder:text-[13px] md:placeholder:text-[15px] placeholder:text-[#BABABA] focus:outline-none'
                 placeholder='Enter Email'
                 type='email'
               />
@@ -158,10 +158,10 @@ function NormalForm() {
 
             {/* Upload CV */}
             <div className='flex flex-col gap-2'>
-              <p className='text-[12px] md:text-[14px] leading-[12px] font-[roboto-regular] text-red-500'>Upload CV</p>
+              <p className='text-[12px] md:text-[14px] leading-[12px] font-inter text-red-500'>Upload CV</p>
               <div className='relative'>
                 <input
-                  className={`w-full h-[40px] pl-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-[roboto-regular] focus:outline-none cursor-pointer ${
+                  className={`w-full h-[40px] pl-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter focus:outline-none cursor-pointer ${
                     selectedFile ? 'text-black' : 'text-[#BABABA]'
                   }`}
                   value={selectedFile ? selectedFile.name : 'Choose File'}
@@ -184,7 +184,7 @@ function NormalForm() {
                   onChange={handleFileChange}
                 />
               </div>
-              <div className='mt-2 text-red-500 text-[10px] md:text-[11px] leading-[12px]'>
+              <div className='font-inter mt-2 text-red-500 text-[10px] md:text-[11px] leading-[12px]'>
                 <p>Allowed file types: pdf, doc, docx, rtf</p>
                 <p>Maximum file size allowed: 5MB</p>
               </div>

@@ -25,31 +25,36 @@ const cardData = [
 
 function WhyStudent() {
   return (
-    <section className="relative p-10 px-[100px]">
-      <h2 className="text-[40px] leading-[40px] font-semibold mb-4">Why Students Trust Us</h2>
-      <p className="text-gray-600 text-[16px] leading-[24px] mb-6">
+    <section className="relative p-6 md:p-10 lg:px-[100px]">
+      <h2 className="font-open-sans text-[40px] leading-[40px] font-semibold mb-4">Why Students Trust Us</h2>
+      <p className="font-rubik text-gray-600 text-[16px] leading-[24px] mb-6">
         Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam. 
+        Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.
+        Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.
+        Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.
         Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere.
-        Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere.
-        Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere.
-        Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit.
       </p>
-    
+
+      {/* Cards Grid - Ensuring 4 Columns on lg */}
+      
       <div className="grid grid-cols-4 gap-14 mx-4">
         {cardData.map((card, index) => (
          <div key={index} className="bg-white  rounded-lg flex flex-col justify-center " >
             <div className="flex items-center">
               <img src={card.icon} alt={card.title} className="w-[26px] h-[24px] mr-2" />
-              <h3 className="text-[20px] leading-[20px] font-semibold w-[70%] ">{card.title}</h3>
+              <h3 className="font-inter text-[20px] leading-[20px] font-semibold w-[70%] ">{card.title}</h3>
             </div>
-            <p className="text-[16px] leading-[24px] text-gray-600 ">{card.description}</p>
+            <p className="font-inter text-[16px] leading-[24px] text-gray-600 ">{card.description}</p>
           </div>
         ))}
+</div>
 
-        
-      </div>
+
+
+
+      {/* Bottom Gradient Line - Fixed Position */}
       <div 
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 border-t border-transparent mb-[-10px]"
+        className="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-full lg:w-3/4 border-t border-transparent"
         style={{
           borderImageSource: "linear-gradient(90deg, #FFFFFF 0%, #FF383B 18.5%, #0A0078 53%, #FF383B 83%, #FFFFFF 100%)",
           borderImageSlice: 1,
