@@ -2,6 +2,16 @@
 
 import React from 'react';
 import logo from '../../src/assets/navbar/logo.png'
+import fb from '../../src/assets/footer/Facebook.svg'
+import tw from '../../src/assets/footer/Twitter.svg'
+import insta from '../../src/assets/footer/Instagram.svg'
+import linked from '../../src/assets/footer/LinkedIn.svg'
+import yt from '../../src/assets/footer/YouTube.svg'
+import cont from '../../src/assets/footer/Container.svg'
+import acc from '../../src/assets/footer/acc.svg'
+import copyright from '../../src/assets/footer/copyright.svg'
+import phn from '../../src/assets/footer/Phone.svg'
+import email from '../../src/assets/footer/Email.svg'
 import Image from "next/image";
 
 const Footer = () => {
@@ -16,7 +26,7 @@ const Footer = () => {
                         <Image
                             src={logo}
                             alt="Logo"
-                            className="h-[45px] w-[45px]"
+                            className="h-[45px] w-[100px]"
                         />
 
                         <p className="font-rubik text-gray-400">Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam mauris sed ma</p>
@@ -44,27 +54,27 @@ const Footer = () => {
                         <div className="flex space-x-4 pt-4">
                             {/* Facebook */}
                             <a href="#" className="hover:opacity-80">
-                                <img src="/footer/Facebook.svg" alt="Facebook" className="h-6  md:h-10" />
+                                <Image src={fb} alt="Facebook" className="h-6  md:h-10" />
                             </a>
 
                             {/* Twitter/X */}
                             <a href="#" className="hover:opacity-80">
-                                <img src="/footer/Twitter.svg" alt="X" className="h-6  md:h-10" />
+                                <Image src={tw} alt="X" className="h-6  md:h-10" />
                             </a>
 
                             {/* Instagram */}
                             <a href="#" className="hover:opacity-80">
-                                <img src="/footer/Instagram.svg" alt="Instagram" className="h-6  md:h-10" />
+                                <Image src={insta} alt="Instagram" className="h-6  md:h-10" />
                             </a>
 
                             {/* LinkedIn */}
                             <a href="#" className="hover:opacity-80">
-                                <img src="/footer/LinkedIn.svg" alt="LinkedIn" className="h-6  md:h-10" />
+                                <Image src={linked} alt="LinkedIn" className="h-6  md:h-10" />
                             </a>
 
                             {/* YouTube */}
                             <a href="#" className="hover:opacity-80">
-                                <img src="/footer/YouTube.svg" alt="Youtube" className="h-6  md:h-10" />
+                                <Image src={yt} alt="Youtube" className="h-6  md:h-10" />
                             </a>
                         </div>
                     </div>
@@ -102,7 +112,7 @@ const Footer = () => {
                         <h3 className="text-lg font-medium mb-4">Want to reach us directly</h3>
                         <ul className="space-y-4">
                             <li className="flex items-start">
-                                <img src="/footer/Container.svg" alt="Youtube" className="h-6 md:h-10 mr-3" />
+                                <Image src={cont} alt="Youtube" className="h-6 md:h-10 mr-3" />
                                 <div className="text-[#6D758F]" >
                                     <span className="font-normal">Adress:</span>
                                     <div className='font-semibold'>
@@ -113,7 +123,7 @@ const Footer = () => {
                                 </div>
                             </li>
                             <li className="flex items-center">
-                                <img src="/footer/Email.svg" alt="Youtube" className="h-6 md:h-10 mr-3" />
+                                <Image src={email} alt="Youtube" className="h-6 md:h-10 mr-3" />
                                 <div className="text-[#6D758F] flex flex-col">
                                     <span className="font-normal">Email:</span>
                                     <a href="mailto:info@education.com" className="font-semibold transition duration-300">
@@ -122,7 +132,7 @@ const Footer = () => {
                                 </div>
                             </li>
                             <li className="flex items-center">
-                                <img src="/footer/Phone.svg" alt="Youtube" className="h-6  md:h-10 mr-3" />
+                                <Image src={phn} alt="Youtube" className="h-6  md:h-10 mr-3" />
                                 <div className="text-[#6D758F] flex flex-col">
                                     <span className="font-normal">
                                         Phone:
@@ -154,12 +164,12 @@ const Footer = () => {
                     <a href="#" className="transition duration-300">Terms and Plans</a>
                     <p className="inline-flex items-center">
                         Copyright
-                        <img src="/footer/copyright.svg" alt="copyright" className="h-4 mx-1" />
+                        <Image src={copyright} alt="copyright" className="h-4 mx-1" />
                         2024 <span className="text-[#FF383B] font-medium">Asha Education</span> All Rights Reserved
                     </p>
                     <p className="inline-flex items-center">
                         Designed and developed by <span className="text-[#FF383B] font-medium ml-1 mr-1">Accolades Integrated</span>
-                        <img src="/footer/acc.svg" alt="acc" className="h-4 ml-1" />
+                        <Image src={acc} alt="acc" className="h-4 ml-1" />
                     </p>
                 </div>
             </div>
