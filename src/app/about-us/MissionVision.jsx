@@ -23,7 +23,7 @@ const cardData = [
 
 function MissionVision() {
   return (
-    <section className="flex justify-center gap-6 pt-[80px]">
+    <section className="flex justify-center gap-6 pt-[80px] ">
       {cardData.map((card, index) => (
         <div
           key={index}
@@ -35,12 +35,12 @@ function MissionVision() {
               <img 
                 src={card.icon} 
                 alt={card.title} 
-                className="w-10 h-10 transition duration-300 group-hover:hidden"
+                className="w-10 h-10 transition duration-300 group-hover:hidden" // This image will hide on hover
               />
               <img 
                 src={card.hoverIcon} 
                 alt={card.title} 
-                className="w-10 h-10 transition duration-300 hidden group-hover:block"
+                className="w-10 h-10 transition duration-300 hidden group-hover:block" // This image will show on hover
               />
             </div>
           </div>
