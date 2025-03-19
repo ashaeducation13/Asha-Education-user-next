@@ -1,16 +1,13 @@
 @import "tailwindcss";
 
-
 :root {
   --font-inter: "Inter", sans-serif;
   --font-rubik: "Rubik", sans-serif;
   --font-playfair: "Playfair Display", serif;
-  --font-open-sans: var(--font-open-sans)
+  --font-open-sans: "Open Sans", sans-serif;
 }
 
-
 @layer components {
-
   .font-inter {
     font-family: var(--font-inter);
   }
@@ -18,12 +15,12 @@
   .font-rubik {
     font-family: var(--font-rubik);
   }
-  
+
   .font-playfair {
     font-family: var(--font-playfair);
   }
 
   .font-open-sans {
-    font-family: var(--font-open-sans),sans-serif;
-  }
+    font-family: var(--font-open-sans);
+  }
 }
