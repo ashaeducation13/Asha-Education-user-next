@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import {Inter, Rubik, Playfair_Display } from 'next/font/google';
+import {Inter, Rubik, Playfair_Display, Open_Sans } from 'next/font/google';
 
 // Initialize the fonts
 const inter = Inter({
@@ -21,9 +21,15 @@ const playfair = Playfair_Display({
   variable: '--font-playfair',
 });
 
+const openSans = Open_Sans ({
+  subsets: ['latin'],
+  weight: ['400','500','600','700','800'],
+  variable: '--font-open-sans'
+})
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${rubik.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${rubik.variable} ${playfair.variable} ${openSans.variable}`}>
       <body>{children}</body>
     </html>
   );
