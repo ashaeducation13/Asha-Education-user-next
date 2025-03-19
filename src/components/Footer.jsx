@@ -1,6 +1,8 @@
 "use client"
 
 import React from 'react';
+import logo from '../../src/assets/navbar/logo.png'
+import Image from "next/image";
 
 const Footer = () => {
     return (
@@ -11,10 +13,10 @@ const Footer = () => {
                     {/* First Section - Logo, Subscription, Social Media */}
                     <div className="space-y-6">
                         {/* Logo */}
-                        <img
-                            src="/navbar/logo.png"
+                        <Image
+                            src={logo}
                             alt="Logo"
-                            className="h-[45px]"
+                            className="h-[45px] w-[45px]"
                         />
 
                         <p className="font-rubik text-gray-400">Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam mauris sed ma</p>
