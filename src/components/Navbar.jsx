@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
-
+import Image from "next/image";
+import logo from '../assets/navbar/logo.png'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,9 +25,9 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <img
+            <Image
               className="h-8 w-auto"
-              src="/navbar/logo.png"
+              src={logo}
               alt="Logo"
             />
           </div>
