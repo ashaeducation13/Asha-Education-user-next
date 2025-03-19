@@ -1,6 +1,8 @@
 "use client"
 import React, { useState } from 'react';
-
+import Image from "next/image";
+import logo from '../assets/navbar/logo.png'
+import Link from "next/link";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,24 +26,31 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <img
+            <Image
               className="h-8 w-auto"
-              src="/navbar/logo.png"
+              src={logo}
               alt="Logo"
             />
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4">
-            <a href="#" className="font-rubik text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm ">
+          <div className="hidden font-rubik md:flex items-center space-x-4">
+            <Link href="/" className=" text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm ">
               Home
-            </a>
-            <a href="#" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-rubik">
+            </Link>
+            <Link href="/about-us" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-rubik">
               About Us
-            </a>
+            </Link>
+            <Link href="#" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-rubik">
+            Programs
+            </Link>
+
+            <Link href="/universities" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-rubik">
+            Universities 
+            </Link>
 
             {/* Programs Dropdown */}
-            <div className="relative">
+            {/* <div className="relative">
               <button 
                 className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-rubik flex items-center"
                 onClick={() => toggleDropdown('programs')}
@@ -61,10 +70,10 @@ const Navbar = () => {
                   </div>
                 </div>
               )}
-            </div>
+            </div> */}
 
             {/* Universities Dropdown */}
-            <div className="relative">
+            {/* <div className="relative">
               <button 
                 className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-rubik flex items-center"
                 onClick={() => toggleDropdown('universities')}
@@ -83,7 +92,7 @@ const Navbar = () => {
                   </div>
                 </div>
               )}
-            </div>
+            </div> */}
 
             {/* More Dropdown */}
             <div className="relative">
@@ -99,11 +108,11 @@ const Navbar = () => {
               {activeDropdown === 'more' && (
                 <div className="absolute right-0 z-10 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                   <div className="py-1" role="menu" aria-orientation="vertical">
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Resources</a>
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Career Services</a>
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Events</a>
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Blog</a>
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Contact</a>
+                    <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Resources</Link>
+                    <Link href="/careers" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Career Services</Link>
+                    <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Events</Link>
+                    <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Blog</Link>
+                    <Link href="contact-us" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Contact</Link>
                   </div>
                 </div>
               )}

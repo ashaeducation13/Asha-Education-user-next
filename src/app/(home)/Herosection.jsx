@@ -2,6 +2,19 @@
 
 import HeroCarousel from "@/components/home/HeroCarousel";
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
+
+import float1 from '../../assets/home/herosection/float1.svg'
+import float2 from '../../assets/home/herosection/float2.svg'
+import float3 from '../../assets/home/herosection/float3.svg'
+import float4 from '../../assets/home/herosection/float4.svg'
+import float5 from '../../assets/home/herosection/float5.svg'
+import float6 from '../../assets/home/herosection/float6.svg'
+import float7 from '../../assets/home/herosection/float7.svg'
+import float8 from '../../assets/home/herosection/float8.svg'
+import search from '../../assets/home/herosection/Search.svg'
+import arrow from '../../assets/home/herosection/Arrow.svg'
+import fog from '../../assets/home/herosection/fog.svg'
 
 const Hero = () => {
   const floatingElementsRef = useRef([]);
@@ -57,27 +70,27 @@ const Hero = () => {
       <div className="relative z-10 max-w-4xl mx-auto" ref={mainContentRef}>
         {/* Floating SVGs on the left */}
         <div className="absolute left-0 top-0 h-full pointer-events-none" style={{ width: "120%", left: "-350px" }}>
-          <img
+          <Image
             ref={addToRefs}
-            src="/home/herosection/float1.svg"
+            src={float1}
             alt="Floating Element"
             className="absolute top-0 left-0 w-20 md:w-28 opacity-80"
           />
-          <img
+          <Image
             ref={addToRefs}
-            src="/home/herosection/float2.svg"
+            src={float2}
             alt="Floating Element"
             className="absolute top-1/4 left-64 w-16 md:w-24 opacity-70"
           />
-          <img
+          <Image
             ref={addToRefs}
-            src="/home/herosection/float3.svg"
+            src={float3}
             alt="Floating Element"
             className="absolute bottom-1/4 left-16 w-16 md:w-28 opacity-80"
           />
-          <img
+          <Image
             ref={addToRefs}
-            src="/home/herosection/float4.svg"
+            src={float4}
             alt="Floating Element"
             className="absolute bottom-0 left-80 w-14 md:w-20 opacity-60"
           />
@@ -85,27 +98,27 @@ const Hero = () => {
 
         {/* Floating SVGs on the right */}
         <div className="absolute right-0 top-0 h-full pointer-events-none" style={{ width: "120%", right: "-350px" }}>
-          <img
+          <Image
             ref={addToRefs}
-            src="/home/herosection/float5.svg"
+            src={float5}
             alt="Floating Element"
             className="absolute top-0 right-16 w-20 md:w-28 opacity-80"
           />
-          <img
+          <Image
             ref={addToRefs}
-            src="/home/herosection/float6.svg"
+            src={float6}
             alt="Floating Element"
             className="absolute top-1/4 right-80 w-16 md:w-24 opacity-70"
           />
-          <img
+          <Image
             ref={addToRefs}
-            src="/home/herosection/float7.svg"
+            src={float7}
             alt="Floating Element"
             className="absolute bottom-1/4 right-24 w-16 md:w-28 opacity-80"
           />
-            <img
+            <Image
               ref={addToRefs}
-              src="/home/herosection/float8.svg"
+              src={float8}
               alt="Floating Element"
               className="absolute bottom-0 right-96 w-14 md:w-28 "
             />
@@ -114,7 +127,7 @@ const Hero = () => {
         {/* Heading */}
         <h1 className="text-4xl md:text-[64px] font-normal text-gray-900">
           <span
-            className="bg-clip-text text-transparent font-playfair"
+            className="bg-clip-text text-transparent font-open-sans"
             style={{
               backgroundImage: "linear-gradient(90.02deg, #0A0078 2.5%, #FF383B 43.53%)",
             }}
@@ -132,8 +145,8 @@ const Hero = () => {
         {/* Search & Browse */}
         <div className="mt-6 flex flex-col md:flex-row justify-center items-center gap-4">
           <div className="relative w-full md:w-96">
-            <img
-              src="/home/herosection/Search.svg"
+            <Image
+              src={search}
               alt="Search"
               className="absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500"
             />
@@ -151,8 +164,8 @@ const Hero = () => {
             }}
           >
             Browse Programs
-            <img
-              src="/home/herosection/Arrow.svg"
+            <Image
+              src={arrow}
               alt="Arrow"
               className="w-[8.4px] h-[8.24px]"
             />
@@ -166,8 +179,8 @@ const Hero = () => {
       </div>
 
       {/* Foggy Bottom Effect using SVG */}
-      <img
-        src="/home/herosection/fog.svg"
+      <Image
+        src={fog}
         alt="Fog Effect"
         className="absolute bottom-0 left-0 w-full h-auto pointer-events-none z-20"
       />
