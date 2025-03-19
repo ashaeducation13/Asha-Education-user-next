@@ -4,3 +4,13 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
+
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//     basePath: '/asha', // Set the basePath for the app
+//     assetPrefix: '/asha', // Ensure static files are correctly referenced
+//     devIndicators: false,
+// };
+
+// export default nextConfig;
