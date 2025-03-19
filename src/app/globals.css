@@ -5,6 +5,7 @@
   --font-inter: "Inter", sans-serif;
   --font-rubik: "Rubik", sans-serif;
   --font-playfair: "Playfair Display", serif;
+  --font-open-sans: var(--font-open-sans)
 }
 
 
@@ -21,4 +22,8 @@
   .font-playfair {
     font-family: var(--font-playfair);
   }
+
+  .font-open-sans {
+    font-family: var(--font-open-sans),sans-serif;
+  }
 }
