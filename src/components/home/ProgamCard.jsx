@@ -1,5 +1,7 @@
 "use client";
 import React from "react";
+import Image from "next/image";
+import arrow from '../../assets/home/programsection/Arrowright.svg'
 
 const ProgramCard = ({ image, title, hover, previousHover, onMouseEnter }) => {
     // Determine expansion direction
@@ -26,14 +28,14 @@ const ProgramCard = ({ image, title, hover, previousHover, onMouseEnter }) => {
         ${hover ? "opacity-100" : "opacity-0"} flex items-center gap-1`}
                     >
                         View Programs
-                        <img src="/home/programsection/Arrowright.svg" alt="Arrow Right" className="w-4 h-4" />
+                        <Image src={arrow} alt="Arrow Right" className="w-4 h-4" />
                     </span>
                 </h2>
 
 
                 {/* Image at Bottom */}
                 <div className="absolute bottom-0 left-0 w-full">
-                    <img
+                    <Image
                         src={image}
                         alt={title}
                         className="w-full object-cover h-62"

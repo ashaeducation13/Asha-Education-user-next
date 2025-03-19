@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import Image from "next/image";
+
+
+import img1 from '../../assets/home/herosection/img1.webp'
+import img2 from '../../assets/home/herosection/img2.webp'
+import img3 from '../../assets/home/herosection/img3.webp'
+import img4 from '../../assets/home/herosection/img4.webp'
+import img5 from '../../assets/home/herosection/img5.webp'
 
 const images = [
-  "/home/herosection/img1.webp",
-  "/home/herosection/img2.webp",
-  "/home/herosection/img3.webp",
-  "/home/herosection/img4.webp",
-  "/home/herosection/img5.webp",
-  "/home/herosection/img1.webp",
-  "/home/herosection/img2.webp",
-  "/home/herosection/img3.webp",
-  "/home/herosection/img4.webp",
-  "/home/herosection/img5.webp",
+  img1,img2,img3,img4,img5,img1
 ];
 
 export default function HeroCarousel() {
@@ -47,7 +46,7 @@ export default function HeroCarousel() {
         
         return (
           <SwiperSlide key={index} className={`flex justify-center items-center transition-all duration-700 ease-in-out transform ${marginTopClass}`}>
-            <img 
+            <Image 
               src={src} 
               alt={`Slide ${index + 1}`} 
               className={`h-[223px] max-w-[223px] object-cover rounded-lg transition-transform duration-700 ease-in-out ${position === 0 ? "scale-110" : ""}`} 
