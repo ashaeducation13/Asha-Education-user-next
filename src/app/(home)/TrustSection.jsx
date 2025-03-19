@@ -1,5 +1,9 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
+import thumbnail from '../../assets/home/Trustsection/thumbnail.webp'
+import play from '../../assets/home/Trustsection/play.svg'
+import topright from '../../assets/topright.svg'
 
 const TrustSection = () => {
     const [playVideo, setPlayVideo] = useState(false);
@@ -20,14 +24,14 @@ const TrustSection = () => {
                             className="w-full h-full cursor-pointer relative"
                             onClick={() => setPlayVideo(true)}
                         >
-                            <img
-                                src="/home/Trustsection/thumbnail.webp" // Replace with actual thumbnail
+                            <Image
+                                src={thumbnail} 
                                 alt="Video Thumbnail"
                                 className="w-[450px] h-[450px] rounded-xl shadow-lg object-cover"
                             />
                             {/* Play Icon Overlay */}
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <img src="/home/Trustsection/play.svg" alt="Play Button" className="w-16 h-16 opacity-80" />
+                                <Image src={play} alt="Play Button" className="w-16 h-16 opacity-80" />
                             </div>
                         </div>
                     )}
@@ -51,14 +55,14 @@ const TrustSection = () => {
                         {/* Feature Boxes (2 per row) */}
                         <div className="grid grid-cols-2 gap-6">
                             {[
-                                { logo: "/topright.svg", title: "Partnered with top universities in India.", subtitle: "Lorem ipsum dolor sit amet consectetur adipiscing elitolmel." },
-                                { logo: "/topright.svg", title: "Personalized counseling and admission guidance.", subtitle: "Lorem ipsum dolor sit amet consectetur adipiscing elitolmel." },
-                                { logo: "/topright.svg", title: "Flexible learning options: online and offline.", subtitle: "SLorem ipsum dolor sit amet consectetur adipiscing elitolmel." },
-                                { logo: "/topright.svg", title: "Track record of successful placements.", subtitle: "Lorem ipsum dolor sit amet consectetur adipiscing elitolmel." },
+                                { logo: topright, title: "Partnered with top universities in India.", subtitle: "Lorem ipsum dolor sit amet consectetur adipiscing elitolmel." },
+                                { logo: topright, title: "Personalized counseling and admission guidance.", subtitle: "Lorem ipsum dolor sit amet consectetur adipiscing elitolmel." },
+                                { logo: topright, title: "Flexible learning options: online and offline.", subtitle: "SLorem ipsum dolor sit amet consectetur adipiscing elitolmel." },
+                                { logo: topright, title: "Track record of successful placements.", subtitle: "Lorem ipsum dolor sit amet consectetur adipiscing elitolmel." },
                             ].map((feature, index) => (
                                 <div key={index} >
                                     <div className="flex items-start gap-4 p-4">
-                                        <img src={feature.logo} alt={feature.title} className="w-12 h-12" />
+                                        <Image src={feature.logo} alt={feature.title} className="w-12 h-12" />
                                         <h3 className="text-lg text-[20px] font-semibold leading-[20px]">{feature.title}</h3>
                                     </div>
                                     <p className="text-sm text-[16px] leading-[24px] text-gray-500 w-[90%] mx-auto">{feature.subtitle}</p>

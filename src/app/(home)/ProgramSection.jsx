@@ -1,12 +1,17 @@
 "use client";
 import ProgramCard from "@/components/home/ProgamCard";
 import React, { useState } from "react";
+import img1 from '../../assets/home/programsection/cardimg1.png'
+import img2 from '../../assets/home/programsection/cardimg2.png'
+import img3 from '../../assets/home/programsection/cardimg3.png'
+import img4 from '../../assets/home/programsection/cardimg4.png'
+
 
 const programs = [
-    { image: "/home/programsection/cardimg1.png", title: "Undergraduate Programs" },
-    { image: "/home/programsection/cardimg2.png", title: "Postgraduate Programs" },
-    { image: "/home/programsection/cardimg3.png", title: "Doctoral Programs" },
-    { image: "/home/programsection/cardimg4.png", title: "Specialized MBAs" },
+    { image: img1, title: "Undergraduate Programs" },
+    { image: img2, title: "Postgraduate Programs" },
+    { image: img3, title: "Doctoral Programs" },
+    { image: img4, title: "Specialized MBAs" },
 ];
 
 const ProgramsSection = () => {

@@ -5,53 +5,66 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import PartnerCard from "@/components/home/PartnerCard";
+import Image from "next/image";
 
+
+import img1 from '../../assets/home/partnersection/cardimg1.webp'
+import img2 from '../../assets/home/partnersection/cardimg2.webp'
+import img3 from '../../assets/home/partnersection/cardimg3.webp'
+import img4 from '../../assets/home/partnersection/cardimg4.webp'
+
+import logo1 from '../../assets/home/partnersection/dpu.png'
+import logo2 from '../../assets/home/partnersection/nmims.png'
+import logo3 from '../../assets/home/partnersection/amity.png'
+import logo4 from '../../assets/home/partnersection/manipal.png'
+
+import arrow from '../../assets/home/herosection/Arrow.svg'
+import arrowright from '../../assets/home/partnersection/darkarrowright.svg'
 // University & Course Data
 const universityData = [
     {
         id: 1,
         name: "DY Patil",
-        logo: "/home/partnersection/dpu.png",
+        logo: logo1,
         courses: [
-            { id: 1, image: "/home/partnersection/cardimg1.webp", title: "MBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 2, image: "/home/partnersection/cardimg2.webp", title: "BBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 3, image: "/home/partnersection/cardimg3.webp", title: "BCOM", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 4, image: "/home/partnersection/cardimg4.webp", title: "BCA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 1, image: img1, title: "MBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 2, image: img2, title: "BBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 3, image: img3, title: "BCOM", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 4, image: img4, title: "BCA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
         ],
     },
     {
         id: 2,
         name: "NMIMS",
-        logo: "/home/partnersection/nmims.png",
+        logo:logo2,
         courses: [
-            { id: 1, image: "/home/partnersection/cardimg1.webp", title: "AI & ML", subtitle: "Stanford AI Program" },
-            { id: 2, image: "/home/partnersection/cardimg2.webp", title: "Entrepreneurship", subtitle: "Stanford GSB" },
-            { id: 3, image: "/home/partnersection/cardimg3.webp", title: "Robotics", subtitle: "Stanford Robotics Lab" },
-            { id: 4, image: "/home/partnersection/cardimg4.webp", title: "Design", subtitle: "Stanford d.school" },
+            { id: 1, image: img1, title: "MBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 2, image: img2, title: "BBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 3, image: img3, title: "BCOM", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 4, image: img4, title: "BCA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
         ],
     },
     {
         id: 3,
         name: "Amity",
-        logo: "/home/partnersection/amity.png",
+        logo: logo3,
         courses: [
-            { id: 1, image: "/home/partnersection/cardimg1.webp", title: "Aerospace", subtitle: "MIT AeroAstro" },
-            { id: 2, image: "/home/partnersection/cardimg2.webp", title: "Physics", subtitle: "MIT Physics Department" },
-            { id: 3, image: "/home/partnersection/cardimg3.webp", title: "Data Science", subtitle: "MIT Data Science" },
-            { id: 4, image: "/home/partnersection/cardimg4.webp", title: "BioTech", subtitle: "MIT BioEngineering" },
+            { id: 1, image: img1, title: "MBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 2, image: img2, title: "BBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 3, image: img3, title: "BCOM", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 4, image: img4, title: "BCA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
         ],
     },
     {
         id: 4,
         name: "Manipal University",
-        logo: "/home/partnersection/manipal.png",
+        logo: logo4,
         courses: [
-            { id: 1, image: "/home/partnersection/cardimg1.webp", title: "Philosophy", subtitle: "Oxford Humanities" },
-            { id: 2, image: "/home/partnersection/cardimg2.webp", title: "History", subtitle: "Oxford History Faculty" },
-            { id: 3, image: "/home/partnersection/cardimg3.webp", title: "Literature", subtitle: "Oxford English Lit" },
-            { id: 4, image: "/home/partnersection/cardimg4.webp", title: "Economics", subtitle: "Oxford Business School" },
+            { id: 1, image: img1, title: "MBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 2, image: img2, title: "BBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 3, image: img3, title: "BCOM", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 4, image: img4, title: "BCA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
         ],
     },
 ];
@@ -83,7 +96,7 @@ const Universities = () => {
                           `}
                             onClick={() => setSelectedUniversity(university)}
                         >
-                            <img src={university.logo} alt={university.name} className="h-8 w-8 object-contain" />
+                            <Image src={university.logo} alt={university.name} className="h-8 w-8 object-contain" />
                             <span>{university.name}</span>
                         </button>
                     ))}
@@ -94,8 +107,8 @@ const Universities = () => {
                         }}
                     >
                         Browse all Programs
-                        <img
-                            src="/home/herosection/Arrow.svg"
+                        <Image
+                            src={arrow}
                             alt="Arrow"
                             className="w-[8.4px] h-[8.24px]"
                         />
@@ -106,8 +119,8 @@ const Universities = () => {
                         
                     >
                         Compare Universities
-                        <img
-                            src="/home/partnersection/darkarrowright.svg"
+                        <Image
+                            src={arrowright}
                             alt="Arrow"
                             className="w-[8.4px] h-[8.24px]"
                         />
