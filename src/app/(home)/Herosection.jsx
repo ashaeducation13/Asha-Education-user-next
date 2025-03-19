@@ -103,12 +103,12 @@ const Hero = () => {
             alt="Floating Element"
             className="absolute bottom-1/4 right-24 w-16 md:w-28 opacity-80"
           />
-          <img
-            ref={addToRefs}
-            src="/home/herosection/float8.svg"
-            alt="Floating Element"
-            className="absolute bottom-0 right-96 w-14 md:w-28 "
-          />
+            <img
+              ref={addToRefs}
+              src="/home/herosection/float8.svg"
+              alt="Floating Element"
+              className="absolute bottom-0 right-96 w-14 md:w-28 "
+            />
         </div>
 
         {/* Heading */}
