@@ -31,7 +31,7 @@ const Hero = () => {
       const xMovement = 8 + Math.random() * 12; // 8-20px
       const yMovement = 8 + Math.random() * 12; // 8-20px
       const delay = index * 0.3; // Stagger the animations
-      
+
       // Create and start the animation
       return el.animate(
         [
@@ -67,65 +67,66 @@ const Hero = () => {
       {/* Background Blur Effect */}
       <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(241,241,241,1)_26%,_rgba(255,255,255,0)_64%)]"></div>
 
-      <div className="relative z-10 max-w-4xl mx-auto" ref={mainContentRef}>
+      <div className="relative z-0 max-w-4xl mx-auto" ref={mainContentRef}>
         {/* Floating SVGs on the left */}
-        <div className="absolute left-0 top-0 h-full pointer-events-none" style={{ width: "100%", left: "-350px" }}>
+        <div className="absolute left-[-12vw] md:left-[-8vw] lg:left-[-10vw] top-0 h-full pointer-events-none w-[40%] md:w-[30%] max-w-screen-lg mx-4">
+
           <Image
             ref={addToRefs}
             src={float1}
             alt="Floating Element"
-            className="absolute top-0 left-0 w-20 md:w-28 opacity-80"
+            className="absolute top-10 left-[5vw] md:left-[8vw] lg:left-[2vw] w-12 md:w-26"
           />
           <Image
             ref={addToRefs}
             src={float2}
             alt="Floating Element"
-            className="absolute top-1/4 left-64 w-16 md:w-24 opacity-70"
+            className="absolute top-1/4 left-[12vw] md:left-[14vw] lg:left-[9vw] w-12 md:w-20"
           />
           <Image
             ref={addToRefs}
             src={float3}
             alt="Floating Element"
-            className="absolute bottom-1/4 left-16 w-16 md:w-28 opacity-80"
+            className="absolute bottom-1/4 left-[8vw] md:left-[10vw] lg:left-[16vw] w-12 md:w-24"
           />
           <Image
             ref={addToRefs}
             src={float4}
             alt="Floating Element"
-            className="absolute bottom-0 left-80 w-14 md:w-20 opacity-60"
+            className="absolute bottom-0 left-[18vw] md:left-[22vw] lg:left-[5vw] w-10 md:w-20"
           />
         </div>
 
         {/* Floating SVGs on the right */}
-        <div className="absolute right-0 top-0 h-full pointer-events-none" style={{ width: "100%", right: "-350px" }}>
+        <div className="absolute right-[-12vw] md:right-[-6vw] lg:right-[-10vw] top-0 h-full pointer-events-none w-[40%] md:w-[30%] max-w-screen-lg mx-4">
+
           <Image
             ref={addToRefs}
             src={float5}
             alt="Floating Element"
-            className="absolute top-0 right-16 w-20 md:w-28 opacity-80"
+            className="absolute top-0 right-[5vw] md:right-[8vw] lg:right-[2vw] w-12 md:w-24"
           />
           <Image
             ref={addToRefs}
             src={float6}
             alt="Floating Element"
-            className="absolute top-1/4 right-80 w-16 md:w-24 opacity-70"
+            className="absolute top-1/4 right-[12vw] md:right-[14vw] lg:right-[8vw] w-12 md:w-24"
           />
           <Image
             ref={addToRefs}
             src={float7}
             alt="Floating Element"
-            className="absolute bottom-1/4 right-24 w-16 md:w-28 opacity-80"
+            className="absolute bottom-1/4 right-[8vw] md:right-[10vw] lg:right-[15vw] w-12 md:w-28"
           />
-            <Image
-              ref={addToRefs}
-              src={float8}
-              alt="Floating Element"
-              className="absolute bottom-0 right-96 w-14 md:w-28 "
-            />
+          <Image
+            ref={addToRefs}
+            src={float8}
+            alt="Floating Element"
+            className="absolute bottom-0 right-[18vw] md:right-[22vw] lg:right-[6vw] w-10 md:w-28"
+          />
         </div>
-
         {/* Heading */}
-        <h1 className="text-4xl md:text-[64px] font-normal text-gray-900">
+        <h1 className="text-4xl md:text-[64px] font-normal text-gray-900 z-10">
           <span
             className="bg-clip-text text-transparent font-open-sans"
             style={{
@@ -174,7 +175,7 @@ const Hero = () => {
       </div>
 
       {/* Carousel */}
-      <div className="mt-16 mb-14 max-w-[90%] mx-auto">
+      <div className="mt-16 mb-14  mx-auto">
         <HeroCarousel />
       </div>
 
@@ -182,7 +183,7 @@ const Hero = () => {
       <Image
         src={fog}
         alt="Fog Effect"
-        className="absolute bottom-0 left-0 w-full h-auto pointer-events-none z-20"
+        className="absolute lg:bottom-[-15px] left-0 w-full h-auto pointer-events-none z-20"
       />
     </section>
   );

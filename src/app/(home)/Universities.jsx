@@ -37,7 +37,7 @@ const universityData = [
     {
         id: 2,
         name: "NMIMS",
-        logo:logo2,
+        logo: logo2,
         courses: [
             { id: 1, image: img1, title: "MBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
             { id: 2, image: img2, title: "BBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
@@ -74,7 +74,7 @@ const Universities = () => {
 
     return (
         <>
-            <div className="relative max-w-4xl mx-auto text-center my-10">
+            <div className="relative max-w-[1440px] mx-auto text-center my-10">
                 <h1 className="text-4xl md:text-[30px] font-semibold text-gray-900">
                     Our Prestigious Partner Universities
                 </h1>
@@ -87,11 +87,12 @@ const Universities = () => {
 
 
                 {/* Left: University Buttons (20%) */}
-                <div className="w-[20%] flex flex-col gap-4 ml-16">
+                <div className="w-auto min-w-[150px] lg:min-w-[160px] flex flex-col gap-4 ml-4 ">
+
                     {universityData.map((university) => (
                         <button
                             key={university.id}
-                            className={`flex items-center gap-3 px-4 py-2 border rounded-md text-black text-[16px] font-normal transition-all font-rubik text-left 
+                            className={`flex items-center gap-3 px-4 py-2 border rounded-md text-black text-[12px] lg:text-[16px] font-normal transition-all font-rubik text-left 
                             ${selectedUniversity.id === university.id ? "border-[#0A0078] text-black" : "border-gray-300 bg-white hover:bg-gray-100"}
                           `}
                             onClick={() => setSelectedUniversity(university)}
@@ -116,7 +117,7 @@ const Universities = () => {
 
                     <button
                         className="flex items-center font-inter font-semibold gap-2  px-6 py-3 rounded-lg shadow-md transition duration-300 text-[14px]"
-                        
+
                     >
                         Compare Universities
                         <Image
@@ -129,7 +130,7 @@ const Universities = () => {
 
 
                 {/* Right: Swiper Carousel (80%) */}
-                <div className="w-[80%] pl-16">
+                <div className="w-[70%] lg:w-[80%] pl-4">
                     <Swiper
                         slidesPerView={1}
                         spaceBetween={0}

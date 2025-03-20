@@ -5,9 +5,9 @@ import Image from "next/image";
 const PartnerCard = ({ image, title, subtitle }) => {
   return (
     <>
-      <div className="max-w-[260px] w-full bg-white shadow-lg rounded-xl overflow-hidden transition-transform duration-300 hover:scale-105">
+      <div className="max-w-[260px] w-[94%] lg:w-[97%] bg-white shadow-lg rounded-xl overflow-hidden transition-transform duration-300 hover:scale-105">
       {/* Image */}
-      <Image src={image} alt={title} className="w-full h-[260px] object-cover" />
+      <Image src={image} alt={title} className=" lg:w-full h-[260px] object-cover" />
 
       {/* Content */}
       <div className="p-5 text-left">
