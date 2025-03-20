@@ -4,12 +4,16 @@ import phone from "../../assets/contact-us/phone.svg"
 import email from "../../assets/contact-us/email.svg"
 import hash from "../../assets/contact-us/hash.svg"
 import time from "../../assets/contact-us/time.svg"
-import facebook from "../../../public/Facebook.svg";
-import twitter from "../../../public/Twitter.svg";
-import instagram from "../../../public/Instagram.svg";
-import linkedin from "../../../public/LinkedIn.svg";
-import youtube from "../../../public/Youtube.svg";
+import facebook from "../../assets/contact-us/Facebook.svg";
+import twitter from "../../assets/contact-us/Twitter.svg";
+import instagram from "../../assets/contact-us/Instagram.svg";
+import linkedin from "../../assets/contact-us/LinkedIn.svg";
+import youtube from "../../assets/contact-us/Youtube.svg";  
 import address from "../../assets/contact-us/Address.svg"
+import one from "../../assets/contact-us/1.svg"
+import two from "../../assets/contact-us/2.svg"
+import three from "../../assets/contact-us/3.svg"
+import four from "../../assets/contact-us/4.svg"
 
 export default function SendUsSection() {
   const contactInfo = [
@@ -18,6 +22,7 @@ export default function SendUsSection() {
       content1:
         "1234 Knowledge Avenue,\nEducation City,\nNew Delhi, India - 110001",
       icon: address,
+      hovIcon:one,
     },
     {
       title: "Phone Numbers",
@@ -26,6 +31,7 @@ export default function SendUsSection() {
       subtitle2: "General Inquiry",
       content2: "+91 98765 43210",
       icon: phone,
+      hovIcon:two,
     },
     {
       title: "Email Addresses",
@@ -34,6 +40,7 @@ export default function SendUsSection() {
       subtitle2: "Admissions",
       content2: "admissions@educationhub.com",
       icon: email,
+      hovIcon:three,
     },
     {
       title: "Office Hours",
@@ -42,6 +49,7 @@ export default function SendUsSection() {
       subtitle2: "Saturday",
       content2: "10 AM - 4 PM",
       icon: time,
+      hovIcon:four,
     },
   ];
 
@@ -54,7 +62,8 @@ export default function SendUsSection() {
             className="p-6 rounded-[20px] bg-white flex flex-col justify-between shadow-2xl transition duration-300 hover:bg-gradient-to-r hover:from-[#0A0078] hover:to-[#FF383B] hover:text-white group"
           >
             <div className="flex items-start gap-[20px]">
-              <Image src={item?.icon} alt="" className="w-8 h-8 mt-1" />
+              <Image src={item?.icon} alt={item?.title} className="w-8 h-8 mt-1 group-hover:hidden" />
+              <Image src={item?.hovIcon} alt={item?.title} className="w-8 h-8 mt-1 hidden group-hover:block" />
               <h3 className="font-open-sans font-semibold text-[20px] leading-[24px] text-[#FF383B] transition duration-300 group-hover:text-white">
                 {item.title}
               </h3>
@@ -92,6 +101,7 @@ export default function SendUsSection() {
           </div>
         ))}
         <div className="flex items-center justify-between w-full mt-4">
+          <div className="flex items-center">
           <Image src={hash} className="mr-3 w-8 h-8" alt="hashcode" />
             <h1
               className="bg-clip-text text-transparent font-open-sans font-semibold text-[24px] leading-[24px] whitespace-nowrap"
@@ -102,24 +112,13 @@ export default function SendUsSection() {
             >
               Stay Connected with Us!
             </h1>
-          <div className="flex items-center gap-4">
-            <ul className="flex gap-6">
-              <li className="">
+          </div>
+          <div className="flex items-center gap-6 ml-[100px]">
                 <Image src={facebook} className="w-8 h-8" alt="faceb" />
-              </li>
-              <li >
                 <Image src={twitter} className="w-8 h-8" alt="" />
-              </li>
-              <li>
                 <Image src={instagram} className="w-8 h-8" alt="" />
-              </li>
-              <li>
                 <Image src={linkedin} className="w-8 h-8" alt="" />
-              </li>
-              <li>
                 <Image src={youtube} className="w-8 h-8" alt="" />
-              </li>
-            </ul>
           </div>
         </div>
       </div>
