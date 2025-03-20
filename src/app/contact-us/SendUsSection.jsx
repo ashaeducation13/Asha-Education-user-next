@@ -198,6 +198,6 @@ export default function SendUsSection() {
           </form>
         </div>
       </div>
-    </div>
-  );
+    </div>
+  );
 }

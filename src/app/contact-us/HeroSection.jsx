@@ -24,8 +24,8 @@ export default function HeroSection() {
         />
       </div>
       {/* <img src="/contact-us/globe.png" alt="Globe" className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[326px] h-[326px]" /> */}
-      <div className="flex flex-col items-center justify-center ">
-        <div className="relative flex flex-col space-y-2  h-[500px] w-[400px] items-center justify-center">
+      <div className="flex flex-col items-center justify-center pr-20">
+        <div className="relative flex flex-col space-y-2  h-[450px] w-[450px] items-start justify-center pl-23">
           <Image
             src={topleft}
             alt="Top Left Decoration"
