@@ -5,6 +5,8 @@ import img1 from '../../assets/home/programsection/cardimg1.png'
 import img2 from '../../assets/home/programsection/cardimg2.png'
 import img3 from '../../assets/home/programsection/cardimg3.png'
 import img4 from '../../assets/home/programsection/cardimg4.png'
+import bg from '../../assets/home/programsection/bg.svg'
+
 
 
 const programs = [
@@ -23,7 +25,7 @@ const ProgramsSection = () => {
             <div
                 className="w-[30%] flex flex-col justify-center items-center relative p-8 ml-8 text-black"
                 style={{
-                    backgroundImage: "url('/home/programsection/bg.svg')",
+                    backgroundImage: `url(${bg})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}

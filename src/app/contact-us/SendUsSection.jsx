@@ -4,12 +4,15 @@ import phone from "../../assets/contact-us/phone.svg"
 import email from "../../assets/contact-us/email.svg"
 import hash from "../../assets/contact-us/hash.svg"
 import time from "../../assets/contact-us/time.svg"
-import facebook from "../../../public/Facebook.svg";
-import twitter from "../../../public/Twitter.svg";
-import instagram from "../../../public/Instagram.svg";
-import linkedin from "../../../public/LinkedIn.svg";
-import youtube from "../../../public/Youtube.svg";
-import address from "../../assets/contact-us/Address.svg"
+
+
+// import facebook from '../../assets/Facebook.svg'
+// import twitter from '../../assets/Twitter.svg'
+// import instagram from '../../assets/Instagram.svg'
+// import linkedin from '../../assets/LinkedIn.svg'
+// import youtube from '../../assets/Youtube.svg'
+
+import address from "../../assets/contact-us/address.svg"
 
 export default function SendUsSection() {
   const contactInfo = [
@@ -102,7 +105,7 @@ export default function SendUsSection() {
             >
               Stay Connected with Us!
             </h1>
-          <div className="flex items-center gap-4">
+          {/* <div className="flex items-center gap-4">
             <ul className="flex gap-6">
               <li className="">
                 <Image src={facebook} className="w-8 h-8" alt="faceb" />
@@ -120,7 +123,7 @@ export default function SendUsSection() {
                 <Image src={youtube} className="w-8 h-8" alt="" />
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="w-[30%] flex flex-col items-center ">
