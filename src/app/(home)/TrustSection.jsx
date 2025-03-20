@@ -10,7 +10,7 @@ const TrustSection = () => {
     return (
         <div className="w-full flex justify-center">
             <div className="max-w-[1440px] w-full p-8 flex items-center justify-between">
-                <div className="w-[40%] relative">
+                <div className="w-[40%] relative ml-10">
                     {playVideo ? (
                         <ReactPlayer
                             url={null}
@@ -21,19 +21,20 @@ const TrustSection = () => {
                         />
                     ) : (
                         <div
-                            className="w-full h-full cursor-pointer relative"
-                            onClick={() => setPlayVideo(true)}
-                        >
-                            <Image
-                                src={thumbnail} 
-                                alt="Video Thumbnail"
-                                className="w-[450px] h-[450px] rounded-xl shadow-lg object-cover"
-                            />
-                            {/* Play Icon Overlay */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <Image src={play} alt="Play Button" className="w-16 h-16 opacity-80" />
-                            </div>
+                        className="relative w-full max-w-[450px] aspect-square flex items-center justify-center cursor-pointer"
+                        onClick={() => setPlayVideo(true)}
+                    >
+                        <Image
+                            src={thumbnail} 
+                            alt="Video Thumbnail"
+                            className="w-full h-full rounded-xl shadow-lg object-cover"
+                        />
+                        {/* Play Icon Overlay */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <Image src={play} alt="Play Button" className="w-16 h-16 opacity-80" />
                         </div>
+                    </div>
+                    
                     )}
                 </div>
 

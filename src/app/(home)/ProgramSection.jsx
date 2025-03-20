@@ -5,9 +5,14 @@ import img1 from '../../assets/home/programsection/cardimg1.png'
 import img2 from '../../assets/home/programsection/cardimg2.png'
 import img3 from '../../assets/home/programsection/cardimg3.png'
 import img4 from '../../assets/home/programsection/cardimg4.png'
+
 import bg from '../../assets/home/programsection/bg.svg'
+import topleft from '../../assets/topleft.svg'
+import topright from '../../assets/topright.svg'
+import bottomleft from '../../assets/bottomleft.svg'
+import bottomright from '../../assets/bottomright.svg'
 
-
+import lines from '../../assets/home/programsection/lines.svg'
 
 const programs = [
     { image: img1, title: "Undergraduate Programs" },
@@ -18,14 +23,16 @@ const programs = [
 
 const ProgramsSection = () => {
     const [hoveredIndex, setHoveredIndex] = useState(0); // Default to first card hovered
+    console.log(bg);  // Should print the resolved path of bg.svg
+    console.log(topleft);
 
     return (
         <div className="flex w-full mx-auto">
             {/* Left Section (40%) */}
             <div
-                className="w-[30%] flex flex-col justify-center items-center relative p-8 ml-8 text-black"
+                className="w-[30%] flex flex-col justify-center items-center relative p-8 ml-16 text-black"
                 style={{
-                    backgroundImage: `url(${bg})`,
+                    backgroundImage: `url(${bg.src})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}
@@ -33,22 +40,22 @@ const ProgramsSection = () => {
                 {/* SVG Decorations */}
                 <div
                     className="absolute top-6 left-6 w-[26px] h-[26px] bg-no-repeat bg-contain"
-                    style={{ backgroundImage: "url('topleft.svg')" }}
+                    style={{ backgroundImage: `url(${topleft.src})` }}
                 ></div>
 
                 <div
                     className="absolute top-6 right-6 w-[26px] h-[26px] bg-no-repeat bg-contain"
-                    style={{ backgroundImage: "url('topright.svg')" }}
+                    style={{ backgroundImage: `url(${topright.src})`  }}
                 ></div>
 
                 <div
                     className="absolute bottom-6 left-6 w-[26px] h-[26px] bg-no-repeat bg-contain"
-                    style={{ backgroundImage: "url('bottomleft.svg')" }}
+                    style={{ backgroundImage: `url(${bottomleft.src})`  }}
                 ></div>
 
                 <div
                     className="absolute bottom-6 right-6 w-[26px] h-[26px] bg-no-repeat bg-contain"
-                    style={{ backgroundImage: "url('bottomright.svg')" }}
+                    style={{ backgroundImage: `url(${bottomright.src})`  }}
                 ></div>
 
                 {/* Text Content */}
@@ -67,7 +74,7 @@ const ProgramsSection = () => {
                 <div
                     className="absolute inset-0 z-50 pointer-events-none"
                     style={{
-                        backgroundImage: "url('/home/programsection/lines.svg')",
+                        backgroundImage: `url(${lines.src})`,
                         backgroundSize: "contain",
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
