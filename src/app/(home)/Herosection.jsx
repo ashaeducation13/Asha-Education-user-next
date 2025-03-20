@@ -63,13 +63,13 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative py-20 px-6 md:px-12 text-center overflow-visible">
+    <section className="relative py-20 px-6 md:px-12 text-center overflow-hidden">
       {/* Background Blur Effect */}
       <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(241,241,241,1)_26%,_rgba(255,255,255,0)_64%)]"></div>
 
       <div className="relative z-10 max-w-4xl mx-auto" ref={mainContentRef}>
         {/* Floating SVGs on the left */}
-        <div className="absolute left-0 top-0 h-full pointer-events-none" style={{ width: "120%", left: "-350px" }}>
+        <div className="absolute left-0 top-0 h-full pointer-events-none" style={{ width: "100%", left: "-350px" }}>
           <Image
             ref={addToRefs}
             src={float1}
@@ -97,7 +97,7 @@ const Hero = () => {
         </div>
 
         {/* Floating SVGs on the right */}
-        <div className="absolute right-0 top-0 h-full pointer-events-none" style={{ width: "120%", right: "-350px" }}>
+        <div className="absolute right-0 top-0 h-full pointer-events-none" style={{ width: "100%", right: "-350px" }}>
           <Image
             ref={addToRefs}
             src={float5}
