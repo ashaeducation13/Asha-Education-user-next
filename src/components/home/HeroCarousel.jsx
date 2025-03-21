@@ -31,6 +31,13 @@ export default function HeroCarousel() {
       onSlideChange={updateSlidePositions}
       onSwiper={updateSlidePositions}
       className="w-full"
+      breakpoints={{
+        320: { slidesPerView: 1, spaceBetween: 5 },   // Mobile
+        640: { slidesPerView: 3, spaceBetween: 8 },   // Tablets
+        1024: { slidesPerView: 4, spaceBetween: 10 }, // Small desktops
+        1280: { slidesPerView: 5, spaceBetween: 10 }, // Large desktops
+        1536: { slidesPerView: 5, spaceBetween: 10 }, // XL screens
+      }}
     >
       {images.map((src, index) => {
         const position = ((index - activeIndex) % images.length + images.length) % images.length;
