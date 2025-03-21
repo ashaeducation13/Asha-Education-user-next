@@ -13,7 +13,7 @@ const CounselSection = () => {
     const [playVideo, setPlayVideo] = useState(false);
 
     return (
-        <div className='bg-[#F5F5F5] py-10 relative'>
+        <section className='containers bg-[#F5F5F5] py-10 relative'>
               <Image src={icon1} alt="Icon 1" className="absolute top-[30px] left-[30px] w-8 h-8" />
             
             {/* Top-right Icon */}
@@ -45,7 +45,7 @@ const CounselSection = () => {
             {/* form and video section */}
 
 
-            <div className="w-full p-8 flex items-center justify-center gap-30 xl:gap-60 mx-auto">
+            <div className="w-full p-8 flex items-center justify-center gap-30 xl:gap-15     mx-auto">
                 <div className="relative ml-10">
                     <HomeForm />
                 </div>
@@ -79,7 +79,7 @@ const CounselSection = () => {
                 </div>
             </div>
 
-        </div>
+        </section>
     )
 }
 

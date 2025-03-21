@@ -1,31 +1,34 @@
 import React from "react";
 import Image from "next/image";
-import featuredImg from "../../assets/home/informsection/blogimg.png"; 
+import featuredImg from "../../assets/home/informsection/blogimg.png";
 
 
 const InformedSection = () => {
   return (
-    <div className="mx-auto py-12 px-34 bg-[#F5F5F5]">
+    <div className=" p-32  bg-[#F5F5F5]">
       {/* Header Section */}
-      <h2 className="text-[28px] md:text-[32px] font-bold">
-        <span
-          className="bg-clip-text text-transparent"
-          style={{
-            backgroundImage:
-              "linear-gradient(90.02deg, #0A0078 2.5%, #FF383B 43.53%)",
-          }}
-        >
-          Stay Informed
-        </span>{" "}
-        with the <span className="text-[#FF383B]">Latest Resources</span>
-      </h2>
-      <p className="mt-2 text-gray-600 text-[16px] leading-[24px]">
-        Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
-        phasellus mollis sit aliquam sit nullam.
-      </p>
+      <div className="mx-auto">
 
+        <h2 className="text-[28px] md:text-[32px] font-bold">
+          <span
+            className="bg-clip-text text-transparent"
+            style={{
+              backgroundImage:
+                "linear-gradient(90.02deg, #0A0078 2.5%, #FF383B 43.53%)",
+            }}
+          >
+            Stay Informed
+          </span>{" "}
+          with the <span className="text-[#FF383B]">Latest Resources</span>
+        </h2>
+        <p className="mt-2 text-gray-600 text-[16px] leading-[24px]">
+          Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
+          phasellus mollis sit aliquam sit nullam.
+        </p>
+
+      </div>
       {/* Content Section */}
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="mt-6 w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 ">
         {/* Featured Article */}
         <div className="bg-white shadow-md rounded-xl overflow-hidden">
           <Image src={featuredImg} alt="Featured article" className="w-full h-[200px] object-cover" />

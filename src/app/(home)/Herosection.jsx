@@ -63,7 +63,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative py-20 px-6 md:px-12 text-center overflow-hidden">
+    <section className="containers relative py-20 px-6 md:px-12 text-center overflow-hidden">
       {/* Background Blur Effect */}
       <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(241,241,241,1)_26%,_rgba(255,255,255,0)_64%)]"></div>
 

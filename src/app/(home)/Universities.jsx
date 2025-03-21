@@ -28,10 +28,10 @@ const universityData = [
         name: "DY Patil",
         logo: logo1,
         courses: [
-            { id: 1, image: img1, title: "MBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 2, image: img2, title: "BBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 3, image: img3, title: "BCOM", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 4, image: img4, title: "BCA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 1, image: img1, title: "MBA", subtitle: "Partnering with top universities for world-class MBA programs." },
+            { id: 2, image: img2, title: "BBA", subtitle: "Unlock global business education with our trusted BBA partners." },
+            { id: 3, image: img3, title: "BCOM", subtitle: "Study commerce at leading universities with excellent faculty." },
+            { id: 4, image: img4, title: "BCA", subtitle: " Advance in technology with our premier BCA university partners." },
         ],
     },
     {
@@ -39,10 +39,10 @@ const universityData = [
         name: "NMIMS",
         logo: logo2,
         courses: [
-            { id: 1, image: img1, title: "MBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 2, image: img2, title: "BBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 3, image: img3, title: "BCOM", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 4, image: img4, title: "BCA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 1, image: img1, title: "MBA", subtitle: "Partnering with top universities for world-class MBA programs." },
+            { id: 2, image: img2, title: "BBA", subtitle: "Unlock global business education with our trusted BBA partners." },
+            { id: 3, image: img3, title: "BCOM", subtitle: "Study commerce at leading universities with excellent faculty." },
+            { id: 4, image: img4, title: "BCA", subtitle: " Advance in technology with our premier BCA university partners." },
         ],
     },
     {
@@ -50,10 +50,10 @@ const universityData = [
         name: "Amity",
         logo: logo3,
         courses: [
-            { id: 1, image: img1, title: "MBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 2, image: img2, title: "BBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 3, image: img3, title: "BCOM", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 4, image: img4, title: "BCA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 1, image: img1, title: "MBA", subtitle: "Partnering with top universities for world-class MBA programs." },
+            { id: 2, image: img2, title: "BBA", subtitle: "Unlock global business education with our trusted BBA partners." },
+            { id: 3, image: img3, title: "BCOM", subtitle: "Study commerce at leading universities with excellent faculty." },
+            { id: 4, image: img4, title: "BCA", subtitle: " Advance in technology with our premier BCA university partners." },
         ],
     },
     {
@@ -61,10 +61,10 @@ const universityData = [
         name: "Manipal University",
         logo: logo4,
         courses: [
-            { id: 1, image: img1, title: "MBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 2, image: img2, title: "BBA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 3, image: img3, title: "BCOM", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
-            { id: 4, image: img4, title: "BCA", subtitle: "Lorem ipsum dolor sit amet conse bolli tetur adipiscing." },
+            { id: 1, image: img1, title: "MBA", subtitle: "Partnering with top universities for world-class MBA programs." },
+            { id: 2, image: img2, title: "BBA", subtitle: "Unlock global business education with our trusted BBA partners." },
+            { id: 3, image: img3, title: "BCOM", subtitle: "Study commerce at leading universities with excellent faculty." },
+            { id: 4, image: img4, title: "BCA", subtitle: " Advance in technology with our premier BCA university partners." },
         ],
     },
 ];
@@ -79,8 +79,7 @@ const Universities = () => {
                     Our Prestigious Partner Universities
                 </h1>
                 <p className="mt-4 text-[16px] text-gray-600 w-[52%] mx-auto font-rubik font-normal leading-[24px]">
-                    Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
-                    phasellus mollis sit aliquam sit nullam neque ultrices.
+                    Explore our network of globally recognized partner universities, offering diverse programs and exceptional academic opportunities for students worldwide
                 </p>
             </div>
             <section className="relative pb-40 px-6 md:px-12 flex gap-6">

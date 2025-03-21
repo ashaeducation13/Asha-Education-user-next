@@ -50,16 +50,16 @@ const TrustSection = () => {
                             }}
                         >Trust Us</span></h2>
                         <p className="text-[16px] text-gray-600 w-[70%]">
-                            Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere
+                        Proven success, expert guidance, top universities, and personalized support—helping students achieve their academic dreams
                         </p>
 
                         {/* Feature Boxes (2 per row) */}
                         <div className="grid grid-cols-2 gap-6">
                             {[
-                                { logo: topright, title: "Partnered with top universities in India.", subtitle: "Lorem ipsum dolor sit amet consectetur adipiscing elitolmel." },
-                                { logo: topright, title: "Personalized counseling and admission guidance.", subtitle: "Lorem ipsum dolor sit amet consectetur adipiscing elitolmel." },
-                                { logo: topright, title: "Flexible learning options: online and offline.", subtitle: "SLorem ipsum dolor sit amet consectetur adipiscing elitolmel." },
-                                { logo: topright, title: "Track record of successful placements.", subtitle: "Lorem ipsum dolor sit amet consectetur adipiscing elitolmel." },
+                                { logo: topright, title: "Partnered with top universities in India.", subtitle: "Collaborating with India's leading universities for excellence." },
+                                { logo: topright, title: "Personalized counseling and admission guidance.", subtitle: "Expert counselling and admission support for every student." },
+                                { logo: topright, title: "Flexible learning options: online and offline.", subtitle: "Choose online or offline study options for convenience." },
+                                { logo: topright, title: "Track record of successful placements.", subtitle: "Strong track record of successful student career placements." },
                             ].map((feature, index) => (
                                 <div key={index} >
                                     <div className="flex items-start gap-4 p-4">

@@ -62,7 +62,7 @@ const ProgramsSection = () => {
                 <div className="text-left max-w-[65%]">
                     <h2 className="text-4xl font-bold relative z-10">Find the Right Program for You</h2>
                     <p className="text-lg relative z-10 mt-2">
-                        Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.
+                    Discover the perfect program tailored to your goals with expert guidance and a wide range of academic choices.
                     </p>
                 </div>
             </div>
