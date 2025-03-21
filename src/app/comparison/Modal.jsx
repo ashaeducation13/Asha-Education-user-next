@@ -14,7 +14,7 @@ export default function Modal({ isOpen, onClose, title, children }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-      <div className="bg-white p-6 rounded-2xl shadow-lg  max-w-4xl w-full transform transition-all scale-100">
+      <div className="bg-white p-6 rounded-2xl shadow-lg  max-w-[1200px] w-full transform transition-all scale-100">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-3xl font-semibold">{title}</h2>
           {/* <button
