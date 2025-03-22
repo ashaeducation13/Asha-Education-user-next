@@ -20,11 +20,11 @@ const Listing = () => {
             {Courses.map((item, index) => (
               <li
                 key={index}
-                className={`${
-                  index === 0
+                onClick={() => setSelectedCourse(item)} 
+                className={`cursor-pointer ${selectedCourse.title === item.title
                     ? "bg-[#FF383B] text-white"
                     : "bg-white text-[#6D758F] border border-[#D9D9D9]"
-                } hover:bg-[#FF383B] px-[22px] py-[18px] text-[16px] leading-[16px] font-bold  hover:text-white rounded-[8px]`}
+                  } hover:bg-[#FF383B] px-[22px] py-[18px] text-[16px] leading-[16px] font-bold hover:text-white rounded-[8px]`}
               >
                 {item.title}
               </li>
@@ -55,6 +55,7 @@ const Listing = () => {
               )}
             </ul>
           </div>
+          
           <div className="flex flex-col gap-10 items-center">
             <div className="grid grid-cols-2 gap-x-5 gap-y-10">
               {cardData.map((item, index) => (

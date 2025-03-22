@@ -7,7 +7,7 @@ import amitylogo from '../../../assets/universities/inner/amitylogo.png';
 
 const HeroSection = () => {
     return (
-        <section className="containers mx-auto px-6 py-12 border-b ">
+        <section className="containers mx-auto py-12 border-b border-[#E3E3E3]">
             {/* Container for Flex Layout */}
             <div className="flex flex-col md:flex-row items-center gap-6">
                 {/* Left Section (Text & Logo) */}
@@ -34,7 +34,7 @@ const HeroSection = () => {
                     </h2>
 
                     {/* Description */}
-                    <p className="text-[#121212]text-sm leading-[24px] font-inter w-[75%] text-[16px]">
+                    <p className="text-[#121212]text-sm leading-[24px] font-inter w-[75%] text-[16px] text-justify">
                         Bringing together pedagogy, content, and technology, Amity University Online is home to a range of
                         University Grants Commission (UGC) recognized programmes meant for anytime, anywhere learning.
                         It serves students globally with well-researched curriculum, renowned faculty, cutting-edge technology, and industry partnerships.
@@ -50,7 +50,7 @@ const HeroSection = () => {
             </div>
 
             {/* Accreditation Info (Full Width Below) */}
-            <p className="mt-8 text-[#121212]text-sm leading-relaxed text-center md:text-left font-inter  text-[16px] ">
+            <p className="mt-8 text-[#121212]text-sm leading-relaxed text-justify md:text-left font-inter text-[16px] ">
                 The country's first university to receive prestigious UGC accreditations for its online
                 programmes, Amity University Online is devoted to creating a transformative learning environment.
                 In today's world, where content is mobile and accessible anytime, anywhere, learning is truly a click away.

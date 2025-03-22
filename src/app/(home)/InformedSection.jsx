@@ -5,9 +5,9 @@ import featuredImg from "../../assets/home/informsection/blogimg.png";
 
 const InformedSection = () => {
   return (
-    <div className=" p-32  bg-[#F5F5F5]">
+    <div className="containers py-32  bg-[#F5F5F5]">
       {/* Header Section */}
-      <div className="mx-auto">
+      <div className="mx-auto flex flex-col justify-center items-center">
 
         <h2 className="text-[28px] md:text-[32px] font-bold">
           <span

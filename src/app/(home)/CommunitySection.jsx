@@ -6,13 +6,13 @@ import backgroundSvg from "../../assets/home/informsection/backlines.svg"; // Yo
 
 const CommunitySection = () => {
     return (
-        <div className="relative bg-[#FF383B] py-12 px-6 md:px-12 overflow-hidden">
+        <div className="relative containers bg-[#FF383B] py-12  overflow-hidden">
             {/* Background SVG */}
             <div className="absolute inset-0">
                 <Image src={backgroundSvg} alt="Background" layout="fill" objectFit="cover" />
             </div>
 
-            <div className="relative max-w-[1440px] mx-auto flex flex-col md:flex-row gap-6 justify-center items-center">
+            <div className="relative  mx-auto flex flex-col md:flex-row gap-6 justify-center items-center">
                 {[
                     {
                         title: "Join Our MBA Community",

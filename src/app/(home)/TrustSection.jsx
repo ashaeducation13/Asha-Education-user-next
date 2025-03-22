@@ -8,8 +8,8 @@ import topright from '../../assets/topright.svg'
 const TrustSection = () => {
     const [playVideo, setPlayVideo] = useState(false);
     return (
-        <div className="w-full flex justify-center">
-            <div className="max-w-[1440px] w-full p-8 flex items-center justify-between">
+        <div className="containers flex justify-center">
+            <div className="w-full py-8 flex items-center justify-between">
                 <div className="w-[40%] relative ml-10">
                     {playVideo ? (
                         <ReactPlayer

@@ -27,10 +27,10 @@ const ProgramsSection = () => {
     console.log(topleft);
 
     return (
-        <div className="flex w-full mx-auto">
+        <div className=" containers flex w-full mx-auto">
             {/* Left Section (40%) */}
             <div
-                className="w-[30%] flex flex-col justify-center items-center relative p-8 ml-16 text-black"
+                className="w-[30%] flex flex-col justify-center items-center relative py-8 ml-12 text-black"
                 style={{
                     backgroundImage: `url(${bg.src})`,
                     backgroundSize: "cover",

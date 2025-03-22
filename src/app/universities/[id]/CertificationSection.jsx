@@ -17,13 +17,13 @@ const certdata = [
 const CertificationSection = () => {
     return (
         <>
-            <section className='containers p-6 '>
+            <section className='containers py-6 border-b border-[#E3E3E3]'>
                 <div>
                     <h2 className="text-3xl font-medium font-open-sans">
                         Certifications
                     </h2>
 
-                    <div className='grid grid-cols-4 py-6'>
+                    <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 w-full py-6 justify-center place-items-center'>
                         {certdata.map((uni, index) => (
                             <Certcard key={index} imgSrc={uni.imgSrc} title={uni.title}/>
                         ))}

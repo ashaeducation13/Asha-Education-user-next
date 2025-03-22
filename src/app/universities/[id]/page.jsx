@@ -4,14 +4,16 @@ import Navbar from '@/components/Navbar'
 import React from 'react'
 import HeroSection from './HeroSection'
 import CertificationSection from './CertificationSection'
+import Innerlisting from './Innerlisting';
 
 const page = () => {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <HeroSection />
       <CertificationSection />
-      {/* <Footer /> */}
+      <Innerlisting /> 
+      <Footer />
 
     </>
   )
