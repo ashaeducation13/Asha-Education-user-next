@@ -1,5 +1,6 @@
 import Image from "next/image";
-import building from "../../assets/blog/building.png";
+// import building from "../../assets/blog/building.png";
+import building from '../../../assets/blog/building.png'
 // import { motion, useScroll, useSpring } from 'framer-motion';
 
 export default function Inner() {

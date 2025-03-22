@@ -1,7 +1,9 @@
+
 import React from 'react';
 import Image from 'next/image';
 import img from '../../../assets/universities/inner/heroimg.png';
 import amitylogo from '../../../assets/universities/inner/amitylogo.png';
+
 
 const HeroSection = () => {
     return (

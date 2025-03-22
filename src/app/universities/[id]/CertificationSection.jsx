@@ -1,15 +1,17 @@
 import React from 'react'
-
+import ugcLogo from '../../../assets/universities/inner/UGC.svg'
+import aiLogo from '../../../assets/universities/inner/aicte.svg'
+import Certcard from './Certcard'
 
 
 const certdata = [
     {
-        imgSrc: amityLogo,
-        title: "Amity University",
+        imgSrc: ugcLogo,
+        title: "UGC Certificate",
     },
     {
-        imgSrc: harvardLogo,
-        title: "Harvard University",
+        imgSrc: aiLogo,
+        title: "AICTE Certificate",
     },
 ]
 const CertificationSection = () => {
@@ -21,9 +23,9 @@ const CertificationSection = () => {
                         Certifications
                     </h2>
 
-                    <div className='grid grid-cols-4'>
+                    <div className='grid grid-cols-4 py-6'>
                         {certdata.map((uni, index) => (
-                            <Card key={index} imgSrc={uni.imgSrc} title={uni.title}/>
+                            <Certcard key={index} imgSrc={uni.imgSrc} title={uni.title}/>
                         ))}
                     </div>
                 </div>
