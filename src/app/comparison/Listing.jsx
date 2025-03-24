@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import filterIcon from "../../../src/assets/universities/Vector.svg";
+import tick from "../../assets/comparison/tick.svg";
+import cross from "../../assets/comparison/cross.svg";
+import plus from "../../assets/comparison/plus.svg";
 import Image from "next/image";
 import { Courses } from "./Data";
 import { cardData } from "./Data";
@@ -11,6 +14,17 @@ import arrow from "../../assets/universities/arrow.svg";
 
 const Listing = () => {
   const [selectedCourse, setSelectedCourse] = useState(Courses[0]);
+  const [comparedLogos, setComparedLogos] = useState([]);
+
+  const handleAddToCompare = (logo) => {
+    if (comparedLogos.length < 2) {
+      setComparedLogos([...comparedLogos, logo]);
+    }
+  };
+
+  const handleRemoveLogo = (index) => {
+    setComparedLogos(comparedLogos.filter((_, i) => i !== index));
+  };
 
   return (
     <>
@@ -20,11 +34,12 @@ const Listing = () => {
             {Courses.map((item, index) => (
               <li
                 key={index}
-                onClick={() => setSelectedCourse(item)} 
-                className={`cursor-pointer ${selectedCourse.title === item.title
+                onClick={() => setSelectedCourse(item)}
+                className={`cursor-pointer ${
+                  selectedCourse.title === item.title
                     ? "bg-[#FF383B] text-white"
                     : "bg-white text-[#6D758F] border border-[#D9D9D9]"
-                  } hover:bg-[#FF383B] px-[22px] py-[18px] text-[16px] leading-[16px] font-bold hover:text-white rounded-[8px]`}
+                } hover:bg-[#FF383B] px-[22px] py-[18px] text-[16px] leading-[16px] font-bold hover:text-white rounded-[8px]`}
               >
                 {item.title}
               </li>
@@ -37,7 +52,42 @@ const Listing = () => {
         </div>
         <div className="w-[80%] mx-auto grid grid-cols-[25%_1fr] gap-[70px] pt-5 pb-10">
           <div className=" flex flex-col gap-3">
-            <h2 className="text-[20px] font-semibold">Speciliasations</h2>
+            <h2 className="text-[20px] font-semibold">Specialisations</h2>
+            {comparedLogos.length > 0 && (
+            <div className="px-[10px] py-[10px] flex gap-4 flex-col rounded-[6px] border-[1px] border-[#0A0078]">
+              <h1 className="font-rubik font-normal text-[16px] leading-[16px] text-[#696969]">
+                {selectedCourse.specs[0]}
+              </h1>
+              <div className="flex gap-2 my-2 items-center">
+                {comparedLogos.map((logo, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div className="relative">
+                      <Image
+                        src={logo}
+                        alt="compared logo"
+                        className="h-10 w-auto object-contain rounded-[5px] border border-[#EDEDED] px-1"
+                      />
+                      <Image
+                        src={cross}
+                        className="absolute -top-2 -right-2"
+                        onClick={() => handleRemoveLogo(index)}
+                      />
+                    </div>
+                    {index < comparedLogos.length - 1 && (
+                      <Image
+                        src={plus} // Your plus image
+                        alt="add more"
+                        className="h-6 w-6"
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+              <button className="bg-[#FF383B] py-[10px] font-inter font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md">
+                Show Result
+              </button>
+            </div>
+            )}
             <ul className="flex flex-col gap-2">
               {selectedCourse.specs.length > 0 ? (
                 selectedCourse.specs.map((spec, i) => (
@@ -55,11 +105,16 @@ const Listing = () => {
               )}
             </ul>
           </div>
-          
+
           <div className="flex flex-col gap-10 items-center">
             <div className="grid grid-cols-2 gap-x-5 gap-y-10">
               {cardData.map((item, index) => (
-                <Card key={index} item={item} />
+                <Card
+                  key={index}
+                  item={item}
+                  onAddToCompare={() => handleAddToCompare(item.logo)}
+                  isCompareDisabled={comparedLogos.length >= 2}
+                />
               ))}
             </div>
             <div className="w-fit inline-flex gap-2 justify-center  border border-[#D9D9D9] p-[12px] rounded-[8px]">
@@ -73,7 +128,7 @@ const Listing = () => {
   );
 };
 
-export const Card = ({ item }) => {
+export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
   return (
     <>
       <section
@@ -115,7 +170,21 @@ export const Card = ({ item }) => {
           </span>
           <span className="text-[#6D758F] text-[16px]">{item.affiliation}</span>
           <div className="flex justify-center gap-2 items-center">
-            <span className="w-1/2 flex justify-center bg-[#FF383B] border border-[#FF383B] text-white font-semibold text-[14px] px-[12px] py-[8px] items-center rounded-[8px]">
+            <span
+              className={`w-1/2 flex justify-center ${
+                isCompareDisabled
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-[#FF383B] cursor-pointer"
+              } text-white font-semibold text-[14px] leading-[18px] py-[8px] items-center rounded-[8px] whitespace-nowrap`}
+              onClick={!isCompareDisabled ? onAddToCompare : undefined}
+            >
+              <Image
+                src={tick}
+                width={18}
+                height={18}
+                alt="tick"
+                className="mr-2"
+              />
               Add to compare
             </span>
             <span
