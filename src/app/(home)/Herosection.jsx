@@ -128,7 +128,7 @@ const Hero = () => {
         {/* Heading */}
         <h1 className="text-4xl md:text-[64px] font-normal text-gray-900 z-10">
           <span
-            className="bg-clip-text text-transparent font-open-sans"
+            className="bg-clip-text text-transparent font-playfair"
             style={{
               backgroundImage: "linear-gradient(90.02deg, #0A0078 2.5%, #FF383B 43.53%)",
             }}
@@ -183,7 +183,7 @@ const Hero = () => {
       <Image
         src={fog}
         alt="Fog Effect"
-        className="absolute lg:bottom-[-15px] left-0 w-full h-auto pointer-events-none z-20"
+        className="absolute bottom-[42px] 2xl:bottom-[-82px] left-0 w-full h-auto pointer-events-none z-20"
       />
     </section>
   );

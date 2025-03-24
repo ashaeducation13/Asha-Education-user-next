@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 
 
@@ -23,11 +24,16 @@ export default function HeroCarousel() {
 
   return (
     <Swiper
+      modules={[Autoplay]}
       slidesPerView={5}
-      spaceBetween={10}  // Keeps equal spacing between slides
+      spaceBetween={10}
       centeredSlides={true}
       loop={true}
       initialSlide={0}
+      autoplay={{
+        delay: 1800, // Change slides every 2.5 seconds
+        disableOnInteraction: false, // Keeps autoplay running even after user interaction
+      }}
       onSlideChange={updateSlidePositions}
       onSwiper={updateSlidePositions}
       className="w-full"
@@ -39,6 +45,7 @@ export default function HeroCarousel() {
         1536: { slidesPerView: 5, spaceBetween: 10 }, // XL screens
       }}
     >
+
       {images.map((src, index) => {
         const position = ((index - activeIndex) % images.length + images.length) % images.length;
 
