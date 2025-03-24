@@ -1,5 +1,5 @@
 import Image from "next/image";
-import star from "../../assets/universities/star.svg";
+import star from "../../../assets/universities/star.svg";
 // import once from "../../assets/universities/once.svg";
 
 export const Card = ({item}) => {

@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white">
-      <div className="w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="containers mx-auto">
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">

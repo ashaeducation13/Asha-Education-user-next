@@ -2,12 +2,12 @@
 import { useState } from "react";
 import Modal from "./Modal";
 import Image from "next/image";
-import star from "../../assets/comparison/star.svg";
-import rupees from "../../assets/comparison/rupees.svg";
-import download from "../../assets/comparison/download.svg";
-import greentick from "../../assets/comparison/greentick.svg";
-import redtick from "../../assets/comparison/redtick.svg";
-import logo from "../../assets/universities/logo.svg";
+import star from "../../../assets/comparison/star.svg";
+import rupees from "../../../assets/comparison/rupees.svg";
+import download from "../../../assets/comparison/download.svg";
+import greentick from "../../../assets/comparison/greentick.svg";
+import redtick from "../../../assets/comparison/redtick.svg";
+// import logo from "../../assets/universities/logo.svg";
 import { Card } from "./Card";
 import { cardData } from "./Data";
 

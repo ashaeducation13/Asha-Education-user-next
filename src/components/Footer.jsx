@@ -17,7 +17,7 @@ import Image from "next/image";
 const Footer = () => {
     return (
         <footer className="pt-12 pb-8">
-            <div className="w-[90%] md:mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="containers md:mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
 
                     {/* First Section - Logo, Subscription, Social Media */}

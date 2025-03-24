@@ -1,16 +1,18 @@
+import React from "react";
+import HeroSecetion from "./HeroSecetion";
 import Navbar from "@/components/Navbar";
-import BestCollege from "./BestCollege";
-import ComparisonCard from "./ComparisonCard";
 import Footer from "@/components/Footer";
-import Modal from "./Modal";
+import Listing from "./Listing";
 
-export default function page() {
+const page = () => {
   return (
-    <div>
-      {/* <Navbar /> */}
-      <BestCollege />
-      {/* <Footer /> */}
-      <Modal />
-    </div>
-  )
-}
+    <>
+      <Navbar />
+      <HeroSecetion />
+      <Listing />
+      <Footer />
+    </>
+  );
+};
+
+export default page;
