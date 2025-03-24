@@ -6,9 +6,13 @@ import Image from "next/image";
 import star from "../../../assets/universities/star.svg";
 import once from "../../../assets/universities/once.svg";
 import arrow from "../../../assets/universities/arrow.svg";
-import {Courses } from "../../comparison/Data";
-import { cardData } from "@/app/comparison/Data";
-import { Card } from "@/app/comparison/Card";
+
+import { cardData, Courses } from "@/app/programs/PrData";
+import { ProgramCard } from "@/app/programs/ProgramCard";
+// import { Card } from "@/app/comparison/Listing";
+// import {Courses } from "../../comparison/Data";
+// import { cardData } from "@/app/comparison/Data";
+// import { Card } from "@/app/comparison/Card";
 
 const Innerlisting = () => {
     const [selectedCourse, setSelectedCourse] = useState(Courses[0]);
@@ -56,12 +60,12 @@ const Innerlisting = () => {
                             )}
                         </ul>
                     </div>
-                    <div className="flex flex-col gap-10 items-center">
-                        <div className="grid grid-cols-2 gap-6"> 
-                               {cardData.map((item,index)=>(
-                                 <Card key={index} item={item} />
-                               ))}
-                            </div>
+                    <div className="flex flex-col gap-10 mx-4">
+                        <div className="grid grid-cols-2 gap-12">
+                            {Courses.map((item, index) => (
+                                <ProgramCard key={index} item={item} />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>

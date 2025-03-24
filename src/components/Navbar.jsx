@@ -41,7 +41,7 @@ const Navbar = () => {
             <Link href="/about-us" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-rubik">
               About Us
             </Link>
-            <Link href="#" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-rubik">
+            <Link href="/programs" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-rubik">
             Programs
             </Link>
 
@@ -121,7 +121,7 @@ const Navbar = () => {
               href="#"
               className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-rubik rounded-md text-white  bg-[#FF383B] hover:bg-blue-700"
             >
-              Enquire Now
+              Get Free Counseling
             </a>
           </div>
 

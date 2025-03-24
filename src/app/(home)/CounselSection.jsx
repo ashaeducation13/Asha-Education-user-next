@@ -13,7 +13,7 @@ const CounselSection = () => {
     const [playVideo, setPlayVideo] = useState(false);
 
     return (
-        <section className='containers bg-[#F5F5F5] py-10 relative'>
+        <section className='bg-[#F5F5F5] py-10 relative'>
               <Image src={icon1} alt="Icon 1" className="absolute top-[30px] left-[30px] w-8 h-8" />
             
             {/* Top-right Icon */}
@@ -26,7 +26,7 @@ const CounselSection = () => {
             <Image src={icon4} alt="Icon 4" className="absolute bottom-[30px] right-[30px] w-8 h-8" />
 
             {/* heading text */}
-            <div className="relative max-w-[1440px] mx-auto text-center">
+            <div className="relative containers mx-auto text-center">
                 <h1 className="text-4xl md:text-[48px] font-semibold text-gray-900 font-open-sans">
                     <span
                         className="bg-clip-text text-transparent"
