@@ -4,99 +4,87 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import building from "../../assets/blog/building.png";
-import { Pagination } from "antd";
+import { Button, Pagination } from "antd";
 
 const blogData = [
   {
+    id:1,
     image: building,
     date_added: "Feb 5, 2025",
     title: "Top 10 Universities in India for MBA Programs",
-    description: `As the most widely accepted test to analyze 
-                the proficiency of non-native English speakers, attaining 
-                a high TOEFL score can aid in your efforts non-native English 
-                speakers, attaining a high TOEFL score can aid in your efforts`,
+    description: `Explore the best MBA programs, their rankings, fees, and career prospects.`,
   },
-//   {
-//     image: building,
-//     date_added: "14 Jan 2024",
-//     title: "Study abroad with us ,easy procesures",
-//     description: `As the most widely accepted test to analyze 
-//                 the proficiency of non-native English speakers, attaining 
-//                 a high TOEFL score can aid in your efforts non-native English 
-//                 speakers, attaining a high TOEFL score can aid in your efforts`,
-//   },
-//   {
-//     image: building,
-//     date_added: "14 Jan 2024",
-//     title: "Study abroad with us ,easy procesures",
-//     description: `As the most widely accepted test to analyze 
-//                 the proficiency of non-native English speakers, attaining 
-//                 a high TOEFL score can aid in your efforts non-native English 
-//                 speakers, attaining a high TOEFL score can aid in your efforts`,
-//   },
-//   {
-//     image: building,
-//     date_added: "14 Jan 2024",
-//     title: "Study abroad with us ,easy procesures",
-//     description: `As the most widely accepted test to analyze 
-//                 the proficiency of non-native English speakers, attaining 
-//                 a high TOEFL score can aid in your efforts non-native English 
-//                 speakers, attaining a high TOEFL score can aid in your efforts`,
-//   },
-//   {
-//     image: building,
-//     date_added: "14 Jan 2024",
-//     title: "Study abroad with us ,easy procesures",
-//     description: `As the most widely accepted test to analyze 
-//                 the proficiency of non-native English speakers, attaining 
-//                 a high TOEFL score can aid in your efforts non-native English 
-//                 speakers, attaining a high TOEFL score can aid in your efforts`,
-//   },
-//   {
-//     image: building,
-//     date_added: "14 Jan 2024",
-//     title: "Study abroad with us ,easy procesures",
-//     description: `As the most widely accepted test to analyze 
-//                 the proficiency of non-native English speakers, attaining 
-//                 a high TOEFL score can aid in your efforts non-native English 
-//                 speakers, attaining a high TOEFL score can aid in your efforts`,
-//   },
-//   {
-//     image: building,
-//     date_added: "14 Jan 2024",
-//     title: "Study abroad with us ,easy procesures",
-//     description: `As the most widely accepted test to analyze 
-//                 the proficiency of non-native English speakers, attaining 
-//                 a high TOEFL score can aid in your efforts non-native English 
-//                 speakers, attaining a high TOEFL score can aid in your efforts`,
-//   },
-//   {
-//     image: building,
-//     date_added: "14 Jan 2024",
-//     title: "Study abroad with us ,easy procesures",
-//     description: `As the most widely accepted test to analyze 
-//                 the proficiency of non-native English speakers, attaining 
-//                 a high TOEFL score can aid in your efforts non-native English 
-//                 speakers, attaining a high TOEFL score can aid in your efforts`,
-//   },
-//   {
-//     image: building,
-//     date_added: "14 Jan 2024",
-//     title: "Study abroad with us ,easy procesures",
-//     description: `As the most widely accepted test to analyze 
-//                 the proficiency of non-native English speakers, attaining 
-//                 a high TOEFL score can aid in your efforts non-native English 
-//                 speakers, attaining a high TOEFL score can aid in your efforts`,
-//   },
-//   {
-//     image: building,
-//     date_added: "14 Jan 2024",
-//     title: "Study abroad with us ,easy procesures",
-//     description: `As the most widely accepted test to analyze 
-//                 the proficiency of non-native English speakers, attaining 
-//                 a high TOEFL score can aid in your efforts non-native English 
-//                 speakers, attaining a high TOEFL score can aid in your efforts`,
-//   },
+  {
+    id:2,
+    image: building,
+    date_added: "Feb 5, 2025",
+    title: "Scholarship Opportunities for Indian Students in 2025",
+    description: `A detailed guide on national and university-specific scholarships you can apply for.`,
+  },
+  {
+    id:3,
+    image: building,
+    date_added: "Feb 5, 2025",
+    title: "How to Write a Winning Statement of Purpose (SOP)",
+    description: `Tips and templates to craft a compelling SOP for your university applications.`,
+  },
+  {
+    id:4,
+    image: building,
+    date_added: "Feb 5, 2025",
+    title: "Scholarship Opportunities for Indian Students in 2025",
+    description: `A detailed guide on national and university-specific scholarships you can apply for.`,
+  },
+  {
+    id:5,
+    image: building,
+    date_added: "Feb 5, 2025",
+    title: "How to Write a Winning Statement of Purpose (SOP)",
+    description: `Tips and templates to craft a compelling SOP for your university applications.`,
+  },
+  {
+    id:6,
+    image: building,
+    date_added: "Feb 5, 2025",
+    title: "How to Write a Winning Statement of Purpose (SOP)",
+    description: `Tips and templates to craft a compelling SOP for your university applications.`,
+  },
+  // {
+  //   image: building,
+  //   date_added: "Feb 5, 2025",
+  //   title: "Study abroad with us ,easy procesures",
+  //   description: `As the most widely accepted test to analyze 
+  //               the proficiency of non-native English speakers, attaining 
+  //               a high TOEFL score can aid in your efforts non-native English 
+  //               speakers, attaining a high TOEFL score can aid in your efforts`,
+  // },
+  // {
+  //   image: building,
+  //   date_added: "Feb 5, 2025",
+  //   title: "Study abroad with us ,easy procesures",
+  //   description: `As the most widely accepted test to analyze 
+  //               the proficiency of non-native English speakers, attaining 
+  //               a high TOEFL score can aid in your efforts non-native English 
+  //               speakers, attaining a high TOEFL score can aid in your efforts`,
+  // },
+  // {
+  //   image: building,
+  //   date_added: "Feb 5, 2025",
+  //   title: "Study abroad with us ,easy procesures",
+  //   description: `As the most widely accepted test to analyze 
+  //               the proficiency of non-native English speakers, attaining 
+  //               a high TOEFL score can aid in your efforts non-native English 
+  //               speakers, attaining a high TOEFL score can aid in your efforts`,
+  // },
+  // {
+  //   image: building,
+  //   date_added: "Feb 5, 2025",
+  //   title: "Study abroad with us ,easy procesures",
+  //   description: `As the most widely accepted test to analyze 
+  //               the proficiency of non-native English speakers, attaining 
+  //               a high TOEFL score can aid in your efforts non-native English 
+  //               speakers, attaining a high TOEFL score can aid in your efforts`,
+  // },
 ];
 
 export default function Listing() {
@@ -153,8 +141,8 @@ export default function Listing() {
 }
 
 export const BlogCard = ({ item, router }) => (
-  <Link href={`/blogs/test`}>
-    <div className="flex flex-col gap-[18px] p-2 group cursor-pointer transition-all duration-300 ease-in-out transform hover:-translate-y-1 bg-violet-500 rounded-[18px]">
+  <Link href={`/blogs/${item.id}`}>
+    <div className="flex flex-col gap-[18px] p-2 group cursor-pointer transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-[18px] border border-[#0A0078]">
       <div className="overflow-hidden">
         <Image
           src={item?.image}
@@ -163,18 +151,19 @@ export const BlogCard = ({ item, router }) => (
           className="h-[220px] w-full object-cover rounded-[8px] transition-transform duration-300 ease-in-out transform group-hover:scale-110 "
         />
       </div>
-      <div className="flex flex-col gap-[10px] items-start">
-        <p className="bg-[#FFE3E4] text-secondary-cl flex flex-row py-[6px] px-[16px] rounded-[8px] gap-[6px] items-center font-inter font-medium text-[14px] leading-[100%] text-[#FF383B]">
+      <div className="flex flex-col gap-[10px] items-start px-[10px]">
+        <p className="bg-[#FFE3E4] text-secondary-cl flex flex-row py-[6px] px-[16px] rounded-[6px] gap-[6px] items-center font-inter font-medium text-[14px] leading-[100%] text-[#FF383B]">
         {item?.date_added}
         </p>
         <div className="grid grid-cols-[1fr,24px] gap-[10px] w-full">
-          <p className="font-open-sans font-semibold text-[20px] leading-[100%] font-[#121212]">
+          <p className="font-open-sans font-semibold text-[20px] leading-[24px] font-[#121212]">
             {item?.title}
           </p>
         </div>
-        <p className="font-roboto-regular text-[14px] leading-[20px] line-clamp-3">
+        <p className="font-rubik text-[16px] font-normal leading-[24px] text-[#6D758F] line-clamp-2">
           {item?.description}
         </p>
+        <Button className="bg-[#FF383B] text-white font-inter font-semibold text-[14px] leading-[18px] w-full p-[5px] rounded-[8px] mb-[8px]">Read Full Blog</Button>
       </div>
     </div>
   </Link>
