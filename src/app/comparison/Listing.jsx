@@ -69,6 +69,7 @@ const Listing = () => {
                       />
                       <Image
                         src={cross}
+                        alt="cross"
                         className="absolute -top-2 -right-2"
                         onClick={() => handleRemoveLogo(index)}
                       />
