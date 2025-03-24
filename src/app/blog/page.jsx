@@ -1,9 +1,11 @@
+import Inner from "./Inner";
 import Listing from "./Listing";
 
 export default function page() {
   return (
     <div>
-      <Listing />
+      {/* <Listing /> */}
+      <Inner />
     </div>
   )
 }
