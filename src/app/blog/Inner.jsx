@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import building from "../../assets/blog/building.png";
 import Facebook from "../../assets/blog/Facebook-red.svg";
@@ -8,7 +8,7 @@ import Instagram from "../../assets/blog/Instagram-red.svg";
 import LinkedIn from "../../assets/blog/LinkedIn-red.svg";
 import Twitter from "../../assets/blog/Twitter-red.svg";
 import { motion, useScroll, useSpring } from "framer-motion";
-import './inner.css'
+import "./inner.css";
 import { BlogCard } from "./Listing";
 
 const details = [
@@ -101,58 +101,30 @@ const relatedBlogData = [
               in your efforts`,
   },
 ];
-const handleOnFocus = (item) => {
-  const section = document.getElementById(item.toLowerCase().replace(/\s+/g, '-'));
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth' });
-  }
-};
-
-const ScrollIndicator = ({ headingList, activeIndex }) => {
-  return (
-    <div className="grid grid-cols-[4px,1fr] gap-[20px]">
-    <div className={`vertical-line h-full w-[4px] origin-top ${activeIndex !== null ? 'active' : ''}`} />
-    <ul className="flex flex-col gap-[10px]">
-      {headingList.map((item, index) => (
-        <li
-          key={index}
-          className={`cursor-pointer font-open-sans font-normal text-[12px] text-[#888888] leading-[100%] transition-all duration-300 ease-in-out transform hover:-translate-y-1
-           hover:text-primary-cl ${
-             index === activeIndex ? 'text-primary-cl' : ''
-           }`}
-        >
-          {item}
-        </li>
-      ))}
-    </ul>
-  </div>
-  )
-}
 
 export default function Inner() {
   const router = useRouter();
-  const [activeIndex, setActiveIndex] = useState(0);
-  
-  useEffect(()=>{
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const sections = document.querySelectorAll('ul li')
-  
-      sections.forEach((section, index) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-  
-        if(scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          setActiveIndex(index)
-        }
-      })
-    }
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, []);
+  const ref = useRef(null);
+  const [selected, SetSelected] = useState(headingList[0]);
+
+  const { scrollYProgress } = useScroll({
+    target: ref, // Track only this section
+    offset: ["start start", "end start"],
+  });
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  useEffect(() => {
+    scrollYProgress.onChange((latest) => {
+      console.log("Scroll Progress:", latest);
+    });
+  }, [scrollYProgress]);
 
   return (
-    <section className="w-[80%] mx-auto pb-10">
+    <motion.section ref={ref} className="w-[80%] mx-auto pb-10">
       <div className="text-center pt-20 pb-10 flex flex-col items-center gap-3">
         <h1 className="font-open-sans font-semibold text-[40px] leading-[120%] text-[#070707]">
           Top 10 Universities in India for MBA
@@ -173,18 +145,20 @@ export default function Inner() {
         {/* Left Sidebar */}
         <div className="sticky top-[15%] self-start flex flex-col gap-[20px]">
           <div className="grid grid-cols-[4px,1fr] gap-[20px]">
-            <div className={`vertical-line h-full w-[4px] origin-top ${activeIndex !== null ? 'active' : '' }`} />
+            <motion.div
+              className="h-full w-[4px] origin-top bg-red-500 scroll-container"
+              style={{ scaleY }}
+            />
             <ul className="flex flex-col gap-[10px]">
               {headingList.map((item, index) => (
                 <li
                   key={index}
                   onClick={() => handleOnFocus(item)}
-                  className={`cursor-pointer font-open-sans font-normal text-[12px] text-[#888888] leading-[100%] transition-all duration-300 ease-in-out transform hover:-translate-y-1
-                 hover:text-primary-cl ${
-                 index === activeIndex ? 'text-primary-cl' : ''
-                 }`}
+                  className={`cursor-pointer font-roboto-regular text-[16px] leading-[21px] transition-all duration-300 ease-in-out transform hover:-translate-y-1 ${
+                    selected === item ? "text-secondary-cl" : ""
+                  } hover:text-primary-cl`}
                 >
-                  {item}
+                  {item.replace(/-/g, " ")}
                 </li>
               ))}
             </ul>
@@ -195,7 +169,7 @@ export default function Inner() {
             </p>
             <div className="flex items-center flex-row gap-[16px] ">
               <a>
-                <Image src={Facebook} alt="Facebook "/>
+                <Image src={Facebook} alt="Facebook " />
               </a>
               <a>
                 <Image src={Twitter} alt="Twitter" />
@@ -209,56 +183,54 @@ export default function Inner() {
             </div>
           </div>
         </div>
-        <div>
-
-        </div>
+        <div></div>
         <div className="flex flex-col">
-        <article className="space-y-6 w-[60%] ml-[430px] -mt-[350px]">
-          {details.map((item, index) => (
-            <section key={index}>
-              <h2 className="font-open-sans font-semibold text-[20px] leading-[110%] text-[#1B1B1B] mt-6 mb-3">
-                {item.title}
-              </h2>
-              {item.content.map((para, idx) => (
-                <p
-                  key={idx}
-                  className="font-rubik font-normal text-[14px] leading-[21px] text-[#757575] mb-4"
-                >
-                  {para}
-                </p>
-              ))}
-              {item.list && (
-                <ol className="list-decimal pl-6">
-                  {item.list.map((i, idx) => (
-                    <li
-                      className="font-rubik font-normal text-[14px] leading-[21px] text-[#757575] mb-3"
-                      key={idx}
-                    >
-                      {i}
-                    </li>
-                  ))}
-                </ol>
-              )}
-              {item.additionalContent && (
-                <p className="font-rubik font-normal text-[14px] leading-[21px] text-[#757575] mt-4">
-                  {item.additionalContent}
-                </p>
-              )}
-            </section>
-          ))}
-        </article>
-        <div className="py-[60px] flex flex-col gap-[40px]">
-          <h2 className="font-dmsans-semiBold text-[20px] leading-[23px] text-secondary-cl">
-            Recommended Articles
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] lg:gap-[43px]">
-            {relatedBlogData.map((item, index) => (
-              <BlogCard item={item} key={index} router={router} />
+          <article className="space-y-6 w-[60%] ml-[430px] -mt-[350px]">
+            {details.map((item, index) => (
+              <section key={index}>
+                <h2 className="font-open-sans font-semibold text-[20px] leading-[110%] text-[#1B1B1B] mt-6 mb-3">
+                  {item.title}
+                </h2>
+                {item.content.map((para, idx) => (
+                  <p
+                    key={idx}
+                    className="font-rubik font-normal text-[14px] leading-[21px] text-[#757575] mb-4"
+                  >
+                    {para}
+                  </p>
+                ))}
+                {item.list && (
+                  <ol className="list-decimal pl-6">
+                    {item.list.map((i, idx) => (
+                      <li
+                        className="font-rubik font-normal text-[14px] leading-[21px] text-[#757575] mb-3"
+                        key={idx}
+                      >
+                        {i}
+                      </li>
+                    ))}
+                  </ol>
+                )}
+                {item.additionalContent && (
+                  <p className="font-rubik font-normal text-[14px] leading-[21px] text-[#757575] mt-4">
+                    {item.additionalContent}
+                  </p>
+                )}
+              </section>
             ))}
+          </article>
+          <div className="py-[60px] flex flex-col gap-[40px]">
+            <h2 className="font-dmsans-semiBold text-[20px] leading-[23px] text-secondary-cl">
+              Recommended Articles
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] lg:gap-[43px]">
+              {relatedBlogData.map((item, index) => (
+                <BlogCard item={item} key={index} router={router} />
+              ))}
+            </div>
           </div>
         </div>
-        </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

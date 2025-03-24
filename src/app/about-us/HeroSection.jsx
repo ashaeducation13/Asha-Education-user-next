@@ -10,7 +10,7 @@ function HeroSection() {
         
         {/* Left Side - Text Content */}
         <div className="w-full lg:w-1/2 text-center lg:text-left">
-          <h1 className=" pt-[30px] text-[40px] leading-[50px] md:text-[50px] md:leading-[60px] xl:text-[64px] xl:leading-[70px] font-regular text-gray-900">
+          <h1 className=" pt-[30px] lg:text-[64px] lg:leading-[70px] md:text-[50px] md:leading-[60px] xl:text-[64px] xl:leading-[70px] font-norm text-gray-900 font-open-sans">
             <span
               className="bg-clip-text text-transparent font-playfair"
               style={{
@@ -23,7 +23,7 @@ function HeroSection() {
             One Student at a <br /> Time
           </h1>
 
-          <p className="font-ru w-[80%] md:w-[60%] lg:w-[50%] text-[14px] md:text-[16px] leading-[22px] md:leading-[24px] text-black-600 font-rubik mt-3">
+          <p className="font-normal leading-[24px] w-[80%] md:w-[60%] lg:w-[50%] text-[14px] md:text-[16px] md:leading-[24px] text-black font-rubik mt-3">
             Committed to guiding students toward the best universities in India.
           </p>
 
