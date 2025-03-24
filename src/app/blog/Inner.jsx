@@ -1,13 +1,14 @@
-'use client'
+"use client";
 import Image from "next/image";
-// import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import building from '../../assets/blog/building.png'
-import Facebook from '../../assets/blog/Facebook-red.svg'
-import Instagram from '../../assets/blog/Instagram-red.svg'
-import LinkedIn from '../../assets/blog/LinkedIn-red.svg'
-import Twitter from '../../assets/blog/Twitter-red.svg'
-import { motion, useScroll, useSpring } from 'framer-motion';
+import building from "../../assets/blog/building.png";
+import Facebook from "../../assets/blog/Facebook-red.svg";
+import Instagram from "../../assets/blog/Instagram-red.svg";
+import LinkedIn from "../../assets/blog/LinkedIn-red.svg";
+import Twitter from "../../assets/blog/Twitter-red.svg";
+import { motion, useScroll, useSpring } from "framer-motion";
+import './inner.css'
 import { BlogCard } from "./Listing";
 
 const details = [
@@ -62,89 +63,94 @@ const details = [
   },
 ];
 
-// const toSlug = (text) => {
-//   return text
-//       .toLowerCase()
-//       .replace(/[^a-z0-9\s-]/g, '')
-//       .replace(/\s+/g, '-')
-//       .trim();
-// };
-
-// Function to inject IDs into headings
-// const injectIdsIntoContent = (htmlContent) => {
-//   const headingList = [];
-//   const parser = new DOMParser();
-//   const doc = parser.parseFromString(htmlContent, 'text/html');
-
-//   const headings = doc.querySelectorAll('h1, h2, h3, h4, h5, h6, b');
-//   headings.forEach((heading, index) => {
-//       const baseSlug = toSlug(heading.textContent || heading.innerText || '');
-//       let slug = baseSlug;
-//       let count = 1;
-
-//       // Ensure unique ID for headings
-//       while (headingList.includes(slug)) {
-//           slug = `${baseSlug}-${count}`;
-//           count++;
-//       }
-
-//       if (slug) {
-//           headingList.push(slug);
-//           heading.setAttribute('id', slug);
-//       }
-//   });
-
-//   return { contentWithIds: doc.body.innerHTML, headingList };
-// };
+const headingList = [
+  "Where is it located",
+  "so, what makes adelaide a great choice forstudents",
+  "Where is it located",
+  "so, what makes adelaide a great choice forstudents",
+  "so, what makes adelaide a great choice forstudents",
+  "so, what makes adelaide a great choice forstudents",
+];
 
 const relatedBlogData = [
   {
-      auther: "Natali Craig",
-      date_added: "14 Jan 2024",
-      title: "Study abroad with us ,easy procesures",
-      description: `As the most widely accepted test to analyze the proficiency of 
-              non-native English speakers, attaining a high TOEFL score can aid in your 
-              efforts non-native English speakers, attaining a high TOEFL score can aid 
-              in your efforts`
+    id: 1,
+    image: building,
+    date_added: "Feb 5, 2025",
+    title: "How to Write a Winning Statement of Purpose (SOP)",
+    description: `Explore the best MBA programs, their rankings, fees, and career prospects.`,
   },
   {
-      auther: "Natali Craig",
-      date_added: "14 Jan 2024",
-      title: "Study abroad with us ,easy procesures",
-      description: `As the most widely accepted test to analyze the proficiency of 
+    id: 2,
+    image: building,
+    date_added: "Feb 5, 2025",
+    title: "Scholarship Opportunities for Indian Students in 2025",
+    description: `As the most widely accepted test to analyze the proficiency of 
               non-native English speakers, attaining a high TOEFL score can aid in your 
               efforts non-native English speakers, attaining a high TOEFL score can aid 
-              in your efforts`
+              in your efforts`,
   },
   {
-      auther: "Natali Craig",
-      date_added: "14 Jan 2024",
-      title: "Study abroad with us ,easy procesures",
-      description: `As the most widely accepted test to analyze the proficiency of 
+    id: 3,
+    image: building,
+    date_added: "Feb 5, 2025",
+    title: "How to Write a Winning Statement of Purpose (SOP)",
+    description: `As the most widely accepted test to analyze the proficiency of 
               non-native English speakers, attaining a high TOEFL score can aid in your 
               efforts non-native English speakers, attaining a high TOEFL score can aid 
-              in your efforts`
+              in your efforts`,
   },
-]
+];
+const handleOnFocus = (item) => {
+  const section = document.getElementById(item.toLowerCase().replace(/\s+/g, '-'));
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
+const ScrollIndicator = ({ headingList, activeIndex }) => {
+  return (
+    <div className="grid grid-cols-[4px,1fr] gap-[20px]">
+    <div className={`vertical-line h-full w-[4px] origin-top ${activeIndex !== null ? 'active' : ''}`} />
+    <ul className="flex flex-col gap-[10px]">
+      {headingList.map((item, index) => (
+        <li
+          key={index}
+          className={`cursor-pointer font-open-sans font-normal text-[12px] text-[#888888] leading-[100%] transition-all duration-300 ease-in-out transform hover:-translate-y-1
+           hover:text-primary-cl ${
+             index === activeIndex ? 'text-primary-cl' : ''
+           }`}
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
+  </div>
+  )
+}
+
 export default function Inner() {
-  const router = useRouter()
-  // const { contentWithIds, headingList } = injectIdsIntoContent(content);
-  // const [selected, SetSelected] = useState(headingList[0])
+  const router = useRouter();
+  const [activeIndex, setActiveIndex] = useState(0);
+  
+  useEffect(()=>{
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const sections = document.querySelectorAll('ul li')
+  
+      sections.forEach((section, index) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+  
+        if(scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          setActiveIndex(index)
+        }
+      })
+    }
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, []);
 
-  // const handleOnFocus = (id) => {
-  //     const element = document.getElementById(id);
-  //     SetSelected(id)
-  //     if (element) {
-  //         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  //     }
-  // };
-
-  // const { scrollYProgress } = useScroll();
-  // const scaleY = useSpring(scrollYProgress, {
-  //     stiffness: 100,
-  //     damping: 30,
-  //     restDelta: 0.001
-  // });
   return (
     <section className="w-[80%] mx-auto pb-10">
       <div className="text-center pt-20 pb-10 flex flex-col items-center gap-3">
@@ -164,89 +170,94 @@ export default function Inner() {
         />
       </div>
       <div className="grid grid-cols-[20%,1fr] gap-[50px]">
-    {/* Left Sidebar */}
-    <div className="sticky top-[15%] self-start flex flex-col gap-[20px]">
-      <div className="grid grid-cols-[4px,1fr] gap-[20px]">
-        {/* <motion.div className="h-full w-[4px] bg-red-500 origin-top" style={{ scaleY }} /> */}
-        {/* <ul className="flex flex-col gap-[10px]">
-          {headingList.map((item, index) => (
-            <li
-              key={index}
-              onClick={() => handleOnFocus(item)}
-              className={`cursor-pointer font-roboto-regular text-[16px] leading-[21px] transition-all duration-300 ease-in-out transform hover:-translate-y-1 ${
-                selected === item ? "text-secondary-cl" : ""
-              } hover:text-primary-cl`}
-            >
-              {item.replace(/-/g, " ")}
-            </li>
-          ))}
-        </ul> */}
-      </div>
-      <div className="flex flex-col gap-[10px]">
-        <p className="font-roboto-medium text-[14px] text-secondary-cl">Share Article</p>
-        <div className="flex items-center flex-row gap-[16px]">
-          <a>
-            <Image src={Facebook} alt="Facebook" />
-          </a>
-          <a>
-            <Image src={Twitter} alt="Twitter" />
-          </a>
-          <a>
-            <Image src={Instagram} alt="Instagram" />
-          </a>
-          <a>
-            <Image src={LinkedIn} alt="LinkedIn" />
-          </a>
-        </div>
-      </div>
-    </div>
-      <article className="space-y-6 w-[60%] ml-[430px]">
-        {details.map((item, index) => (
-          <section key={index}>
-            <h2 className="font-open-sans font-semibold text-[20px] leading-[110%] text-[#1B1B1B] mt-6 mb-3">
-              {item.title}
-            </h2>
-            {item.content.map((para, idx) => (
-              <p
-                key={idx}
-                className="font-rubik font-normal text-[14px] leading-[21px] text-[#757575] mb-4"
-              >
-                {para}
-              </p>
-            ))}
-            {item.list && (
-              <ol className="list-decimal pl-6">
-                {item.list.map((i, idx) => (
-                  <li
-                    className="font-rubik font-normal text-[14px] leading-[21px] text-[#757575] mb-3"
-                    key={idx}
-                  >
-                    {i}
-                  </li>
-                ))}
-              </ol>
-            )}
-            {item.additionalContent && (
-              <p className="font-rubik font-normal text-[14px] leading-[21px] text-[#757575] mt-4">
-                {item.additionalContent}
-              </p>
-            )}
-          </section>
-        ))}
-      </article>
-      <div className="py-[60px] containers flex flex-col gap-[40px]">
-                <h2 className="font-dmsans-semiBold text-[20px] leading-[23px] text-secondary-cl">
-                    Recommended Articles
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] lg:gap-[43px]">
-                    {relatedBlogData.map((item, index) => (
-                        <BlogCard
-                            item={item}
-                            key={index}
-                            router={router} />
-                    ))}
-                </div>
+        {/* Left Sidebar */}
+        <div className="sticky top-[15%] self-start flex flex-col gap-[20px]">
+          <div className="grid grid-cols-[4px,1fr] gap-[20px]">
+            <div className={`vertical-line h-full w-[4px] origin-top ${activeIndex !== null ? 'active' : '' }`} />
+            <ul className="flex flex-col gap-[10px]">
+              {headingList.map((item, index) => (
+                <li
+                  key={index}
+                  onClick={() => handleOnFocus(item)}
+                  className={`cursor-pointer font-open-sans font-normal text-[12px] text-[#888888] leading-[100%] transition-all duration-300 ease-in-out transform hover:-translate-y-1
+                 hover:text-primary-cl ${
+                 index === activeIndex ? 'text-primary-cl' : ''
+                 }`}
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col gap-[10px]">
+            <p className="font-open-sans font-medium leading-[100%] text-[#000000] text-[12px] text-secondary-cl">
+              Share Article
+            </p>
+            <div className="flex items-center flex-row gap-[16px] ">
+              <a>
+                <Image src={Facebook} alt="Facebook "/>
+              </a>
+              <a>
+                <Image src={Twitter} alt="Twitter" />
+              </a>
+              <a>
+                <Image src={Instagram} alt="Instagram" />
+              </a>
+              <a>
+                <Image src={LinkedIn} alt="LinkedIn" />
+              </a>
             </div>
+          </div>
+        </div>
+        <div>
+
+        </div>
+        <div className="flex flex-col">
+        <article className="space-y-6 w-[60%] ml-[430px] -mt-[350px]">
+          {details.map((item, index) => (
+            <section key={index}>
+              <h2 className="font-open-sans font-semibold text-[20px] leading-[110%] text-[#1B1B1B] mt-6 mb-3">
+                {item.title}
+              </h2>
+              {item.content.map((para, idx) => (
+                <p
+                  key={idx}
+                  className="font-rubik font-normal text-[14px] leading-[21px] text-[#757575] mb-4"
+                >
+                  {para}
+                </p>
+              ))}
+              {item.list && (
+                <ol className="list-decimal pl-6">
+                  {item.list.map((i, idx) => (
+                    <li
+                      className="font-rubik font-normal text-[14px] leading-[21px] text-[#757575] mb-3"
+                      key={idx}
+                    >
+                      {i}
+                    </li>
+                  ))}
+                </ol>
+              )}
+              {item.additionalContent && (
+                <p className="font-rubik font-normal text-[14px] leading-[21px] text-[#757575] mt-4">
+                  {item.additionalContent}
+                </p>
+              )}
+            </section>
+          ))}
+        </article>
+        <div className="py-[60px] flex flex-col gap-[40px]">
+          <h2 className="font-dmsans-semiBold text-[20px] leading-[23px] text-secondary-cl">
+            Recommended Articles
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] lg:gap-[43px]">
+            {relatedBlogData.map((item, index) => (
+              <BlogCard item={item} key={index} router={router} />
+            ))}
+          </div>
+        </div>
+        </div>
       </div>
     </section>
   );
