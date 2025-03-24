@@ -6,7 +6,7 @@ import Image from "next/image";
 import star from "../../../assets/universities/star.svg";
 import once from "../../../assets/universities/once.svg";
 import arrow from "../../../assets/universities/arrow.svg";
-import {Courses } from "../Data";
+import {Courses } from "../../comparison/Data";
 import { cardData } from "@/app/comparison/Data";
 import { Card } from "@/app/comparison/Card";
 
