@@ -1,9 +1,0 @@
-.vertical-line {
-    width: 4px;
-    background-color: #ccc; /* Initial color (gray) */
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .vertical-line.active {
-    background-color: red; /* Color when active (red) */
-  }

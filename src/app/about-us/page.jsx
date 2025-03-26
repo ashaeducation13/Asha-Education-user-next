@@ -6,14 +6,16 @@ import MissionVision from './MissionVision'
 import WhyStudent from './WhyStudent'
 import SuccessfullStudents from './SuccessfullStudents'
 import WeHelp from './WeHelp'
+import OurGrowth from './OurGrowth'
 
 function page() {
   return (
     <div>
-        <Navbar/>
+      {/* <Navbar/> */}
       {/* <HeroSection/> */}
       {/* <MissionVision/> */}
       {/* <WhyStudent/> */}
+      <OurGrowth />
       {/* <SuccessfullStudents/> */}
       {/* <WeHelp/> */}
       {/* <Footer/> */}
