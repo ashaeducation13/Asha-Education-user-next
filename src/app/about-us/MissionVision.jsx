@@ -32,7 +32,7 @@ const cardData = [
 
 function MissionVision() {
   return (
-    <section className="lg:w-[80%] md:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-3 flex-wrap justify-center xl:gap-12 gap-2 md:gap-4 lg:gap-6  lg:p-12 md:p-8 p-6 px-4">
+    <section className="lg:w-[80%] md:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-3 flex-wrap justify-center xl:gap-12 gap-2 md:gap-4 lg:gap-6 lg:py-10 px-4">
       {cardData.map((card, index) => (
         <div
           key={index}

@@ -8,7 +8,6 @@ import Instagram from "../../assets/blog/Instagram-red.svg";
 import LinkedIn from "../../assets/blog/LinkedIn-red.svg";
 import Twitter from "../../assets/blog/Twitter-red.svg";
 import { motion, useScroll, useSpring } from "framer-motion";
-import "./inner.css";
 import { BlogCard } from "./Listing";
 
 const details = [
@@ -244,12 +243,12 @@ export default function Inner() {
 // import { BlogCard } from "./Listing";
 // import { motion, useScroll, useSpring } from "framer-motion";
 // // Images
-// // import blog1 from '../../../../public/images/blog/blog1.webp'
+// import blog1 from '../../../public/blog/blog1.webp'
 // // Icons
-// import FacebookRed from '../../../../public/icons/Facebook-red.svg'
-// import TwitterRed from '../../../../public/icons/Twitter-red.svg'
-// import InstagramRed from '../../../../public/icons/Instagram-red.svg'
-// import LinkedInRed from '../../../../public/icons/LinkedIn-red.svg'
+// import FacebookRed from '../../../public/blog/Facebook-red.svg'
+// import TwitterRed from '../../../public/blog/Twitter-red.svg'
+// import InstagramRed from '../../../public/blog/Instagram-red.svg'
+// import LinkedInRed from '../../../public/blog/LinkedIn-red.svg'
 
 // const content = `
 //     <p>Australia is a popular study destination for international students, and while many are well aware of universities in Sydney and Melbourne, Adelaide is yet another destination that could be the right fit for you.</p>

@@ -6,7 +6,7 @@ import Mail from "../../assets/about-us/mail-icon.svg";
 
 function WeHelp() {
   return (
-    <div className="md:w-[80%] w-[90%] mx-auto md:flex justify-between items-start py-[50px] ">
+    <div className="md:w-[80%] w-[90%] mx-auto md:flex justify-between items-start py-[50px] md:gap-16 lg:gap-0 ">
       <div className="lg:w-[30%] ">
         <h1 className="font-open-sans lg:text-[40px] md:text-[32px] text-[24px] leading-[24px] md:leading-[32px] lg:leading-[40px]">
           We’re Here to Help You!
@@ -67,10 +67,10 @@ function WeHelp() {
           Send Us a Message
         </h2>  */}
         </div>
-        <div className="w-full bg-white p-4 rounded-[20px] shadow-2xl mt-6">
+        <div className="w-full bg-white p-4 rounded-[20px] shadow-2xl mt-6 md:mt-0 lg:mt-6">
           <form className="flex flex-col gap-2 text-[#6D758F]">
             {/* Name & Phone in Same Row - Stack on mobile */}
-            <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col md:flex-row gap-1">
               <div className="flex flex-col w-full md:w-1/2">
                 <label
                   htmlFor="name"
@@ -139,9 +139,14 @@ function WeHelp() {
 
             <button
               type="submit"
-              className="mt-2 bg-[#FF383B] text-white rounded-lg font-semibold hover:bg-[#e02e33] transition-all duration-300 w-full h-[48px] text-[14px] leading-[20px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF383B]"
+              className="flex items-center justify-center gap-2 mt-2 bg-[#FF383B] text-white rounded-lg font-semibold hover:bg-[#e02e33] transition-all duration-300 w-full md:w-[150px] h-[48px] text-[14px] leading-[20px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF383B]"
             >
               Submit
+              <img
+              src="arrow.svg"
+              alt="Arrow"
+              className="w-[12px] h-[12px]"         
+            />
             </button>
           </form>
         </div>

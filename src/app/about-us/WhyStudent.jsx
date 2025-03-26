@@ -25,11 +25,11 @@ const cardData = [
 
 function WhyStudent() {
   return (
-    <section className="md:w-[100%] mx-auto relative p-3 md:p-10 lg:px-[100px] text-[#121212]">
-      <h2 className="font-open-sans lg:text-[40px] md:text-[32px] text-[24px] leading-[40px] font-semibold mb-3">
+    <section className="md:w-[80%] mx-auto relative py-3 md:py-10 text-[#121212] px-4">
+      <h2 className="font-open-sans lg:text-[40px] md:text-[32px] text-[24px] leading-[40px] font-semibold mb-5">
         Why Students Trust Us
       </h2>
-      <p className="font-rubik text-[#121212] lg:text-[16px] md:text-[14px] text-[12px] font-normal lg:leading-[24px] md:leading-[21px] leading-[156%] md:mb-6 mb-4">
+      <p className="font-rubik text-[#121212] lg:text-[16px] md:text-[14px] text-[12px] font-normal lg:leading-[24px] md:leading-[21px] leading-[156%] md:mb-8 mb-4">
         Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
         phasellus mollis sit aliquam sit nullam. Lorem ipsum dolor sit amet
         consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit
@@ -43,7 +43,7 @@ function WhyStudent() {
 
       {/* Cards Grid - Ensuring 4 Columns on lg */}
 
-      <div className="grid grid-cols-1 md:grid-cols-4 lg:gap-[40px] md:gap-[20px] gap-[10px]  items-start">
+      <div className="grid grid-cols-1 md:grid-cols-4 lg:gap-[40px] md:gap-[20px] gap-[10px] items-start mb-10">
         {cardData.map((card, index) => (
           <div
             key={index}
@@ -77,6 +77,17 @@ function WhyStudent() {
           borderStyle: "solid",
         }}
       ></div> */}
+            <div
+        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 border-t border-transparent 
+                   w-full md:w-4/5 lg:w-3/4 xl:w-[1106px]"
+        style={{
+          borderImageSource:
+            "linear-gradient(90deg, #FFFFFF 0%, #FF383B 18.5%, #0A0078 53%, #FF383B 83%, #FFFFFF 100%)",
+          borderImageSlice: 1,
+          borderWidth: "1px",
+          borderStyle: "solid",
+        }}
+      ></div>
     </section>
   );
 }
