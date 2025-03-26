@@ -1,47 +1,63 @@
-import React from 'react'
+import React from "react";
 import Image from "next/image";
 import Address from "../../assets/about-us/address-icon.svg";
 import Phone from "../../assets/about-us/phone-icon.svg";
 import Mail from "../../assets/about-us/mail-icon.svg";
 
 function WeHelp() {
- 
-
   return (
-    <div
-      className="flex justify-between items-start px-[200px] py-[50px] "
-    >
-      <div className="w-[65%] grid grid-cols-2 gap-4">
-      
-        <h1 className='font-open-sans text-[40px] leading-[40px]'>We’re Here to Help You!</h1><br/>
-        <p className='font-rubik text-[16px] leading-[24px]'>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit</p><br/>
+    <div className="md:w-[80%] w-[90%] mx-auto md:flex justify-between items-start py-[50px] ">
+      <div className="lg:w-[30%] ">
+        <h1 className="font-open-sans lg:text-[40px] md:text-[32px] text-[24px] leading-[24px] md:leading-[32px] lg:leading-[40px]">
+          We’re Here to Help You!
+        </h1>
+        <br />
+        <p className="font-rubik lg:text-[16px] md:text-[14px] text-[12px] lg:leading-[24px] md:leading-[21px] leading-[18px]">
+          Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
+          phasellus mollis sit
+        </p>
+        <br />
 
-        <div className="space-y-4 gap-2">
-      {/* Address Section */}
-      <div className="flex items-center space-x-3">
-        <Image src={Address} alt="Address" className="w-[38px] h-[40px] text-gray-500" />
-        {/* <span className="text-gray-500 text-xl">📍</span>  */}
-        <span className="text-black-700 font-rubik">1234 Knowledge Avenue, Education City, New Delhi, India – 110001</span>
-      </div>
+        <div className="space-y-6 gap-2 mt-2">
+          {/* Address Section */}
+          <div className="flex items-start space-x-4">
+            <Image
+              src={Address}
+              alt="Address"
+              className="w-[38px] h-[40px] text-gray-500"
+            />
+            {/* <span className="text-gray-500 text-xl">📍</span>  */}
+            <span className="text-black font-rubik font-normal lg:text-[20px] md:text-[16px] text-[14px] lg:leading-[28px] md:leading-[24px] leading-[21px]">
+              1234 Knowledge Avenue, Education City, New Delhi, India – 110001
+            </span>
+          </div>
 
-      {/* Phone Section */}
-      <div className="flex items-center space-x-3">
-        <Image src={Phone} alt="Phone" className="w-[38px] h-[40px] text-gray-500" />
-        {/* <span className="text-gray-500 text-xl">📞</span>  */}
-        <span className="text-black-700 font-rubik">+91 98765 43210</span>
-      </div>
+          {/* Phone Section */}
+          <div className="flex items-start space-x-4">
+            <Image src={Phone} alt="Phone" className="w-[38px] h-[40px]" />
+            {/* <span className="text-gray-500 text-xl">📞</span>  */}
+            <span className="font-rubik text-black lg:text-[20px] md:text-[16px] text-[14px] lg:leading-[28px] leading-[28px]">
+              +91 98765 43210
+            </span>
+          </div>
 
-      {/* Email Section */}
-      <div className="flex items-center space-x-3 ">
-        <Image src={Mail} alt="Email" className="w-[38px] h-[40px] text-gray-500" />
-        {/* <span className="text-gray-500 text-xl">✉️</span>  */}
-        <span className="text-black-700 font-rubik">info@educationhub.com</span>
+          {/* Email Section */}
+          <div className="flex items-start space-x-4 ">
+            <Image
+              src={Mail}
+              alt="Email"
+              className="w-[38px] h-[40px] text-gray-500 "
+            />
+            {/* <span className="text-gray-500 text-xl">✉️</span>  */}
+            <span className="text-black font-rubik lg:text-[20px] md:text-[16px] text-[14px] lg:leading-[28px] leading-[28px]">
+              info@educationhub.com
+            </span>
+          </div>
+        </div>
       </div>
-    </div>
-      </div>
-      <div className="w-[40%] flex flex-col items-center ">
+      <div className="lg:w-[40%] md:w-[60%] flex flex-col items-center ">
         <div className="w-full text-start">
-      {/* <h2
+          {/* <h2
           className="text-[24px] font-semibold font-open-sans bg-clip-text text-transparent mb-4 text-start"
           style={{
             backgroundImage:
@@ -51,68 +67,87 @@ function WeHelp() {
           Send Us a Message
         </h2>  */}
         </div>
-        <div className="w-full bg-white p-6 rounded-[20px] shadow-2xl">
-  <form className="flex flex-col gap-4 text-[#6D758F]">
-    
-    {/* Name & Phone in Same Row */}
-    <div className="flex gap-4">
-      <div className="flex flex-col w-1/2">
-        <label className="font-inter text-[14px] leading-[20px] mb-1">
-          Name
-        </label>
-        <input
-          type="text"
-          className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[#FF383B]"
-          placeholder="Brian Clark"
-        />
-      </div>
+        <div className="w-full bg-white p-4 rounded-[20px] shadow-2xl mt-6">
+          <form className="flex flex-col gap-2 text-[#6D758F]">
+            {/* Name & Phone in Same Row - Stack on mobile */}
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex flex-col w-full md:w-1/2">
+                <label
+                  htmlFor="name"
+                  className="font-inter text-[14px] leading-[20px] mb-1 font-medium"
+                >
+                  Name*
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  required
+                  className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#FF383B] focus:border-transparent"
+                  placeholder="Brian Clark"
+                />
+              </div>
 
-      <div className="flex flex-col w-1/2">
-        <label className="font-inter text-[14px] leading-[20px] mb-1">
-          Phone
-        </label>
-        <input
-          type="number"
-          className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[#FF383B]"
-          placeholder="(123) 456 - 7890"
-        />
-      </div>
-    </div>
+              <div className="flex flex-col w-full md:w-1/2">
+                <label
+                  htmlFor="phone"
+                  className="font-inter text-[14px] leading-[20px] mb-1 font-medium"
+                >
+                  Phone*
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  required
+                  className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#FF383B] focus:border-transparent"
+                  placeholder="(123) 456 - 7890"
+                />
+              </div>
+            </div>
 
-    {/* Email */}
-    <div className="flex flex-col">
-      <label className="font-inter text-[14px] leading-[20px] mb-1">
-        Email
-      </label>
-      <input
-        type="email"
-        className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[#FF383B]"
-        placeholder="example@youremail.com"
-      />
-    </div>
+            {/* Email */}
+            <div className="flex flex-col">
+              <label
+                htmlFor="email"
+                className="font-inter text-[14px] leading-[20px] mb-1 font-medium"
+              >
+                Email*
+              </label>
+              <input
+                id="email"
+                type="email"
+                required
+                className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#FF383B] focus:border-transparent"
+                placeholder="example@youremail.com"
+              />
+            </div>
 
-    {/* Message */}
-    <div className="flex flex-col">
-      <label className="font-inter text-[14px] mb-1">Message</label>
-      <textarea
-        rows="4"
-        className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[#FF383B]"
-        placeholder="Type ..."
-      ></textarea>
-    </div>
+            {/* Message */}
+            <div className="flex flex-col">
+              <label
+                htmlFor="message"
+                className="font-inter text-[14px] leading-[20px] mb-1 font-medium"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                rows={4}
+                className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#FF383B] focus:border-transparent"
+                placeholder="Type..."
+              ></textarea>
+            </div>
 
-    <button
-      type="submit"
-      className="mt-2 bg-[#FF383B] text-white rounded-lg font-semibold hover:bg-[#e02e33] transition w-[120px] h-[45px] text-[14px] leading-[20px]"
-    >
-      Submit 
-    </button>
-  </form>
-</div>
-
+            <button
+              type="submit"
+              className="mt-2 bg-[#FF383B] text-white rounded-lg font-semibold hover:bg-[#e02e33] transition-all duration-300 w-full h-[48px] text-[14px] leading-[20px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF383B]"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
-}      
+}
 
-export default WeHelp
+export default WeHelp;

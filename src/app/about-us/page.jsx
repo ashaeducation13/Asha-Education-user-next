@@ -11,12 +11,12 @@ function page() {
   return (
     <div>
         <Navbar/>
-      <HeroSection/>
-      <MissionVision/>
-      <WhyStudent/>
-      <SuccessfullStudents/>
-      <WeHelp/>
-      <Footer/>
+      {/* <HeroSection/> */}
+      {/* <MissionVision/> */}
+      {/* <WhyStudent/> */}
+      {/* <SuccessfullStudents/> */}
+      {/* <WeHelp/> */}
+      {/* <Footer/> */}
     </div>
   )
 }

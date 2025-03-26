@@ -4,13 +4,13 @@ import About1 from "../../assets/about-us/asha-about1.jpg";
 
 function HeroSection() {
   return (
-    <section className="relative flex flex-col lg:flex-row items-center justify-between px-6 md:px-12 lg:px-24 xl:px-0 pt-12 pb-24">
+    <section className="relative w-[90%] lg:w-[80%] mx-auto flex flex-col md:flex-row items-center justify-between xl:px-0 pt-8 md:pt-12 pb-10 md:pb-20">
       {/* Wrapper with fixed width on 1440px screens */}
-      <div className="w-full xl:max-w-[1106px] mx-auto flex flex-col lg:flex-row items-center justify-between">
+      <div className="w-full xl:max-w-[1106px] mx-auto flex flex-col md:flex-row items-center justify-between">
         
         {/* Left Side - Text Content */}
-        <div className="w-full lg:w-1/2 text-center lg:text-left">
-          <h1 className=" pt-[30px] lg:text-[64px] lg:leading-[70px] md:text-[50px] md:leading-[60px] xl:text-[64px] xl:leading-[70px] font-norm text-gray-900 font-open-sans">
+        <div className="w-full md:w-1/2 text-center md:text-left px-4 md:px-0 order-2 md:order-1">
+          <h1 className="pt-[20px] md:pt-[30px] text-[28px] leading-[32px] md:text-[42px] md:leading-[52px] lg:text-[64px] lg:leading-[70px] font-normal text-[#121212] font-open-sans text-start">
             <span
               className="bg-clip-text text-transparent font-playfair"
               style={{
@@ -23,32 +23,33 @@ function HeroSection() {
             One Student at a <br /> Time
           </h1>
 
-          <p className="font-normal leading-[24px] w-[80%] md:w-[60%] lg:w-[50%] text-[14px] md:text-[16px] md:leading-[24px] text-black font-rubik mt-3">
+          <p className="font-normal leading-[18px] md:leading-[21px] lg:leading-[24px] w-full md:w-[80%] lg:w-[70%] text-[12px] md:text-[16px] text-[#121212] font-rubik mt-3 md:mt-4 mb-6 md:mb-8 text-start">
             Committed to guiding students toward the best universities in India.
           </p>
 
           <button
-            className="font-rubik flex items-center justify-center lg:justify-start font-inter font-semibold gap-2 text-white px-6 py-3 rounded-md shadow-md transition duration-300 text-[14px] mt-4 mx-auto lg:mx-0"
+            className="font-rubik flex items-start justify-start md:justify-start font-medium gap-2 text-[#FFFFFF] px-6 py-3 rounded-md shadow-md transition duration-300 text-[14px] leading-[20px] mt-4"
             style={{
               backgroundImage:
                 "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
             }}
           >
-            Talk To Career Experts
+            Talk to a career expert
             <img
-              src="/herosection/Arrow.svg"
+              src="arrow.svg"
               alt="Arrow"
-              className="w-[10px] h-[10px]"         
+              className="w-[12px] h-[12px]"         
             />
           </button>
         </div>
 
         {/* Right Side - Image */}
-        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end mt-6 lg:mt-0">
+        <div className="w-full md:w-[45%] max-w-[500px] h-[250px] md:h-[350px] lg:h-[450px] flex justify-center md:justify-end mt-8 md:mt-0 order-1 md:order-2">
           <Image
             src={About1}
             alt="Hero Section"
-            className="w-[300px] md:w-[350px] lg:w-[370px] h-[456px] object-cover rounded-lg"
+            className="w-full h-full object-cover rounded-[20px]"
+            priority
           />
         </div>
       </div>
