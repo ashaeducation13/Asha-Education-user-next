@@ -109,7 +109,7 @@ const Navbar = () => {
                 <div className="absolute right-0 z-999 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                   <div className="py-1" role="menu" aria-orientation="vertical">
                     <Link href="/careers" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Careers</Link>
-                    <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Blog</Link>
+                    <Link href="/blog" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Blog</Link>
                     <Link href="contact-us" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Contact</Link>
                   </div>
                 </div>
