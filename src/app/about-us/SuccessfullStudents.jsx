@@ -38,7 +38,7 @@ const studentTestimonials = [
 
 const StudentSwiper = () => {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full mt-6">
       {/* Swiper Component with built-in navigation */}
       <Swiper
         spaceBetween={20}
@@ -57,7 +57,7 @@ const StudentSwiper = () => {
                   className="w-full h-full object-cover rounded-tl-[8px] rounded-tr-[8px]"
                 />
               </div>
-              <div className="w-3/5 pt-2 mx-[30px] flex flex-col justify-center">
+              <div className="w-3/5 pt-6 mx-[30px] flex flex-col justify-start">
                 <Image
                   src={student.logo}
                   alt="University Logo"
@@ -81,7 +81,7 @@ function SuccessfulStudents() {
   return (
     <section className="px-[100px] bg-red-500 text-white mt-[100px] py-12">
       <h2
-        className="font-open-sans text-4xl font-bold text-center mb-8 bg-clip-text text-transparent"
+        className="font-open-sans lg:text-[40px] md:text-[32px] text-[24px] leading-[24px] md:leading-[32px] lg:leading-[40px] font-semibold text-center mb-4 bg-clip-text text-transparent"
         style={{
           backgroundImage:
             "linear-gradient(180deg, #FFFFFF 68.84%, #FF383B 117.39%)",
@@ -89,7 +89,7 @@ function SuccessfulStudents() {
       >
         Hear from Our <br /> Successful Students
       </h2>
-      <p className="text-center font-inter text-[16px]  leading-[24px]">98% of students achieved their admission goals.</p>
+      <p className="text-center font-inter font-normal lg:text-[16px] md:text-[14px] text-[12px] leading-[24px]">98% of students achieved their admission goals.</p>
       <StudentSwiper />
     </section>
   );
