@@ -8,7 +8,6 @@ import "swiper/css/navigation";
 import PartnerCard from "@/components/home/PartnerCard";
 import Image from "next/image";
 
-
 import img1 from '../../assets/home/partnersection/cardimg1.webp'
 import img2 from '../../assets/home/partnersection/cardimg2.webp'
 import img3 from '../../assets/home/partnersection/cardimg3.webp'
@@ -21,6 +20,7 @@ import logo4 from '../../assets/home/partnersection/manipal.png'
 
 import arrow from '../../assets/home/herosection/Arrow.svg'
 import arrowright from '../../assets/home/partnersection/darkarrowright.svg'
+
 // University & Course Data
 const universityData = [
     {
@@ -74,7 +74,7 @@ const Universities = () => {
 
     return (
         <>
-            <div className="relative max-w-[1440px] mx-auto text-center my-10">
+            <div className="relative mx-auto text-center my-10 ">
                 <h1 className="text-4xl md:text-[30px] font-semibold text-gray-900">
                     Our Prestigious Partner Universities
                 </h1>
@@ -82,63 +82,67 @@ const Universities = () => {
                     Explore our network of globally recognized partner universities, offering diverse programs and exceptional academic opportunities for students worldwide
                 </p>
             </div>
-            <section className="relative pb-40 px-6 md:px-12 flex gap-6">
-
-
-                {/* Left: University Buttons (20%) */}
-                <div className="w-auto min-w-[150px] lg:min-w-[160px] flex flex-col gap-4 ml-4 ">
-
+            <section className="relative py-10 flex justify-between gap-36 items-start w-[92%] ml-auto">
+                {/* Left: University Buttons */}
+                <div className="flex flex-col gap-4 min-w-[200px]">
                     {universityData.map((university) => (
                         <button
                             key={university.id}
-                            className={`flex items-center gap-3 px-4 py-2 border rounded-md text-black text-[12px] lg:text-[16px] font-normal transition-all font-rubik text-left 
-                            ${selectedUniversity.id === university.id ? "border-[#0A0078] text-black" : "border-gray-300 bg-white hover:bg-gray-100"}
-                          `}
+                            className={` w-full flex flex-row md:flex-col lg:flex-row items-center justify-start gap-2 px-4 py-2 border rounded-md text-black text-sm md:text-base font-normal transition-all font-rubik text-left whitespace-nowrap
+                                ${selectedUniversity.id === university.id ? "border-[#0A0078] text-black" : "border-gray-300 bg-white hover:bg-gray-100"}
+                            `}
                             onClick={() => setSelectedUniversity(university)}
                         >
-                            <Image src={university.logo} alt={university.name} className="h-8 w-8 object-contain" />
+                            <Image
+                                src={university.logo}
+                                alt={university.name}
+                                className="h-8 w-8 object-contain"
+                            />
                             <span>{university.name}</span>
                         </button>
                     ))}
-                    <button
-                        className="flex items-center font-inter font-semibold gap-2 text-white px-6 py-3 rounded-lg shadow-md transition duration-300 text-[14px]"
-                        style={{
-                            backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
-                        }}
-                    >
-                        Browse all Programs
-                        <Image
-                            src={arrow}
-                            alt="Arrow"
-                            className="w-[8.4px] h-[8.24px]"
-                        />
-                    </button>
 
-                    <button
-                        className="flex items-center font-inter font-semibold gap-2  px-6 py-3 rounded-lg shadow-md transition duration-300 text-[14px]"
+                    {/* Desktop Buttons (Hidden on small screens) */}
+                    <div className="flex flex-col justify-between w-full max-w-[640px] mx-auto gap-2 items-center mt-6 hidden md:flex">
+                        <button
+                            className="flex items-center justify-center font-inter font-semibold gap-2 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full"
+                            style={{
+                                backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
+                            }}
+                        >
+                            Browse all Programs
+                            <Image
+                                src={arrow}
+                                alt="Arrow"
+                                className="w-[10px] h-[10px]"
+                            />
+                        </button>
 
-                    >
-                        Compare Universities
-                        <Image
-                            src={arrowright}
-                            alt="Arrow"
-                            className="w-[8.4px] h-[8.24px]"
-                        />
-                    </button>
+                        <button
+                            className="flex items-center justify-center font-inter font-semibold gap-2 px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full border border-gray-300 bg-white hover:bg-gray-100"
+                        >
+                            Compare Universities
+                            <Image
+                                src={arrowright}
+                                alt="Arrow"
+                                className="w-[10px] h-[10px]"
+                            />
+                        </button>
+                    </div>
+
                 </div>
 
-
-                {/* Right: Swiper Carousel (80%) */}
-                <div className="w-[70%] lg:w-[80%] pl-4">
+                {/* Right: Swiper Carousel */}
+                <div className="w-full flex justify-end">
                     <Swiper
                         slidesPerView={1}
                         spaceBetween={0}
                         loop={true}
-                        autoplay={{ delay: 3000 }}
+                        autoplay={{ delay: 1000, disableOnInteraction: false }}
                         breakpoints={{
                             640: { slidesPerView: 1 },
                             768: { slidesPerView: 2 },
-                            1024: { slidesPerView: 3.5 },
+                            1024: { slidesPerView: 5, spaceBetween: 10 },
                         }}
                         className="w-full"
                     >
@@ -150,8 +154,34 @@ const Universities = () => {
                     </Swiper>
                 </div>
             </section>
-        </>
+            <div className="flex justify-between w-full max-w-[640px] mx-auto gap-2 items-center mt-6 md:hidden">
+                <button
+                    className="flex items-center justify-center font-inter font-semibold gap-2 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full"
+                    style={{
+                        backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
+                    }}
+                >
+                    Browse all Programs
+                    <Image
+                        src={arrow}
+                        alt="Arrow"
+                        className="w-[10px] h-[10px]"
+                    />
+                </button>
 
+                <button
+                    className="flex items-center justify-center font-inter font-semibold gap-2 px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full border border-gray-300 bg-white hover:bg-gray-100"
+                >
+                    Compare Universities
+                    <Image
+                        src={arrowright}
+                        alt="Arrow"
+                        className="w-[10px] h-[10px]"
+                    />
+                </button>
+            </div>
+
+        </>
     );
 };
 

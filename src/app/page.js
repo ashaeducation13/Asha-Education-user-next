@@ -12,16 +12,16 @@ import CommunitySection from "./(home)/CommunitySection";
 export default function Home() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Herosection />
       <Universities />
-      <ProgramSection />
+      {/* <ProgramSection />
       <TrustSection />
       <CounselSection />
       <SuccessfulStudents />
       <InformedSection />
-      <CommunitySection />
-      <Footer />
+      <CommunitySection /> */}
+      {/* <Footer /> */}
     </>
   );
 }
