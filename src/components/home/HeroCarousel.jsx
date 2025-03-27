@@ -4,7 +4,6 @@ import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 
-
 import img1 from '../../assets/home/herosection/img1.webp'
 import img2 from '../../assets/home/herosection/img2.webp'
 import img3 from '../../assets/home/herosection/img3.webp'
@@ -31,53 +30,46 @@ export default function HeroCarousel() {
       loop={true}
       initialSlide={0}
       autoplay={{
-        delay: 1800, // Change slides every 2.5 seconds
-        disableOnInteraction: false, // Keeps autoplay running even after user interaction
+        delay: 1800,
+        disableOnInteraction: false,
       }}
       onSlideChange={updateSlidePositions}
       onSwiper={updateSlidePositions}
       className="w-full"
       breakpoints={{
-        320: { slidesPerView: 1, spaceBetween: 5 },   // Mobile
-        640: { slidesPerView: 3, spaceBetween: 8 },   // Tablets
-        1024: { slidesPerView: 4, spaceBetween: 10 }, // Small desktops
-        1280: { slidesPerView: 5, spaceBetween: 10 }, // Large desktops
-        1536: { slidesPerView: 5, spaceBetween: 10 }, // XL screens
+        320: { slidesPerView: 3.5, spaceBetween: 4 },
+        768: { slidesPerView: 5, spaceBetween: 10 },
       }}
     >
-
       {images.map((src, index) => {
         const position = ((index - activeIndex) % images.length + images.length) % images.length;
-
-        // Adjust padding for center slide without shrinking adjacent slides
-        let extraPaddingClass = position === 0 ? "px-2" : "px-2";
-
-        let marginTopClass = "";
-        if (position === 0) marginTopClass = "mt-0";
-        else if (position === 1 || position === images.length - 1) marginTopClass = "mt-10";
-        else if (position === 2 || position === images.length - 2) marginTopClass = "mt-16";
-        else marginTopClass = "mt-20";
 
         return (
           <SwiperSlide
             key={index}
-            className={`flex justify-center items-center transition-all duration-700 ease-in-out transform ${marginTopClass} ${extraPaddingClass}`}
+            className={`flex justify-center py-10 md:py-20 items-center transition-all duration-700 ease-in-out transform ${
+              position === 1 || position === images.length - 1 ? "mt-10" : 
+              position === 2 || position === images.length - 2 ? "mt-16" : 
+              position === 0 ? "mt-0" : "mt-20"
+            }`}
           >
             <div
-              className={`rounded-lg overflow-hidden transition-transform duration-700 ease-in-out ${position === 0 ? "scale-110" : ""
-                }`}
+              className={`rounded-lg overflow-hidden transition-transform duration-700 ease-in-out ${
+                position === 0 ? "scale-110" : "scale-90"
+              }`}
             >
               <Image
                 src={src}
                 alt={`Slide ${index + 1}`}
-                className="w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px] lg:w-[223px] lg:h-[223px] object-cover"
+                width={223}
+                height={223}
+                quality={90}
+                className="w-[150px] h-[100px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[170px] lg:w-[223px] lg:h-[223px] object-cover rounded-lg"
               />
             </div>
           </SwiperSlide>
         );
       })}
     </Swiper>
-
-
   );
 }
