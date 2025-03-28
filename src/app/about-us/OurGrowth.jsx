@@ -1,4 +1,5 @@
 import React from 'react'
+import Timeline from './Timeline'
 
 function OurGrowth() {
   const data = [
@@ -7,6 +8,7 @@ function OurGrowth() {
     {year:'2019' , description: 'Expanded services to include specialized MBA and doctoral programs.'},
   ]
   return (
+    <>
     <div className='lg:w-[80%] md:w-[90%] mx-auto flex flex-col justify-center items-center p-10'>
       <div className='space-y-2'>
         <h1 className='text-centers font-open-sans font-semibold lg:text-[48px] md:text-[32px] text-[24px] md:leading-[48px] leading-[24px]'>
@@ -27,6 +29,8 @@ function OurGrowth() {
         ))}
       </div>
     </div>
+    <Timeline />
+    </>
   )
 }
 

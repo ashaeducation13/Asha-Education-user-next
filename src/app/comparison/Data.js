@@ -83,7 +83,7 @@ export const cardData = [
     cover: cardCover,
     logo: logo,
     affiliation: "UGC, AICTE, EXAMPLE, EXAMPLE, EXAMPLE....",
-    status: "Admission ongoing",
+    status: "Apply Now",
     review: "4/5",
   },
   {
@@ -91,7 +91,7 @@ export const cardData = [
     cover: cardCover,
     logo: logo,
     affiliation: "UGC, AICTE, NAAC, EXAMPLE, EXAM...",
-    status: "Admissions Open",
+    status: "Apply Now",
     review: "3.8/5",
   },
 
@@ -100,7 +100,7 @@ export const cardData = [
     cover: cardCover,
     logo: logo,
     affiliation: "UGC, AICTE, EXAMPLE, NAAC, EXAM...",
-    status: "Admissions Open",
+    status: "Apply Now",
     review: "3.9/5",
   },
   {
@@ -116,7 +116,7 @@ export const cardData = [
     cover: cardCover,
     logo: logo,
     affiliation: "UGC, AICTE, NAAC, NIRF, EXAM...",
-    status: "Few Seats Left",
+    status: "Apply Now",
     review: "4.3/5",
   },
   {
@@ -124,7 +124,7 @@ export const cardData = [
     cover: cardCover,
     logo: logo,
     affiliation: "UGC, AICTE, NAAC A+, EXAM...",
-    status: "Admissions Open",
+    status: "Apply Now",
     review: "3.7/5",
   },
 ];

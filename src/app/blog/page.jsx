@@ -7,8 +7,8 @@ export default function page() {
   return (
     <div>
       <Navbar />
-      {/* <Listing /> */}
-      <Inner />
+      <Listing />
+      {/* <Inner /> */}
       <Footer />
     </div>
   )
