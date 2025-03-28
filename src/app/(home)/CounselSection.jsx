@@ -45,8 +45,8 @@ const CounselSection = () => {
             {/* form and video section */}
 
 
-            <div className="w-full p-8 flex items-center justify-center gap-30 xl:gap-15 mx-auto">
-                <div className="relative ml-10">
+            <div className="w-full p-4 md:p-8 flex flex-col-reverse md:flex-row items-center justify-center gap-30 xl:gap-15 mx-auto">
+                <div className="relative md:ml-10">
                     <HomeForm />
                 </div>
 

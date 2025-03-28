@@ -82,7 +82,7 @@ const Universities = () => {
                     Explore our network of globally recognized partner universities, offering diverse programs and exceptional academic opportunities for students worldwide
                 </p>
             </div>
-            <section className="relative py-10 flex justify-between gap-36 items-start w-[92%] ml-auto">
+            <section className="relative py-6 flex justify-between gap-16 items-start pl-[4vw]">
                 {/* Left: University Buttons */}
                 <div className="flex flex-col gap-4 min-w-[200px]">
                     {universityData.map((university) => (
@@ -133,7 +133,7 @@ const Universities = () => {
                 </div>
 
                 {/* Right: Swiper Carousel */}
-                <div className="w-full flex justify-end">
+                <div className="w-full flex justify-end overflow-hidden">
                     <Swiper
                         slidesPerView={1}
                         spaceBetween={0}
