@@ -8,31 +8,31 @@ const HeroSecetion = () => {
     return (
         <>
             <section
-                className=" w-full mx-auto text-center py-5 bg-[#F5F5F5]"
+                className=" w-full mx-auto text-center lg:py-5 py-3 bg-[#F5F5F5]"
                 style={{ backdropFilter: "blur(44px)" }}
             >
-                <div className="w-[80%] mx-auto">
-                    <h1 className="text-[40px] leading-[100%] font-normal">
+                <div className="lg:w-[80%] md:w-[90%] mx-auto">
+                    <h1 className="leading-[100%]  font-normal">
                         <span
-                            className="bg-clip-text text-transparent font-playfair"
+                            className="bg-clip-text text-transparent font-playfair font-normal lg:text-[40px] md:text-[32px] text-[26px] leading-[100%]"
                             style={{
                                 backgroundImage:
                                     "linear-gradient(90.02deg, #0A0078 2.5%, #FF383B 43.53%)",
                             }}
                         >
-                            Top Universities
-                        </span>{" "}
-                        for
-                        <br />Your Best Education
+                            Top Universities 
+                        </span>
+                        <span className="font-open-sans font-medium lg:text-[40px] md:text-[32px] text-[26px] leading-[40px]"> for</span>
+                        <span className="block font-open-sans font-medium lg:text-[40px] md:text-[32px] text-[26px] leading-[40px]">Your Best Education</span>
                     </h1>
-                    <p className="font-rubik font-medium pt-3">
+                    <p className="font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] leading-[24px] pt-3">
                         Committed to guiding students toward the best universities in India.
                     </p>
                 </div>
 
                 {/* Search & Browse */}
                 <div className="mt-6 flex flex-col md:flex-row justify-center items-center gap-4">
-                    <div className="relative w-full md:w-96">
+                    <div className="relative w-[80%] md:w-96">
                         <Image
                             src={search}
                             alt="Search"
@@ -46,7 +46,7 @@ const HeroSecetion = () => {
                     </div>
 
                     <button
-                        className="flex items-center font-inter font-semibold gap-2 text-white px-6 py-3 rounded-md shadow-md transition duration-300 text-[14px]"
+                        className="flex items-center font-inter font-semibold gap-2 text-white lg:px-6 md:px-4 px-2 lg:py-3 py-2 rounded-md shadow-md transition duration-300 lg:text-[14px] text-[12px] leading-[20px]"
                         style={{
                             backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
                         }}
@@ -59,9 +59,6 @@ const HeroSecetion = () => {
                         />
                     </button>
                 </div>
-
-
-
             </section >
         </>
     );

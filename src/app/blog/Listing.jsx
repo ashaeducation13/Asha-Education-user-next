@@ -102,8 +102,8 @@ export default function Listing() {
   //   setCurrentPage(page);
   // };
   return (
-    <section className="w-[80%] mx-auto pb-[60px] flex flex-col gap-[20px]">
-      <div className="mx-auto flex flex-col items-center justify-center text-center md:pt-[40px] pt-[10px] md:pb-[40px] pb-[10px] gap-[10px]">
+    <section className="lg:w-[80%] w-[90%] mx-auto lg:pb-[60px] md:pb-[40px] pb-[20px] flex flex-col md:gap-[20px] gap-[10px]">
+      <div className="mx-auto flex flex-col items-center justify-center text-center md:pt-[30px] pt-[10px] md:pb-[30px] pb-[10px] gap-[10px]">
         <h1 className="text-[40px] leading-[40px] font-open-sans">
           <span
             className="font-normal font-playfair lg:text-[40px] md:text-[32px] text-[24px] lg:leading-[40px] md:leading-[32px] leading-[24px] bg-clip-text text-transparent"
@@ -124,7 +124,7 @@ export default function Listing() {
           guidance
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:gap-[20px] gap-[10px] xl:gap-[40px]">
+      <div className="grid grid-cols-1 md:grid-cols-3 md:gap-[20px] gap-[10px] xl:gap-[40px]">
         {blogData.map((item, index) => (
           <BlogCard item={item} key={index} router={router} />
         ))}
@@ -144,7 +144,7 @@ export default function Listing() {
 
 export const BlogCard = ({ item, router }) => (
   <Link href={`/blogs/${item.id}`}>
-    <div className="flex flex-col lg:gap-[18px] md:gap-[8px] p-2 group cursor-pointer transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-[18px] border border-[#0A0078]">
+    <div className="flex flex-col lg:gap-[18px] gap-[8px] p-2 group cursor-pointer transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-[18px] border border-[#0A0078]">
       <div className="overflow-hidden">
         <Image
           src={item?.image}
@@ -153,7 +153,7 @@ export const BlogCard = ({ item, router }) => (
           className="h-[220px] w-full object-cover rounded-[8px] transition-transform duration-300 ease-in-out transform group-hover:scale-110 "
         />
       </div>
-      <div className="flex flex-col lg:gap-[10px] md:gap-[5px] items-start px-[10px]">
+      <div className="flex flex-col lg:gap-[10px] gap-[5px] items-start px-[10px]">
         <p className="bg-[#FFE3E4] text-secondary-cl flex flex-row py-[6px] px-[16px] rounded-[6px] gap-[6px] items-center font-inter font-medium lg:text-[14px] text-[12px] leading-[100%] text-[#FF383B]">
           {item?.date_added}
         </p>
