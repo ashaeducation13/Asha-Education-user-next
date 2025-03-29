@@ -1,13 +1,16 @@
+'use client'
 import React from "react";
 import Image from "next/image";
 import About1 from "../../assets/about-us/asha-about1.jpg";
+import play from '../../assets/home/Trustsection/play.svg'
+import { useState } from "react";
 
 function HeroSection() {
+  const [playVideo, setPlayVideo] = useState(false)
   return (
-    <section className="relative w-[90%] lg:w-[80%] mx-auto flex flex-col md:flex-row items-center justify-between xl:px-0 pt-8 md:pt-12 pb-10 md:pb-20">
+    <section className="relative containers flex flex-col md:flex-row items-center justify-between xl:px-0 pt-8 md:pt-12 pb-10 md:pb-20">
       {/* Wrapper with fixed width on 1440px screens */}
       <div className="w-full xl:max-w-[1106px] mx-auto flex flex-col md:flex-row items-center justify-between">
-        
         {/* Left Side - Text Content */}
         <div className="w-full md:w-1/2 text-center md:text-left px-4 md:px-0 order-2 md:order-1">
           <h1 className="pt-[20px] md:pt-[30px] text-[28px] leading-[32px] md:text-[42px] md:leading-[52px] lg:text-[64px] lg:leading-[70px] font-normal text-[#121212] font-open-sans text-start">
@@ -28,29 +31,46 @@ function HeroSection() {
           </p>
 
           <button
-            className="font-rubik flex items-start justify-start md:justify-start font-medium gap-2 text-[#FFFFFF] px-6 py-3 rounded-md shadow-md transition duration-300 text-[14px] leading-[20px] mt-4"
+            className="font-rubik flex items-center justify-start md:justify-start font-medium gap-2 text-[#FFFFFF] px-6 py-3 rounded-md shadow-md transition duration-300 text-[14px] leading-[20px] mt-4"
             style={{
               backgroundImage:
                 "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
             }}
           >
             Talk to a career expert
-            <img
-              src="arrow.svg"
-              alt="Arrow"
-              className="w-[12px] h-[12px]"         
-            />
+            <img src="arrow.svg" alt="Arrow" className="w-[12px] h-[12px]" />
           </button>
         </div>
 
         {/* Right Side - Image */}
-        <div className="w-full md:w-[45%] max-w-[500px] h-[250px] md:h-[350px] lg:h-[450px] flex justify-center md:justify-end mt-8 md:mt-0 order-1 md:order-2">
-          <Image
-            src={About1}
-            alt="Hero Section"
-            className="w-full h-full object-cover rounded-[20px]"
-            priority
-          />
+        <div className="flex flex-col gap-6 order-1 md:order-2">
+          {playVideo ? (
+            <ReactPlayer
+              url={null}
+              width="450px"
+              className="rounded-xl shadow-lg"
+              controls
+            />
+          ) : (
+            <div
+              className="relative w-full max-w-[450px] aspect-square flex items-center justify-center cursor-pointer"
+              onClick={() => setPlayVideo(true)}
+            >
+              <Image
+                src={About1}
+                alt="Video Thumbnail"
+                className="lg:w-[450px] lg:h-[450px] md:w-[300px] md:h-[300px] w-[330px] h-[300px] rounded-xl shadow-lg object-cover md:mt-5 lg:mt-0"
+              />
+              {/* Play Icon Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={play}
+                  alt="Play Button"
+                  className="w-16 h-16 opacity-80"
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

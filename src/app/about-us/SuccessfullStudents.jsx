@@ -124,7 +124,7 @@ const StudentSwiper = () => {
 
 function SuccessfulStudents() {
   return (
-    <section className="md:px-[100px] bg-red-500 text-white mt-[100px] py-12">
+    <section className="md:px-[100px] bg-red-500 text-white  py-12">
       <h2
         className="font-open-sans lg:text-[40px] md:text-[32px] text-[24px] leading-[24px] md:leading-[32px] lg:leading-[40px] font-semibold text-center mb-4 bg-clip-text text-transparent"
         style={{

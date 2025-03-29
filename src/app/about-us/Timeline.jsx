@@ -15,7 +15,7 @@ import arrowForwardIcon from "../../../public/about-us/arrow_forward.svg";
 import Down from "../../../public/about-us/down.svg";
 // import DividerWithLabel from "@/components/DividerWithLabel";
 
-function Timeline({ data }) {
+function Timeline({data}) {
   const [activeIndex, setActiveIndex] = useState(2);
   const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(1);
@@ -23,9 +23,9 @@ function Timeline({ data }) {
   const swiperRef = useRef;
   const cardsRef = useRef([]);
 
-//   const handleClick = (index) => {
-//     setIsOpen(index === isOpen ? false : index);
-//   };
+  const handleClick = (index) => {
+    setIsOpen(index === isOpen ? false : index);
+  };
 
   useEffect(() => {
     const checkMobileView = () => {
@@ -52,9 +52,8 @@ function Timeline({ data }) {
 //     color: colors[index] || item.color,
 //   }));
 
-
   return (
-    <section className="py-[30px] md:py-[60px]  relative">
+    <section className="lg:py-[30px] py-6 md:py-[40px]  relative">
       <div className="containers relative">
         <Swiper
           slidesPerView={3.5}
@@ -92,7 +91,7 @@ function Timeline({ data }) {
             },
           }}
         >
-          {updatedData.map((item, index) => (
+          {data.map((item, index) => (
             <SwiperSlide key={index}>
               <TimelineItem
                 index={index + 1}
@@ -105,7 +104,7 @@ function Timeline({ data }) {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="flex justify-center items-center mt-6 space-x-4">
+        {/* <div className="flex justify-center items-center mt-6 space-x-4">
           <button
             className="custom-prev-arrow p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
             onClick={() => swiperRef.current?.swiper.slidePrev()}
@@ -126,7 +125,7 @@ function Timeline({ data }) {
               className="transform w-6 h-6"
             />
           </button>
-        </div>
+        </div> */}
       </div>
       {/* <DividerWithLabel className="containers pt-[50px]" /> */}
     </section>
@@ -142,7 +141,7 @@ const TimelineItem = ({
   handleClick,
 }) => {
   return (
-    <div className="timeline-item relative flex flex-col  z-10">
+    <div className="timeline-item relative flex flex-col z-10">
       <motion.div
         className={`timeline-index relative flex justify-center items-center w-[40px] h-[40px] rounded-full border-[1px] bg-white cursor-pointer ${
           activeIndex >= index ? "bg-blue-500 text-white" : "border-blue-500"
@@ -174,7 +173,7 @@ const TimelineItem = ({
       )}
       <motion.div
         ref={cardRef}
-        className="timeline-card rounded-[18px] p-[10px] pb-[20px] relative mt-[20px]"
+        className="timeline-card rounded-[18px] p-[30px] m-4  relative mt-[20px] shadow-lg"
         style={{
           backgroundColor: item.color,
         }}
@@ -187,29 +186,29 @@ const TimelineItem = ({
         }}
         onClick={() => handleClick(index)}
       >
-        <Image
+        {/* <Image
           className="rounded-[8px] w-full h-auto"
           src={item.image}
           alt={item.title}
           width={0}
           height={0}
           sizes="100vw"
-        />
-        <div className="flex justify-between items-baseline px-[5px] mt-[10px] gap-[5px] cursor-pointer">
-          <h2 className="text-[18px] font-[quicksand-semiBold] leading-[25px] text-[#575757]">
+        /> */}
+        <div className="flex justify-between items-baseline px-[5px] gap-[5px] cursor-pointer">
+          <h2 className="lg:text-[36px] md:text-[32px] text-[24px] font-open-sans font-semibold leading-[48px] text-[#575757]">
             {item.title}
           </h2>
-          <Image
+          {/* <Image
             className="cursor-pointer"
             src={Down}
             alt="Down arrow"
             width={11}
             height={6}
-          />
+          /> */}
         </div>
         {/* {isOpen === index && ( */}
           <motion.p
-            className="mt-4 text-[16px] font-[inter-regular] leading-[19px] text-[#575757]"
+            className="mt-4 lg:text-[16px] md:text-[14px] text-[12px] font-rubik font-normal lg:leading-[24px] md:leading-[21px] leading-[18px] text-[#383838]"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
