@@ -74,7 +74,8 @@ const ProgramsSection = () => {
                 </div>
 
                 {/* Right Section (60%) */}
-                <div className="relative flex gap-2 p-6 justify-between md:w-[60%] lg:w-[70%] max-w-[400px]  md:max-w-[500px] lg:max-w-[850px]">
+                <div className="relative flex gap-2 p-6 justify-center md:justify-between md:w-[60%] lg:w-[70%] max-w-[400px]  md:max-w-[500px] lg:max-w-[850px] mx-auto">
+
 
                     {/* Background Overlay */}
                     <div
