@@ -11,13 +11,13 @@ import OurGrowth from './OurGrowth'
 function page() {
   return (
     <div>
-      <Navbar/>
-      {/* <HeroSection/> */}
-      {/* <MissionVision/> */}
-      {/* <WhyStudent/> */}
+      {/* <Navbar/> */}
+      <HeroSection/>
+      <MissionVision/>
+      <WhyStudent/>
       <OurGrowth />
-      {/* <SuccessfullStudents/> */}
-      {/* <WeHelp/> */}
+      <SuccessfullStudents/>
+      <WeHelp/>
       {/* <Footer/> */}
     </div>
   )

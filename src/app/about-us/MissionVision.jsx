@@ -29,15 +29,14 @@ const cardData = [
   }
 ];
 
-
 function MissionVision() {
   return (
-    <section className="lg:w-[80%] md:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-3 flex-wrap justify-center xl:gap-12 gap-2 md:gap-4 lg:gap-6 lg:py-10 px-4">
+    <section className="containers grid grid-cols-1 md:grid-cols-3 flex-wrap justify-center xl:gap-12 gap-2 md:gap-4 lg:gap-6 lg:pt-20 md:pt-12 md:pb-5 lg:pb-10 pt-5 pb-3 px-4">
       {cardData.map((card, index) => (
         <div
           key={index}
-          className="group bg-white p-6 rounded-lg shadow-md transition duration-300 hover:bg-[#FF383B] hover:text-white 
-                      text-center"
+          className="group bg-white p-6 rounded-[20px] transition duration-300 hover:bg-[#FF383B] hover:text-white 
+                      text-center shadow-2xl"
         >   
           <div className="flex items-center gap-[30px] justify-between mb-4">
             <h3 className="font-open-sans text-[20px] md:text-[24px] lg:text-[36px] leading-[48px] lg:leading-[48px] font-semibold">
