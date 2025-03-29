@@ -5,9 +5,9 @@ import featuredImg from "../../assets/home/informsection/blogimg.png";
 
 const InformedSection = () => {
   return (
-    <div className="py-32  bg-[#F5F5F5]">
+    <div className="py-32 px-8 bg-[#F5F5F5]">
       {/* Header Section */}
-      <div className="containers mx-auto flex flex-col justify-center items-center">
+      <div className="containers mx-auto flex flex-col justify-center items-start ">
 
         <h2 className="text-[28px] md:text-[32px] font-bold">
           <span
@@ -28,9 +28,9 @@ const InformedSection = () => {
 
       </div>
       {/* Content Section */}
-      <div className="mt-6 w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 ">
+      <div className="pt-2 md:pt-6 containers  mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 ">
         {/* Featured Article */}
-        <div className="bg-white shadow-md rounded-xl overflow-hidden">
+        <div className="bg-white shadow-xl rounded-xl overflow-hidden">
           <Image src={featuredImg} alt="Featured article" className="w-full h-[200px] object-cover" />
           <div className="p-4">
             <p className="text-sm text-gray-500">Category — Jan 24, 2024</p>

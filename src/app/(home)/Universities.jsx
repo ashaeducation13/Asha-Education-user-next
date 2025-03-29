@@ -75,20 +75,20 @@ const Universities = () => {
     return (
         <>
             <div className="relative mx-auto text-center my-10 ">
-                <h1 className="text-4xl md:text-[30px] font-semibold text-gray-900">
+                <h1 className="text-[20px] md:text-[24px] lg:text-[30px] font-semibold text-gray-900 font-open-sans">
                     Our Prestigious Partner Universities
                 </h1>
-                <p className="mt-4 text-[16px] text-gray-600 w-[52%] mx-auto font-rubik font-normal leading-[24px]">
+                <p className="mt-4 text-[12px] md:text-[14px] lg:text-[16px] text-gray-600 w-[82%] md:w-[52%] mx-auto font-inter font-normal leading-[24px]">
                     Explore our network of globally recognized partner universities, offering diverse programs and exceptional academic opportunities for students worldwide
                 </p>
             </div>
-            <section className="relative py-6 flex justify-between gap-16 items-start pl-[4vw]">
+            <section className="relative py-6 flex justify-between gap-2 md:gap-16 items-start pl-[4vw] align-center">
                 {/* Left: University Buttons */}
-                <div className="flex flex-col gap-4 min-w-[200px]">
+                <div className="flex flex-col gap-4  md:min-w-[200px]">
                     {universityData.map((university) => (
                         <button
                             key={university.id}
-                            className={` w-full flex flex-row md:flex-col lg:flex-row items-center justify-start gap-2 px-4 py-2 border rounded-md text-black text-sm md:text-base font-normal transition-all font-rubik text-left whitespace-nowrap
+                            className={` w-full flex flex-col  md:flex-row items-center text-center justify-start gap-2  md:px-4 py-2 border rounded-md text-black text-[12px] md:text-[14px] lg:text-[16px]  font-normal transition-all font-rubik md:text-left md:whitespace-nowrap
                                 ${selectedUniversity.id === university.id ? "border-[#0A0078] text-black" : "border-gray-300 bg-white hover:bg-gray-100"}
                             `}
                             onClick={() => setSelectedUniversity(university)}
@@ -98,7 +98,7 @@ const Universities = () => {
                                 alt={university.name}
                                 className="h-8 w-8 object-contain"
                             />
-                            <span>{university.name}</span>
+                            <span className="break-words whitespace-normal">{university.name}</span>
                         </button>
                     ))}
 
@@ -140,21 +140,22 @@ const Universities = () => {
                         loop={true}
                         autoplay={{ delay: 1000, disableOnInteraction: false }}
                         breakpoints={{
-                            640: { slidesPerView: 1 },
-                            768: { slidesPerView: 2 },
-                            1024: { slidesPerView: 5, spaceBetween: 10 },
+                            640: { slidesPerView: 1.5 },
+                            768: { slidesPerView: 2.5 },
+                            1024: { slidesPerView: 3.5, spaceBetween: 10 },
+                            // 1440: { slidesPerView: 5.5, spaceBetween: 10 },
                         }}
                         className="w-full"
                     >
                         {selectedUniversity.courses.map((course) => (
-                            <SwiperSlide key={course.id} className="flex justify-center">
+                            <SwiperSlide key={course.id} className="flex justify-center px-1 py-5">
                                 <PartnerCard {...course} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
                 </div>
             </section>
-            <div className="flex justify-between w-full max-w-[640px] mx-auto gap-2 items-center mt-6 md:hidden">
+            <div className="containers flex justify-between w-full max-w-[640px] mx-auto gap-2 items-center py-6 md:hidden">
                 <button
                     className="flex items-center justify-center font-inter font-semibold gap-2 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full"
                     style={{

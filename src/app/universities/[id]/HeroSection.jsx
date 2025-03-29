@@ -22,19 +22,23 @@ const HeroSection = () => {
                     </div>
 
                     {/* University Name */}
-                    <h2 className="text-3xl font-medium font-playfair">
+                    <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-medium font-playfair">
                         <span
                             className="bg-clip-text text-transparent font-open-sans"
                             style={{
-                                backgroundImage: "linear-gradient(90.02deg, #0A0078 2.5%, #FF383B 43.53%)" ,
+                                backgroundImage: "linear-gradient(90.02deg, #0A0078 2.5%, #FF383B 43.53%)",
                             }}
                         >
                             Amity
                         </span> University
                     </h2>
-
+                    <div className="md:w-1/2 block md:hidden">
+                        <div className="border-4 border-gray-200 rounded-xl p-2">
+                            <Image src={img} alt="University Building" className="rounded-lg w-full max-h-[340px]" />
+                        </div>
+                    </div>
                     {/* Description */}
-                    <p className="text-[#121212]text-sm leading-[24px] font-inter w-[75%] text-[16px] text-justify">
+                    <p className="text-[#121212]text-sm leading-[24px] font-inter md:w-[85%] text-[12px] md:text-[14px] lg:text-[16px] text-justify">
                         Bringing together pedagogy, content, and technology, Amity University Online is home to a range of
                         University Grants Commission (UGC) recognized programmes meant for anytime, anywhere learning.
                         It serves students globally with well-researched curriculum, renowned faculty, cutting-edge technology, and industry partnerships.
@@ -42,7 +46,7 @@ const HeroSection = () => {
                 </div>
 
                 {/* Right Section (Image) */}
-                <div className="md:w-1/2">
+                <div className="md:w-1/2 hidden md:block">
                     <div className="border-4 border-gray-200 rounded-xl p-2">
                         <Image src={img} alt="University Building" className="rounded-lg w-full max-h-[340px]" />
                     </div>
@@ -50,7 +54,7 @@ const HeroSection = () => {
             </div>
 
             {/* Accreditation Info (Full Width Below) */}
-            <p className="mt-8 text-[#121212]text-sm leading-relaxed text-justify md:text-left font-inter text-[16px] ">
+            <p className="mt-8 text-[#121212]text-sm leading-relaxed text-justify md:text-left font-inter text-[12px] md:text-[14px] lg:text-[16px] ">
                 The country's first university to receive prestigious UGC accreditations for its online
                 programmes, Amity University Online is devoted to creating a transformative learning environment.
                 In today's world, where content is mobile and accessible anytime, anywhere, learning is truly a click away.
