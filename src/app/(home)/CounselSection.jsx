@@ -14,20 +14,20 @@ const CounselSection = () => {
 
     return (
         <section className='bg-[#F5F5F5] py-10 relative'>
-            <Image src={icon1} alt="Icon 1" className="absolute top-[30px] left-[30px] w-8 h-8" />
+            <Image src={icon1} alt="Icon 1" className="absolute top-[30px] left-[30px] w-8 h-8 hidden md:block" />
             
             {/* Top-right Icon */}
-            <Image src={icon2} alt="Icon 2" className="absolute top-[30px] right-[30px] w-8 h-8" />
+            <Image src={icon2} alt="Icon 2" className="absolute top-[30px] right-[30px] w-8 h-8 hidden md:block" />
             
             {/* Bottom-left Icon */}
-            <Image src={icon3} alt="Icon 3" className="absolute bottom-[30px] left-[30px] w-8 h-8" />
+            <Image src={icon3} alt="Icon 3" className="absolute bottom-[30px] left-[30px] w-8 h-8 hidden md:block" />
             
             {/* Bottom-right Icon */}
-            <Image src={icon4} alt="Icon 4" className="absolute bottom-[30px] right-[30px] w-8 h-8" />
+            <Image src={icon4} alt="Icon 4" className="absolute bottom-[30px] right-[30px] w-8 h-8 hidden md:block" />
 
             {/* heading text */}
             <div className="relative containers mx-auto text-center">
-                <h1 className="text-4xl md:text-[48px] font-semibold text-gray-900 font-open-sans">
+                <h1 className="text-[24px] md:text-[36px] lg:text-[48px] font-semibold text-gray-900 font-open-sans">
                     <span
                         className="bg-clip-text text-transparent"
                         style={{
@@ -36,7 +36,7 @@ const CounselSection = () => {
                     >
                         Get Free </span> Counselling
                 </h1>
-                <p className="mt-4 text-[16px] text-[#6D758F]  mx-auto font-rubik font-normal leading-[24px]">
+                <p className="mt-4 text-[12px] md:text-[14px] lg:text-[16px] text-[#6D758F]  mx-auto font-rubik font-normal leading-[24px]">
                     Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
                     phasellus mollis sit aliquam sit nullam neque ultrices.
                 </p>
@@ -45,29 +45,30 @@ const CounselSection = () => {
             {/* form and video section */}
 
 
-            <div className="w-full p-4 md:p-8 flex flex-col-reverse md:flex-row items-center justify-center gap-30 xl:gap-15 mx-auto">
-                <div className="relative md:ml-10">
+            <div className="w-full py-4 md:p-8  flex flex-col-reverse md:flex-row items-center justify-center md:gap-6 mx-auto">
+            <div className="relative flex-1 flex flex-col">
                     <HomeForm />
                 </div>
 
                 {/* Right Section (Text - 60%) */}
-                <div className="flex flex-col gap-6 ">
+                <div className="flex-1 flex flex-col gap-6 items-center justify-center">
+
                     {playVideo ? (
                         <ReactPlayer
                             url={null}
-                            width="450px"
+                            width="80%"
                             className="rounded-xl shadow-lg"
                             controls
                         />
                     ) : (
                         <div
-                            className="relative w-full max-w-[450px] aspect-square flex items-center justify-center cursor-pointer"
+                            className="relative w-full max-w-[450px] aspect-square flex items-center justify-center cursor-pointer h-full"
                             onClick={() => setPlayVideo(true)}
                         >
                             <Image
                                 src={thumbnail}
                                 alt="Video Thumbnail"
-                                className="w-full h-[94%] rounded-xl shadow-lg object-cover"
+                                className="w-full md:h-[400px] lg:h-[90%] rounded-xl shadow-lg object-cover"
                             />
                             {/* Play Icon Overlay */}
                             <div className="absolute inset-0 flex items-center justify-center">

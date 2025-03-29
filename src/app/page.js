@@ -15,13 +15,13 @@ export default function Home() {
       {/* <Navbar />
       <Herosection />
       <Universities />
-      <ProgramSection /> */}
-      {/* <TrustSection /> */}
-      <CounselSection />
-      {/* <SuccessfulStudents />
-      <InformedSection />
-      <CommunitySection /> */}
-      {/* <Footer /> */}
+      <ProgramSection />
+      <TrustSection />
+      <CounselSection /> */}
+      <SuccessfulStudents />
+      {/* <InformedSection />
+      <CommunitySection />
+      <Footer /> */}
     </>
   );
 }
