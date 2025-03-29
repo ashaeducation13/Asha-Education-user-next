@@ -1,10 +1,10 @@
 "use client";
-import React, { useRef } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/navigation";
+import "swiper/css/navigation"; // Import navigation styles
 import { Navigation } from "swiper/modules";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+
 import Image from "next/image";
 import University from "../../assets/about-us/unilogo.png";
 import Uimage from "../../assets/about-us/uimage1.jpg";
@@ -37,34 +37,22 @@ const studentTestimonials = [
 ];
 
 const StudentSwiper = () => {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-
   return (
     <div className="relative w-full mt-6 px-4 md:px-0">
       <Swiper
         spaceBetween={20}
         slidesPerView={1}
-        className="px-4 md:px-10"
-        modules={[Navigation]}
+        className="px-4 md:px-10" // More balanced padding
         navigation={{
-          prevEl: prevRef.current,
-          nextEl: nextRef.current,
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         }}
-        onSwiper={(swiper) => {
-          setTimeout(() => {
-            if (swiper.params.navigation) {
-              swiper.params.navigation.prevEl = prevRef.current;
-              swiper.params.navigation.nextEl = nextRef.current;
-              swiper.navigation.init();
-              swiper.navigation.update();
-            }
-          });
-        }}
+        modules={[Navigation]}
       >
         {studentTestimonials.map((student, index) => (
           <SwiperSlide key={index}>
             <div className="flex flex-col md:flex-row bg-white text-black rounded-[20px] overflow-hidden shadow-lg w-full max-w-3xl mx-auto min-h-[300px] md:h-auto">
+              {/* Image Container */}
               <div className="lg:w-[300px] lg:h-[300px] md:w-[260px] md:h-[320px] h-[180px] w-[290px] px-5 md:pt-5 md:pl-5">
                 <Image
                   src={student.image}
@@ -75,6 +63,7 @@ const StudentSwiper = () => {
                 />
               </div>
 
+              {/* Content Container */}
               <div className="w-full md:w-3/5 p-4 md:p-6 flex flex-col">
                 <div className="mb-4">
                   <Image
@@ -93,7 +82,7 @@ const StudentSwiper = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-[16px] leading-[22px] text-grey-600 font-open-sans">
+                  <h3 className=" text-[16px] leading-[22px] text-grey-600 font-open-sans">
                     <span className="font-semibold">{student.name}</span>
                     <span className="block font-bold">{student.course}</span>
                   </h3>
@@ -102,22 +91,40 @@ const StudentSwiper = () => {
             </div>
           </SwiperSlide>
         ))}
+
+        {/* Custom Navigation Buttons */}
+        <div className="swiper-button-prev hidden md:block"></div>
+        <div className="swiper-button-next hidden md:block"></div>
       </Swiper>
-
-      {/* Custom Navigation Buttons */}
-      <button
-        ref={prevRef}
-        className="absolute top-1/2 left-2 -translate-y-1/2 z-10 w-10 h-10 border-2 border-white rounded-md flex items-center justify-center transition-all duration-300 hover:bg-white"
-      >
-        <ArrowLeft className="w-5 h-5 text-white transition-all duration-300 hover:text-red-500" />
-      </button>
-
-      <button
-        ref={nextRef}
-        className="absolute top-1/2 right-2 -translate-y-1/2 z-10 w-10 h-10 border-2 border-white rounded-md flex items-center justify-center transition-all duration-300 hover:bg-white"
-      >
-        <ArrowRight className="w-5 h-5 text-white transition-all duration-300 hover:text-red-500" />
-      </button>
+      {/* <style jsx>{`
+        .swiper-custom-prev,
+        .swiper-custom-next {
+          width: 40px;
+          height: 40px;
+          background-color: white;
+          border-radius: 50%;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+        .swiper-custom-prev::after,
+        .swiper-custom-next::after {
+          content: "";
+          display: block;
+          width: 12px;
+          height: 12px;
+          border: 2px solid #333;
+          border-width: 2px 0 0 2px;
+        }
+        .swiper-custom-prev::after {
+          transform: rotate(-45deg) translate(2px, 2px);
+        }
+        .swiper-custom-next::after {
+          transform: rotate(135deg) translate(2px, 2px);
+        }
+      `}</style> */}
     </div>
   );
 };
