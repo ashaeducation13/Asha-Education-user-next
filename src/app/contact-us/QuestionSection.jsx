@@ -41,9 +41,9 @@ export default function QuestionSection() {
   };
 
   return (
-    <div className="py-12 px-6">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-start font-open-sans font-semibold text-[30px] leading-[36px] mb-8">
+    <div className="py-12 md:px-6">
+      <div className="containers mx-auto">
+        <h1 className="text-start font-open-sans font-semibold lg:text-[30px] text-[20px] leading-[36px] lg:mb-8 md:mb-6 mb-4">
           Frequently Asked{" "}
           <span
             className="bg-clip-text text-transparent"
@@ -55,20 +55,20 @@ export default function QuestionSection() {
             Questions
           </span>
         </h1>
-        <div className="grid grid-cols-2 gap-6 auto-rows-auto">
+        <div className="grid md:grid-cols-2 lg:gap-6 md:gap-4 gap-3">
           {questionsAndAnswers.map((item, index) => (
             <div
               key={index}
-              className="p-4 rounded-[20px] border-[1px] border-[#E7E7E7] cursor-pointer self-start"
+              className="lg:p-4 p-3 rounded-[20px] border-[1px] border-[#E7E7E7] cursor-pointer self-start"
               onClick={() => toggleAnswer(index)}
             >
-              <h3 className="relative pl-8 text-black font-open-sans font-semibold text-[18px] leading-[20px] flex items-center">
+              <h3 className="relative lg:pl-8 pl-5 text-black font-open-sans font-semibold lg:text-[18px] md:text-[14px] lg:leading-[20px] leading-[16px] flex items-center">
                 {/* Left-side icon (greencircle) */}
                 <Image
                   src={greencircle}
-                  alt="Green Circle Icon"
-                  width={12}
-                  height={12}
+                  alt="Green Circle Icon" 
+                  width={14} 
+                  height={14}
                   className="absolute left-0 top-1/2 -translate-y-1/2"
                 />
 
@@ -78,13 +78,13 @@ export default function QuestionSection() {
                 <Image
                   src={openIndex === index ? topright : bottomright}
                   alt={openIndex === index ? "Collapse Icon" : "Expand Icon"}
-                  width={12}
-                  height={12}
+                  width={9}
+                  height={9}
                   className="absolute right-0 top-1/2 -translate-y-1/2"
                 />
               </h3>
               {openIndex === index && (
-                <p className="mt-2 text-[#6D758F] text-[16px] leading-[22px]">
+                <p className="mt-2 text-[#6D758F] lg:text-[16px] text-[14px] lg:leading-[24px] leading-[21px]">
                   {item.answer}
                 </p>
               )}
