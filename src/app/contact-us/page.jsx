@@ -8,8 +8,8 @@ export default function page() {
   return (
     <div>
       {/* <Navbar /> */}
-      <HeroSection />
-      {/* <SendUsSection /> */}
+      {/* <HeroSection /> */}
+      <SendUsSection />
       {/* <QuestionSection /> */}
       {/* <Footer /> */}
     </div>
