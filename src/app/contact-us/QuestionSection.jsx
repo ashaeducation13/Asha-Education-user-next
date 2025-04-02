@@ -41,9 +41,9 @@ export default function QuestionSection() {
   };
 
   return (
-    <div className="py-12 md:px-6">
-      <div className="containers mx-auto">
-        <h1 className="text-start font-open-sans font-semibold lg:text-[30px] text-[20px] leading-[36px] lg:mb-8 md:mb-6 mb-4">
+    <div className="py-4 md:px-6">
+      <div className="max-w-[1200px] mx-auto px-4"> {/* Added max-width and horizontal padding */}
+        <h1 className="text-start font-open-sans font-semibold text-[20px] md:text-[24px] lg:text-[30px] leading-[36px] mb-4 md:mb-6 lg:mb-8">
           Frequently Asked{" "}
           <span
             className="bg-clip-text text-transparent"
@@ -55,36 +55,36 @@ export default function QuestionSection() {
             Questions
           </span>
         </h1>
-        <div className="grid md:grid-cols-2 lg:gap-6 md:gap-4 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 lg:gap-6">
           {questionsAndAnswers.map((item, index) => (
             <div
               key={index}
-              className="lg:p-4 p-3 rounded-[20px] border-[1px] border-[#E7E7E7] cursor-pointer self-start"
+              className="p-3 md:p-4 lg:p-4 rounded-[20px] border border-[#E7E7E7] cursor-pointer"
               onClick={() => toggleAnswer(index)}
             >
-              <h3 className="relative lg:pl-8 pl-5 text-black font-open-sans font-semibold lg:text-[18px] md:text-[14px] lg:leading-[20px] leading-[16px] flex items-center">
-                {/* Left-side icon (greencircle) */}
+              <h3 className="relative pl-5 md:pl-6 lg:pl-8 text-black font-open-sans font-semibold text-[14px] md:text-[16px] lg:text-[18px] leading-[16px] md:leading-[18px] lg:leading-[20px] flex items-center">
+                {/* Left-side icon */}
                 <Image
                   src={greencircle}
                   alt="Green Circle Icon" 
-                  width={14} 
-                  height={14}
-                  className="absolute left-0 top-1/2 -translate-y-1/2"
+                  width={12}
+                  height={12}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 w-3 h-3 md:w-3.5 md:h-3.5"
                 />
-
+  
                 {item.question}
-
-                {/* Right-side icon (toggle between topright and bottomright) */}
+  
+                {/* Right-side icon */}
                 <Image
                   src={openIndex === index ? topright : bottomright}
                   alt={openIndex === index ? "Collapse Icon" : "Expand Icon"}
                   width={9}
                   height={9}
-                  className="absolute right-0 top-1/2 -translate-y-1/2"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 md:w-2.5 md:h-2.5"
                 />
               </h3>
               {openIndex === index && (
-                <p className="mt-2 text-[#6D758F] lg:text-[16px] text-[14px] lg:leading-[24px] leading-[21px]">
+                <p className="mt-2 text-[#6D758F] text-[14px] md:text-[15px] lg:text-[16px] leading-[21px] md:leading-[22px] lg:leading-[24px]">
                   {item.answer}
                 </p>
               )}
