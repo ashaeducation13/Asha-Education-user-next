@@ -11,7 +11,7 @@ const Listing = () => {
   return (
     <>
       <section className="containers border-b border-b-[#E1E4ED]">
-        <div className="mx-auto flex justify-between items-center py-5">
+        <div className="mx-auto flex justify-between items-center py-5 overflow-scroll">
           <ul className="flex gap-[6px]">
             {Courses.map((item, index) => (
               <li
@@ -31,7 +31,7 @@ const Listing = () => {
             <span className="text-[#FF383B] text-[16px]">Filter by state</span>
           </ul> */}
         </div>
-        <div className=" mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] lg:gap-[70px] pt-5 pb-10">
+        <div className=" mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] pt-5 pb-10">
           <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold md:hidden">Specialisations</h2>
 
           <select
@@ -67,8 +67,8 @@ const Listing = () => {
               )}
             </ul>
           </div>
-          <div className="flex flex-col lg:mx-8">
-            <div className="grid grid-row md:grid-cols-2 gap-2 lg:gap-26">
+          <div className="flex flex-col xl:mx-8">
+          <div className="grid grid-row md:grid-cols-2 gap-2 xl:gap-16">
               {Courses.map((item, index) => (
                 <ProgramCard key={index} item={item} />
               ))}
