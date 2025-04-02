@@ -6,7 +6,7 @@ import topright from "../../../public/topright.svg";
 import topleft from "../../../public/topleft.svg";
 import bottomright from "../../../public/bottomright.svg";
 import bottomleft from "../../../public/bottomleft.svg";
-import arrow from "../../assets/contact-us/arrow.svg"
+import arrow from "../../assets/contact-us/arrow.svg";
 
 export default function HeroSection() {
   return (
@@ -26,7 +26,7 @@ export default function HeroSection() {
           <Image
             src={topleft}
             alt="Top Left Decoration"
-            className="absolute top-0 left-0 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] h-[14px] w-[15px] " 
+            className="absolute top-0 left-0 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] h-[14px] w-[15px] "
           />
 
           {/* Top Right Corner */}
@@ -63,8 +63,8 @@ export default function HeroSection() {
             Touch with Us
           </h1>
           <p className="font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] lg:leading-[24px] md:leading-[21px] leading-[18px] mb-8 text-[#121212]">
-            We're here to help! Reach out for inquiries <br /> about admissions,
-            courses, or partnerships
+            Reach out for expert guidance, admissions support, and answers to
+            all your education-related queries
           </p>
           <button
             className="flex items-center justify-center gap-2 text-white font-rubik font-medium md:text-[14px] text-[12px] leading-[20px] rounded-[6px] w-[150px] h-[40px]"
@@ -74,7 +74,6 @@ export default function HeroSection() {
           >
             Send a Message
             <Image src={arrow} alt="arrow" />
-            
           </button>
         </div>
       </div>
