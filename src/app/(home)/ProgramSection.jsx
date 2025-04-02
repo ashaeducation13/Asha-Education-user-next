@@ -23,9 +23,6 @@ const programs = [
 
 const ProgramsSection = () => {
     const [hoveredIndex, setHoveredIndex] = useState(0); // Default to first card hovered
-    console.log(bg);  // Should print the resolved path of bg.svg
-    console.log(topleft);
-
     return (
         <section
             
@@ -74,7 +71,7 @@ const ProgramsSection = () => {
                 </div>
 
                 {/* Right Section (60%) */}
-                <div className="relative flex gap-2 p-6 justify-center md:justify-between md:w-[60%] lg:w-[70%] max-w-[400px]  md:max-w-[500px] lg:max-w-[850px] mx-auto">
+                <div className="relative flex gap-2 md:p-6 justify-center md:justify-between w-[90%]  md:w-[60%] lg:w-[70%] max-w-[400px]  md:max-w-[500px] lg:max-w-[850px] mx-auto">
 
 
                     {/* Background Overlay */}

@@ -1,11 +1,11 @@
-
-import React from 'react';
+'use client'
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import img from '../../../assets/universities/inner/heroimg.png';
 import amitylogo from '../../../assets/universities/inner/amitylogo.png';
 
-
 const HeroSection = () => {
+    
     return (
         <section className="containers mx-auto py-12 border-b border-[#E3E3E3]">
             {/* Container for Flex Layout */}
