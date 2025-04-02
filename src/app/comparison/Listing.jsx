@@ -130,6 +130,8 @@ const Listing = () => {
 };
 
 export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
+  console.log(item);
+  
   return (
     <section
       className="h-auto flex flex-col gap-3 md:gap-3.5 lg:gap-4 border border-[#0A0078] rounded-[18px] 
@@ -140,12 +142,13 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
       {/* Image Container - Adjusted for tablet spacing */}
       <div
         className="relative z-10 h-[180px] md:h-[200px] lg:h-[230px] w-full rounded-[8px] bg-cover bg-center"
-        style={{ backgroundImage: `url(${item.cover.src})` }}
+        style={{ backgroundImage: `url(${item.cover_image})` }}
       >
         {/* Logo - Adjusted positioning for tablet */}
         <span className="absolute top-2 md:top-3 left-2 w-[90px] h-[30px] md:w-[80px] md:h-[30px] lg:w-[120px] lg:h-[50px] bg-white rounded-[5px] flex justify-center items-center p-1">
           <Image 
             src={item.logo} 
+            fill
             alt="logo" 
             className="object-contain w-full h-full"
             // sizes="(max-width: 768px) 90px, (max-width: 1024px) 95px, 120px"
@@ -153,6 +156,7 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
         </span>
         
         {/* Status Badge - Adjusted positioning and padding for tablet */}
+        {item.status && (
         <span
           className="absolute top-3 md:top-3.5 right-0 flex justify-center items-center h-[26px] md:h-[27px] lg:h-[30px] rounded-tl-[10px] rounded-bl-[20px] px-3 md:px-4 lg:px-5"
           style={{
@@ -160,15 +164,15 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
           }}
         >
           <span className="text-white text-xs md:text-[12px] lg:text-[14px] font-semibold whitespace-nowrap ">
-            {item.status}
+            Admissions Ongoing
           </span>
-        </span>
+        </span>)}
       </div>
       
       {/* Rest of the card content remains the same as previous optimized version */}
       <div className="w-full px-1 md:px-1.5 flex flex-col gap-2 md:gap-2.5 lg:gap-3">
         <h2 className="text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] leading-tight font-semibold">
-          {item.title}
+          {item.name}
         </h2>
         
         <span className="flex justify-start items-center gap-1.5 md:gap-2">
@@ -177,7 +181,7 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
             alt="icon" 
             className="w-[14px] h-[14px] md:w-[15px] md:h-[15px] lg:w-[18px] lg:h-[18px]" 
           />
-          <span className="text-xs md:text-[13px] lg:text-[14px]">{item.review}</span>
+          <span className="text-xs md:text-[13px] lg:text-[14px]">{item.rating}</span>
         </span>
         
         <span className="w-fit bg-[#FFE3E4] inline-flex items-center justify-start gap-2 px-3 md:px-3.5 py-1.5 rounded-[8px]">

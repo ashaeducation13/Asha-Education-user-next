@@ -236,19 +236,17 @@
 
 
 'use client'
-import { useState } from "react";
-import Image from 'next/image'
-// import { Line } from "@/components/Line";
+import { useState, useEffect } from "react";
+import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { BlogCard } from "./Listing";
 import { motion, useScroll, useSpring } from "framer-motion";
-// Images
-import building from '../../assets/blog/building.png'
+import building from '../../assets/blog/building.png';
 // Icons
-import FacebookRed from '../../../public/blog/Facebook-red.svg'
-import TwitterRed from '../../../public/blog/Twitter-red.svg'
-import InstagramRed from '../../../public/blog/Instagram-red.svg'
-import LinkedInRed from '../../../public/blog/LinkedIn-red.svg'
+import FacebookRed from '../../../public/blog/Facebook-red.svg';
+import TwitterRed from '../../../public/blog/Twitter-red.svg';
+import InstagramRed from '../../../public/blog/Instagram-red.svg';
+import LinkedInRed from '../../../public/blog/LinkedIn-red.svg';
 
 const content = `
     <p>Australia is a popular study destination for international students, and while many are well aware of universities in Sydney and Melbourne, Adelaide is yet another destination that could be the right fit for you.</p>
@@ -306,7 +304,6 @@ const relatedBlogData = [
                 in your efforts`
     },
 ]
-
 const toSlug = (text) => {
     return text
         .toLowerCase()
@@ -315,8 +312,10 @@ const toSlug = (text) => {
         .trim();
 };
 
-// Function to inject IDs into headings
+// Function to inject IDs into headings (only runs in the browser)
 const injectIdsIntoContent = (htmlContent) => {
+    if (typeof window === "undefined") return { contentWithIds: htmlContent, headingList: [] };
+
     const headingList = [];
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlContent, 'text/html');
@@ -327,7 +326,6 @@ const injectIdsIntoContent = (htmlContent) => {
         let slug = baseSlug;
         let count = 1;
 
-        // Ensure unique ID for headings
         while (headingList.includes(slug)) {
             slug = `${baseSlug}-${count}`;
             count++;
@@ -343,13 +341,21 @@ const injectIdsIntoContent = (htmlContent) => {
 };
 
 function BlogInner() {
-    const router = useRouter()
-    const { contentWithIds, headingList } = injectIdsIntoContent(content);
-    const [selected, SetSelected] = useState(headingList[0])
+    const router = useRouter();
+    const [contentWithIds, setContentWithIds] = useState("");
+    const [headingList, setHeadingList] = useState([]);
+    const [selected, setSelected] = useState("");
+
+    useEffect(() => {
+        const { contentWithIds, headingList } = injectIdsIntoContent(content);
+        setContentWithIds(contentWithIds);
+        setHeadingList(headingList);
+        setSelected(headingList[0] || "");
+    }, []);
 
     const handleOnFocus = (id) => {
         const element = document.getElementById(id);
-        SetSelected(id)
+        setSelected(id);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
@@ -361,13 +367,13 @@ function BlogInner() {
         damping: 30,
         restDelta: 0.001
     });
+
     return (
         <>
             <div className='containers pt-[160px] pb-[60px] flex flex-col gap-[60px]'>
                 <div className='text-center flex flex-col justify-center items-center gap-[20px]'>
                     <h1 className='lg:w-[600px] font-dmsans-semiBold text-[40px] leading-[48px] mx-auto text-secondary-cl'>
-                        Study in Adelaide Redefine
-                        Tomorrow
+                        Study in Adelaide Redefine Tomorrow
                     </h1>
                     <p className='flex flex-row items-center gap-[10px] font-roboto-regular text-secondary-cl text-[12px] leading-[14px]'>
                         Natali Craig <span className='bg-secondary-cl h-[5px] w-[5px] rounded-full' /> 14 Jan 2024
@@ -400,7 +406,6 @@ function BlogInner() {
                                     >
                                         {item.replace(/-/g, ' ')}
                                     </li>
-
                                 ))}
                             </ul>
                         </div>
@@ -419,7 +424,6 @@ function BlogInner() {
                     <div className='w-full blog-inner' dangerouslySetInnerHTML={{ __html: contentWithIds }} />
                 </div>
             </div>
-            {/* <Line /> */}
             <div className="py-[60px] containers flex flex-col gap-[40px]">
                 <h2 className="font-dmsans-semiBold text-[20px] leading-[23px] text-secondary-cl">
                     Recommended Articles
@@ -434,9 +438,7 @@ function BlogInner() {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-
-
-export default BlogInner
+export default BlogInner;
