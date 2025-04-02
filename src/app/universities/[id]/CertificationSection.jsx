@@ -19,7 +19,7 @@ const CertificationSection = () => {
         <>
             <section className='containers py-6 border-b border-[#E3E3E3]'>
                 <div>
-                    <h2 className="text-3xl font-medium font-open-sans">
+                    <h2 className="text-[20px] md:text-[24px] lg:text-[32px] font-medium font-open-sans">
                         Certifications
                     </h2>
 

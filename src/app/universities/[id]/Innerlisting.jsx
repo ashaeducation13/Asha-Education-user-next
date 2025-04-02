@@ -20,7 +20,7 @@ const Innerlisting = () => {
     return (
         <>
             <section className="containers border-b border-b-[#E1E4ED]">
-                <div className="mx-auto flex justify-between items-center py-5">
+                <div className="mx-auto flex justify-between items-center py-5 overflow-scroll">
                     <ul className="flex gap-[6px]">
                         {Courses.map((item, index) => (
                             <li
@@ -29,7 +29,7 @@ const Innerlisting = () => {
                                 className={`cursor-pointer ${selectedCourse.title === item.title
                                     ? "bg-[#FF383B] text-white"
                                     : "bg-white text-[#6D758F] border border-[#D9D9D9]"
-                                    } hover:bg-[#FF383B] px-[22px] py-[18px] text-[16px] leading-[16px] font-bold hover:text-white rounded-[8px]`}
+                                    } hover:bg-[#FF383B] p-[14px] md:px-[22px] md:py-[18px] text-[16px] leading-[16px] font-bold hover:text-white rounded-[8px]`}
                             >
                                 {item.title}
                             </li>
@@ -40,7 +40,7 @@ const Innerlisting = () => {
                         <span className="text-[#FF383B] text-[16px]">Filter by state</span>
                     </ul> */}
                 </div>
-                <div className=" mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] lg:gap-[70px] pt-5 pb-10">
+                <div className="mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] pt-5 pb-10">
                     <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold md:hidden">Specialisations</h2>
 
                     <select
@@ -77,7 +77,7 @@ const Innerlisting = () => {
                         </ul>
                     </div>
                     <div className="flex flex-col xl:mx-8">
-                        <div className="grid grid-row md:grid-cols-2 gap-2 xl:gap-26">
+                        <div className="grid grid-row md:grid-cols-2 gap-2 xl:gap-16">
                             {Courses.map((item, index) => (
                                 <ProgramCard key={index} item={item} />
                             ))}

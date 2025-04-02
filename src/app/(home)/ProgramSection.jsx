@@ -62,8 +62,8 @@ const ProgramsSection = () => {
                     ></div>
 
                     {/* Text Content */}
-                    <div className="text-center md:text-left px-6 py-4 lg:py-16 md:px-4">
-                        <h2 className="sm:text-[24px] md:text-[32px] lg:text-[40px] leading-[0.9] font-bold relative z-10">Find the Right Program for You</h2>
+                    <div className="text-center md:text-left px-6 py-6 lg:py-16 md:px-4 w-[80%] md:w-[100%]">
+                        <h2 className="sm:text-[24px] md:text-[32px] lg:text-[40px]  font-bold relative z-10 leading-[24px] md:leading-[0.9] w-[80%] md:w-[100%] mx-auto">Find the Right Program for You</h2>
                         <p className="text-[12px] md:text-[14px] relative z-10 mt-2 leading-[18px] md:leading-[21px] lg:leading-[24px]">
                             Discover the perfect program tailored to your goals with expert guidance and a wide range of academic choices.
                         </p>

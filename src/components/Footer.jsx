@@ -29,16 +29,16 @@ const Footer = () => {
                             className="h-[45px] w-[100px]"
                         />
 
-                        <p className="font-rubik text-gray-400">Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam mauris sed ma</p>
+                        <p className="font-rubik text-[12px] md:text-[14px] lg:text-[16px] text-[#6D758F] font-normal">We guide students with expert counselling, top university partnerships, and successful career placements.</p>
 
                         <div className="space-y-4">
-                            <h3 className="text-lg font-medium">Get the latest news and updates</h3>
+                            <h3 className="text-[#6D758F] text-[12px] md:text-[14px] lg:text-[16px] font-open-sans font-semibold">Get the latest news and updates</h3>
 
                             {/* Subscription Form */}
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col mt-1 gap-2">
                                 <input
                                     type="email"
-                                    placeholder="Your email address"
+                                    placeholder="Enter your email address"
                                     className="px-4 py-2 rounded-md flex-grow focus:outline-none focus:ring-2 focus:ring-red-500 shadow-sm"
                                 />
                                 <div className='flex'>
@@ -80,9 +80,9 @@ const Footer = () => {
                     </div>
 
                     {/* Second Section - Quick Links */}
-                    <div className='mx-auto'>
-                        <h3 className="text-lg font-medium mb-4">Quick Links</h3>
-                        <ul className="space-y-2">
+                    <div >
+                        <h3 className="text-[14px] lg:text-[16px] font-medium mb-4">Quick Links</h3>
+                        <ul className="space-y-2 md:space-y-2 grid md:grid-cols-1 grid-cols-2 md:block font-rubik text-[14px] lg:text-[16px]">
                             <li>
                                 <a href="#" className="text-gray-400 hover:text-white transition duration-300">Home</a>
                             </li>
@@ -107,10 +107,11 @@ const Footer = () => {
                         </ul>
                     </div>
 
+
                     {/* Third Section - Contact Info */}
                     <div>
-                        <h3 className="text-lg font-medium mb-4">Want to reach us directly</h3>
-                        <ul className="space-y-4">
+                        <h3 className="text-[14px] lg:text-[16px] font-medium mb-4">Want to reach us directly</h3>
+                        <ul className="space-y-4 text-[14px] lg:text-[16px] ">
                             <li className="flex items-start">
                                 <Image src={cont} alt="Youtube" className="h-6 md:h-10 mr-3" />
                                 <div className="text-[#6D758F]" >
@@ -147,7 +148,7 @@ const Footer = () => {
 
                     {/* Fourth Section - Location */}
                     <div>
-                        <h3 className="text-lg font-medium mb-4">Location</h3>
+                        <h3 className="text-[14px] lg:text-[16px] font-medium mb-4">Location</h3>
                         <div className="bg-gray-700 rounded-lg h-48 overflow-hidden">
                             {/* This would be your map, using a placeholder for now */}
                             <div className="w-full h-full flex items-center justify-center">
@@ -159,19 +160,24 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="pt-8 mt-8 text-center text-black font-medium text-sm flex flex-wrap justify-between items-center gap-x-4 gap-y-2">
-                    <a href="#" className="transition duration-300">Privacy Policy</a>
-                    <a href="#" className="transition duration-300">Terms and Plans</a>
-                    <p className="inline-flex items-center">
+                <div className="pt-8 mt-8 text-center text-black font-medium text-sm flex flex-wrap items-center gap-x-4 gap-y-2 max-w-3xl mx-auto lg:max-w-full lg:justify-between">
+                    <div className="flex flex-wrap justify-center sm:justify-start gap-x-4 gap-y-2 sm:w-auto w-full lg:w-auto">
+                        <a href="#" className="transition duration-300">Privacy Policy</a>
+                        <a href="#" className="transition duration-300">Terms and Plans</a>
+                    </div>
+                    <p className="inline-flex items-center w-full sm:w-auto justify-center sm:justify-start lg:w-auto">
                         Copyright
                         <Image src={copyright} alt="copyright" className="h-4 mx-1" />
                         2024 <span className="text-[#FF383B] font-medium">Asha Education</span> All Rights Reserved
                     </p>
-                    <p className="inline-flex items-center">
+                    <p className="inline-flex items-center w-full sm:w-auto justify-center sm:justify-start lg:w-auto">
                         Designed and developed by <span className="text-[#FF383B] font-medium ml-1 mr-1">Accolades Integrated</span>
                         <Image src={acc} alt="acc" className="h-4 ml-1" />
                     </p>
                 </div>
+
+
+
             </div>
         </footer>
     );

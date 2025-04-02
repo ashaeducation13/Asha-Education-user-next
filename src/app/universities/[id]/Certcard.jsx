@@ -10,7 +10,7 @@ const Certcard = ({ imgSrc, title }) => {
         </div>
   
         {/* Text */}
-        <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+        <h3 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold text-gray-800">{title}</h3>
        
       </div>
     );
