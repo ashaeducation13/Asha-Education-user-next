@@ -17,12 +17,12 @@ import four from "../../assets/contact-us/4.svg";
 
 // Define components first
 const ContactCard = ({ item }) => (
-  <div className="p-6 rounded-[20px] bg-white flex flex-col justify-between shadow-2xl transition duration-300 hover:bg-gradient-to-r hover:from-[#0A0078] hover:to-[#FF383B] hover:text-white group">
+  <div className="p-4 rounded-[20px] bg-white flex flex-col justify-between shadow-2xl transition duration-300 hover:bg-gradient-to-r hover:from-[#0A0078] hover:to-[#FF383B] hover:text-white group">
     <div className="flex items-start gap-4">
       <Image
         src={item.icon}
         alt={item.title}
-        className="w-8 h-8 mt-1 group-hover:hidden"
+        className="lg:size-[43px] md:size-[24px] size-[27px] mt-1 group-hover:hidden"
       />
       <Image
         src={item.hovIcon}
@@ -36,25 +36,25 @@ const ContactCard = ({ item }) => (
     <div className="pl-10 mt-2">
       {item.subtitle1 && (
         <div className="mb-3">
-          <h4 className="font-rubik font-medium text-base leading-[28px] text-[#FF383B] group-hover:text-white">
+          <h4 className="font-rubik font-medium lg:text-[16px] text-[12px] leading-[28px] text-[#FF383B] group-hover:text-white">
             {item.subtitle1}
           </h4>
-          <p className="font-rubik font-normal text-base leading-[24px] whitespace-pre-line group-hover:text-white">
+          <p className="font-rubik font-normal text-[14px] leading-[24px] whitespace-pre-line group-hover:text-white">
             {item.content1}
           </p>
         </div>
       )}
       {!item.subtitle1 && (
-        <p className="font-rubik font-normal text-lg leading-[28px] whitespace-pre-line group-hover:text-white">
+        <p className="font-rubik font-normal lg:text-[20px] text-[14px] leading-[28px] whitespace-pre-line group-hover:text-white">
           {item.content1}
         </p>
       )}
       {item.subtitle2 && (
         <div>
-          <h4 className="font-rubik font-medium text-base leading-[22px] text-[#FF383B] group-hover:text-white">
+          <h4 className="font-rubik font-medium lg:text-[16px] text-[12px] leading-[28px] text-[#FF383B] group-hover:text-white">
             {item.subtitle2}
           </h4>
-          <p className="font-rubik font-normal text-base leading-[24px] whitespace-pre-line group-hover:text-white">
+          <p className="font-rubik font-normal lg:text-[20px] text-[14px] leading-[28px] whitespace-pre-line group-hover:text-white">
             {item.content2}
           </p>
         </div>

@@ -16,7 +16,7 @@ const studentTestimonials = [
     image: Uimage,
     logo: University,
     description:
-      "Lorem ipsum dolor sit amet consectetur eget maecenas sapien fusce egestas risus purus suspendisse turpis volutpat onare imperdiet bibendum eleifend quam feugiat sit semper fames id diam diam nisi mauris netus facilisi semper elementum quis turpis dui viverra nisl.",
+      "Asha Education's personalized guidance and support were instrumental in my academic journey.Their expert counsellors helped me select the right university and program, simplifying the entire application process. Thanks to their assistance, I am now pursuing my dream course and feel wellprepared for my future career",
     name: "Amit Sharma",
     course: "B.Tech in Computer Science",
   },
@@ -24,7 +24,7 @@ const studentTestimonials = [
     image: Uimage,
     logo: University,
     description:
-      "Lorem ipsum dolor sit amet consectetur eget maecenas sapien fusce egestas risus purus suspendisse turpis volutpat onare imperdiet bibendum eleifend quam feugiat sit semper fames id diam diam nisi mauris netus facilisi semper elementum quis turpis dui viverra nisl.",
+      "Asha Education's personalized guidance and support were instrumental in my academic journey.Their expert counsellors helped me select the right university and program, simplifying the entire application process. Thanks to their assistance, I am now pursuing my dream course and feel wellprepared for my future career",
     name: "Priya Verma",
     course: "MBA in Finance",
   },
@@ -32,7 +32,7 @@ const studentTestimonials = [
     image: Uimage,
     logo: University,
     description:
-      "Lorem ipsum dolor sit amet consectetur eget maecenas sapien fusce egestas risus purus suspendisse turpis volutpat onare imperdiet bibendum eleifend quam feugiat sit semper fames id diam diam nisi mauris netus facilisi semper elementum quis turpis dui viverra nisl.",
+      "Asha Education's personalized guidance and support were instrumental in my academic journey.Their expert counsellors helped me select the right university and program, simplifying the entire application process. Thanks to their assistance, I am now pursuing my dream course and feel wellprepared for my future career",
     name: "Rahul Mehta",
     course: "B.Sc in Biotechnology",
   },
@@ -141,7 +141,7 @@ function SuccessfulStudents() {
             "linear-gradient(180deg, #FFFFFF 68.84%, #FF383B 117.39%)",
         }}
       >
-        Hear from Our <br /> Successful Students
+        Reviews and Success Stories <br /> from Our Alumni
       </h2>
       <p className="text-center font-inter font-normal text-[12px] md:text-[14px] lg:text-[16px] leading-[24px] mb-8">
         98% of students achieved their admission goals.

@@ -1,12 +1,12 @@
-'use client'
+"use client";
 import React from "react";
 import Image from "next/image";
 import About1 from "../../assets/about-us/asha-about1.jpg";
-import play from '../../assets/home/Trustsection/play.svg'
+import play from "../../assets/home/Trustsection/play.svg";
 import { useState } from "react";
 
 function HeroSection() {
-  const [playVideo, setPlayVideo] = useState(false)
+  const [playVideo, setPlayVideo] = useState(false);
   return (
     <section className="relative containers flex flex-col md:flex-row items-center justify-between xl:px-0 pt-8 md:pt-12 pb-10 md:pb-20">
       {/* Wrapper with fixed width on 1440px screens */}
@@ -21,13 +21,16 @@ function HeroSection() {
                   "linear-gradient(90.02deg, #0A0078 2.5%, #FF383B 43.53%)",
               }}
             >
-              Shaping Futures <br />
+              Building Bright Futures
             </span>{" "}
-            One Student at a <br /> Time
+            Through Education
           </h1>
 
           <p className="font-normal leading-[18px] md:leading-[21px] lg:leading-[24px] w-full md:w-[80%] lg:w-[70%] text-[12px] md:text-[16px] text-[#121212] font-rubik mt-3 md:mt-4 mb-6 md:mb-8 text-start">
-            Committed to guiding students toward the best universities in India.
+            Asha Education empowers students with personalized counselling and
+            top university partnerships, guiding them to academic success. Our
+            commitment ensures each student achieves their educational
+            aspirations.
           </p>
 
           <button

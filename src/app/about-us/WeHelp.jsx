@@ -13,8 +13,8 @@ function WeHelp() {
         </h1>
         <br />
         <p className="font-rubik lg:text-[16px] md:text-[14px] text-[12px] lg:leading-[24px] md:leading-[21px] leading-[18px]">
-          Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
-          phasellus mollis sit
+        Our dedicated team is here to support your educational journey. Contact us for personalized
+        guidance and assistance.
         </p>
         <br />
 
@@ -74,7 +74,7 @@ function WeHelp() {
               <div className="flex flex-col w-full md:w-1/2">
                 <label
                   htmlFor="name"
-                  className="font-inter text-[14px] leading-[20px] mb-1 font-medium"
+                  className="font-inter text-[14px] leading-[20px] mb-1 font-semibold"
                 >
                   Name*
                 </label>
@@ -82,7 +82,7 @@ function WeHelp() {
                   id="name"
                   type="text"
                   required
-                  className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#FF383B] focus:border-transparent"
+                  className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#FF383B] focus:border-transparent font-inter font-normal text-[14px] leading-[20px]"
                   placeholder="Brian Clark"
                 />
               </div>

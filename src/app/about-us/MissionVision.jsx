@@ -13,19 +13,19 @@ const cardData = [
     title: "Mission",
     icon: Mission1, 
     hoverIcon: Mission2, 
-    description: "Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere.Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere"
+    description: "To empower students through personalized counselling and top university partnerships guiding them to academic success."
   },
   {
     title: "Vision",
     icon: Vision1,
     hoverIcon: Vision2,
-    description: "Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere.Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere"
+    description: "To be the leading educational consultancy, shaping futures by connecting students with quality education."
   },
   {
     title: "Values",
     icon: Values1,
     hoverIcon: Values2,
-    description: "Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere.Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget sollicitudin sit posuere"
+    description: "Integrity, excellence, and student-centric support in all our educational endeavors."
   }
 ];
 

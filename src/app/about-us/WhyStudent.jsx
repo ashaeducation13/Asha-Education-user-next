@@ -4,22 +4,22 @@ const cardData = [
   {
     title: "Expert Guidance",
     icon: "/about-us/cardicon.svg",
-    description: "Personalized counseling from industry experts.",
+    description: "Our team of seasoned educational consultants offers individualized counseling sessions,understanding each student's unique strengths and aspirations. We assist in identifying suitable courses and institutions, simplifying the application process, and providing continuous support,ensuring students feel confident and well-prepared throughout their educational journey.",
   },
   {
     title: "Top University Partnerships",
     icon: "/about-us/cardicon.svg",
-    description: "Access to India’s leading institutions.",
+    description: "By partnering with prestigious universities, we provide students with access to a broad spectrum of reputable programs. These collaborations ensure that students receive quality education recognized globally, enhancing their academic experience and future career prospects.",
   },
   {
     title: "Career-Focused Approach",
     icon: "/about-us/cardicon.svg",
-    description: "Helping students with admissions & career growth.",
+    description: "We emphasize aligning educational pathways with career aspirations. Through workshops, internships, and industry connections, we prepare students for the job market, equipping them with the necessary skills and experiences to excel in their chosen fields.",
   },
   {
     title: "Comprehensive Course Offerings",
     icon: "/about-us/cardicon.svg",
-    description: "A wide range of undergraduate & postgraduate programs.",
+    description: "Understanding the diverse interests of students, we offer a wide array of courses across multiple disciplines. This extensive selection enables students to pursue their passions and tailor their education to their specific career goals, fostering both personal and professional growth.",
   },
 ];
 
@@ -30,15 +30,14 @@ function WhyStudent() {
         Why Students Trust Us
       </h2>
       <p className="font-rubik text-[#121212] lg:text-[16px] md:text-[14px] text-[12px] font-normal lg:leading-[24px] md:leading-[21px] leading-[156%] md:mb-8 mb-4">
-        Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
-        phasellus mollis sit aliquam sit nullam. Lorem ipsum dolor sit amet
-        consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit
-        nullam. Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
-        phasellus mollis sit aliquam sit nullam. Lorem ipsum dolor sit amet
-        consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit
-        nullam. Lorem ipsum dolor sit amet consectetur nunc nunc sit velit eget
-        sollicitudin sit posuere Lorem ipsum dolor sit amet consectetur nunc
-        nunc sit velit eget sollicitudin sit posuere.
+        Our unwavering commitment to student success has earned the trust of
+        countless learners. We provide personalized counselling, collaborate
+        with top universities, and focus on aligning education with career
+        goals. Our diverse course offerings cater to individual aspirations,
+        ensuring each student receives tailored guidance and support. This
+        holistic approach empowers students to achieve their academic and
+        professional objectives, making Asha Education a trusted partner in
+        their educational journey.
       </p>
 
       {/* Cards Grid - Ensuring 4 Columns on lg */}
@@ -77,7 +76,7 @@ function WhyStudent() {
           borderStyle: "solid",
         }}
       ></div> */}
-            <div
+      <div
         className="absolute bottom-0 left-1/2 transform -translate-x-1/2 border-t border-transparent 
                    w-full md:w-4/5 lg:w-3/4 xl:w-[1106px]"
         style={{
