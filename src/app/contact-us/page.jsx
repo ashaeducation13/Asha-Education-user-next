@@ -7,11 +7,11 @@ import Footer from '@/components/Footer'
 export default function page() {
   return (
     <div>
-      {/* <Navbar /> */}
-      {/* <HeroSection /> */}
+      <Navbar />
+      <HeroSection />
       <SendUsSection />
-      {/* <QuestionSection /> */}
-      {/* <Footer /> */}
+      <QuestionSection />
+      <Footer />
     </div>
   )
 }

@@ -11,14 +11,14 @@ import OurGrowth from './OurGrowth'
 function page() {
   return (
     <div>
-      {/* <Navbar/> */}
+      <Navbar/>
       <HeroSection/>
       <MissionVision/>
       <WhyStudent/>
       <OurGrowth />
       <SuccessfullStudents/>
       <WeHelp/>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   )
 }
