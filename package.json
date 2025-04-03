@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.16",
     "antd": "^5.24.4",
     "framer-motion": "^12.5.0",
     "lucide-react": "^0.484.0",

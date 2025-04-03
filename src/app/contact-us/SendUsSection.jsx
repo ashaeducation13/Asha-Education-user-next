@@ -33,7 +33,7 @@ const ContactCard = ({ item }) => (
         {item.title}
       </h3>
     </div>
-    <div className="pl-10 mt-2">
+    <div className="pl-10  mt-2">
       {item.subtitle1 && (
         <div className="mb-3">
           <h4 className="font-rubik font-medium lg:text-[16px] text-[12px] leading-[28px] text-[#FF383B] group-hover:text-white">
@@ -64,16 +64,28 @@ const ContactCard = ({ item }) => (
 );
 
 const SocialMediaSection = () => (
-  <div className="flex flex-col md:flex-row items-start justify-between mt-4 gap-3">
+  <div className="grid grid-cols-1 md:grid-cols-2 items-center mt-4 gap-4 md:gap-8">
+    {/* First grid item - "Stay Connected" text */}
     <div className="flex items-center">
-      <Image src={hash} alt="hashcode" className="mr-3 lg:w-[43px] lg:h-[44px] w-[24px] h-[25px]" />
-      <h1 className="bg-clip-text text-transparent font-open-sans font-semibold lg:text-[24px] text-[14px] leading-[24px] md:leading-[] leading-[] whitespace-nowrap bg-gradient-to-r from-[#0A0078] to-[#FF383B]">
+      <Image
+        src={hash}
+        alt="hashcode"
+        className="mr-3 lg:w-[43px] lg:h-[44px] w-[24px] h-[25px]"
+      />
+      <h1 className="bg-clip-text text-transparent font-open-sans font-semibold lg:text-[24px] text-[14px] leading-[24px] whitespace-nowrap bg-gradient-to-r from-[#0A0078] to-[#FF383B]">
         Stay Connected with Us!
       </h1>
     </div>
-    <div className="flex items-center gap-6">
+
+    {/* Second grid item - Social icons */}
+    <div className="flex items-center justify-start md:justify-end gap-6">
       {[facebook, twitter, instagram, linkedin, youtube].map((icon, idx) => (
-        <Image key={idx} src={icon} className="lg:size-[32px] size-[20px]" alt="social-icon" />
+        <Image
+          key={idx}
+          src={icon}
+          className="lg:size-[32px] size-[20px]"
+          alt="social-icon"
+        />
       ))}
     </div>
   </div>
@@ -107,7 +119,13 @@ const SubmitButton = () => (
     className="relative flex items-center justify-center mt-2 bg-[#FF383B] text-white rounded-lg font-semibold hover:bg-[#e02e33] transition w-[150px] h-[45px] text-sm leading-5"
   >
     Submit Inquiry
-    <Image src={arrow} alt="Arrow icon" width={10} height={10} className="ml-2" />
+    <Image
+      src={arrow}
+      alt="Arrow icon"
+      width={10}
+      height={10}
+      className="ml-2"
+    />
   </button>
 );
 
@@ -119,7 +137,7 @@ const ContactForm = () => {
   ];
 
   return (
-    <div className="w-full">
+    <div className="hidden md:block w-full">
       <h2 className="lg:text-[24px] leading-[24px] md:text-[20px] text-[14px] font-semibold font-open-sans bg-clip-text text-transparent mb-4 bg-gradient-to-r from-[#0A0078] to-[#FF383B]">
         Send Us a Message
       </h2>
@@ -140,7 +158,8 @@ export default function SendUsSection() {
   const contactInfo = [
     {
       title: "Address",
-      content1: "1234 Knowledge Avenue,\nEducation City,\nNew Delhi, India - 110001",
+      content1:
+        "1234 Knowledge Avenue,\nEducation City,\nNew Delhi, India - 110001",
       icon: address,
       hovIcon: one,
     },
@@ -175,15 +194,20 @@ export default function SendUsSection() {
 
   return (
     <div className="containers md:px-4 md:py-20 py-8">
-      <div className="flex flex-col md:flex-row justify-between md:gap-8 gap-4">
+      <div className="flex flex-col md:flex-row justify-between md:gap-6 lg:gap-2 gap-4">
         {/* Contact Info Section */}
-        <div className="md:w-[65%] w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {contactInfo.map((item, index) => (
+        <div className="md:w-[60%] w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-[60%_1fr] gap-4 mb-4">
+            {contactInfo.slice(0, 2).map((item, index) => (
               <ContactCard key={index} item={item} />
             ))}
           </div>
-          <SocialMediaSection />
+          <div className="grid grid-cols-1 md:grid-cols-[55%_1fr] gap-4">
+            {contactInfo.slice(2, 4).map((item, index) => (
+              <ContactCard key={index} item={item} />
+            ))}
+          </div>
+          {/* <SocialMediaSection /> */}
         </div>
 
         {/* Contact Form Section */}
