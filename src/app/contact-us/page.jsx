@@ -9,7 +9,7 @@ export default function page() {
     <div>
       <Navbar />
       <HeroSection />
-      <SendUsSection />
+      {/* <SendUsSection /> */}
       <QuestionSection />
       <Footer />
     </div>

@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-[90%] mx-auto mt-4 rounded-[20px] relative z-50">
+    <nav className="mt-4 rounded-[20px] relative z-50">
       <div className="containers">
         <div className="flex justify-between h-16">
           {/* Logo */}
