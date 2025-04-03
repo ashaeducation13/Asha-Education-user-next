@@ -9,25 +9,25 @@ const Listing = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
       
-    useEffect(() => {
-          const getData = async () => {
-            setLoading(true);
-            setError(null);
+    // useEffect(() => {
+    //       const getData = async () => {
+    //         setLoading(true);
+    //         setError(null);
       
-            const data = await UniversityFetch();
-            console.log(data);
+    //         const data = await UniversityFetch();
+    //         console.log(data);
             
-            if (data) {
-                setUniv(data);
+    //         if (data) {
+    //             setUniv(data);
                 
-            } else {
-              setError('Failed to load products');
-            }
-            setLoading(false);
-          };
+    //         } else {
+    //           setError('Failed to load products');
+    //         }
+    //         setLoading(false);
+    //       };
       
-          getData();
-    }, []);
+    //       getData();
+    // }, []);
 
     return (
         <>
@@ -35,7 +35,10 @@ const Listing = () => {
 
                 <div className="flex flex-col gap-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 md:gap-4 gap-2">
-                        {univ.map((item, index) => (
+                        {/* {univ.map((item, index) => (
+                            <Card key={index} item={item} />
+                        ))} */}
+                        {cardData.map((item, index) => (
                             <Card key={index} item={item} />
                         ))}
                     </div>

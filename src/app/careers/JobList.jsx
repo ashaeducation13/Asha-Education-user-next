@@ -6,10 +6,7 @@ import Arrow from "../../assets/careers/apply.svg";
 import Work from "../../assets/careers/work.svg";
 import Toggles from "../../assets/careers/vector.svg";
 
-
 import NormalForm from '@/components/Forms/NormalForm'
-
-
 
 function JobList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,30 +14,32 @@ function JobList() {
     setIsModalOpen(!isModalOpen); // Toggles the modal state
   };
   
-    const jobsData = [
-        { 
-          id: 1, 
-          position: "fulltime",
-          title: "Engineering Manager", 
-          description: "We are looking for an experienced engineering manager to join our team", 
-          place: "Kochi & Kottayam", type: "Freelancing"
-         },
-        { 
-          id: 2,
-          position: "freelancing", 
-          title: "Engineering Manager", 
-          description: "We are looking for an experienced engineering manager to join our team", 
-          place: "Bangalore, India", 
-          type: "Freelancing" 
-        },
-        { 
-            id: 3, 
-            position: "fulltime", 
-            title: "Engineering Manager", 
-            description: "We are looking for an experienced engineering manager to join our team", 
-            place: "Mumbai, India", type: "Freelancing" 
-        }
-      ];
+  const jobsData = [
+    { 
+      id: 1, 
+      position: "fulltime",
+      title: "Engineering Manager", 
+      description: "We are looking for an experienced engineering manager to join our team", 
+      place: "Kochi & Kottayam", 
+      type: "Freelancing"
+    },
+    { 
+      id: 2,
+      position: "freelancing", 
+      title: "Engineering Manager", 
+      description: "We are looking for an experienced engineering manager to join our team", 
+      place: "Bangalore, India", 
+      type: "Freelancing" 
+    },
+    { 
+      id: 3, 
+      position: "fulltime", 
+      title: "Engineering Manager", 
+      description: "We are looking for an experienced engineering manager to join our team", 
+      place: "Mumbai, India", 
+      type: "Freelancing" 
+    }
+  ];
       
   const filterOptions = [
     { label: "View all", value: "all" },
@@ -76,8 +75,8 @@ function JobList() {
   };
 
   return (
-    <section className="py-12 mx-20 mt-[-100px]">
-      <div className="container mx-auto px-4">
+    <section className="containers py-6 mx-auto">
+      <div className="mx-auto ">
         <div className="flex gap-3 pb-6 border-b border-gray-300">
           {filterOptions.map(filter => (
             <button
@@ -92,63 +91,53 @@ function JobList() {
 
         {currentJobs.map(job => (
           <div key={job.id} className="py-6 border-b border-gray-300">
-            <div className="flex justify-between items-center cursor-pointer" onClick={() => toggleExpand(job.id)}>
-            <div className="flex items-center gap-4">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-4">
                 <h1 className="font-bold font-open-sans text-lg text-gray-900">{job.title}</h1>
                 
                 {/* Job Type (Icon + Text) */}
                 <div className="flex items-center gap-2 border border-red-500 rounded-md px-3 py-1">
-                <Image height={20} width={20} src={Work} alt="Work Type" />
-                <span className="text-sm  font-inter-medium text-red-600">{job.type}</span>
+                  <Image height={20} width={20} src={Work} alt="Work Type" />
+                  <span className="text-sm font-inter-medium text-red-600">{job.type}</span>
                 </div>
+              </div>
 
-             </div>
-             <Image
-                height={10}
-                width={10}
-                src={Toggles}
-                alt="toggle"
-                className={`transition-transform duration-300 ${expandedJobs[job.id] ? "rotate-180" : ""}`}
-                />
-              <div className="flex gap-[5px] pr-[20px] mt-[-30px] " onClick={toggleModal}  >
-              <p
-                className="font-open-sans-normal text-[14px] md:text-[16px] lg:text-[20px] leading-[100%] text-transparent bg-clip-text"
-                style={{
+              {/* Apply Button */}
+              <div className="flex gap-[5px] cursor-pointer" onClick={toggleModal}>
+                <p
+                  className="font-open-sans-normal text-[14px] md:text-[16px] lg:text-[20px] leading-[100%] text-transparent bg-clip-text"
+                  style={{
                     backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
-                }}
+                  }}
                 >
-                Apply
+                  Apply
                 </p>
                 <Image height={25} width={25} src={Arrow} alt="Apply" />
               </div>
-
-            
             </div>
+            
             <p className="mt-2 font-inter text-sm text-black-700">We are looking for an experienced engineering manager to join our team</p>
             
-           
             {expandedJobs[job.id] && ( // Show description only if expanded
-              <>
-               <div className="flex text-[14px] leading-[21px] flex-col font-inter-medium mt-4">
-                      {/* <p className="text-sm text-gray-700 ">{job.description}</p> */}
+              <div className="flex text-[14px] leading-[21px] flex-col font-inter-medium mt-4">
                 <h6 className="text-[14px] leading-[21px]">Main things you will be doing</h6>
                 <p className="w-[60%] font-inter text-sm text-black-700 ">
-                Preparation and coordination of controlled documentation within Flight Operations (i.e., Manuals, DPM, Forms, Documents and Publication) to ensure standardization
-                Ensure that documents are produced to the highest quality standards considering human factors principles in coordination with Document Owner to provide user-friendly and effective documentations.<br/>
-                Monitor compliance and the adequacy of procedures based on regulatory, IOSA and company requirements
-                Tracking change management process within Flight Operations.Liaise with relevant Business Units (BU) to ensure timely preparation for external audits such as DGCA, IOSA, etc.Liaise with external bodies such as DGCA and IOSA on quality, documentation, and regulatory matters
-               <br/><br/>
-                All other duties as assigned by the reporting manager
-                Requirements Skills & Attributes
-                Proactive, good interpersonal and administration skills
-                Attention to detail and problem-solving skills
-                High levels of integrity, judgement, customer service attitude
-                Creative ability to manage multiple projects & deadlines
-                Should be independent, self-motivated, and have willingness to learn
-                Proficient with Microsoft Office and Adobe applications
-                Good Understanding of Aviation Regulations specifically CAR and international regulation
+                  Preparation and coordination of controlled documentation within Flight Operations (i.e., Manuals, DPM, Forms, Documents and Publication) to ensure standardization
+                  Ensure that documents are produced to the highest quality standards considering human factors principles in coordination with Document Owner to provide user-friendly and effective documentations.<br/>
+                  Monitor compliance and the adequacy of procedures based on regulatory, IOSA and company requirements
+                  Tracking change management process within Flight Operations.Liaise with relevant Business Units (BU) to ensure timely preparation for external audits such as DGCA, IOSA, etc.Liaise with external bodies such as DGCA and IOSA on quality, documentation, and regulatory matters
+                  <br/><br/>
+                  All other duties as assigned by the reporting manager
+                  Requirements Skills & Attributes
+                  Proactive, good interpersonal and administration skills
+                  Attention to detail and problem-solving skills
+                  High levels of integrity, judgement, customer service attitude
+                  Creative ability to manage multiple projects & deadlines
+                  Should be independent, self-motivated, and have willingness to learn
+                  Proficient with Microsoft Office and Adobe applications
+                  Good Understanding of Aviation Regulations specifically CAR and international regulation
                 </p>
                 <p>Preferred 1 year of relevant aviation experience</p>
                 <p>Employment Type: Full Time, Permanent</p>
@@ -158,19 +147,25 @@ function JobList() {
                 <p>Role Category: Other</p>
                 <p>Education</p>
                 <p>Skills: Python, Django, Next.js </p>
-                
-
-                </div>
-
-              </>
+              </div>
             )}
+            
+            {/* Toggle Button - Placed at the bottom of each job card */}
+            <div className="flex justify-center mt-4 cursor-pointer" onClick={() => toggleExpand(job.id)}>
+              <Image
+                height={15}
+                width={15}
+                src={Toggles}
+                alt="toggle"
+                className={`transition-transform duration-300 ${expandedJobs[job.id] ? "rotate-180" : ""}`}
+              />
+            </div>
           </div>
         ))}
 
-{isModalOpen && (
-          <div className="fixed inset-0 flex  items-center justify-center bg-transparent">
-
-            <div className="bg-white p-6 rounded-lg w-[80%] h-[407px]  relative">
+        {isModalOpen && (
+          <div className="fixed inset-0 flex items-center justify-center bg-transparent">
+            <div className="bg-white p-6 rounded-lg w-[80%] h-[407px] relative">
               {/* Close Button */}
               <button onClick={toggleModal} className="absolute top-2 right-3 text-xl font-bold text-red-700">✖</button>
               {/* Normal Form */}

@@ -187,7 +187,7 @@ const Hero = () => {
       <Image
         src={fog}
         alt="Fog Effect"
-        className="absolute bottom-[111px] md:bottom-[95px] lg:bottom-[80px] left-0 w-full h-auto pointer-events-none z-20"
+        className="absolute bottom-[111px] md:bottom-[95px] lg:bottom-[80px] xl:bottom-[35px] left-0 w-full h-auto pointer-events-none z-20"
       />
     </section>
   );

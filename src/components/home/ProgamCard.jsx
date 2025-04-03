@@ -31,7 +31,7 @@ const ProgramCard = ({ image, title, hover, previousHover, onMouseEnter }) => {
 
     return (
         <div
-            className="relative bg-[#FF383B] text-white transition-all duration-300 ease-in-out 
+            className="relative bg-[#FF383B] text-white transition-all duration-350 ease-in-out 
                 flex items-end overflow-hidden cursor-pointer rounded-lg p-4 h-[230px] md:h-[277px] lg:h-[446px]"
             style={{ width: getCardWidth() }}
             onMouseEnter={onMouseEnter}
