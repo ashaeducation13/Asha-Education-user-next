@@ -4,9 +4,9 @@ import Career1 from "../../assets/careers/asha-career1.jpg";
 
 function HeroSection() {
   return (
-    <section className="flex flex-col lg:flex-row items-center justify-between px-[20px] lg:px-[100px] h-auto lg:h-[400px]">
+    <section className="containers flex flex-col lg:flex-row items-center justify-between mx-auto h-auto lg:h-[400px]">
       {/* Left Side - Text Content */}
-      <div className="w-full lg:w-1/2 mb-6 lg:mb-0">
+      <div className="w-full mb-6 lg:mb-0">
         <div className="inline-block px-[12px] py-[4px] border rounded-[8px] border-red-500 mb-6">
           <p className="text-[12px] leading-[24px] text-red-500">We are Hiring!</p>
         </div>
@@ -29,11 +29,11 @@ function HeroSection() {
       </div>
 
       {/* Right Side - Image */}
-      <div className="w-full lg:w-1/2 lg:absolute lg:top-[156px] lg:left-[802px]">
+      <div className="w-full">
         <Image
           src={Career1}
           alt="Hero Section"
-          className="w-full lg:w-[526px] lg:h-[188px] object-cover rounded-lg"
+          className="w-full h-[200px] object-cover rounded-lg"
         />
       </div>
     </section>
