@@ -21,7 +21,7 @@ export default function HeroSection() {
       </div>
 
       {/* Content section - will appear second on mobile (order-2) and first on desktop */}
-      <div className="order-2 md:order-1 flex flex-col items-center justify-center md:pr-20 py-10">
+      <div className="order-2 md:order-1 flex flex-col items-center justify-center md:pr-20 py-6">
         <div className="relative flex flex-col lg:space-y-2 lg:h-[450px] md:h-[310px] lg:w-[450px] md:w-[250px] h-[230px] w-[250px] items-start justify-center lg:pl-23 md:pl-6 lg:pt-10 lg:mt-20 md:mt-0 mt-20 px-4">
           <Image
             src={topleft}
