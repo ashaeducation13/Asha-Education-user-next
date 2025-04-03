@@ -235,7 +235,7 @@
 // }
 
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { BlogCard } from "./Listing";
@@ -274,7 +274,6 @@ const content = `
 const relatedBlogData = [
   {
     image: building,
-    auther: "Natali Craig",
     date_added: "14 Jan 2024",
     title: "Study abroad with us ,easy procesures",
     description: `As the most widely accepted test to analyze the proficiency of 
@@ -284,7 +283,6 @@ const relatedBlogData = [
   },
   {
     image: building,
-    auther: "Natali Craig",
     date_added: "14 Jan 2024",
     title: "Study abroad with us ,easy procesures",
     description: `As the most widely accepted test to analyze the proficiency of 
@@ -294,7 +292,6 @@ const relatedBlogData = [
   },
   {
     image: building,
-    auther: "Natali Craig",
     date_added: "14 Jan 2024",
     title: "Study abroad with us ,easy procesures",
     description: `As the most widely accepted test to analyze the proficiency of 
@@ -345,6 +342,7 @@ function BlogInner() {
   const [contentWithIds, setContentWithIds] = useState("");
   const [headingList, setHeadingList] = useState([]);
   const [selected, setSelected] = useState("");
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const { contentWithIds, headingList } = injectIdsIntoContent(content);
@@ -361,22 +359,25 @@ function BlogInner() {
     }
   };
 
-  const { scrollYProgress } = useScroll();
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
   const scaleY = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
+    stiffness: 50,
+    damping: 20,
+    restDelta: 0.001
   });
 
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="containers pt-20 pb-16">
+      <section className="containers md:py-12 py-6">
         <div className=" mx-auto text-center">
           <h1 className="font-open-sans font-semibold lg:text-[40px] md:text-[32px] text-[26px] text-gray-900 mb-4">
             Top 10 Universities in India for MBA <br /> Programs
           </h1>
-          <div className="relative w-full h-96 md:h-[500px] overflow-hidden">
+          <div className="relative w-full h-[300px] md:h-[500px] overflow-hidden">
             <Image
               src={building}
               alt="Students enjoying education in Adelaide"
@@ -389,28 +390,30 @@ function BlogInner() {
       </section>
 
       {/* Main Content */}
-      <section className="container mx-auto px-4 pb-10">
-        <div className="flex flex-col lg:flex-row gap-8 max-w-7xl mx-auto">
+      <section className="containers" ref={containerRef}>
+        <div className="flex flex-col md:flex-row lg:gap-8 md:gap-4 max-w-7xl mx-auto">
           {/* Sidebar Navigation (30%) */}
-          <aside className="lg:w-1/3 xl:w-1/4 lg:sticky lg:top-28 self-start">
-            <div className="flex items-start gap-4">
+          <aside className="hidden md:block lg:w-1/3 md:w-2/5 xl:w-1/4 lg:sticky md:sticky lg:top-10 md:top-10 self-start h-[calc(100vh-80px)]">
+            <div className="flex items-start h-full">
+            {/* <div className="relative h-full w-1 mr-4 bg-gray-200 rounded-full overflow-hidden">
               <motion.div
-                className="w-1 bg-red-500 rounded-full"
+                className="absolute top-0 left-0 w-full bg-red-500 origin-top"
                 style={{ scaleY }}
                 initial={{ scaleY: 0 }}
                 animate={{ scaleY: 1 }}
                 transition={{ duration: 0.5 }}
               />
+              </div> */}
               <nav className="flex-1">
                 <ul className="space-y-3">
                   {headingList.map((item) => (
                     <li key={item}>
                       <button
                         onClick={() => handleOnFocus(item)}
-                        className={`text-left w-full px-2 py-1 rounded transition-all ${
+                        className={`text-left w-full px-2 py-1 rounded transition-all font-normal lg:text-[14px] md:text-[12px] leading-[100%] ${
                           selected === item
-                            ? "text-red-600 font-medium"
-                            : "text-gray-700 hover:text-red-500"
+                            ? "text-black font-medium font-rubik"
+                            : "text-gray-700 hover:text-black font-open-sans"
                         }`}
                       >
                         {item.replace(/-/g, " ")}
@@ -422,14 +425,23 @@ function BlogInner() {
             </div>
 
             <div className="mt-8 pt-6 border-t border-gray-200">
-              <h3 className="text-sm font-medium text-red-600 mb-3">
+              <h3 className="text-sm font-medium text-[#000000] mb-3">
                 Share Article
               </h3>
               <div className="flex gap-4">
                 {[FacebookRed, TwitterRed, InstagramRed, LinkedInRed].map(
                   (icon, i) => (
-                    <a key={i} className="hover:opacity-75 transition-opacity">
-                      <Image src={icon} alt="" width={20} height={20} />
+                    <a
+                      key={i}
+                      className="hover:opacity-75 transition-opacity flex items-center justify-center w-4 h-4"
+                    >
+                      <Image
+                        src={icon}
+                        alt=""
+                        width={20} // Actual pixel size of the icon
+                        height={20} // Should match aspect ratio
+                        className="w-full h-full object-contain"
+                      />
                     </a>
                   )
                 )}
@@ -438,13 +450,14 @@ function BlogInner() {
           </aside>
 
           {/* Blog Content (70%) */}
-          <article className="lg:w-2/3 xl:w-3/4 lg:pl-8">
+          <article className="lg:w-2/3 md:w-3/5 xl:w-3/4 lg:pl-8 py-5 md:py-0">
             <div
-              className="[&>h1]:text-2xl [&>h1]:font-bold [&>h1]:mb-4
-               [&>h2]:text-xl [&>h2]:font-semibold [&>h2]:mt-8 [&>h2]:mb-4
-               [&>p]:mb-4 [&>p]:leading-relaxed
-               [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-4
-               [&>li]:mb-2"
+              className="[&>h2]:font-open-sans [&>h2]:font-semibold 
+               [&>h2]:text-[16px] md:[&>h2]:text-[18px] lg:[&>h2]:text-[20px]
+               [&>h2]:leading-[1.17] [&>h2]:mt-8 [&>h2]:mb-4
+               [&>p]:font-rubik [&>p]:font-normal 
+               [&>p]:text-[12px] lg:[&>p]:text-[14px]
+               [&>p]:leading-[21px] [&>p]:mb-4"
               dangerouslySetInnerHTML={{ __html: contentWithIds }}
             />
           </article>
@@ -452,12 +465,12 @@ function BlogInner() {
       </section>
 
       {/* Recommended Articles */}
-      <section className="bg-gray-50 py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-gray-900 mb-10">
+      <section className="bg-gray-50 lg:py-10">
+        <div className="containers ">
+          <h2 className="text-2xl font-bold text-gray-900 py-5">
             Recommended Articles
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 md:gap-6 gap-2">
             {relatedBlogData.map((item, index) => (
               <BlogCard key={index} item={item} router={router} />
             ))}
