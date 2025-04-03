@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -103,9 +104,10 @@ const Universities = () => {
                     ))}
 
                     {/* Desktop Buttons (Hidden on small screens) */}
-                    <div className="flex flex-col justify-between w-full max-w-[640px] mx-auto gap-2 items-center mt-6 hidden md:flex">
+                    <div className="flex-col justify-between w-full max-w-[640px] mx-auto gap-2 items-center mt-6 hidden md:flex">
+                    <Link href="/programs" passHref>
                         <button
-                            className="flex items-center justify-center font-inter font-semibold gap-2 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full"
+                            className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full"
                             style={{
                                 backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
                             }}
@@ -117,9 +119,11 @@ const Universities = () => {
                                 className="w-[10px] h-[10px]"
                             />
                         </button>
+                    </Link>
+                    <Link href="/comparison" passHref>
 
                         <button
-                            className="flex items-center justify-center font-inter font-semibold gap-2 px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full border border-gray-300 bg-white hover:bg-gray-100"
+                            className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full border border-gray-300 bg-white hover:bg-gray-100"
                         >
                             Compare Universities
                             <Image
@@ -128,6 +132,8 @@ const Universities = () => {
                                 className="w-[10px] h-[10px]"
                             />
                         </button>
+                    </Link>
+
                     </div>
 
                 </div>
