@@ -8,10 +8,10 @@ import HeroSecetion from "./Herosection";
 const page = () => {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <HeroSecetion />
       <Listing />
-      {/* <Footer  /> */}
+      <Footer  />
     </>
   );
 };

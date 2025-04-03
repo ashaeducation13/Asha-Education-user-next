@@ -8,10 +8,10 @@ import JobList from './JobList'
 function page() {
   return (
     <div>
-        {/* <Navbar/> */}
-      <HeroSection/>
-      <JobList/>
-      {/* <Footer/> */}
+      <Navbar />
+      <HeroSection />
+      <JobList />
+      <Footer />
     </div>
   )
 }
