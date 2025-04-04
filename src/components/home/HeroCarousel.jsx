@@ -22,6 +22,7 @@ export default function HeroCarousel() {
   };
 
   return (
+    <div className="w-full lg:max-w-[80%]">
     <Swiper
       modules={[Autoplay]}
       slidesPerView={5}
@@ -71,5 +72,6 @@ export default function HeroCarousel() {
         );
       })}
     </Swiper>
+    </div>
   );
 }

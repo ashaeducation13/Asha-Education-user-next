@@ -42,29 +42,29 @@ const ProgramsSection = () => {
                 >
                     {/* SVG Decorations */}
                     <div
-                        className="absolute top-6 -left-2 w-[26px] h-[26px] bg-no-repeat bg-contain"
+                        className="absolute top-6 left-1 w-[26px] h-[26px] bg-no-repeat bg-contain"
                         style={{ backgroundImage: `url(${topleft.src})` }}
                     ></div>
 
                     <div
-                        className="absolute top-6 -right-2 w-[26px] h-[26px] bg-no-repeat bg-contain"
+                        className="absolute top-6 right-0 w-[26px] h-[26px] bg-no-repeat bg-contain"
                         style={{ backgroundImage: `url(${topright.src})` }}
                     ></div>
 
                     <div
-                        className="absolute bottom-6 -left-2 w-[26px] h-[26px] bg-no-repeat bg-contain"
+                        className="absolute bottom-6 left-1 w-[26px] h-[26px] bg-no-repeat bg-contain"
                         style={{ backgroundImage: `url(${bottomleft.src})` }}
                     ></div>
 
                     <div
-                        className="absolute bottom-6 -right-2 w-[26px] h-[26px] bg-no-repeat bg-contain"
+                        className="absolute bottom-6 right-0 w-[26px] h-[26px] bg-no-repeat bg-contain"
                         style={{ backgroundImage: `url(${bottomright.src})` }}
                     ></div>
 
                     {/* Text Content */}
-                    <div className="text-center md:text-left px-6 py-6 lg:py-16 md:px-4 w-[80%] md:w-[100%]">
-                        <h2 className="sm:text-[24px] md:text-[32px] lg:text-[40px]  font-bold relative z-10 leading-[24px] md:leading-[0.9] w-[80%] md:w-[100%] mx-auto">Find the Right Program for You</h2>
-                        <p className="text-[12px] md:text-[14px] relative z-10 mt-2 leading-[18px] md:leading-[21px] lg:leading-[24px]">
+                    <div className="text-center md:text-left p-6 lg:py-16 md:px-4 w-[80%] md:w-[100%]">
+                        <h2 className="sm:text-[24px] md:text-[32px] lg:text-[40px]  font-bold relative z-10 leading-[24px] md:leading-[0.9] w-[80%] md:w-[100%] mx-auto md:px-4">Find the Right Program for You</h2>
+                        <p className="text-[12px] md:text-[14px] relative z-10 mt-2 leading-[18px] md:leading-[21px] lg:leading-[24px] md:px-4">
                             Discover the perfect program tailored to your goals with expert guidance and a wide range of academic choices.
                         </p>
                     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -21,57 +21,39 @@ import logo4 from '../../assets/home/partnersection/manipal.png'
 
 import arrow from '../../assets/home/herosection/Arrow.svg'
 import arrowright from '../../assets/home/partnersection/darkarrowright.svg'
+import { UniversityFetch } from "@/services/api";
 
-// University & Course Data
-const universityData = [
-    {
-        id: 1,
-        name: "DY Patil",
-        logo: logo1,
-        courses: [
-            { id: 1, image: img1, title: "MBA", subtitle: "Partnering with top universities for world-class MBA programs." },
-            { id: 2, image: img2, title: "BBA", subtitle: "Unlock global business education with our trusted BBA partners." },
-            { id: 3, image: img3, title: "BCOM", subtitle: "Study commerce at leading universities with excellent faculty." },
-            { id: 4, image: img4, title: "BCA", subtitle: " Advance in technology with our premier BCA university partners." },
-        ],
-    },
-    {
-        id: 2,
-        name: "NMIMS",
-        logo: logo2,
-        courses: [
-            { id: 1, image: img1, title: "MBA", subtitle: "Partnering with top universities for world-class MBA programs." },
-            { id: 2, image: img2, title: "BBA", subtitle: "Unlock global business education with our trusted BBA partners." },
-            { id: 3, image: img3, title: "BCOM", subtitle: "Study commerce at leading universities with excellent faculty." },
-            { id: 4, image: img4, title: "BCA", subtitle: " Advance in technology with our premier BCA university partners." },
-        ],
-    },
-    {
-        id: 3,
-        name: "Amity",
-        logo: logo3,
-        courses: [
-            { id: 1, image: img1, title: "MBA", subtitle: "Partnering with top universities for world-class MBA programs." },
-            { id: 2, image: img2, title: "BBA", subtitle: "Unlock global business education with our trusted BBA partners." },
-            { id: 3, image: img3, title: "BCOM", subtitle: "Study commerce at leading universities with excellent faculty." },
-            { id: 4, image: img4, title: "BCA", subtitle: " Advance in technology with our premier BCA university partners." },
-        ],
-    },
-    {
-        id: 4,
-        name: "Manipal University",
-        logo: logo4,
-        courses: [
-            { id: 1, image: img1, title: "MBA", subtitle: "Partnering with top universities for world-class MBA programs." },
-            { id: 2, image: img2, title: "BBA", subtitle: "Unlock global business education with our trusted BBA partners." },
-            { id: 3, image: img3, title: "BCOM", subtitle: "Study commerce at leading universities with excellent faculty." },
-            { id: 4, image: img4, title: "BCA", subtitle: " Advance in technology with our premier BCA university partners." },
-        ],
-    },
-];
+
 
 const Universities = () => {
-    const [selectedUniversity, setSelectedUniversity] = useState(universityData[0]);
+
+
+    const [univ, setUniv] = useState([]);
+    const [selectedUniversity, setSelectedUniversity] = useState();
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+
+    useEffect(() => {
+        const getData = async () => {
+            setLoading(true);
+            setError(null);
+
+            const data = await UniversityFetch();
+            console.log('univsection', data);
+
+            if (data) {
+                setUniv(data);
+                setSelectedUniversity(data[0]);
+
+            } else {
+                setError('Failed to load products');
+            }
+            setLoading(false);
+        };
+
+        getData();
+    }, []);
 
     return (
         <>
@@ -83,10 +65,29 @@ const Universities = () => {
                     Explore our network of globally recognized partner universities, offering diverse programs and exceptional academic opportunities for students worldwide
                 </p>
             </div>
-            <section className="relative py-6 flex justify-between gap-2 md:gap-16 items-start pl-[4vw] align-center">
+            <section className="relative py-6 flex justify-between gap-2 md:gap-16 items-start align-center w-[90%] ml-auto">
+
                 {/* Left: University Buttons */}
                 <div className="flex flex-col gap-4  md:min-w-[200px]">
-                    {universityData.map((university) => (
+                    {univ.map((university) => (
+                        <button
+                            key={university.id}
+                            className={` w-full flex flex-col  md:flex-row items-center text-center justify-start gap-2  md:px-4 py-2 border rounded-md text-black text-[12px] md:text-[14px] lg:text-[16px]  font-normal transition-all font-rubik md:text-left md:whitespace-nowrap
+                                        ${selectedUniversity.id === university.id ? "border-[#0A0078] text-black" : "border-gray-300 bg-white hover:bg-gray-100"}
+                                    `}
+                            onClick={() => setSelectedUniversity(university)}
+                        >
+                            <Image
+                                src={university.logo}
+                                alt={university.name}
+                                width={30}
+                                height={30}
+                                className="object-contain"
+                            />
+                            <span className="break-words whitespace-normal">{university.name}</span>
+                        </button>
+                    ))}
+                    {/* {universityData.map((university) => (
                         <button
                             key={university.id}
                             className={` w-full flex flex-col  md:flex-row items-center text-center justify-start gap-2  md:px-4 py-2 border rounded-md text-black text-[12px] md:text-[14px] lg:text-[16px]  font-normal transition-all font-rubik md:text-left md:whitespace-nowrap
@@ -101,38 +102,38 @@ const Universities = () => {
                             />
                             <span className="break-words whitespace-normal">{university.name}</span>
                         </button>
-                    ))}
+                    ))} */}
 
                     {/* Desktop Buttons (Hidden on small screens) */}
                     <div className="flex-col justify-between w-full max-w-[640px] mx-auto gap-2 items-center mt-6 hidden md:flex">
-                    <Link href="/programs" passHref>
-                        <button
-                            className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full"
-                            style={{
-                                backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
-                            }}
-                        >
-                            Browse all Programs
-                            <Image
-                                src={arrow}
-                                alt="Arrow"
-                                className="w-[10px] h-[10px]"
-                            />
-                        </button>
-                    </Link>
-                    <Link href="/comparison" passHref>
+                        <Link href="/programs" passHref>
+                            <button
+                                className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full"
+                                style={{
+                                    backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
+                                }}
+                            >
+                                Browse all Programs
+                                <Image
+                                    src={arrow}
+                                    alt="Arrow"
+                                    className="w-[10px] h-[10px]"
+                                />
+                            </button>
+                        </Link>
+                        <Link href="/comparison" passHref>
 
-                        <button
-                            className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full border border-gray-300 bg-white hover:bg-gray-100"
-                        >
-                            Compare Universities
-                            <Image
-                                src={arrowright}
-                                alt="Arrow"
-                                className="w-[10px] h-[10px]"
-                            />
-                        </button>
-                    </Link>
+                            <button
+                                className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full border border-gray-300 bg-white hover:bg-gray-100"
+                            >
+                                Compare Universities
+                                <Image
+                                    src={arrowright}
+                                    alt="Arrow"
+                                    className="w-[10px] h-[10px]"
+                                />
+                            </button>
+                        </Link>
 
                     </div>
 
@@ -153,9 +154,9 @@ const Universities = () => {
                         }}
                         className="w-full"
                     >
-                        {selectedUniversity.courses.map((course) => (
+                        {selectedUniversity?.programs?.map((course) => (
                             <SwiperSlide key={course.id} className="flex justify-center px-1 py-5">
-                                <PartnerCard {...course} />
+                                <PartnerCard course={course} />  {/* Pass as a single prop */}
                             </SwiperSlide>
                         ))}
                     </Swiper>

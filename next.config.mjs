@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     devIndicators: false,
-    
+    images: {
+    domains: ['backend.asha.education'],  
+},
 };
 
 export default nextConfig;
