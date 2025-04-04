@@ -55,7 +55,7 @@ const StudentSwiper = () => {
         }}
         onSwiper={(swiper) => {
           setTimeout(() => {
-            if (swiper && swiper.params.navigation) {
+            if (swiper && swiper.params?.navigation) {
               swiper.params.navigation.prevEl = prevRef.current;
               swiper.params.navigation.nextEl = nextRef.current;
               swiper.navigation.init();
