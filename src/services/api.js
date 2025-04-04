@@ -2,7 +2,8 @@
 
 // const BASE_URL = 'https://your-backend-api-url.com';  
 
-const BASE_URL ='http://127.0.0.1:8000';
+// const BASE_URL ='http://127.0.0.1:8000';
+const BASE_URL = 'https://backend.asha.education'; // Replace with your actual backend UR
 
 // Create a reusable API utility function for fetching data
 export const fetchData = async (endpoint) => {
@@ -26,6 +27,14 @@ export const fetchData = async (endpoint) => {
     }
   };
 
+
+
+
+// all api calls here 
 export const UniversityFetch = async () => {
+    return fetchData(`/universities/university`);
+  }; 
+
+  export const UniversityFetch = async () => {
     return fetchData(`/universities/university`);
   };

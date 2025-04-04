@@ -63,7 +63,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative py-20 text-center overflow-hidden">
+    <section className="relative py-2 md:py-10 text-center overflow-hidden">
       {/* Background Blur Effect */}
       <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(241,241,241,1)_26%,_rgba(255,255,255,0)_64%)]"></div>
 
@@ -179,7 +179,7 @@ const Hero = () => {
       </div>
 
       {/* Carousel */}
-      <div className="lg:pl-16 flex justify-center">
+      <div className="flex justify-center">
         <HeroCarousel />
       </div>
 
@@ -187,7 +187,8 @@ const Hero = () => {
       <Image
         src={fog}
         alt="Fog Effect"
-        className="absolute bottom-[111px] md:bottom-[95px] lg:bottom-[80px] xl:bottom-[35px] left-0 w-full h-auto pointer-events-none z-20"
+        className="absolute bottom-[8%] md:bottom-[12%] lg:bottom-[7%] xl:-bottom-[2%] left-0 w-full h-auto pointer-events-none z-20"
+
       />
     </section>
   );

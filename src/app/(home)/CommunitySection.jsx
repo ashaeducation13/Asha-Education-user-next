@@ -16,13 +16,13 @@ const CommunitySection = () => {
                 {[
                     {
                         title: "Join Our MBA Community",
-                        text: "Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.",
+                        text: "Connect with fellow MBA aspirants and professionals to expand your network and enhance your learning experience.",
                         btnText: "Join Now →",
                         img: woman1,
                     },
                     {
                         title: "Refer & Earn",
-                        text: "Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.",
+                        text: "Share Asha Education with your network and earn rewards for each successful student referral.",
                         btnText: "Refer Now →",
                         img: woman2,
                     },

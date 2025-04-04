@@ -22,8 +22,7 @@ const InformedSection = () => {
           with the <span className="text-[#FF383B]">Latest Resources</span>
         </h2>
         <p className="mt-2 text-gray-600 text-[16px] leading-[24px]">
-          Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
-          phasellus mollis sit aliquam sit nullam.
+          Explore our blogs and news. Stay updated with the latest information and insights in education sector.
         </p>
 
       </div>
