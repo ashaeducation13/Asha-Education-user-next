@@ -1,0 +1,20 @@
+.blog-inner {
+    p, ul, li, a {
+      color: var(--text-cl);
+      font-size: 14px;
+      line-height: 21px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      font-family: "roboto-regular";
+    }
+    h1, h2, h3, h4, h5, h6, b {
+      color: var(--secondary-cl);
+      font-size: 20px;
+      line-height: 23px;
+      font-family: "dmsans-semiBold";
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+  
+  
