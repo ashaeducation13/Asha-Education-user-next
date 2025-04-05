@@ -150,13 +150,14 @@ const Universities = () => {
                             640: { slidesPerView: 1.5 },
                             768: { slidesPerView: 2.5 },
                             1024: { slidesPerView: 3.5, spaceBetween: 10 },
-                            // 1440: { slidesPerView: 5.5, spaceBetween: 10 },
+                            1440: { slidesPerView: 5.5, spaceBetween: 10 },
                         }}
                         className="w-full"
                     >
                         {selectedUniversity?.programs?.map((course) => (
                             <SwiperSlide key={course.id} className="flex justify-center px-1 py-5">
                                 <PartnerCard course={course} />  {/* Pass as a single prop */}
+                            
                             </SwiperSlide>
                         ))}
                     </Swiper>

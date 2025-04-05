@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -9,6 +9,7 @@ import Image from "next/image";
 import University from "../../assets/about-us/unilogo.png";
 import Uimage from "../../assets/about-us/uimage1.jpg";
 import bg from '../../assets/home/programsection/bg1.svg'
+import { TestimonialFetch } from "@/services/api";
 
 
 const studentTestimonials = [
@@ -41,12 +42,37 @@ const studentTestimonials = [
 const StudentSwiper = () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const [testim, setTestim] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+
+  useEffect(() => {
+    const getData = async () => {
+      setLoading(true);
+      setError(null);
+
+      const data = await TestimonialFetch();
+      console.log('testimonial', data);
+
+      if (data) {
+        setTestim(data);
+
+      } else {
+        setError('Failed to load products');
+      }
+      setLoading(false);
+    };
+
+    getData();
+  }, []);
 
   return (
     <div className="relative w-full mt-6 px-4 md:px-0 pb-16 md:pb-0">
       <Swiper
         spaceBetween={20}
         slidesPerView={1}
+        loop={true}
         className="px-4 md:px-10"
         modules={[Navigation]}
         navigation={{
@@ -64,12 +90,12 @@ const StudentSwiper = () => {
           });
         }}
       >
-        {studentTestimonials.map((student, index) => (
+        {testim.map((student, index) => (
           <SwiperSlide key={index}>
             <div className="flex flex-col md:flex-row bg-white text-black rounded-[20px] overflow-hidden shadow-lg w-full max-w-3xl mx-auto md:min-h-[300px]">
               <div className="md:w-[260px] lg:w-[300px] h-[180px] md:h-[300px] relative">
                 <Image
-                  src={student.image}
+                  src={student.photo_video}
                   alt={student.name}
                   width={400}
                   height={400}
@@ -80,11 +106,11 @@ const StudentSwiper = () => {
               <div className="flex-1 p-5 flex flex-col">
                 <div className="mb-4">
                   <Image
-                    src={student.logo}
+                    src={student.university.logo}
                     alt="University Logo"
                     width={91}
                     height={37}
-                    className="w-[70px] h-[30px] md:w-[91px] md:h-[37px]"
+                    className="w-[70px] h-[30px]  md:h-[37px]"
                   />
                 </div>
 
@@ -96,8 +122,9 @@ const StudentSwiper = () => {
 
                 <div>
                   <h3 className="text-[16px] leading-[22px] text-grey-600 font-open-sans">
-                    <span className="font-semibold">{student.name}</span>
-                    <span className="block font-bold">{student.course}</span>
+                    {student.program_name}
+                    {/* <span className="font-semibold">{student.name}</span>
+                    <span className="block font-bold">{student.course}</span> */}
                   </h3>
                 </div>
               </div>
@@ -129,11 +156,11 @@ const StudentSwiper = () => {
 function SuccessfulStudents() {
   return (
     <section className="bg-red-500 text-white py-14 px-4 md:px-[100px] relative"
-    style={{
-                    backgroundImage: `url(${bg.src})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "left",
-                }}>
+      style={{
+        backgroundImage: `url(${bg.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "left",
+      }}>
       <h2
         className="font-open-sans text-[24px] md:text-[32px] lg:text-[40px] leading-[32px] md:leading-[40px] lg:leading-[48px] font-semibold text-center mb-4 bg-clip-text text-transparent"
         style={{
