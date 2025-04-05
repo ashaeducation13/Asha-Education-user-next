@@ -4,7 +4,7 @@ import Address from "../../assets/about-us/address-icon.svg";
 import Phone from "../../assets/about-us/phone-icon.svg";
 import Mail from "../../assets/about-us/mail-icon.svg";
 
-function WeHelp() {
+function WeHelp({data}) {
   return (
     <div className="md:w-[80%] w-[90%] mx-auto md:flex justify-between items-start py-[50px] md:gap-16 lg:gap-0 ">
       <div className="lg:w-[30%] ">
@@ -28,7 +28,7 @@ function WeHelp() {
             />
             {/* <span className="text-gray-500 text-xl">📍</span>  */}
             <span className="text-black font-rubik font-normal lg:text-[20px] md:text-[16px] text-[14px] lg:leading-[28px] md:leading-[24px] leading-[21px]">
-              1234 Knowledge Avenue, Education City, New Delhi, India – 110001
+              {data.address}
             </span>
           </div>
 
@@ -37,7 +37,7 @@ function WeHelp() {
             <Image src={Phone} alt="Phone" className="w-[38px] h-[40px]" />
             {/* <span className="text-gray-500 text-xl">📞</span>  */}
             <span className="font-rubik text-black lg:text-[20px] md:text-[16px] text-[14px] lg:leading-[28px] leading-[28px]">
-              +91 98765 43210
+            {data.phone}
             </span>
           </div>
 
@@ -50,7 +50,7 @@ function WeHelp() {
             />
             {/* <span className="text-gray-500 text-xl">✉️</span>  */}
             <span className="text-black font-rubik lg:text-[20px] md:text-[16px] text-[14px] lg:leading-[28px] leading-[28px]">
-              info@educationhub.com
+            {data.email}
             </span>
           </div>
         </div>

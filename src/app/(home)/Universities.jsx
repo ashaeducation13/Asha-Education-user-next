@@ -25,35 +25,11 @@ import { UniversityFetch } from "@/services/api";
 
 
 
-const Universities = () => {
+const Universities = ({data}) => {
 
+    const [univ, setUniv] = useState(data || []);
+    const [selectedUniversity, setSelectedUniversity] = useState(data?.[0] || null);
 
-    const [univ, setUniv] = useState([]);
-    const [selectedUniversity, setSelectedUniversity] = useState();
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-
-    useEffect(() => {
-        const getData = async () => {
-            setLoading(true);
-            setError(null);
-
-            const data = await UniversityFetch();
-            console.log('univsection', data);
-
-            if (data) {
-                setUniv(data);
-                setSelectedUniversity(data[0]);
-
-            } else {
-                setError('Failed to load products');
-            }
-            setLoading(false);
-        };
-
-        getData();
-    }, []);
 
     return (
         <>

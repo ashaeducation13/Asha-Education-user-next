@@ -1,34 +1,11 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { cardData } from '../comparison/Data'
-import { Card } from '../comparison/Listing'
-import { UniversityFetch } from '../../services/api';
+import UnivCard from '@/components/universities/UnivCard';
 
-const Listing = () => {
-    const [univ, setUniv] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-      
-    useEffect(() => {
-          const getData = async () => {
-            setLoading(true);
-            setError(null);
-      
-            const data = await UniversityFetch();
-            console.log(data);
-            
-            if (data) {
-                setUniv(data);
-                
-            } else {
-              setError('Failed to load products');
-            }
-            setLoading(false);
-          };
-      
-          getData();
-    }, []);
-
+const Listing = ({data}) => {
+    const [univ, setUniv] = useState(data || []);
+    console.log(univ);
+    
     return (
         <>
             <section className='containers md:py-8 py-6'>
@@ -36,11 +13,8 @@ const Listing = () => {
                 <div className="flex flex-col gap-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 md:gap-4 gap-2">
                         {univ.map((item, index) => (
-                            <Card key={index} item={item} />
+                            <UnivCard key={index} item={item}/>
                         ))}
-                        {/* {cardData.map((item, index) => (
-                            <Card key={index} item={item} />
-                        ))} */}
                     </div>
                 </div>
             </section>
