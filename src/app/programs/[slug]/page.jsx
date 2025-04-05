@@ -1,5 +1,5 @@
-import CertificationSection from '@/app/universities/[id]/CertificationSection'
 import HeroSection from './HeroSection'
+import CertificationSection from './CertificationSection'
 
 export default function page() {
   return (
