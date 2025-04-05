@@ -16,4 +16,4 @@ const Certcard = ({ imgSrc, title }) => {
     );
   };
 
-export default Certcard
+export default Certcard

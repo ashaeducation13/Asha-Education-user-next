@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Arrow from "../../assets/careers/apply.svg";
 import Work from "../../assets/careers/work.svg";
@@ -10,9 +10,48 @@ import NormalForm from '@/components/Forms/NormalForm'
 
 function JobList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formDataCache, setFormDataCache] = useState(null)
+  const [lastClosedTime, setLastClosedTime] = useState(null)
+  const modalRef = useRef(null)
+
+  const DATA_TIMEOUT = 5 * 60 * 1000;
+
   const toggleModal = () => {
+    if (isModalOpen){
+      setLastClosedTime(Date.now())
+    }else{
+      if(formDataCache && lastClosedTime && (Date.now() - lastClosedTime < DATA_TIMEOUT)) {
+
+      }else{
+        setFormDataCache(null)
+      }
+    }
     setIsModalOpen(!isModalOpen); // Toggles the modal state
   };
+
+  const handleClickOutside = (event) => {
+    if(modalRef.current && !modalRef.current.contains(event.target)){
+      toggleModal()
+    }
+  }
+
+  const handleFormSubmit = () => {
+    setFormDataCache(null)
+    setLastClosedTime(null)
+    toggleModal()
+  }
+
+  const saveFormData = (data) => {
+    setFormDataCache(data)
+  }
+
+  useEffect(() => {
+    return () => {
+      if(lastClosedTime && Date.now() - lastClosedTime >= DATA_TIMEOUT) {
+        setFormDataCache(null)
+      }
+    }
+  }, [])
   
   const jobsData = [
     { 
@@ -91,21 +130,21 @@ function JobList() {
 
         {currentJobs.map(job => (
           <div key={job.id} className="py-6 border-b border-gray-300">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center gap-4">
+            <div className="flex justify-between items-center gap-4">
+              <div className="flex items-center md:gap-4">
                 <h1 className="font-bold font-open-sans text-lg text-gray-900">{job.title}</h1>
                 
                 {/* Job Type (Icon + Text) */}
-                <div className="flex items-center gap-2 border border-red-500 rounded-md px-3 py-1">
-                  <Image height={20} width={20} src={Work} alt="Work Type" />
-                  <span className="text-sm font-inter-medium text-red-600">{job.type}</span>
+                <div className="flex items-center gap-2 border border-red-500 rounded-md px-1 py-1 flex-shrink-0">
+                  <Image height={12} width={12} src={Work} alt="Work Type" />
+                  <span className="text-[12px] md:text-[14px] font-inter-medium text-red-600">{job.type}</span>
                 </div>
               </div>
 
               {/* Apply Button */}
-              <div className="flex gap-[5px] cursor-pointer" onClick={toggleModal}>
+              <div className="flex gap-[5px] justify-center items-center cursor-pointer" onClick={toggleModal}>
                 <p
-                  className="font-open-sans-normal text-[14px] md:text-[16px] lg:text-[20px] leading-[100%] text-transparent bg-clip-text"
+                  className="font-open-sans-normal md:text-[14px] text-[12px] lg:text-[16px] leading-[100%] text-transparent bg-clip-text"
                   style={{
                     backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
                     WebkitBackgroundClip: "text",
@@ -114,7 +153,7 @@ function JobList() {
                 >
                   Apply
                 </p>
-                <Image height={25} width={25} src={Arrow} alt="Apply" />
+                <Image className="h-[20px] w-[20px]" src={Arrow} alt="Apply" />
               </div>
             </div>
             
@@ -164,12 +203,16 @@ function JobList() {
         ))}
 
         {isModalOpen && (
-          <div className="fixed inset-0 flex items-center justify-center bg-transparent">
-            <div className="bg-white p-6 rounded-lg w-[80%] h-[407px] relative">
+          <div className="fixed inset-0 flex items-center justify-center bg-black/50" onClick={handleClickOutside}>
+            <div className=" md:p-6 rounded-lg w-[80%] md:h-[407px] relative" ref={modalRef} onClick={(e) => e.stopPropagation()}>
               {/* Close Button */}
-              <button onClick={toggleModal} className="absolute top-2 right-3 text-xl font-bold text-red-700">✖</button>
+              {/* <button onClick={toggleModal} className="absolute top-2 right-3 text-xl font-bold text-red-700">✖</button> */}
               {/* Normal Form */}
-              <NormalForm />
+              <NormalForm 
+              initialData = {formDataCache || {}}
+              onFormSubmit = {handleFormSubmit}
+              saveFormData = {saveFormData}
+              />
             </div>
           </div>
         )}
