@@ -29,35 +29,85 @@ const cardData = [
   }
 ];
 
-function MissionVision() {
+function MissionVision({data}) {
   return (
     <section className="containers grid grid-cols-1 md:grid-cols-3 flex-wrap justify-center xl:gap-12 gap-2 md:gap-4 lg:gap-6 lg:pt-20 md:pt-12 md:pb-5 lg:pb-10 pt-5 pb-3 px-4">
-      {cardData.map((card, index) => (
+        {/* Mission */}
         <div
-          key={index}
           className="group bg-white p-6 rounded-[20px] transition duration-300 hover:bg-[#FF383B] hover:text-white 
                       text-center shadow-2xl"
         >   
           <div className="flex items-center gap-[30px] justify-between mb-4">
             <h3 className="font-open-sans text-[20px] md:text-[24px] lg:text-[36px] leading-[48px] lg:leading-[48px] font-semibold">
-              {card.title}
+            Mission
             </h3>
             <div className="lg:size-[60px] size-[40px] flex items-center justify-center rounded-full">
               <Image
-                src={card.icon} 
-                alt={card.title} 
+                src={Mission1} 
+                alt="Mission"
                 className="w-full h-full transition duration-300 group-hover:hidden" // This image will hide on hover
               />
               <Image 
-                src={card.hoverIcon} 
-                alt={card.title} 
+                src={Mission2} 
+                alt="Mission"
                 className="w-full h-full transition duration-300 hidden group-hover:block" // This image will show on hover
               />
             </div>
           </div>
-          <p className="font-rubik lg:text-[16px] lg:leading-[24px] md:text-[14px] md:leading-[21px] text-[12px] leading-[18px] font-normal text-left">{card.description}</p>
+          <p className="font-rubik lg:text-[16px] lg:leading-[24px] md:text-[14px] md:leading-[21px] text-[12px] leading-[18px] font-normal text-left">{data.mission}</p>
         </div>
-      ))}
+
+        {/* Vision */}
+        <div
+          className="group bg-white p-6 rounded-[20px] transition duration-300 hover:bg-[#FF383B] hover:text-white 
+                      text-center shadow-2xl"
+        >   
+          <div className="flex items-center gap-[30px] justify-between mb-4">
+            <h3 className="font-open-sans text-[20px] md:text-[24px] lg:text-[36px] leading-[48px] lg:leading-[48px] font-semibold">
+            Vision
+            </h3>
+            <div className="lg:size-[60px] size-[40px] flex items-center justify-center rounded-full">
+              <Image
+                src={Vision1} 
+                alt="Vision"
+                className="w-full h-full transition duration-300 group-hover:hidden" // This image will hide on hover
+              />
+              <Image 
+                src={Vision2} 
+                alt="Vision"
+                className="w-full h-full transition duration-300 hidden group-hover:block" // This image will show on hover
+              />
+            </div>
+          </div>
+          <p className="font-rubik lg:text-[16px] lg:leading-[24px] md:text-[14px] md:leading-[21px] text-[12px] leading-[18px] font-normal text-left">{data.vision}</p>
+        </div>
+
+
+        {/* Values */}
+        <div
+          className="group bg-white p-6 rounded-[20px] transition duration-300 hover:bg-[#FF383B] hover:text-white 
+                      text-center shadow-2xl"
+        >   
+          <div className="flex items-center gap-[30px] justify-between mb-4">
+            <h3 className="font-open-sans text-[20px] md:text-[24px] lg:text-[36px] leading-[48px] lg:leading-[48px] font-semibold">
+            Values
+            </h3>
+            <div className="lg:size-[60px] size-[40px] flex items-center justify-center rounded-full">
+              <Image
+                src={Values1} 
+                alt="Values"
+                className="w-full h-full transition duration-300 group-hover:hidden" // This image will hide on hover
+              />
+              <Image 
+                src={Values2} 
+                alt="Values"
+                className="w-full h-full transition duration-300 hidden group-hover:block" // This image will show on hover
+              />
+            </div>
+          </div>
+          <p className="font-rubik lg:text-[16px] lg:leading-[24px] md:text-[14px] md:leading-[21px] text-[12px] leading-[18px] font-normal text-left">{data.values}</p>
+        </div>
+
     </section>
   );
 }

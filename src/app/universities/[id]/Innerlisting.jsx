@@ -1,84 +1,101 @@
 "use client";
 import React, { useState } from "react";
-import filterIcon from '../../../assets/universities/Vector.svg'
 import Image from "next/image";
-
-import star from "../../../assets/universities/star.svg";
-import once from "../../../assets/universities/once.svg";
-import arrow from "../../../assets/universities/arrow.svg";
-
-import { cardData, Courses } from "@/app/programs/PrData";
 import { ProgramCard } from "@/app/programs/ProgramCard";
-// import { Card } from "@/app/comparison/Listing";
-// import {Courses } from "../../comparison/Data";
-// import { cardData } from "@/app/comparison/Data";
-// import { Card } from "@/app/comparison/Card";
 
-const Innerlisting = () => {
-    const [selectedCourse, setSelectedCourse] = useState(Courses[0]);
+const Innerlisting = ({ data }) => {
+    const [selectedProgram, setSelectedProgram] = useState(data[0]);
+    const [selectedSpecialization, setSelectedSpecialization] = useState(null);
+
+    // Unique programs by program_type_name
+    const uniquePrograms = Array.from(
+        new Set(data.map(p => p.specialization?.program_type_name))
+    ).map(programType => data.find(p => p.specialization?.program_type_name === programType));
+
+    // Specializations under selected program
+    const specializationList = Array.from(
+        new Set(
+            data
+                .filter(p => p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name)
+                .map(p => p.specialization?.name)
+        )
+    );
+
+    // Filter programs
+    const filteredPrograms = data.filter(p =>
+        p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name &&
+        (selectedSpecialization ? p.specialization?.name === selectedSpecialization : true)
+    );
 
     return (
         <>
             <section className="containers border-b border-b-[#E1E4ED]">
-                <div className="mx-auto flex justify-between items-center py-5 overflow-scroll">
+                {/* Program Tabs */}
+                <div className="mx-auto flex justify-between items-center py-5   overflow-x-scroll scrollbar-hide">
                     <ul className="flex gap-[6px]">
-                        {Courses.map((item, index) => (
+                        {uniquePrograms.map((item, index) => (
                             <li
                                 key={index}
-                                onClick={() => setSelectedCourse(item)}
-                                className={`cursor-pointer ${selectedCourse.title === item.title
+                                onClick={() => {
+                                    setSelectedProgram(item);
+                                    setSelectedSpecialization(null);
+                                }}
+                                className={`cursor-pointer ${selectedProgram.specialization?.program_type_name === item.specialization?.program_type_name
                                     ? "bg-[#FF383B] text-white"
                                     : "bg-white text-[#6D758F] border border-[#D9D9D9]"
                                     } hover:bg-[#FF383B] p-[14px] md:px-[22px] md:py-[18px] text-[16px] leading-[16px] font-bold hover:text-white rounded-[8px]`}
                             >
-                                {item.title}
+                                {item.specialization.program_type_name}
                             </li>
                         ))}
                     </ul>
-                    {/* <ul className="flex gap-2 items-center">
-                        <Image src={filterIcon} alt="icon" height={18} />
-                        <span className="text-[#FF383B] text-[16px]">Filter by state</span>
-                    </ul> */}
                 </div>
+
+                {/* Specialization Filter */}
                 <div className="mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] pt-5 pb-10">
-                    <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold md:hidden">Specialisations</h2>
-
+                    {/* Mobile Dropdown */}
                     <select
-                        className="p-[16px] text-[#696969] text-[12px] md:hidden border border-[#F1F3F7] bg-white rounded-[6px] w-fit
+                        className="md:hidden p-[16px] text-[#696969] text-[12px] border border-[#F1F3F7] bg-white rounded-[6px] w-fit
                              hover:ring-2 hover:ring-[#FF383B] focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
+                        value={selectedSpecialization || ""}
+                        onChange={(e) =>
+                            setSelectedSpecialization(e.target.value || null)
+                        }
                     >
-
-                        {selectedCourse.specs.length > 0 ? (
-                            selectedCourse.specs.map((spec, i) => (
-                                <option key={i} value={spec}>{spec}</option>
-                            ))
-                        ) : (
-                            <option>No specializations available</option>
-                        )}
+                        <option value="">Select Specialization</option>
+                        {specializationList.map((spec, i) => (
+                            <option key={i} value={spec}>{spec}</option>
+                        ))}
                     </select>
 
-                    <div className="hidden md:flex  flex-col gap-3">
-                        <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold">Specialisations</h2>
-
-                        {/* Large Screen: List */}
-                        <ul className=" flex-col gap-2">
-                            {selectedCourse.specs.length > 0 ? (
-                                selectedCourse.specs.map((spec, i) => (
-                                    <li
-                                        key={i}
-                                        className="p-[16px] text-[#696969] text-[12px] md:text-[14px] lg:text-[16px] leading-[16px] border border-[#F1F3F7] bg-[#FFFFFF] rounded-[6px]"
-                                    >
-                                        {spec}
-                                    </li>
-                                ))
-                            ) : (
-                                <li className="text-white">No specializations available</li>
-                            )}
+                    {/* Desktop Sidebar */}
+                    <div className="hidden md:flex flex-col gap-3">
+                        <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold ">Specialisations</h2>
+                        <ul className="flex flex-col gap-2">
+                            {specializationList.map((spec, i) => (
+                                <li
+                                    key={i}
+                                    onClick={() =>
+                                        setSelectedSpecialization(prev =>
+                                            prev === spec ? null : spec
+                                        )
+                                    }
+                                    className={`cursor-pointer p-[16px] text-[14px] rounded-[6px] border  shadow-lg
+                                        ${selectedSpecialization === spec
+                                            ? "border-[#FF383B] text-[#FF383B]"
+                                            : "bg-white text-[#696969] border-[#F1F3F7]"
+                                        }`}
+                                >
+                                    {spec}
+                                </li>
+                            ))}
                         </ul>
                     </div>
+
+                    {/* Program Cards */}
                     <div className="flex flex-col xl:mx-8">
                         <div className="grid grid-row md:grid-cols-2 gap-2 xl:gap-16">
-                            {Courses.map((item, index) => (
+                            {filteredPrograms.map((item, index) => (
                                 <ProgramCard key={index} item={item} />
                             ))}
                         </div>
@@ -88,6 +105,5 @@ const Innerlisting = () => {
         </>
     );
 };
-
 
 export default Innerlisting;

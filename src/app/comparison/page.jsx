@@ -3,16 +3,18 @@ import HeroSecetion from "./HeroSecetion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Listing from "./Listing";
+import { ProgramFetch } from "@/services/api";
 
-const page = () => {
+export default async function page ({params}){
+    const prData = await ProgramFetch();
+
   return (
     <>
       <Navbar />
       <HeroSecetion />
-      <Listing />
+      <Listing data={prData}/>
       <Footer />
     </>
   );
 };
 
-export default page;

@@ -14,6 +14,7 @@ export const fetchData = async (endpoint) => {
         headers: {
           'Content-Type': 'application/json',
         },
+        cache: "no-store",
       });
       
       if (!response.ok) {

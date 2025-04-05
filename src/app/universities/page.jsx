@@ -3,17 +3,19 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Listing from "./Listing";
 import HeroSecetion from "./Herosection";
+import { UniversityFetch } from "@/services/api";
 
 
-const page = () => {
+export default async function page() {
+  const universityData = await UniversityFetch();
+
   return (
     <>
       <Navbar />
       <HeroSecetion />
-      <Listing />
+      <Listing data={universityData}/>
       <Footer  />
     </>
   );
 };
 
-export default page;

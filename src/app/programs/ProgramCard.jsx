@@ -31,7 +31,6 @@ export const ProgramCard = ({ item }) => {
                 <div className="w-[95%] mx-auto flex flex-col gap-2 h-full p-4 rounded-lg">
                     {/* University Name and Online Badge */}
                     <div className="flex items-center gap-2">
-                        <span className="text-[16px] font-open-sans font-semibold text-[#FF383B]">Amity University</span>
                         <span className="w-fit px-3 py-1 text-[14px] font-inter font-semibold text-[#FF383B] bg-white border border-[#E3E3E3] rounded-lg">
                             Online
                         </span>
@@ -39,20 +38,20 @@ export const ProgramCard = ({ item }) => {
 
                     {/* Title */}
                     <h2 className="font-open-sans text-[18px] lg:text-[20px] leading-[24px] font-semibold ">
-                        {item.title_full}
+                        {item.program_name.full_name}
                     </h2>
 
                     {/* Duration */}
                     <div className="flex justify-between items-center">
                         <span className="text-[14px] lg:text-[16px] font-medium font-rubik text-black">Duration</span>
                         <span className="w-fit px-3 py-2 text-[12px] lg:text-[14px] font-inter font-medium text-[#FF383B] bg-[#FFE3E4] rounded-lg">
-                            {item.duration}
+                            {item.duration_in_months} months
                         </span>
                     </div>
 
                     {/* Description (Grows to Push Button Down) */}
                     <span className="text-[#6D758F] text-[14px] md:text-[16px] leading-[24px] font-rubik font-normal flex-1 ">
-                        {item.description}
+                        {item.program_name.description}
                     </span>
 
                     {/* Button Always at Bottom */}

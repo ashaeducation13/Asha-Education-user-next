@@ -14,7 +14,7 @@ const certdata = [
         title: "AICTE Certificate",
     },
 ]
-const CertificationSection = () => {
+const CertificationSection = ({data}) => {
     return (
         <>
             <section className='containers py-6 border-b border-[#E3E3E3]'>
@@ -24,8 +24,8 @@ const CertificationSection = () => {
                     </h2>
 
                     <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 w-full py-6 justify-center place-items-center'>
-                        {certdata.map((uni, index) => (
-                            <Certcard key={index} imgSrc={uni.imgSrc} title={uni.title}/>
+                        {data.map((uni, index) => (
+                            <Certcard key={index} imgSrc={uni.image} title={uni.name}/>
                         ))}
                     </div>
                 </div>

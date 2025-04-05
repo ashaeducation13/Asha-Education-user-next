@@ -24,9 +24,9 @@ const PartnerCard = ({ course }) => {
 
         {/* Buttons */}
         <div className="p-4 flex gap-3 justify-center">
-          {/* <button className="px-4 py-2 border border-gray-400 text-[#6D758F] font-semibold font-inter text-[12px] rounded-lg hover:bg-gray-100 transition">
+          <button className="px-4 py-2 border border-gray-400 text-[#6D758F] font-semibold font-inter text-[12px] rounded-lg hover:bg-gray-100 transition">
             View Details
-          </button> */}
+          </button>
           <button className="px-2 md:px-4 py-2 bg-[#FF383B] text-white font-semibold font-inter text-[12px] rounded-lg transition cursor-pointer">
             Apply Now
           </button>

@@ -39,33 +39,11 @@ const studentTestimonials = [
   },
 ];
 
-const StudentSwiper = () => {
+const StudentSwiper = ({data}) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-  const [testim, setTestim] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [testim, setTestim] = useState(data || []);
 
-
-  useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      setError(null);
-
-      const data = await TestimonialFetch();
-      console.log('testimonial', data);
-
-      if (data) {
-        setTestim(data);
-
-      } else {
-        setError('Failed to load products');
-      }
-      setLoading(false);
-    };
-
-    getData();
-  }, []);
 
   return (
     <div className="relative w-full mt-6 px-4 md:px-0 pb-16 md:pb-0">
@@ -153,7 +131,7 @@ const StudentSwiper = () => {
   );
 };
 
-function SuccessfulStudents() {
+function SuccessfulStudents({data}) {
   return (
     <section className="bg-red-500 text-white py-14 px-4 md:px-[100px] relative"
       style={{
@@ -173,7 +151,7 @@ function SuccessfulStudents() {
       <p className="text-center font-inter font-normal text-[12px] md:text-[14px] lg:text-[16px] leading-[24px] mb-8">
         98% of students achieved their admission goals.
       </p>
-      <StudentSwiper />
+      <StudentSwiper data={data} />
     </section>
   );
 }
