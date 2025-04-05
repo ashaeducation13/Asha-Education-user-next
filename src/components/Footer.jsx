@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../../src/assets/navbar/logo.png'
 import fb from '../../src/assets/footer/Facebook.svg'
 import tw from '../../src/assets/footer/Twitter.svg'
@@ -13,12 +13,37 @@ import copyright from '../../src/assets/footer/copyright.svg'
 import phn from '../../src/assets/footer/Phone.svg'
 import email from '../../src/assets/footer/Email.svg'
 import Image from "next/image";
+import { AboutusFetch } from '@/services/api';
 
 const Footer = () => {
+    const [aboutus, setAboutus] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+
+    useEffect(() => {
+        const getData = async () => {
+            setLoading(true);
+            setError(null);
+
+            const data = await AboutusFetch();
+            console.log('aboutusdata', data);
+
+            if (data) {
+                setAboutus(data[0]);
+
+            } else {
+                setError('Failed to load products');
+            }
+            setLoading(false);
+        };
+
+        getData();
+    }, []);
     return (
         <footer className="lg:pt-12 md:pt-8 pt-6 pb-8">
             <div className="containers md:mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_0.5fr_1.5fr_1.5fr]  lg:grid-cols-[1fr_0.75fr_1.5fr_1fr] gap-4 lg:gap-6">
 
                     {/* First Section - Logo, Subscription, Social Media */}
                     <div className="space-y-6">
@@ -111,40 +136,42 @@ const Footer = () => {
                     {/* Third Section - Contact Info */}
                     <div>
                         <h3 className="text-[14px] lg:text-[16px] font-medium mb-4">Want to reach us directly</h3>
-                        <ul className="space-y-4 text-[14px] lg:text-[16px] ">
-                            <li className="flex items-start">
-                                <Image src={cont} alt="Youtube" className="h-6 md:h-10 mr-3" />
-                                <div className="text-[#6D758F]" >
-                                    <span className="font-normal">Adress:</span>
-                                    <div className='font-semibold'>
-                                        Example / 656
-                                        <br />
-                                        example, example
+                        <ul className="space-y-4 text-[14px] lg:text-[16px]">
+                            {/* Address */}
+                            <li className="flex items-start gap-2">
+                                <Image src={cont} alt="Address Icon" className="h-6 md:h-10" />
+                                <div className="text-[#6D758F] w-full">
+                                    <span className="font-normal">Address:</span>
+                                    <div className="font-semibold">
+                                        {aboutus.address}
                                     </div>
                                 </div>
                             </li>
-                            <li className="flex items-center">
-                                <Image src={email} alt="Youtube" className="h-6 md:h-10 mr-3" />
-                                <div className="text-[#6D758F] flex flex-col">
+
+                            {/* Email */}
+                            <li className="flex items-start gap-2">
+                                <Image src={email} alt="Email Icon" className="h-6 md:h-10" />
+                                <div className="text-[#6D758F] flex flex-col w-[75%]">
                                     <span className="font-normal">Email:</span>
-                                    <a href="mailto:info@education.com" className="font-semibold transition duration-300">
-                                        info@education.com
+                                    <a href={`mailto:${aboutus.email}`} className="font-semibold transition duration-300 break-words">
+                                        {aboutus.email}
                                     </a>
                                 </div>
                             </li>
-                            <li className="flex items-center">
-                                <Image src={phn} alt="Youtube" className="h-6  md:h-10 mr-3" />
+
+                            {/* Phone */}
+                            <li className="flex items-start gap-2">
+                                <Image src={phn} alt="Phone Icon" className="h-6 md:h-10" />
                                 <div className="text-[#6D758F] flex flex-col">
-                                    <span className="font-normal">
-                                        Phone:
-                                    </span>
-                                    <a href="tel:+1234567890" className="font-semibold transition duration-300">
-                                        +1 (234) 567-890
+                                    <span className="font-normal">Phone:</span>
+                                    <a href={`tel:${aboutus.phone}`} className="font-semibold transition duration-300">
+                                        {aboutus.phone}
                                     </a>
                                 </div>
                             </li>
                         </ul>
                     </div>
+
 
                     {/* Fourth Section - Location */}
                     <div>

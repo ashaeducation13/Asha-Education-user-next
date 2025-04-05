@@ -35,6 +35,31 @@ export const UniversityFetch = async () => {
     return fetchData(`/universities/university`);
   }; 
 
-  export const UniversityFetch = async () => {
-    return fetchData(`/universities/university`);
+export const fetchUniversityById = async (id) => {
+    return fetchData(`/universities/university/${id}/`);
+};
+
+export const ProsConsById = async (id) => {
+  return fetchData(`/universities/university-pros-cons/${id}/`);
+};
+
+export const ProgramFetch = async () => {
+    return fetchData(`/universities/programs`);
   };
+
+export const TestimonialFetch = async () => {
+    return fetchData(`/about/testimonials`);
+  };
+
+export const AboutusFetch = async () => {
+    return fetchData(`/about/about-us`);
+  };
+
+export const SpecializationFetch = async () => {
+    return fetchData(`/universities/specializations`);
+  };
+
+export const TypeFetch = async () => {
+    return fetchData(`/universities/program-types`);
+  };
+
