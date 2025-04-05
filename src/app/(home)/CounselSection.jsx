@@ -8,6 +8,7 @@ import icon1 from '../../assets/topleft.svg'
 import icon2 from '../../assets/topright.svg'
 import icon3 from '../../assets/bottomleft.svg'
 import icon4 from '../../assets/bottomright.svg'
+import ReactPlayer from 'react-player';
 
 const CounselSection = () => {
     const [playVideo, setPlayVideo] = useState(false);
@@ -56,7 +57,8 @@ const CounselSection = () => {
 
                         {playVideo ? (
                             <ReactPlayer
-                                url={null}
+                                url="/videos/vid2.mp4"
+
                                 width="80%"
                                 className="rounded-xl shadow-lg"
                                 controls

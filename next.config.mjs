@@ -2,6 +2,7 @@
 const nextConfig = {
     devIndicators: false,
     images: {
+    unoptimized: true,
     domains: ['backend.asha.education'],  
 },
 };

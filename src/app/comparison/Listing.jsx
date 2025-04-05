@@ -96,8 +96,10 @@ const Listing = ({data}) => {
                         <Image
                           src={logo}
                           alt="compared logo"
-                          width={40}
-                          height={40}
+                          width={100}
+                          height={100}
+                          layout="intrinsic"
+                          quality={100}
                           className="h-10 w-auto object-contain rounded-[5px] border border-[#EDEDED] px-1"
                         />
                         <Image
@@ -205,9 +207,12 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
         <span className="absolute top-2 md:top-3 left-2 w-[90px] h-[30px] md:w-[80px] md:h-[30px] lg:w-[120px] lg:h-[50px] bg-white rounded-[5px] flex justify-center items-center p-1">
           <Image
             src={item.university.logo}
-            fill
+            width={100}
+            height={100}
+            quality={100}
             alt="logo"
-            className="object-contain w-full h-full"
+            layout="intrinsic"
+            className="object-contain h-15 w-auto"
           // sizes="(max-width: 768px) 90px, (max-width: 1024px) 95px, 120px"
           />
         </span>

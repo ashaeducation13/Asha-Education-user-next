@@ -4,6 +4,7 @@ import Image from "next/image";
 import thumbnail from '../../assets/home/Trustsection/thumbnail.webp'
 import play from '../../assets/home/Trustsection/play.svg'
 import topright from '../../assets/topright.svg'
+import ReactPlayer from "react-player";
 
 const TrustSection = () => {
     const [playVideo, setPlayVideo] = useState(false);
@@ -13,7 +14,7 @@ const TrustSection = () => {
                 <div className="md:w-[40%] relative md:ml-10  flex items-stretch">
                     {playVideo ? (
                         <ReactPlayer
-                            url={null}
+                            url="/videos/vid1.mp4"
                             width="100%"
                             height="100%"
                             className="rounded-xl shadow-lg"
@@ -34,7 +35,6 @@ const TrustSection = () => {
                             <Image src={play} alt="Play Button" className="w-16 h-16 opacity-80" />
                         </div>
                     </div>
-                    
                     )}
                 </div>
 
