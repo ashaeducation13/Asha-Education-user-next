@@ -68,3 +68,52 @@ export const TypeFetch = async () => {
     return fetchData(`/universities/program-types`);
   };
 
+
+
+  export const submitCounselForm = async (formData) => {
+    const url = `${BASE_URL}/about/enquire/`; // ⬅️ Replace with the actual endpoint
+  
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.statusText}`);
+      }
+  
+      return await response.json();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      throw error;
+    }
+  };
+  
+
+  export const contactForm = async (formData) => {
+    const url = `${BASE_URL}/about/contact/`; // ⬅️ Replace with the actual endpoint
+  
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.statusText}`);
+      }
+  
+      return await response.json();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      throw error;
+    }
+  };
+  
