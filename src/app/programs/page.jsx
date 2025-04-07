@@ -5,15 +5,23 @@ import Listing from './Listing'
 import Footer from '@/components/Footer'
 import { ProgramFetch } from '@/services/api'
 
-export default async function page() {
+export default async function Page({ searchParams }) {
     const prData = await ProgramFetch();
     console.log("programData", prData);
+    const selectedPgrm = searchParams?.pgrm || '' ;
     
+    const filteredData = selectedPgrm
+        ? prData.filter((item) =>
+            item.category
+                ?.toLowerCase()
+                .includes(selectedPgrm.toLowerCase())
+        )
+        : prData; 
     return (
         <>
             <Navbar />
             <Herosection />
-            <Listing data={prData}/>
+            <Listing data={filteredData}/>
             <Footer />
         </>
     )

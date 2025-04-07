@@ -62,6 +62,30 @@ const Listing = ({ data }) => {
     (selectedSpecialization ? p.specialization?.name === selectedSpecialization : true)
   );
 
+  const downloadFile = (url, event) => {
+    // Prevent any default behavior
+    event.preventDefault();
+
+    // Create link element
+    const link = document.createElement('a');
+    link.href = url;
+
+    // Set download attribute to force download behavior
+    link.setAttribute('download', 'brochure.pdf');
+
+    // Set additional attribute to help browsers recognize as download
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+
+    // Append to DOM, click, and remove
+    document.body.appendChild(link);
+    link.click();
+
+    // Small timeout to ensure download starts before removal
+    setTimeout(() => {
+      document.body.removeChild(link);
+    }, 100);
+  };
   return (
     <>
       <section className="containers border-b border-b-[#E1E4ED]">
@@ -95,9 +119,9 @@ const Listing = ({ data }) => {
             ))}
           </ul>
           {/* <ul className="flex gap-2 items-center">
-              <Image src={filterIcon} alt="icon" height={18} />
-              <span className="text-[#FF383B] text-[16px]">Filter by state</span>
-            </ul> */}
+                <Image src={filterIcon} alt="icon" height={18} />
+                <span className="text-[#FF383B] text-[16px]">Filter by state</span>
+              </ul> */}
         </div>
 
         <div className="mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] pt-5 pb-10">
@@ -138,7 +162,7 @@ const Listing = ({ data }) => {
                     </div>
                   ))}
                 </div>
-                <Link href={`/comparison/id?ids=${idsString}`}>
+                <Link href={`/comparison/d?pg=${selectedProgram.specialization.id}&spec=${selectedProgram.program_name.id}&ids=${idsString}`}>
                   <button className="w-full bg-[#FF383B] py-[10px] font-inter px-4 font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md">
                     Show Result
                   </button>
@@ -149,7 +173,7 @@ const Listing = ({ data }) => {
             {/* Mobile select dropdown */}
             <select
               className="md:hidden p-[16px] text-[#696969]  text-[12px] border border-[#F1F3F7] bg-white rounded-[6px] w-fit
-                              hover:ring-2 hover:ring-[#FF383B] focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
+                                hover:ring-2 hover:ring-[#FF383B] focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
               value={selectedSpecialization || ""}
               onChange={(e) => {
                 setSelectedSpecialization(e.target.value || specializationList[0]);
@@ -176,10 +200,10 @@ const Listing = ({ data }) => {
                         setComparedId([]);
                       }}
                       className={`cursor-pointer p-[16px] text-[14px] rounded-[6px] border font-bold shadow-lg
-              ${selectedSpecialization === spec
+                ${selectedSpecialization === spec
                           ? "border-[#FF383B] text-[#696969]"
                           : "bg-white text-[#696969] border-[#F1F3F7]"}
-            `}
+              `}
                     >
                       {spec}
 
@@ -211,9 +235,8 @@ const Listing = ({ data }) => {
                               </div>
                             ))}
                           </div>
-                          <Link href={`/comparison/id?ids=${idsString}`}>
+                          <Link href={`/comparison/d?pg=${selectedProgram.specialization.id}&spec=${selectedProgram.program_name.id}&ids=${idsString}`}>
                             <button className="w-full bg-[#FF383B] py-[10px] font-inter px-4 font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md">
-
                               Show Result
                             </button>
                           </Link>
@@ -253,6 +276,30 @@ const Listing = ({ data }) => {
 
 export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
   console.log("carddata", item);
+  const downloadFile = (url, event) => {
+    // Prevent any default behavior
+    event.preventDefault();
+
+    // Create link element
+    const link = document.createElement('a');
+    link.href = url;
+
+    // Set download attribute to force download behavior
+    link.setAttribute('download', 'brochure.pdf');
+
+    // Set additional attribute to help browsers recognize as download
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+
+    // Append to DOM, click, and remove
+    document.body.appendChild(link);
+    link.click();
+
+    // Small timeout to ensure download starts before removal
+    setTimeout(() => {
+      document.body.removeChild(link);
+    }, 100);
+  };
 
   return (
     <section
@@ -300,28 +347,38 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
           {item.university.name}
         </h2>
 
+        <h2 className="text-[12px] md:text-[13px] lg:text-[14px] xl:text-[16px] leading-tight font-medium">
+          {item.specialization.str_representation}
+        </h2>
+
         <span className="flex justify-start items-center gap-1.5 md:gap-2">
           <Image
             src={star}
             alt="icon"
             className="w-[14px] h-[14px] md:w-[15px] md:h-[15px] lg:w-[18px] lg:h-[18px]"
           />
-          <span className="text-xs md:text-[13px] lg:text-[14px]">{item.rating}</span>
+          <span className="text-xs md:text-[13px] lg:text-[14px]">{item.university.rating} / 5 </span>
         </span>
-
-        <span className="w-fit bg-[#FFE3E4] inline-flex items-center justify-start gap-2 px-3 md:px-3.5 py-1.5 rounded-[8px]">
-          <Image
-            src={once}
-            alt="icon"
-            className="w-[14px] h-[14px] md:w-[15px] md:h-[15px] lg:w-[18px] lg:h-[18px]"
-          />
-          <span className="text-xs md:text-[13px] lg:text-[14px] text-[#FF383B] whitespace-nowrap">
-            Brouchure
-          </span>
-        </span>
+        {item.brochure && (
+          
+            <button onClick={(e) => downloadFile(item.brochure, e)} className="w-fit bg-[#FFE3E4] inline-flex items-center justify-start gap-2 px-3 md:px-3.5 py-1.5 rounded-[8px]">
+              <Image
+                src={once}
+                alt="icon"
+                className="w-[14px] h-[14px] md:w-[15px] md:h-[15px] lg:w-[18px] lg:h-[18px]"
+              />
+              <span className="text-xs md:text-[13px] lg:text-[14px] text-[#FF383B] whitespace-nowrap">
+                Brouchure
+              </span>
+            </button>)}
 
         <span className="text-[#6D758F] text-xs md:text-[13px] lg:text-[14px] xl:text-[16px]">
-          {item.affiliation}
+          {item.university.certifications
+            .slice(0, 4) // Limit to first 4
+            .map(cert => cert.name)
+            .join(', ') +
+            (item.university.certifications.length > 4 ? ', ...' : '')}
+
         </span>
 
         <div className="flex justify-between gap-2 md:gap-3 items-center mt-1">

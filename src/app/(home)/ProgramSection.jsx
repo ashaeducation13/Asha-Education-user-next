@@ -13,19 +13,20 @@ import bottomleft from '../../assets/bottomleft.svg'
 import bottomright from '../../assets/bottomright.svg'
 
 import lines from '../../assets/home/programsection/lines.svg'
+import Link from "next/link";
 
 const programs = [
-    { image: img1, title: "Undergraduate Programs" },
-    { image: img2, title: "Postgraduate Programs" },
-    { image: img3, title: "Doctoral Programs" },
-    { image: img4, title: "Specialized MBAs" },
+    { image: img1, title: "Undergraduate Programs", key: "UG" },
+    { image: img2, title: "Postgraduate Programs", key: "PG" },
+    { image: img3, title: "Doctoral Programs", key: "Doctoral" },
+    { image: img4, title: "Specialized MBAs", key: "Specialized MBA" },
 ];
 
 const ProgramsSection = () => {
     const [hoveredIndex, setHoveredIndex] = useState(0); // Default to first card hovered
     return (
         <section
-            
+
             style={{
                 backgroundImage: `url(${bg.src})`,
                 backgroundSize: "cover",
@@ -87,15 +88,17 @@ const ProgramsSection = () => {
 
                     {/* Cards */}
                     {programs.map((program, index) => (
-                        <ProgramCard
-                            key={index}
-                            image={program.image}
-                            title={program.title}
-                            hover={hoveredIndex === index}
-                            previousHover={hoveredIndex}
-                            onMouseEnter={() => setHoveredIndex(index)}
-                        />
+                        <Link href={`/programs?pgrm=${program.key}`} passHref key={index}>
+                            <ProgramCard
+                                image={program.image}
+                                title={program.title}
+                                hover={hoveredIndex === index}
+                                previousHover={hoveredIndex}
+                                onMouseEnter={() => setHoveredIndex(index)}
+                            />
+                        </Link>
                     ))}
+
                 </div>
 
             </div>
