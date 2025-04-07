@@ -3,7 +3,7 @@ import image1 from '../../../assets/program/image25.png'
 import image2 from '../../../assets/program/image26.png'
 import image3 from '../../../assets/program/image27.png'
 import image4 from '../../../assets/program/image28.png'
-import Certcard from './Certcard'
+import Certcard from './CertCard'
 
 
 const certdata = [
