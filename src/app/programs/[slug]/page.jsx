@@ -1,10 +1,14 @@
 import HeroSection from './HeroSection'
 import CertificationSection from './CertificationSection'
+import { ProgramFetchById } from '@/services/api';
 
-export default function page() {
+export default async function page({ params }) {
+  const programId = params.slug;
+  const prData = await ProgramFetchById(programId);
+  
   return (
     <div>
-        <HeroSection />
+        <HeroSection data={prData} />
         <CertificationSection />
     </div>
   )

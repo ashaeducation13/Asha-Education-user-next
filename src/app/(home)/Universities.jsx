@@ -83,10 +83,10 @@ const Universities = ({ data }) => {
                     ))} */}
 
                     {/* Desktop Buttons (Hidden on small screens) */}
-                    <div className="flex-col justify-between w-full max-w-[640px] mx-auto gap-2 items-center mt-6 hidden md:flex">
+                    <div className="flex-col justify-between w-full max-w-[640px] mx-auto gap-4 items-center hidden md:flex mt-1">
                         <Link href="/programs" passHref>
                             <button
-                                className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full"
+                                className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 text-white md:px-[40px]  lg:px-[54px] xl:px-20 py-3 rounded-lg shadow-md transition duration-300 text-[14px] w-full whitespace-nowrap"
                                 style={{
                                     backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
                                 }}
@@ -102,7 +102,7 @@ const Universities = ({ data }) => {
                         <Link href="/comparison" passHref>
 
                             <button
-                                className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full border border-gray-300 bg-white hover:bg-gray-100"
+                                className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 md:px-[40px] lg:px-[51px] py-3 xl:px-20 rounded-lg shadow-md transition duration-300 text-[14px] w-full border border-gray-300 bg-white hover:bg-gray-100 whitespace-nowrap"
                             >
                                 Compare Universities
                                 <Image
@@ -121,19 +121,19 @@ const Universities = ({ data }) => {
                 <div className="w-full flex justify-end overflow-hidden">
                     <Swiper
                         slidesPerView={1}
-                        spaceBetween={0}
+                        spaceBetween={16}
                         loop={true}
                         autoplay={{ delay: 1000, disableOnInteraction: false }}
                         breakpoints={{
-                            640: { slidesPerView: 1.5 },
-                            768: { slidesPerView: 2 },
-                            1024: { slidesPerView: 2, spaceBetween: 5 },
-                            1440: { slidesPerView: 3.5, spaceBetween: 10 },
+                            640: { slidesPerView: 1.5, spaceBetween: 16 },
+                            768: { slidesPerView: 2.1, spaceBetween: 16 },
+                            1024: { slidesPerView: 2.3, spaceBetween: 20 },
+                            1440: { slidesPerView: 3.5, spaceBetween: 24 },
                         }}
                         className="w-full"
                     >
                         {selectedUniversity?.programs?.map((course) => (
-                            <SwiperSlide key={course.id} className="flex justify-center px-1 py-5">
+                            <SwiperSlide key={course.id} className="flex justify-center py-5">
                                 <PartnerCard course={course} onApplyClick={() => setShowModal(true)}  />  {/* Pass as a single prop */}
 
                             </SwiperSlide>
@@ -141,9 +141,9 @@ const Universities = ({ data }) => {
                     </Swiper>
                 </div>
             </section>
-            <div className="containers flex justify-between w-full max-w-[640px] mx-auto gap-2 items-center py-6 md:hidden">
+            <div className="containers flex justify-between w-full max-w-[640px] mx-auto md:gap-2 gap-1 items-center md:py-6 md:hidden">
                 <button
-                    className="flex items-center justify-center font-inter font-semibold gap-2 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full"
+                    className="flex items-center justify-center font-inter font-semibold gap-2 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 text-[12px] md:text-[14px] w-full whitespace-nowrap"
                     style={{
                         backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
                     }}
@@ -157,7 +157,7 @@ const Universities = ({ data }) => {
                 </button>
 
                 <button
-                    className="flex items-center justify-center font-inter font-semibold gap-2 px-4 py-2 rounded-lg shadow-md transition duration-300 text-[14px] w-full border border-gray-300 bg-white hover:bg-gray-100"
+                    className="flex items-center justify-center font-inter font-semibold gap-2 px-4 py-2 rounded-lg shadow-md transition duration-300 text-[12px] md:text-[14px] w-full border border-gray-300 bg-white hover:bg-gray-100 whitespace-nowrap"
                 >
                     Compare Universities
                     <Image

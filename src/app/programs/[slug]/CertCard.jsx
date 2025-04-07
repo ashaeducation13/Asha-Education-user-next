@@ -6,7 +6,7 @@ const Certcard = ({ imgSrc }) => {
       <div className="bg-white py-6 flex flex-col items-center text-center">
         {/* Image */}
         <div className="mb-4">
-          <Image src={imgSrc} className="w-full h-full" />
+          <Image src={imgSrc} alt='img' className="w-full h-full" />
         </div>
       </div>
     );
