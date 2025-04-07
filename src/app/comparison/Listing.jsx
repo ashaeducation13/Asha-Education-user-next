@@ -14,34 +14,30 @@ import arrow from "../../assets/universities/arrow.svg";
 import { ProgramCard } from '../../app/programs/ProgramCard';
 import Link from "next/link";
 
-const Listing = ({data}) => {
+const Listing = ({ data }) => {
   const [selectedCourse, setSelectedCourse] = useState(Courses[0]);
   const [comparedLogos, setComparedLogos] = useState([]);
-    const [comparedId, setComparedId] = useState([]);
+  const [comparedId, setComparedId] = useState([]);
 
-    const handleAddToCompare = (logo) => {
-      if (comparedLogos.length < 2) {
-        // Add logo to comparedLogos
-        setComparedLogos((prevLogos) => [...prevLogos, logo]);
-  
-        // Add logo.id to comparedId (ensuring prevIds is an array)
-        setComparedId((prevIds) => [...(prevIds || []), logo.id]); // Use fallback to [] if prevIds is not defined
-      }
-    };
-  
-    const handleRemoveLogo = (index) => {
-      const logoToRemove = comparedLogos[index];
-      
-      // Remove logo from comparedLogos
-      setComparedLogos((prevLogos) => prevLogos.filter((_, i) => i !== index));
-  
-      // Remove logo.id from comparedId (ensuring prevIds is an array)
-      setComparedId((prevIds) => (prevIds || []).filter((id) => id !== logoToRemove.id)); // Ensure prevIds is an array
-    };
-    const idsString = comparedId.join(',');
-    console.log(idsString);
+  const handleAddToCompare = (logo) => {
+    if (comparedLogos.length < 2 && !comparedId.includes(logo.id)) {
+      setComparedLogos((prevLogos) => [...prevLogos, logo]);
+      setComparedId((prevIds) => [...(prevIds || []), logo.id]);
+    }
+  };
+
+  const handleRemoveLogo = (index) => {
+    const logoToRemove = comparedLogos[index];
+
+    // Remove logo from comparedLogos
+    setComparedLogos((prevLogos) => prevLogos.filter((_, i) => i !== index));
+
+    // Remove logo.id from comparedId (ensuring prevIds is an array)
+    setComparedId((prevIds) => (prevIds || []).filter((id) => id !== logoToRemove.id)); // Ensure prevIds is an array
+  };
+  const idsString = comparedId.join(',');
+  console.log(idsString);
   const [selectedProgram, setSelectedProgram] = useState(data[0]);
-  const [selectedSpecialization, setSelectedSpecialization] = useState(null);
 
   // Unique programs by program_type_name
   const uniquePrograms = Array.from(
@@ -57,24 +53,37 @@ const Listing = ({data}) => {
     )
   );
 
+  // Initialize with first specialization instead of null
+  const [selectedSpecialization, setSelectedSpecialization] = useState(specializationList[0] || null);
+
   // Filter programs
   const filteredPrograms = data.filter(p =>
     p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name &&
     (selectedSpecialization ? p.specialization?.name === selectedSpecialization : true)
   );
 
-
   return (
     <>
       <section className="containers border-b border-b-[#E1E4ED]">
-        <div className="mx-auto flex justify-between items-center py-5 overflow-scroll">
+        <div className="mx-auto flex justify-between items-center py-5 overflow-x-scroll">
           <ul className="flex gap-[6px]">
             {uniquePrograms.map((item, index) => (
               <li
                 key={index}
                 onClick={() => {
                   setSelectedProgram(item);
-                  setSelectedSpecialization(null);
+                  setComparedLogos([]);
+                  setComparedId([]);
+
+                  // Select first specialization of the newly selected program
+                  const newSpecList = Array.from(
+                    new Set(
+                      data
+                        .filter(p => p.specialization?.program_type_name === item.specialization?.program_type_name)
+                        .map(p => p.specialization?.name)
+                    )
+                  );
+                  setSelectedSpecialization(newSpecList[0] || null);
                 }}
                 className={`cursor-pointer ${selectedProgram.specialization?.program_type_name === item.specialization?.program_type_name
                   ? "bg-[#FF383B] text-white"
@@ -86,26 +95,25 @@ const Listing = ({data}) => {
             ))}
           </ul>
           {/* <ul className="flex gap-2 items-center">
-            <Image src={filterIcon} alt="icon" height={18} />
-            <span className="text-[#FF383B] text-[16px]">Filter by state</span>
-          </ul> */}
+              <Image src={filterIcon} alt="icon" height={18} />
+              <span className="text-[#FF383B] text-[16px]">Filter by state</span>
+            </ul> */}
         </div>
 
         <div className="mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] pt-5 pb-10">
           {/* First column for specializations */}
           <div>
-            
 
             {/* Compare section */}
             {comparedLogos.length > 0 && (
-              <div className="px-[10px] py-[10px] flex gap-4 flex-col rounded-[6px] border-[1px] border-[#0A0078] mb-4">
-                <h1 className="font-rubik font-normal text-[16px] leading-[16px] text-[#696969]">
-                  {selectedCourse.specs[0]}
+              <div className="md:hidden px-[10px] py-[10px] flex gap-4 flex-col rounded-[6px] border-[1px] border-[#000000] mb-4">
+                <h1 className="font-rubik font-normal gap-2 px-4 py-2 rounded-lg text-[12px] w-full">
+                  Add to Compare
                 </h1>
                 <div className="flex gap-2 my-2 items-center">
                   {comparedLogos.map((logo, index) => (
                     <div key={index} className="flex items-center gap-2">
-                       <div className="relative">
+                      <div className="relative">
                         <Image
                           src={logo.logo}
                           alt="compared logo"
@@ -131,23 +139,25 @@ const Listing = ({data}) => {
                   ))}
                 </div>
                 <Link href={`/comparison/id?ids=${idsString}`}>
-                <button className="bg-[#FF383B] py-[10px] font-inter font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md">
-                  Show Result
-                </button>
-                </Link> 
+                  <button className="w-full bg-[#FF383B] py-[10px] font-inter px-4 font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md">
+                    Show Result
+                  </button>
+                </Link>
               </div>
             )}
 
             {/* Mobile select dropdown */}
             <select
-              className="md:hidden p-[16px] text-[#696969] text-[12px] border border-[#F1F3F7] bg-white rounded-[6px] w-fit
-                             hover:ring-2 hover:ring-[#FF383B] focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
+              className="md:hidden p-[16px] text-[#696969]  text-[12px] border border-[#F1F3F7] bg-white rounded-[6px] w-fit
+                              hover:ring-2 hover:ring-[#FF383B] focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
               value={selectedSpecialization || ""}
-              onChange={(e) =>
-                setSelectedSpecialization(e.target.value || null)
-              }
+              onChange={(e) => {
+                setSelectedSpecialization(e.target.value || specializationList[0]);
+                setComparedLogos([]);
+                setComparedId([]);
+              }}
+
             >
-              <option value="">Select Specialization</option>
               {specializationList.map((spec, i) => (
                 <option key={i} value={spec}>{spec}</option>
               ))}
@@ -155,27 +165,67 @@ const Listing = ({data}) => {
 
             {/* MD+ specialization list */}
             <div className="hidden md:flex flex-col gap-3">
-              <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold ">Specialisations</h2>
+              <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold">Specialisations</h2>
               <ul className="flex flex-col gap-2">
                 {specializationList.map((spec, i) => (
-                  <li
-                    key={i}
-                    onClick={() =>
-                      setSelectedSpecialization(prev =>
-                        prev === spec ? null : spec
-                      )
-                    }
-                    className={`cursor-pointer p-[16px] text-[14px] rounded-[6px] border  shadow-lg
-                                        ${selectedSpecialization === spec
-                        ? "border-[#FF383B] text-[#FF383B]"
-                        : "bg-white text-[#696969] border-[#F1F3F7]"
-                      }`}
-                  >
-                    {spec}
+                  <li key={i} className="flex flex-col gap-2">
+                    <div
+                      onClick={() => {
+                        setSelectedSpecialization(spec);
+                        setComparedLogos([]);
+                        setComparedId([]);
+                      }}
+                      className={`cursor-pointer p-[16px] text-[14px] rounded-[6px] border font-bold shadow-lg
+              ${selectedSpecialization === spec
+                          ? "border-[#FF383B] text-[#696969]"
+                          : "bg-white text-[#696969] border-[#F1F3F7]"}
+            `}
+                    >
+                      {spec}
+
+                      {/* Conditionally render Add to Compare inside selected spec */}
+                      {selectedSpecialization === spec && comparedLogos.length > 0 && (
+                        <div className="px-[10px] py-[10px] flex gap-4 flex-col rounded-[6px]  ">
+
+                          <div className="flex gap-2 my-2 items-center">
+                            {comparedLogos.map((logo, index) => (
+                              <div key={index} className="flex items-center gap-2">
+                                <div className="relative">
+                                  <Image
+                                    src={logo.logo}
+                                    alt="compared logo"
+                                    width={40}
+                                    height={40}
+                                    className="h-10 w-auto object-contain rounded-[5px] border border-[#EDEDED] px-1"
+                                  />
+                                  <Image
+                                    src={cross}
+                                    alt="cross"
+                                    className="absolute -top-2 -right-2 cursor-pointer"
+                                    onClick={() => handleRemoveLogo(index)}
+                                  />
+                                </div>
+                                {index < comparedLogos.length - 1 && (
+                                  <Image src={plus} alt="add more" className="h-6 w-6" />
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                          <Link href={`/comparison/id?ids=${idsString}`}>
+                            <button className="w-full bg-[#FF383B] py-[10px] font-inter px-4 font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md">
+
+                              Show Result
+                            </button>
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+
                   </li>
                 ))}
               </ul>
             </div>
+
 
           </div>
 
@@ -183,8 +233,8 @@ const Listing = ({data}) => {
           <div className="flex flex-col xl:mx-8">
             <div className="grid grid-row md:grid-cols-2 gap-2 xl:gap-16">
               {/* {filteredPrograms.map((item, index) => (
-                <ProgramCard key={index} item={item} />
-              ))} */}
+                  <ProgramCard key={index} item={item} />
+                ))} */}
               {filteredPrograms.map((item, index) => (
                 <Card
                   key={index}
@@ -202,14 +252,14 @@ const Listing = ({data}) => {
 };
 
 export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
-  console.log("carddata",item);
+  console.log("carddata", item);
 
   return (
     <section
       className="h-auto flex flex-col gap-3 md:gap-3.5 lg:gap-4 border border-[#0A0078] rounded-[18px] 
-      md:px-2.5 pt-2.5 pb-3 md:pt-3 md:pb-4 lg:pb-5
-      hover:shadow-[0px_12.05px_26.77px_0px_#0000001A,0px_48.86px_48.86px_0px_#00000017,0px_110.43px_66.26px_0px_#0000000D,0px_196.09px_78.3px_0px_#00000003,0px_307.19px_85.67px_0px_#00000000] 
-      cursor-pointer transition-shadow duration-200"
+        md:px-2.5 pt-2.5 pb-3 md:pt-3 md:pb-4 lg:pb-5
+        hover:shadow-[0px_12.05px_26.77px_0px_#0000001A,0px_48.86px_48.86px_0px_#00000017,0px_110.43px_66.26px_0px_#0000000D,0px_196.09px_78.3px_0px_#00000003,0px_307.19px_85.67px_0px_#00000000] 
+        cursor-pointer transition-shadow duration-200"
     >
       {/* Image Container - Adjusted for tablet spacing */}
       <div
@@ -244,10 +294,10 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
       {/* Rest of the card content remains the same as previous optimized version */}
       <div className="w-full px-1 md:px-1.5 flex flex-col gap-2 md:gap-2.5 lg:gap-3">
         {/* <h2 className="text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] leading-tight font-semibold">
-        {item.program_name.full_name}
-        </h2> */}
+          {item.program_name.full_name}
+          </h2> */}
         <h2 className="text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] leading-tight font-semibold">
-        {item.university.name}
+          {item.university.name}
         </h2>
 
         <span className="flex justify-start items-center gap-1.5 md:gap-2">
@@ -293,7 +343,7 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
 
           <button
             className="flex-1 text-xs md:text-[13px] lg:text-[14px] text-[#6D758F] font-semibold rounded-[8px] 
-            flex justify-center items-center border border-[#D9D9D9] px-2 py-2 md:px-3 hover:bg-gray-50 transition-colors duration-200"
+              flex justify-center items-center border border-[#D9D9D9] px-2 py-2 md:px-3 hover:bg-gray-50 transition-colors duration-200"
           >
             View Details
           </button>

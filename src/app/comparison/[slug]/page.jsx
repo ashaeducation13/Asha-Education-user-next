@@ -9,15 +9,16 @@ export default async function Page({ params, searchParams }) {
   const slug = params.slug; // dynamic segment (like "id")
   const ids = searchParams?.ids?.split(',') || [];
 
-  console.log("slug from URL:", slug);     // e.g. 'id'
-  console.log("ids from query string:", ids); // e.g. ['1', '2']
-    
-    // const prData = await ProsConsById(id);
+  const [id1, id2] = ids;
+
+  const prData = await ProsConsById(id1);
+  const prData2 = await ProsConsById(id2);
+
   
   return (
     <div>
       <Navbar />
-      <BestCollege />
+      <BestCollege data1={prData} data2={prData2} />
       <Footer />
       <Modal />
     </div>
