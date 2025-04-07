@@ -13,20 +13,7 @@ import { cardData } from "./Data";
 
 export default function ComparisonCard({ pros, cons }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const prosItems = [
-  //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  // ];
-  // const consItems = [
-  //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  // ];
+
   return (
     <>
       <div className="rounded-[10px] p-4 md:p-6 bg-[#FFF2F2] w-full max-w-full overflow-hidden">
@@ -53,10 +40,6 @@ export default function ComparisonCard({ pros, cons }) {
 
         {/* Price Section */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-[30px] mb-4">
-          <span className="font-rubik font-medium text-[12px] md:text-[14px] lg:text-[16px] leading-tight text-[#FF383B] flex items-center gap-1">
-            <Image src={rupees} alt="Rupees" className="w-3 h-4" />
-            98,000 / Year
-          </span>
           
           <button className="px-2 py-1 bg-[#FFE3E4] text-[#FF383B] rounded-md flex items-center gap-1 font-inter font-medium text-[12px] md:text-[14px] leading-tight w-fit">
             <Image src={download} alt="Download" className="w-3 h-4" />
@@ -74,7 +57,7 @@ export default function ComparisonCard({ pros, cons }) {
               {pros.map((item, index) => (
                 <li key={index} className="font-rubik font-normal text-[12px] md:text-[14px] lg:text-[16px] leading-[1.5] text-[#121212] flex items-start gap-2">
                   <Image src={greentick} alt="greentick" className="w-4 h-4 md:w-5 md:h-5 mt-0.5 flex-shrink-0" />
-                  <span>{item}</span>
+                  <span>{item.description}</span>
                 </li>
               ))}
             </ul>
@@ -88,7 +71,7 @@ export default function ComparisonCard({ pros, cons }) {
               {cons.map((item, index) => (
                 <li key={index} className="font-rubik font-normal text-[12px] md:text-[14px] lg:text-[16px] leading-[1.5] text-[#121212] flex items-start gap-2">
                   <Image src={redtick} alt="redtick" className="w-4 h-4 md:w-5 md:h-5 mt-0.5 flex-shrink-0" />
-                  <span>{item}</span>
+                  <span>{item.description}</span>
                 </li>
               ))}
             </ul>
