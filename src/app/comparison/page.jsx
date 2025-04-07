@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Listing from "./Listing";
 import { ProgramFetch } from "@/services/api";
 
-export default async function page ({params}){
+export default async function page (){
     const prData = await ProgramFetch();
 
   return (
@@ -17,4 +17,3 @@ export default async function page ({params}){
     </>
   );
 };
-

@@ -12,21 +12,34 @@ import star from "../../assets/universities/star.svg";
 import once from "../../assets/universities/once.svg";
 import arrow from "../../assets/universities/arrow.svg";
 import { ProgramCard } from '../../app/programs/ProgramCard';
+import Link from "next/link";
 
 const Listing = ({data}) => {
   const [selectedCourse, setSelectedCourse] = useState(Courses[0]);
   const [comparedLogos, setComparedLogos] = useState([]);
+    const [comparedId, setComparedId] = useState([]);
 
-  const handleAddToCompare = (logo) => {
-    if (comparedLogos.length < 2) {
-      setComparedLogos([...comparedLogos, logo]);
-    }
-  };
-
-  const handleRemoveLogo = (index) => {
-    setComparedLogos(comparedLogos.filter((_, i) => i !== index));
-  };
-
+    const handleAddToCompare = (logo) => {
+      if (comparedLogos.length < 2) {
+        // Add logo to comparedLogos
+        setComparedLogos((prevLogos) => [...prevLogos, logo]);
+  
+        // Add logo.id to comparedId (ensuring prevIds is an array)
+        setComparedId((prevIds) => [...(prevIds || []), logo.id]); // Use fallback to [] if prevIds is not defined
+      }
+    };
+  
+    const handleRemoveLogo = (index) => {
+      const logoToRemove = comparedLogos[index];
+      
+      // Remove logo from comparedLogos
+      setComparedLogos((prevLogos) => prevLogos.filter((_, i) => i !== index));
+  
+      // Remove logo.id from comparedId (ensuring prevIds is an array)
+      setComparedId((prevIds) => (prevIds || []).filter((id) => id !== logoToRemove.id)); // Ensure prevIds is an array
+    };
+    const idsString = comparedId.join(',');
+    console.log(idsString);
   const [selectedProgram, setSelectedProgram] = useState(data[0]);
   const [selectedSpecialization, setSelectedSpecialization] = useState(null);
 
@@ -92,9 +105,9 @@ const Listing = ({data}) => {
                 <div className="flex gap-2 my-2 items-center">
                   {comparedLogos.map((logo, index) => (
                     <div key={index} className="flex items-center gap-2">
-                      <div className="relative">
+                       <div className="relative">
                         <Image
-                          src={logo}
+                          src={logo.logo}
                           alt="compared logo"
                           width={40}
                           height={40}
@@ -117,9 +130,11 @@ const Listing = ({data}) => {
                     </div>
                   ))}
                 </div>
+                <Link href={`/comparison/id?ids=${idsString}`}>
                 <button className="bg-[#FF383B] py-[10px] font-inter font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md">
                   Show Result
                 </button>
+                </Link> 
               </div>
             )}
 
@@ -174,7 +189,7 @@ const Listing = ({data}) => {
                 <Card
                   key={index}
                   item={item}
-                  onAddToCompare={() => handleAddToCompare(item.university.logo)}
+                  onAddToCompare={() => handleAddToCompare(item.university)}
                   isCompareDisabled={comparedLogos.length >= 2}
                 />
               ))}

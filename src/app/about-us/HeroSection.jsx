@@ -12,6 +12,7 @@ import float5 from "../../assets/home/herosection/float5.svg";
 import float6 from "../../assets/home/herosection/float6.svg";
 import float7 from "../../assets/home/herosection/float7.svg";
 import float8 from "../../assets/home/herosection/float8.svg";
+import ReactPlayer from "react-player";
 
 function HeroSection() {
   const [playVideo, setPlayVideo] = useState(false);
@@ -243,7 +244,8 @@ function HeroSection() {
           <div className="flex flex-col gap-6 order-1 md:order-2">
             {playVideo ? (
               <ReactPlayer
-                url={null}
+              url="/videos/vid3.mp4"
+
                 width="450px"
                 className="rounded-xl shadow-lg"
                 controls

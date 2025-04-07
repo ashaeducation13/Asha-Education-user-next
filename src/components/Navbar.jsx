@@ -4,6 +4,7 @@ import Image from "next/image";
 import logo from "../assets/navbar/logo.png";
 import Link from "next/link";
 import circle from "../assets/about-us/circle-ellipsis 1.svg";
+import MainForm from "./Forms/MainForm";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +21,7 @@ const Navbar = () => {
   const closeDropdowns = () => {
     setActiveDropdown(null);
   };
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <nav className="mt-4 rounded-[20px] relative z-50">
@@ -125,26 +127,28 @@ const Navbar = () => {
             </div>
 
             {/* Enquire Now Button */}
-            <a
-              href="#"
-              className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-rubik rounded-md text-white  bg-[#FF383B] hover:bg-red-300"
+            <button
+              onClick={() => setShowModal(true)}
+              className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-rubik rounded-md text-white bg-[#FF383B] hover:bg-red-300"
             >
               <span className="hidden lg:inline font-inter font-semibold text-[14px] leading-[20px]">
                 Get Free Counseling
               </span>
-            </a>
+            </button>
+
           </div>
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center">
-            <a
-              href="#"
-              className="ml-4 inline-flex items-center px-2 py-1 border border-transparent text-sm font-rubik rounded-md text-white  bg-[#FF383B] hover:bg-red-300"
+            <button
+              onClick={() => setShowModal(true)}
+              className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-rubik rounded-md text-white bg-[#FF383B] hover:bg-red-300"
             >
-              <span className="lg:hidden font-inter font-semibold text-[12px] md:text-[14px] leading-[20px]">
-                Enquire Now
+              <span className="hidden lg:inline font-inter font-semibold text-[14px] leading-[20px]">
+                Get Free Counseling
               </span>
-            </a>
+            </button>
+
             <button
               onClick={() => {
                 setIsOpen(!isOpen);
@@ -262,6 +266,11 @@ const Navbar = () => {
               Contact Us
             </a>
           </div>
+        </div>
+      )}
+      {showModal && (
+         <div className="fixed inset-0 z-[9999] bg-black/50  bg-opacity-50 flex items-center justify-center">
+        <MainForm onClose={() => setShowModal(false)} />
         </div>
       )}
     </nav>

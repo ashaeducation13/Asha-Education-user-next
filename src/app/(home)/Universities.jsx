@@ -22,13 +22,15 @@ import logo4 from '../../assets/home/partnersection/manipal.png'
 import arrow from '../../assets/home/herosection/Arrow.svg'
 import arrowright from '../../assets/home/partnersection/darkarrowright.svg'
 import { UniversityFetch } from "@/services/api";
+import MainForm from "@/components/Forms/MainForm";
 
 
 
-const Universities = ({data}) => {
+const Universities = ({ data }) => {
 
     const [univ, setUniv] = useState(data || []);
     const [selectedUniversity, setSelectedUniversity] = useState(data?.[0] || null);
+    const [showModal, setShowModal] = useState(false);
 
 
     return (
@@ -48,7 +50,7 @@ const Universities = ({data}) => {
                     {univ.map((university) => (
                         <button
                             key={university.id}
-                            className={` w-full flex flex-col  md:flex-row items-center text-center justify-start gap-2  md:px-4 py-2 border rounded-md text-black text-[12px] md:text-[14px] lg:text-[16px]  font-normal transition-all font-rubik md:text-left md:whitespace-nowrap
+                            className={` w-full flex flex-col  md:flex-row items-center text-center justify-start gap-2 px-4 py-2 border rounded-md text-black text-[12px] md:text-[14px] lg:text-[16px]  font-normal transition-all font-rubik md:text-left md:whitespace-nowrap
                                         ${selectedUniversity.id === university.id ? "border-[#0A0078] text-black" : "border-gray-300 bg-white hover:bg-gray-100"}
                                     `}
                             onClick={() => setSelectedUniversity(university)}
@@ -58,9 +60,9 @@ const Universities = ({data}) => {
                                 alt={university.name}
                                 width={30}
                                 height={30}
-                                className="object-contain"
+                                className="object-contain "
                             />
-                            <span className="break-words whitespace-normal">{university.name}</span>
+                            <span className="break-words whitespace-normal hidden md:block">{university.name}</span>
                         </button>
                     ))}
                     {/* {universityData.map((university) => (
@@ -124,16 +126,16 @@ const Universities = ({data}) => {
                         autoplay={{ delay: 1000, disableOnInteraction: false }}
                         breakpoints={{
                             640: { slidesPerView: 1.5 },
-                            768: { slidesPerView: 2.5 },
-                            1024: { slidesPerView: 3.5, spaceBetween: 10 },
-                            1440: { slidesPerView: 5.5, spaceBetween: 10 },
+                            768: { slidesPerView: 2 },
+                            1024: { slidesPerView: 2, spaceBetween: 5 },
+                            1440: { slidesPerView: 3.5, spaceBetween: 10 },
                         }}
                         className="w-full"
                     >
                         {selectedUniversity?.programs?.map((course) => (
                             <SwiperSlide key={course.id} className="flex justify-center px-1 py-5">
-                                <PartnerCard course={course} />  {/* Pass as a single prop */}
-                            
+                                <PartnerCard course={course} onApplyClick={() => setShowModal(true)}  />  {/* Pass as a single prop */}
+
                             </SwiperSlide>
                         ))}
                     </Swiper>
@@ -165,7 +167,11 @@ const Universities = ({data}) => {
                     />
                 </button>
             </div>
-
+            {showModal && (
+                <div className="fixed inset-0 z-[9999] bg-black/50 bg-opacity-50 flex items-center justify-center">
+                    <MainForm onClose={() => setShowModal(false)} />
+                </div>
+            )}
         </>
     );
 };
