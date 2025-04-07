@@ -12,21 +12,34 @@ import star from "../../assets/universities/star.svg";
 import once from "../../assets/universities/once.svg";
 import arrow from "../../assets/universities/arrow.svg";
 import { ProgramCard } from '../../app/programs/ProgramCard';
+import Link from "next/link";
 
 const Listing = ({data}) => {
   const [selectedCourse, setSelectedCourse] = useState(Courses[0]);
   const [comparedLogos, setComparedLogos] = useState([]);
+    const [comparedId, setComparedId] = useState([]);
 
-  const handleAddToCompare = (logo) => {
-    if (comparedLogos.length < 2) {
-      setComparedLogos([...comparedLogos, logo]);
-    }
-  };
-
-  const handleRemoveLogo = (index) => {
-    setComparedLogos(comparedLogos.filter((_, i) => i !== index));
-  };
-
+    const handleAddToCompare = (logo) => {
+      if (comparedLogos.length < 2) {
+        // Add logo to comparedLogos
+        setComparedLogos((prevLogos) => [...prevLogos, logo]);
+  
+        // Add logo.id to comparedId (ensuring prevIds is an array)
+        setComparedId((prevIds) => [...(prevIds || []), logo.id]); // Use fallback to [] if prevIds is not defined
+      }
+    };
+  
+    const handleRemoveLogo = (index) => {
+      const logoToRemove = comparedLogos[index];
+      
+      // Remove logo from comparedLogos
+      setComparedLogos((prevLogos) => prevLogos.filter((_, i) => i !== index));
+  
+      // Remove logo.id from comparedId (ensuring prevIds is an array)
+      setComparedId((prevIds) => (prevIds || []).filter((id) => id !== logoToRemove.id)); // Ensure prevIds is an array
+    };
+    const idsString = comparedId.join(',');
+    console.log(idsString);
   const [selectedProgram, setSelectedProgram] = useState(data[0]);
   const [selectedSpecialization, setSelectedSpecialization] = useState(null);
 
@@ -92,14 +105,12 @@ const Listing = ({data}) => {
                 <div className="flex gap-2 my-2 items-center">
                   {comparedLogos.map((logo, index) => (
                     <div key={index} className="flex items-center gap-2">
-                      <div className="relative">
+                       <div className="relative">
                         <Image
-                          src={logo}
+                          src={logo.logo}
                           alt="compared logo"
-                          width={100}
-                          height={100}
-                          layout="intrinsic"
-                          quality={100}
+                          width={40}
+                          height={40}
                           className="h-10 w-auto object-contain rounded-[5px] border border-[#EDEDED] px-1"
                         />
                         <Image
@@ -119,9 +130,11 @@ const Listing = ({data}) => {
                     </div>
                   ))}
                 </div>
+                <Link href={`/comparison/id?ids=${idsString}`}>
                 <button className="bg-[#FF383B] py-[10px] font-inter font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md">
                   Show Result
                 </button>
+                </Link> 
               </div>
             )}
 
@@ -176,7 +189,7 @@ const Listing = ({data}) => {
                 <Card
                   key={index}
                   item={item}
-                  onAddToCompare={() => handleAddToCompare(item.university.logo)}
+                  onAddToCompare={() => handleAddToCompare(item.university)}
                   isCompareDisabled={comparedLogos.length >= 2}
                 />
               ))}
@@ -207,12 +220,9 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
         <span className="absolute top-2 md:top-3 left-2 w-[90px] h-[30px] md:w-[80px] md:h-[30px] lg:w-[120px] lg:h-[50px] bg-white rounded-[5px] flex justify-center items-center p-1">
           <Image
             src={item.university.logo}
-            width={100}
-            height={100}
-            quality={100}
+            fill
             alt="logo"
-            layout="intrinsic"
-            className="object-contain h-15 w-auto"
+            className="object-contain w-full h-full"
           // sizes="(max-width: 768px) 90px, (max-width: 1024px) 95px, 120px"
           />
         </span>
