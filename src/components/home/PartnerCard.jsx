@@ -10,7 +10,7 @@ const PartnerCard = ({ course, onApplyClick }) => {
 
   return (
     <>
-      <div className="md:w-[180px] lg:w-[240px] 2xl:w-[360px]  bg-white shadow-lg rounded-xl transition-transform duration-300 hover:scale-105 h-full flex flex-col justify-between">
+      <div className="md:w-[180px] lg:w-[240px] 2xl:w-[280px]  bg-white shadow-lg rounded-xl transition-transform duration-300 hover:scale-105 h-full flex flex-col justify-between">
         {/* Image */}
         <Link href={`/programs?id=${course.id}`} passHref>
 

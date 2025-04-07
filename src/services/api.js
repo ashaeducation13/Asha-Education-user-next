@@ -48,6 +48,10 @@ export const ProgramFetch = async () => {
     return fetchData(`/universities/programs`);
   };
 
+  export const ProgramFetchById = async (id) => {
+    return fetchData(`/universities/programs/${id}/`);
+  };
+
 export const TestimonialFetch = async () => {
     return fetchData(`/about/testimonials`);
   };

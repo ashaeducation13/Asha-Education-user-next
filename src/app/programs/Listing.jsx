@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Card } from '../comparison/Listing';
 import { ProgramCard } from './ProgramCard';
 import { cardData, Courses } from './PrData';
+import Link from 'next/link';
 
 const Listing = ({ data }) => {
   const [selectedProgram, setSelectedProgram] = useState(data[0]);
@@ -97,7 +98,13 @@ const Listing = ({ data }) => {
           <div className="flex flex-col xl:mx-8">
             <div className="grid grid-row md:grid-cols-2 gap-2 xl:gap-16">
               {filteredPrograms.map((item, index) => (
+                <Link
+                key={index}
+                href={`/programs/${item.id}`}
+                passHref
+                >
                 <ProgramCard key={index} item={item} />
+                </Link>
               ))}
             </div>
           </div>
