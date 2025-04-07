@@ -6,7 +6,31 @@ import amitylogo from '../../../assets/universities/inner/amitylogo.png';
 import progress from '../../../../public/progress.svg'
 
 const HeroSection = ({data}) => {
-    
+    const downloadFile = (url, event) => {
+        // Prevent any default behavior
+        event.preventDefault();
+        
+        // Create link element
+        const link = document.createElement('a');
+        link.href = url;
+        
+        // Set download attribute to force download behavior
+        link.setAttribute('download', 'brochure.pdf');
+        
+        // Set additional attribute to help browsers recognize as download
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+        
+        // Append to DOM, click, and remove
+        document.body.appendChild(link);
+        link.click();
+        
+        // Small timeout to ensure download starts before removal
+        setTimeout(() => {
+            document.body.removeChild(link);
+        }, 100);
+    };
+
     return (
         <section className="containers mx-auto md:py-12 py-6 border-b border-[#E3E3E3]">
             {/* Container for Flex Layout */}
@@ -36,11 +60,13 @@ const HeroSection = ({data}) => {
                     <p className="text-[#121212]text-sm leading-[24px] font-inter font-normal md:w-[85%] text-[12px] md:text-[14px] lg:text-[16px] text-justify">
                     {data.program_name.description}
                     </p>
-
-                    <button className='flex gap-3 bg-[#FF383B] text-white px-6 py-2 rounded-[8px] font-inter font-semibold lg:text-[14px] text-[12px] leading-[18px]'>
+                    {data.brochure && (
+                    <button onClick={(e) => downloadFile(data.brochure, e)} className='flex gap-3 bg-[#FF383B] text-white px-6 py-2 rounded-[8px] font-inter font-semibold lg:text-[14px] text-[12px] leading-[18px]'>
                         <Image src={progress} alt='progress' className='lg:w-4 lg:h-4 h-[14px] w-[14px]'  />
                         Full Details
                         </button>
+                    )}
+
                 </div>
 
                 {/* Right Section (Image) */}

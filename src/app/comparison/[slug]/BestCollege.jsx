@@ -35,7 +35,8 @@ export default function BestCollege({spec, data1, data2 }) {
   const pros2 = data2.pros_cons?.filter(item => item.type === 'Pros') || [];
   const cons2 = data2.pros_cons?.filter(item => item.type === 'Cons') || [];
 
-
+  console.log("spec",spec);
+  
   return (
     <>
       <section className="w-full px-4 md:w-[90%] lg:w-[80%] mx-auto pb-8 md:pb-12">

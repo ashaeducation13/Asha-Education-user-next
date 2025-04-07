@@ -1,6 +1,8 @@
 import HeroSection from './HeroSection'
 import CertificationSection from './CertificationSection'
 import { ProgramFetchById } from '@/services/api';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export default async function page({ params }) {
   const programId = params.slug;
@@ -8,8 +10,11 @@ export default async function page({ params }) {
   
   return (
     <div>
+        <Navbar />
+
         <HeroSection data={prData} />
         <CertificationSection />
+        <Footer/>
     </div>
   )
 }
