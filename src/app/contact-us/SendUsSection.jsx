@@ -1,3 +1,8 @@
+"use client"
+import { contactForm } from "@/services/api";
+import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import arrow from "../../assets/contact-us/arrow.svg";
 import phone from "../../assets/contact-us/phone.svg";
@@ -91,22 +96,28 @@ const SocialMediaSection = () => (
   </div>
 );
 
-const FormField = ({ field }) => (
+const FormField = ({ field, formData, handleChange }) => (
   <div className="flex flex-col">
     <label className="font-inter text-sm leading-5 mb-1">{field.label}</label>
     <input
       type={field.type}
+      name={field.name}
+      value={formData[field.name]}
+      onChange={handleChange}
       className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[#FF383B]"
       placeholder={field.placeholder}
     />
   </div>
 );
 
-const FormTextArea = () => (
+const FormTextArea = ({ formData, handleChange }) => (
   <div className="flex flex-col">
     <label className="font-inter text-sm mb-1">Message</label>
     <textarea
+      name="message"
       rows="4"
+      value={formData.message}
+      onChange={handleChange}
       className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[#FF383B]"
       placeholder="Type ..."
     ></textarea>
@@ -130,23 +141,52 @@ const SubmitButton = () => (
 );
 
 const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
   const formFields = [
     { label: "Name", type: "text", placeholder: "Brian Clark" },
     { label: "Phone", type: "number", placeholder: "(123) 456 - 7890" },
     { label: "Email", type: "email", placeholder: "example@youremail.com" },
   ];
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      await contactForm(formData); // 👈 using your API function
+      toast.success("Message sent successfully!");
+      setFormData({ name: "", phone: "", email: "", message: "" });
+    } catch (err) {
+      toast.error("Something went wrong. Please try again.");
+    }
+  };
   return (
     <div className="hidden md:block w-full">
       <h2 className="lg:text-[24px] leading-[24px] md:text-[20px] text-[14px] font-semibold font-open-sans bg-clip-text text-transparent mb-4 bg-gradient-to-r from-[#0A0078] to-[#FF383B]">
         Send Us a Message
       </h2>
       <div className="bg-white p-8 rounded-[20px] shadow-2xl">
-        <form className="flex flex-col gap-5 text-[#6D758F]">
+        <form className="flex flex-col gap-5 text-[#6D758F]" onSubmit={handleSubmit}>
           {formFields.map((field, index) => (
-            <FormField key={index} field={field} />
+            <FormField
+            key={index}
+            field={{ ...field, name: field.label.toLowerCase() }}
+            formData={formData}
+            handleChange={handleChange}
+          />
           ))}
-          <FormTextArea />
+          <FormTextArea formData={formData} handleChange={handleChange} />
           <SubmitButton />
         </form>
       </div>
@@ -215,6 +255,7 @@ export default function SendUsSection() {
           <ContactForm />
         </div>
       </div>
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </div>
   );
 }
