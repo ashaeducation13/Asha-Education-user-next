@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // import { cardData, Courses } from '../comparison/Data';
 import Image from 'next/image';
 import { Card } from '../comparison/Listing';
@@ -25,6 +25,19 @@ const Listing = ({ data }) => {
     )
   );
 
+  // Set default specialization when program changes or on initial load
+  useEffect(() => {
+    if (specializationList.length > 0 && !selectedSpecialization) {
+      setSelectedSpecialization(specializationList[0]);
+    }
+  }, [selectedProgram, specializationList, selectedSpecialization]);
+
+  // Handle program change - reset specialization to ensure it's valid for the new program
+  const handleProgramChange = (program) => {
+    setSelectedProgram(program);
+    setSelectedSpecialization(null); // This will trigger the useEffect to set the first specialization
+  };
+
   // Filter programs
   const filteredPrograms = data.filter(p =>
     p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name &&
@@ -33,16 +46,14 @@ const Listing = ({ data }) => {
 
   return (
     <>
+    {data.length > 0 ? (
       <section className="containers border-b border-b-[#E1E4ED]">
         <div className="mx-auto flex justify-between items-center py-5 overflow-x-scroll scrollbar-hide">
           <ul className="flex gap-[6px]">
             {uniquePrograms.map((item, index) => (
               <li
                 key={index}
-                onClick={() => {
-                  setSelectedProgram(item);
-                  setSelectedSpecialization(null);
-                }}
+                onClick={() => handleProgramChange(item)}
                 className={`cursor-pointer ${selectedProgram.specialization?.program_type_name === item.specialization?.program_type_name
                   ? "bg-[#FF383B] text-white"
                   : "bg-white text-[#6D758F] border border-[#D9D9D9]"
@@ -52,20 +63,16 @@ const Listing = ({ data }) => {
               </li>
             ))}
           </ul>
-
         </div>
-        <div className=" mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] pt-5 pb-10">
+        <div className="mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] pt-5 pb-10">
           <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold md:hidden">Specialisations</h2>
 
           <select
             className="md:hidden p-[16px] text-[#696969] text-[12px] border border-[#F1F3F7] bg-white rounded-[6px] w-fit
                              hover:ring-2 hover:ring-[#FF383B] focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
             value={selectedSpecialization || ""}
-            onChange={(e) =>
-              setSelectedSpecialization(e.target.value || null)
-            }
+            onChange={(e) => setSelectedSpecialization(e.target.value || specializationList[0])}
           >
-            <option value="">Select Specialization</option>
             {specializationList.map((spec, i) => (
               <option key={i} value={spec}>{spec}</option>
             ))}
@@ -73,17 +80,13 @@ const Listing = ({ data }) => {
 
           {/* Desktop Sidebar */}
           <div className="hidden md:flex flex-col gap-3">
-            <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold ">Specialisations</h2>
+            <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold">Specialisations</h2>
             <ul className="flex flex-col gap-2">
               {specializationList.map((spec, i) => (
                 <li
                   key={i}
-                  onClick={() =>
-                    setSelectedSpecialization(prev =>
-                      prev === spec ? null : spec
-                    )
-                  }
-                  className={`cursor-pointer p-[16px] text-[14px] rounded-[6px] border  shadow-lg
+                  onClick={() => setSelectedSpecialization(spec)}
+                  className={`cursor-pointer p-[16px] text-[14px] rounded-[6px] border shadow-lg
                                         ${selectedSpecialization === spec
                       ? "border-[#FF383B] text-[#FF383B]"
                       : "bg-white text-[#696969] border-[#F1F3F7]"
@@ -98,18 +101,21 @@ const Listing = ({ data }) => {
           <div className="flex flex-col xl:mx-8">
             <div className="grid grid-row md:grid-cols-2 gap-2 xl:gap-16">
               {filteredPrograms.map((item, index) => (
-                <Link
-                key={index}
-                href={`/programs/${item.id}`}
-                passHref
-                >
-                <ProgramCard key={index} item={item} />
-                </Link>
+                
+                  <ProgramCard key={index} item={item} />
+             
               ))}
             </div>
           </div>
         </div>
       </section>
+      ): (
+        <section className="containers border-b border-b-[#E1E4ED] py-12">
+          <div className="text-center text-[#6D758F] text-[18px] md:text-[22px] font-medium">
+            No programs found matching your selection.
+          </div>
+        </section>
+      )}
     </>
   )
 }

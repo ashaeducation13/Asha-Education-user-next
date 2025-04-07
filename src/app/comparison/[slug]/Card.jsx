@@ -2,7 +2,9 @@ import Image from "next/image";
 import star from "../../../assets/universities/star.svg";
 // import once from "../../assets/universities/once.svg";
 
-export const Card = ({item}) => {
+export const Card = ({item, onCompareClick}) => {
+  console.log("legend",item);
+  
   return (
     <>
       <section
@@ -15,7 +17,7 @@ export const Card = ({item}) => {
         //   style={{ backgroundImage: `url(${item.cover.src})` }}
         >
           <span className="absolute top-2 left-2 w-[100px] h-[33px] bg-white  rounded-[5px] flex justify-center">
-            <Image src={item.logo} alt="logo" className="" />
+            <Image src={item.university.logo} alt="logo" width={100} height={100} className="" />
           </span>
           <span
             className="absolute top-2 -right-[10px] flex justify-center items-center w-auto h-[30px] rounded-tl-[10px] rounded-bl-[20px] px-5"
@@ -24,17 +26,20 @@ export const Card = ({item}) => {
             }}
           >
             <span className="text-white text-[14px] leading-[20px] font-semibold font-rubik">
-              {item.status}
+              {item.mode_of_study}
             </span>
           </span>
         </div>
         <div className="w-[95%] mx-auto flex flex-col gap-3">
-          <h2 className="font-open-sans text-[20px] leading-[100%] font-semibold ">
-            {item.title}
+        <h2 className="font-open-sans text-[20px] leading-[100%] font-semibold ">
+            {item.university.name}
+          </h2>
+          <h2 className="font-open-sans text-[16px] leading-[100%] font-medium text-[#595959]">
+            {item.program_name.name} in {item.specialization.name}
           </h2>
           <span className="flex justify-start gap-2">
             <Image src={star} alt="icon" />
-            <span className="text-[14px] leading-[100%] font-medium font-inter text-[#595959]">{item.review}</span>
+            <span className="text-[14px] leading-[100%] font-medium font-inter text-[#595959]">{item.university.rating}</span>
           </span>
           {/* <span className="w-fit bg-[#FFE3E4] inline-flex items-center justify-start gap-2 px-[16px] py-[6px] rounded-[8px]">
             <Image src={once} alt="icon" />
@@ -42,14 +47,14 @@ export const Card = ({item}) => {
               Brouchure
             </span>
           </span> */}
-          <span className="text-[#6D758F] text-[16px] leading-[24px] font-rubik font-normal">
+          {/* <span className="text-[#6D758F] text-[16px] leading-[24px] font-rubik font-normal">
           {item.affiliation.split(" ").slice(0, 6).join(" ")}
           {item.affiliation.split(" ").length > 5 && " ..."}
-            </span>
+            </span> */}
           <div className="flex justify-center gap-2 items-center">
-            <span className="w-full flex justify-center bg-[#FF383B] border border-[#FF383B] text-white font-semibold text-[14px] px-[12px] py-[8px] items-center rounded-[8px]">
+            <button onClick={onCompareClick} className="w-full flex justify-center bg-[#FF383B] border border-[#FF383B] text-white font-semibold text-[14px] px-[12px] py-[8px] items-center rounded-[8px]">
               Add to compare
-            </span>
+            </button>
             {/* <span
               className="w-1/2 text-[14px] text-[#6D758F] font-semibold rounded-[8px] flex justify-center items-center border border-[#D9D9D9] 
             px-[12px] py-[8px]"

@@ -25,13 +25,15 @@ const consforcard2 = [
 
 const prosforcard2 = ["Affordable fees"];
 
-export default function BestCollege({ data1, data2 }) {
-  console.log("pros1", data1);
-  console.log("pros1", data2);
-  const pros1 = data1?.filter(item => item.type === 'Pros') || [];
-  const cons1 = data1?.filter(item => item.type === 'Cons') || [];
-  const pros2 = data2?.filter(item => item.type === 'Pros') || [];
-  const cons2 = data2?.filter(item => item.type === 'Cons') || [];
+export default function BestCollege({spec, data1, data2 }) {
+
+
+  const univ1= data1.univ
+  const univ2= data2.univ
+  const pros1 = data1.pros_cons?.filter(item => item.type === 'Pros') || [];
+  const cons1 = data1.pros_cons?.filter(item => item.type === 'Cons') || [];
+  const pros2 = data2.pros_cons?.filter(item => item.type === 'Pros') || [];
+  const cons2 = data2.pros_cons?.filter(item => item.type === 'Cons') || [];
 
 
   return (
@@ -60,8 +62,8 @@ export default function BestCollege({ data1, data2 }) {
 
         {/* Comparison Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
-          <ComparisonCard pros={pros1} cons={cons1} />
-          <ComparisonCard pros={pros2} cons={cons2} />
+          <ComparisonCard spec={spec} pros={pros1} cons={cons1} univ={univ1} />
+          <ComparisonCard spec={spec} pros={pros2} cons={cons2} univ={univ2}/>
         </div>
       </section>
     </>
