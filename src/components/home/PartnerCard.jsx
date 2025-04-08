@@ -51,7 +51,6 @@ const PartnerCard = ({ course, onApplyClick }) => {
           </button>
         </div>
       </div>
-
     </>
   )
 }

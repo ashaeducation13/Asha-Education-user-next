@@ -12,8 +12,7 @@ export default async function page() {
   return (
     <>
       <Navbar />
-      <HeroSecetion />
-      <Listing data={universityData}/>
+      <HeroSecetion  data={universityData} />
       <Footer  />
     </>
   );

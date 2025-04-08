@@ -23,3 +23,4 @@ const Listing = ({data}) => {
 }
 
 export default Listing
+    
