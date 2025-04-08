@@ -89,7 +89,7 @@ function WeHelp({ data }) {
   ];
 
   return (
-    <div className="md:w-[80%] w-[90%] mx-auto md:flex justify-between items-start py-[50px] md:gap-16 lg:gap-0">
+    <div className="md:w-[80%] w-[90%] mx-auto md:flex justify-between items-start py-[10px] md:py-[50px] md:gap-16 lg:gap-0">
       {/* Contact Info Section */}
       <div className="lg:w-[30%]">
         <h1 className="font-open-sans lg:text-[40px] md:text-[32px] text-[24px] leading-[24px] md:leading-[32px] lg:leading-[40px]">

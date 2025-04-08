@@ -5,38 +5,17 @@ import thumbnail from '../../assets/home/Trustsection/thumbnail.webp'
 import play from '../../assets/home/Trustsection/play.svg'
 import topright from '../../assets/topright.svg'
 import ReactPlayer from "react-player";
+import {VideoContainer} from '../../components/VideoContainer'
+const video2 = "/videos/vid2.mp4"
 
 const TrustSection = () => {
     const [playVideo, setPlayVideo] = useState(false);
     return (
         <div className="containers flex justify-center">
-            <div className="w-full py-8 flex flex-col md:flex-row items-center justify-between">
-                <div className="md:w-[40%] relative md:ml-10  flex items-stretch">
-                    {playVideo ? (
-                        <ReactPlayer
-                            url="/videos/vid1.mp4"
-                            width="100%"
-                            height="100%"
-                            className="rounded-xl shadow-lg"
-                            controls
-                        />
-                    ) : (
-                        <div
-                        className="relative w-full max-w-[450px] aspect-square flex items-center justify-center cursor-pointer"
-                        onClick={() => setPlayVideo(true)}
-                    >
-                        <Image
-                            src={thumbnail} 
-                            alt="Video Thumbnail"
-                            className="w-full h-full rounded-xl shadow-lg object-cover"
-                        />
-                        {/* Play Icon Overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <Image src={play} alt="Play Button" className="w-16 h-16 opacity-80" />
-                        </div>
+            <div className="w-full py-8 flex flex-col md:flex-row items-center justify-between gap-10">
+            <div className="flex-1 flex flex-col gap-6 items-center justify-center h-full">
+                        <VideoContainer video={video2}  />
                     </div>
-                    )}
-                </div>
 
                 {/* Right Section (Text - 60%) */}
                 <div className="md:w-[55%] flex flex-col gap-6 md:p-4 h-full">

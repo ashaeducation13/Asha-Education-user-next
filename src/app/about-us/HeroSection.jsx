@@ -12,7 +12,10 @@ import float5 from "../../assets/home/herosection/float5.svg";
 import float6 from "../../assets/home/herosection/float6.svg";
 import float7 from "../../assets/home/herosection/float7.svg";
 import float8 from "../../assets/home/herosection/float8.svg";
-import ReactPlayer from "react-player";
+import { VideoContainer } from "@/components/VideoContainer";
+import Link from "next/link";
+
+const video = "/videos/vid3.mp4";
 
 function HeroSection() {
   const [playVideo, setPlayVideo] = useState(false);
@@ -227,7 +230,7 @@ function HeroSection() {
               commitment ensures each student achieves their educational
               aspirations.
             </p>
-
+            <Link href='/contact-us' >
             <button
               className="font-rubik flex items-center justify-start md:justify-start font-medium gap-2 text-[#FFFFFF] px-6 py-3 rounded-md shadow-md transition duration-300 text-[14px] leading-[20px] mt-4"
               style={{
@@ -238,37 +241,14 @@ function HeroSection() {
               Talk to a career expert
               <img src="arrow.svg" alt="Arrow" className="w-[12px] h-[12px]" />
             </button>
+            </Link>
           </div>
 
-          {/* Right Side - Image */}
-          <div className="flex flex-col gap-6 order-1 md:order-2">
-            {playVideo ? (
-              <ReactPlayer
-              url="/videos/vid3.mp4"
-
-                width="450px"
-                className="rounded-xl shadow-lg"
-                controls
-              />
-            ) : (
-              <div
-                className="relative w-full max-w-[450px] aspect-square flex items-center justify-center cursor-pointer"
-                onClick={() => setPlayVideo(true)}
-              >
-                <Image
-                  src={About1}
-                  alt="Video Thumbnail"
-                  className="lg:w-[450px] lg:h-[450px] md:w-[300px] md:h-[380px] w-[330px] h-[300px] rounded-xl shadow-lg object-cover md:mt-5 lg:mt-0"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Image
-                    src={play}
-                    alt="Play Button"
-                    className="w-16 h-16 opacity-80"
-                  />
-                </div>
-              </div>
-            )}
+          {/* Right Side - Video */}
+          <div className="w-full md:w-1/2 flex items-center justify-center order-1 md:order-2">
+            <div className="w-[330px] h-[300px] md:w-[300px] md:h-[300px] lg:w-[450px] lg:h-[450px]">
+              <VideoContainer video={video} />
+            </div>
           </div>
         </div>
       </div>
