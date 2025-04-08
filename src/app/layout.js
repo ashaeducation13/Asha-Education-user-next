@@ -1,6 +1,12 @@
+'use client'
+import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
+
 import "./globals.css";
 
-import {Inter, Rubik, Playfair_Display, Open_Sans } from 'next/font/google';
+import { Inter, Rubik, Playfair_Display, Open_Sans } from 'next/font/google';
+import Loader from '@/components/Loader';
+
 
 // Initialize the fonts
 const inter = Inter({
@@ -21,16 +27,34 @@ const playfair = Playfair_Display({
   variable: '--font-playfair',
 });
 
-const openSans = Open_Sans ({
+const openSans = Open_Sans({
   subsets: ['latin'],
-  weight: ['400','500','600','700','800'],
+  weight: ['400', '500', '600', '700', '800'],
   variable: '--font-open-sans'
 })
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname()
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+
+    // Give it time to render the next page
+    const timeout = setTimeout(() => {
+      setLoading(false)
+    }, 300) // Adjust delay if needed
+
+    return () => clearTimeout(timeout)
+  }, [pathname])
+
   return (
+
     <html lang="en" className={`${rubik.variable} ${playfair.variable} ${openSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        {loading && <Loader />}
+        {children}
+      </body>
     </html>
   );
 }

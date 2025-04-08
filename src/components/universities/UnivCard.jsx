@@ -26,6 +26,7 @@ const UnivCard = ({ item }) => {
             <Image
               src={item.logo}
               fill
+              loading="lazy"
               alt="logo"
               className="object-contain w-full h-full cursor-pointer"
             // sizes="(max-width: 768px) 90px, (max-width: 1024px) 95px, 120px"
