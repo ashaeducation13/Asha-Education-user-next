@@ -26,7 +26,7 @@ const ProgramCard = ({ image, title, hover, previousHover, onMouseEnter }) => {
     const getCardWidth = () => {
         if (windowWidth >= 1024) return hover ? "315px" : "140px";
         if (windowWidth >= 768) return hover ? "220px" : "57px";
-        return hover ? "170px" : "50px"; // Default for small screens
+        return hover ? "120px" : "50px"; // Default for small screens
     };
 
     return (

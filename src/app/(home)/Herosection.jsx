@@ -80,32 +80,22 @@ const Hero = ({ spData = [], universityData = [] }) => {
       };
 
       const programResults = spData.filter((sp) =>
-        hasWordStartingWith(sp?.program_type_name) ||
-        hasWordStartingWith(sp?.pg_full_name) ||
-        hasWordStartingWith(sp?.name)
+        hasWordStartingWith(sp?.specialization.program_type_name) ||
+        hasWordStartingWith(sp?.specialization.pg_full_name) ||
+        hasWordStartingWith(sp?.specialization.name)
       );
 
       const universityResults = universityData.filter((university) =>
         hasWordStartingWith(university?.name)
       );
 
-      // const typeResults = typeData.filter((ty) =>
-      //   hasWordStartingWith(ty?.name) ||
-      //   hasWordStartingWith(ty?.full_name)
-      // );
-
       const uniqueResults = Array.from(
         new Map(
           [...programResults, ...universityResults].map((item) => {
-            let uniqueKey;
-            if (item.program_type_name) {
-              uniqueKey = `sp-${item.id}`;
-            } else if (item.full_name) {
-              uniqueKey = `type-${item.id}`;
-            } else {
-              uniqueKey = `university-${item.id}`;
-            }
-            return [uniqueKey, item];
+            const isProgram = item.specialization !== undefined;
+            const id = isProgram ? item.id : item.id;
+            const key = isProgram ? `sp-${id}` : `university-${id}`;
+            return [key, item];
           })
         ).values()
       );
@@ -113,6 +103,10 @@ const Hero = ({ spData = [], universityData = [] }) => {
       setFilteredResults(uniqueResults);
     }
   }, [searchTerm, spData, universityData]);
+
+  console.log("filtered results", filteredResults);
+
+
 
   return (
     <section className="relative py-2 md:py-10 text-center overflow-hidden">
@@ -197,36 +191,6 @@ const Hero = ({ spData = [], universityData = [] }) => {
             Explore top undergraduate, postgraduate, and specialized programs with expert guidance.
           </p>
 
-          {/* Search & Browse */}
-          {/* <div className="mt-6 flex flex-col md:flex-row justify-center items-center gap-4">
-            <div className="relative w-full sm:w-[60%] xl:w-[72%]">
-              <Image
-                src={search}
-                alt="Search"
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 md:w-4 md:h-4 text-gray-500"
-              />
-              <input
-                type="text"
-                placeholder="Search for..."
-                className="pl-12 pr-4 py-3 w-full rounded-md font-inter shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 text-[12px] md:text-[14px] lg:text-[16px]"
-              />
-            </div>
-
-            <button
-              className="w-full sm:w-auto flex items-center justify-center font-inter gap-2 font-semibold text-white px-2 xl:px-6 py-3 rounded-md shadow-md transition duration-300 text-[12px] md:text-[14px]"
-              style={{
-                backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
-              }}
-            >
-              Browse Programs
-              <Image
-                src={arrow}
-                alt="Arrow"
-                className="w-[8.4px] h-[8.24px]"
-              />
-            </button>
-          </div> */}
-
 
 
 
@@ -257,21 +221,22 @@ const Hero = ({ spData = [], universityData = [] }) => {
                       let itemKey = "";
                       let href = "";
                       let tag = "";
+                      let label = "";
 
-                      if (item.program_type_name) {
-                        itemKey = `sp-${item.id}`;
-                        href = `/programs/${item.id}`;
+                      const isProgram = item.specialization !== undefined;
+                      const id = item.id;
+
+                      if (isProgram) {
+                        itemKey = `sp-${id}`;
+                        href = `/programs/${id}`;
                         tag = "Program";
-                      } else if (item.name) {
-                        itemKey = `university-${item.id}`;
-                        href = `/universities/${item.id}`;
-                        tag = "University";
+                        label = `${item.specialization.str_representation} (${item.university.name}) ` || item.specialization.name || "Untitled Program";
                       } else {
-                        itemKey = `item-${item.id}`;
-                        href = "#";
-                        tag = "Other";
+                        itemKey = `university-${id}`;
+                        href = `/universities/${id}`;
+                        tag = "University";
+                        label = item.name || "Untitled University";
                       }
-
                       return (
                         <li key={itemKey}>
                           <Link
@@ -279,12 +244,11 @@ const Hero = ({ spData = [], universityData = [] }) => {
                             className="block px-4 py-3 hover:bg-gray-100 transition-all duration-150 text-left"
                           >
                             <div className="text-sm md:text-base font-medium text-gray-800 text-left">
-                              {item.str_representation || item.full_name || item.name}
+                              {label}
                             </div>
                             <div className="text-xs text-gray-500 mt-0.5 text-left">{tag}</div>
                           </Link>
                         </li>
-
 
                       );
                     })

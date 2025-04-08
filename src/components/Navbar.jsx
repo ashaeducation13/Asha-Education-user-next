@@ -1,15 +1,46 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import logo from "../assets/navbar/logo.png";
 import Link from "next/link";
 import circle from "../assets/about-us/circle-ellipsis 1.svg";
 import MainForm from "./Forms/MainForm";
+import { ProgramFetch, TypeFetch, UniversityFetch } from "@/services/api";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [program, setProgram] = useState([]);
+  const [univ, setUniv] = useState([]);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const data1 = await UniversityFetch();
+        const data2 = await TypeFetch();
+
+        if (data1) {
+          setUniv(data1);
+        }
+        if (data2) {
+          setProgram(data2);
+        } 
+        if (!data1 && !data2) {
+          setError('Failed to load data');
+        }
+      } catch (error) {
+        setError('Error fetching data');
+      }
+      setLoading(false);
+    };
+
+    getData();
+  }, []);
+  console.log(program);
+  
   const toggleDropdown = (menu) => {
     if (activeDropdown === menu) {
       setActiveDropdown(null);
@@ -21,7 +52,16 @@ const Navbar = () => {
   const closeDropdowns = () => {
     setActiveDropdown(null);
   };
-  const [showModal, setShowModal] = useState(false);
+
+  // Handle mouse enter for desktop dropdowns
+  const handleMouseEnter = (menu) => {
+    setActiveDropdown(menu);
+  };
+
+  // // Handle mouse leave for desktop dropdowns
+  // const handleMouseLeave = () => {
+  //   setActiveDropdown(null);
+  // };
 
   return (
     <nav className="mt-4 rounded-[20px] relative z-50">
@@ -41,44 +81,114 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-4 font-rubik">
             <div className="hidden lg:flex items-center space-x-4 lg:space-x-0 xl:space-x-4 font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] leading-[20px] text-[#9C9C9C] ">
-              <Link href="/" className="  px-3 py-2 rounded-md">
+              <Link href="/" className="px-3 py-2 rounded-md">
                 Home
               </Link>
-              <Link href="/about-us" className=" px-3 py-2 rounded-md">
+              <Link href="/about-us" className="px-3 py-2 rounded-md">
                 About Us
               </Link>
-              <Link href="/programs" className="flex  px-3 py-2 rounded-md">
-                Programs
-                <svg
-                  className="ml-1 h-5 w-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+              
+              {/* Programs Dropdown */}
+              <div 
+                className="relative" 
+                onMouseEnter={() => handleMouseEnter("programs")}
+              >
+                <button 
+                  className="flex px-3 py-2 rounded-md"
+                  onClick={() => toggleDropdown("programs")}
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </Link>
+                  Programs
+                  <svg
+                    className="ml-1 h-5 w-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                {activeDropdown === "programs" && (
+                  <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                    <div className="py-1">
+                      {loading ? (
+                        <div className="px-4 py-2">Loading...</div>
+                      ) : error ? (
+                        <div className="px-4 py-2 text-red-500">{error}</div>
+                      ) : program && program.length > 0 ? (
+                        program.map((item, index) => (
+                          <Link
+                            key={index}
+                            href={`/programs?type=${item.name}`}
+                            className="block px-4 py-2 text-sm text-[#9C9C9C] hover:bg-gray-100"
+                          >
+                            {item.name}
+                          </Link>
+                        ))
+                      ) : (
+                        <div className="px-4 py-2">No programs available</div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
 
-              <Link href="/universities" className="flex  px-3 py-2 rounded-md">
-                Universities
-                <svg
-                  className="ml-1 h-5 w-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+              {/* Universities Dropdown */}
+              <div 
+                className="relative"
+                onMouseEnter={() => handleMouseEnter("universities")}
+              >
+                <button 
+                  className="flex px-3 py-2 rounded-md"
+                  onClick={() => toggleDropdown("universities")}
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </Link>
-              <div className="relative">
+                  Universities
+                  <svg
+                    className="ml-1 h-5 w-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                {activeDropdown === "universities" && (
+                  <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                    <div className="py-1">
+                      {loading ? (
+                        <div className="px-4 py-2">Loading...</div>
+                      ) : error ? (
+                        <div className="px-4 py-2 text-red-500">{error}</div>
+                      ) : univ && univ.length > 0 ? (
+                        univ.map((item, index) => (
+                          <Link
+                            key={index}
+                            href={`/universities}`}
+                            className="block px-4 py-2 text-sm text-[#9C9C9C] hover:bg-gray-100"
+                          >
+                            {item.name}
+                          </Link>
+                        ))
+                      ) : (
+                        <div className="px-4 py-2">No universities available</div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+              
+              {/* More Dropdown */}
+              <div 
+                className="relative"
+                onMouseEnter={() => handleMouseEnter("more")}
+                >
                 <button
-                  className=" px-3 py-2 rounded-md flex items-center"
+                  className="px-3 py-2 rounded-md flex items-center"
                   onClick={() => toggleDropdown("more")}
                 >
                   More
@@ -95,29 +205,29 @@ const Navbar = () => {
                   </svg>
                 </button>
                 {activeDropdown === "more" && (
-                  <div className="absolute right-0 z-999 mt-2 w-48 rounded-md shadow-lg bg-white">
+                  <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white">
                     <div
                       className="py-1 font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] leading-[20px] text-[#9C9C9C] "
                       role="menu"
                       aria-orientation="vertical"
                     >
                       <Link
-                        href="careers"
-                        className="block px-4 py-2 text-sm  hover:bg-gray-100"
+                        href="/careers"
+                        className="block px-4 py-2 text-sm hover:bg-gray-100"
                         role="menuitem"
                       >
                         Careers
                       </Link>
                       <Link
-                        href="blog"
-                        className="block px-4 py-2 text-sm  hover:bg-gray-100"
+                        href="/blog"
+                        className="block px-4 py-2 text-sm hover:bg-gray-100"
                         role="menuitem"
                       >
                         Blog
                       </Link>
                       <Link
-                        href="contact-us"
-                        className="block px-4 py-2 text-sm  hover:bg-gray-100"
+                        href="/contact-us"
+                        className="block px-4 py-2 text-sm hover:bg-gray-100"
                         role="menuitem"
                       >
                         Contact
@@ -137,7 +247,6 @@ const Navbar = () => {
                 Get Free Counseling
               </span>
             </button>
-
           </div>
 
           {/* Mobile Menu Button */}
@@ -182,7 +291,6 @@ const Navbar = () => {
       {isOpen && (
         <div className="lg:hidden absolute top-full right-0 mt-1 w-full md:w-1/3 bg-white rounded-lg shadow-xl z-50">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] leading-[20px] text-[#9C9C9C]">
-
             <Link
               href="/"
               className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50"
@@ -190,18 +298,19 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              href="about-us/"
+              href="/about-us"
               className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50"
             >
               About Us
             </Link>
+            
             {/* Programs Dropdown Mobile */}
             <div>
               <button
                 className="w-full flex justify-between items-center px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50"
                 onClick={() => toggleDropdown("programs-mobile")}
               >
-                <Link href="programs/">Programs</Link>
+                <span>Programs</span>
                 <svg
                   className="h-5 w-5"
                   fill="currentColor"
@@ -214,22 +323,36 @@ const Navbar = () => {
                   />
                 </svg>
               </button>
-              {/* {activeDropdown === 'programs-mobile' && (
+              {activeDropdown === 'programs-mobile' && (
                 <div className="ml-4 space-y-1 font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] leading-[20px] text-[#9C9C9C]">
-                  <a href="#" className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50">Undergraduate</a>
-                  <a href="#" className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50">Postgraduate</a>
-                  <a href="#" className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50">Online Courses</a>
-                  <a href="#" className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50">Short Programs</a>
+                  {loading ? (
+                    <div className="px-3 py-2">Loading...</div>
+                  ) : error ? (
+                    <div className="px-3 py-2 text-red-500">{error}</div>
+                  ) : program && program.length > 0 ? (
+                    program.map((item, index) => (
+                      <Link
+                        key={index}
+                        href={`/programs?type=${item.name}`}
+                        className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50"
+                      >
+                        {item.name}
+                      </Link>
+                    ))
+                  ) : (
+                    <div className="px-3 py-2">No programs available</div>
+                  )}
                 </div>
-              )} */}
+              )}
             </div>
+            
             {/* Universities Dropdown Mobile */}
             <div>
               <button
-                className="w-full flex justify-between items-center px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50 "
+                className="w-full flex justify-between items-center px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50"
                 onClick={() => toggleDropdown("universities-mobile")}
               >
-                <Link href="universities/">Universities</Link>
+                <span>Universities</span>
                 <svg
                   className="h-5 w-5"
                   fill="currentColor"
@@ -242,26 +365,41 @@ const Navbar = () => {
                   />
                 </svg>
               </button>
-              {/* {activeDropdown === 'universities-mobile' && (
+              {activeDropdown === 'universities-mobile' && (
                 <div className="ml-4 space-y-1 font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] leading-[20px] text-[#9C9C9C]">
-                  <a href="#" className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50">Partner Universities</a>
-                  <a href="#" className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50">International Institutions</a>
-                  <a href="#" className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50">University Rankings</a>
+                  {loading ? (
+                    <div className="px-3 py-2">Loading...</div>
+                  ) : error ? (
+                    <div className="px-3 py-2 text-red-500">{error}</div>
+                  ) : univ && univ.length > 0 ? (
+                    univ.map((item, index) => (
+                      <Link
+                        key={index}
+                        href={`/universities}`}
+                        className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50"
+                      >
+                        {item.name}
+                      </Link>
+                    ))
+                  ) : (
+                    <div className="px-3 py-2">No universities available</div>
+                  )}
                 </div>
-              )} */}
+              )}
             </div>
+            
             <Link
               href="/careers"
               className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50"
             >
               Career
-            </Link>{" "}
+            </Link>
             <Link
               href="/blog"
               className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50"
             >
               Blogs
-            </Link>{" "}
+            </Link>
             <Link
               href="/contact-us"
               className="block px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50"
@@ -271,8 +409,10 @@ const Navbar = () => {
           </div>
         </div>
       )}
+      
+      {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-[9999] bg-black/50  bg-opacity-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-[9999] bg-black/50 bg-opacity-50 flex items-center justify-center">
           <MainForm onClose={() => setShowModal(false)} />
         </div>
       )}
