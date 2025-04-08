@@ -15,25 +15,25 @@ import float8 from '../../assets/home/herosection/float8.svg'
 import search from '../../assets/home/herosection/Search.svg'
 import arrow from '../../assets/home/herosection/Arrow.svg'
 import fog from '../../assets/home/herosection/fog.svg'
-import { SpecializationFetch, TypeFetch, UniversityFetch } from "@/services/api";
 
-const Hero = () => {
+const Hero = ({ spData = [], universityData = [], typeData = [] }) => {
   const floatingElementsRef = useRef([]);
   const mainContentRef = useRef(null);
 
-  // Simple floating animation effect
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+
+  // ✨ Floating animation
   useEffect(() => {
     const elements = floatingElementsRef.current;
     if (!elements.length) return;
 
     const animations = elements.map((el, index) => {
-      // Create random animation parameters for more natural movement
-      const duration = 3 + Math.random() * 4; // 3-7 seconds
-      const xMovement = 8 + Math.random() * 12; // 8-20px
-      const yMovement = 8 + Math.random() * 12; // 8-20px
-      const delay = index * 0.3; // Stagger the animations
+      const duration = 3 + Math.random() * 4;
+      const xMovement = 8 + Math.random() * 12;
+      const yMovement = 8 + Math.random() * 12;
+      const delay = index * 0.3;
 
-      // Create and start the animation
       return el.animate(
         [
           { transform: `translate(0, 0)` },
@@ -56,38 +56,14 @@ const Hero = () => {
     };
   }, []);
 
-  // Add a ref to each floating element
+  
   const addToRefs = (el) => {
     if (el && !floatingElementsRef.current.includes(el)) {
       floatingElementsRef.current.push(el);
     }
   };
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [specialization, setSpecialization] = useState([]); // Store specialization
-  const [type, setType] = useState([]); // Store type
-  const [universities, setUniversities] = useState([]); // Store universities
-  const [filteredResults, setFilteredResults] = useState([]); // Store search results
-
-  // Fetch both APIs on component mount
-  useEffect(() => {
-    const fetchData = async () => {
-      const spData = await SpecializationFetch();
-      const universityData = await UniversityFetch();
-      const typeData = await TypeFetch();
-      console.log('programs', spData);
-      console.log('universities', universityData);
-      console.log('type', typeData);
-
-      if (spData) setSpecialization(spData);
-      if (universityData) setUniversities(universityData);
-      if (typeData) setType(typeData);
-    };
-
-    fetchData();
-  }, []);
-
-
+  // 🔍 Filter logic
   useEffect(() => {
     if (!searchTerm) {
       setFilteredResults([]);
@@ -99,25 +75,21 @@ const Hero = () => {
         return text.toLowerCase().split(/\s+/).some(word => word.startsWith(lowercaseSearchTerm));
       };
 
-      const programResults = specialization.filter((sp) =>
+      const programResults = spData.filter((sp) =>
         hasWordStartingWith(sp?.program_type_name) ||
         hasWordStartingWith(sp?.pg_full_name) ||
         hasWordStartingWith(sp?.name)
       );
 
-      const universityResults = universities.filter((university) =>
+      const universityResults = universityData.filter((university) =>
         hasWordStartingWith(university?.name)
       );
 
-      // Make sure typeResults contains only type data
-      const typeResults = (Array.isArray(type) ? type : []).filter((ty) =>
+      const typeResults = typeData.filter((ty) =>
         hasWordStartingWith(ty?.name) ||
         hasWordStartingWith(ty?.full_name)
       );
 
-      console.log("Filtered Type Results:", typeResults);
-
-      // Generate unique keys to prevent duplicate ids across categories
       const uniqueResults = Array.from(
         new Map(
           [...programResults, ...universityResults, ...typeResults].map((item) => {
@@ -136,7 +108,7 @@ const Hero = () => {
 
       setFilteredResults(uniqueResults);
     }
-  }, [searchTerm, specialization, universities, type]);
+  }, [searchTerm, spData, universityData, typeData]);
 
   return (
     <section className="relative py-2 md:py-10 text-center overflow-hidden">

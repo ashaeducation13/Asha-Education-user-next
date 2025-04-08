@@ -46,7 +46,7 @@ const PartnerCard = ({ course, onApplyClick }) => {
               View Details
             </button>
           </Link>
-          <button onClick={onApplyClick} className="px-2 md:px-4 py-2 bg-[#FF383B] text-white font-semibold font-inter text-[12px] rounded-lg transition cursor-pointer">
+          <button onClick={()=> onApplyClick(course)} className="px-2 md:px-4 py-2 bg-[#FF383B] text-white font-semibold font-inter text-[12px] rounded-lg transition cursor-pointer">
             Apply Now
           </button>
         </div>

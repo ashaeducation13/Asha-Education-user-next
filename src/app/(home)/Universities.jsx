@@ -67,7 +67,7 @@ const Universities = ({ data }) => {
                 height={30}
                 className="object-contain "
               />
-              <span className="break-words whitespace-normal hidden md:block">
+              <span className="break-words whitespace-normal ">
                 {university.name}
               </span>
             </button>
@@ -93,7 +93,7 @@ const Universities = ({ data }) => {
           <div className="flex-col justify-between w-full max-w-[640px] mx-auto gap-4 items-center hidden md:flex mt-1">
             <Link href="/programs" passHref>
               <button
-                className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 text-white md:px-[40px]  lg:px-[54px] xl:px-20 py-3 rounded-lg shadow-md transition duration-300 text-[14px] w-full whitespace-nowrap"
+                className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 text-white px-4  py-3 rounded-lg shadow-md transition duration-300 text-[14px] w-full whitespace-nowrap"
                 style={{
                   backgroundImage:
                     "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
@@ -104,7 +104,7 @@ const Universities = ({ data }) => {
               </button>
             </Link>
             <Link href="/comparison" passHref>
-              <button className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 md:px-[40px] lg:px-[51px] py-3 xl:px-20 rounded-lg shadow-md transition duration-300 text-[14px] w-full border border-gray-300 bg-white hover:bg-gray-100 whitespace-nowrap">
+              <button className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 px-4 py-3  rounded-lg shadow-md transition duration-300 text-[14px] w-full border border-gray-300 bg-white hover:bg-gray-100 whitespace-nowrap">
                 Compare Universities
                 <Image
                   src={arrowright}
