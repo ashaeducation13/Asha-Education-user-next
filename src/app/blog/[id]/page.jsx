@@ -1,11 +1,11 @@
-import Inner from "../Inner";
+import Inner from "./Inner";
 import Listing from "../Listing";
 
-export default function page() {
+export default async function page({params}) {
+  const blogId = params.slug;
   return (
     <div>
-      <Listing />
-      {/* <Inner /> */}
+      <Inner />
     </div>
   )
 }

@@ -143,7 +143,7 @@ export default function Listing() {
 }
 
 export const BlogCard = ({ item, router }) => (
-  <Link href={`/blogs/${item.id}`}>
+  <Link href={`/blog/${item.id}`}>
     <div className="flex flex-col lg:gap-[18px] gap-[8px] p-2 group cursor-pointer transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-[18px] border border-[#0A0078]">
       <div className="overflow-hidden">
         <Image

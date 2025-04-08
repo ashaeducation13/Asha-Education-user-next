@@ -162,7 +162,7 @@ function JobList() {
             {expandedJobs[job.id] && ( // Show description only if expanded
               <div className="flex text-[14px] leading-[21px] flex-col font-inter-medium mt-4">
                 <h6 className="text-[14px] leading-[21px]">Main things you will be doing</h6>
-                <p className="w-[60%] font-inter text-sm text-black-700 ">
+                <p className="w-full font-inter text-sm text-black-700 ">
                   Preparation and coordination of controlled documentation within Flight Operations (i.e., Manuals, DPM, Forms, Documents and Publication) to ensure standardization
                   Ensure that documents are produced to the highest quality standards considering human factors principles in coordination with Document Owner to provide user-friendly and effective documentations.<br/>
                   Monitor compliance and the adequacy of procedures based on regulatory, IOSA and company requirements
