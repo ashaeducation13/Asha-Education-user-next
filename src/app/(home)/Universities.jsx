@@ -51,12 +51,11 @@ const Universities = ({ data }) => {
             <button
               key={university.id}
               className={` w-full flex flex-col  md:flex-row items-center text-center justify-start gap-2 px-4 py-2 border rounded-md text-black text-[12px] md:text-[14px] lg:text-[16px]  font-normal transition-all font-rubik md:text-left md:whitespace-nowrap
-                                        ${
-                                          selectedUniversity.id ===
-                                          university.id
-                                            ? "border-[#0A0078] text-black"
-                                            : "border-gray-300 bg-white hover:bg-gray-100"
-                                        }
+                                        ${selectedUniversity.id ===
+                  university.id
+                  ? "border-[#0A0078] text-black"
+                  : "border-gray-300 bg-white hover:bg-gray-100"
+                }
                                     `}
               onClick={() => setSelectedUniversity(university)}
             >
@@ -120,7 +119,7 @@ const Universities = ({ data }) => {
         <div className="w-full flex justify-end overflow-hidden">
           <Swiper
             slidesPerView={1}
-            spaceBetween={16}
+            spaceBetween={5}
             loop={true}
             autoplay={{ delay: 1000, disableOnInteraction: false }}
             breakpoints={{
@@ -145,31 +144,32 @@ const Universities = ({ data }) => {
           </Swiper>
         </div>
       </section>
-      <div className="containers flex justify-between w-full max-w-[640px] mx-auto md:gap-2 gap-1 items-center md:py-6 md:hidden">
+      <div className="w-full max-w-screen-sm mx-auto px-4 md:py-6 flex justify-between gap-2 items-center md:hidden">
         <button
-          className="flex items-center justify-center font-inter font-semibold gap-2 text-white px-4 py-2 rounded-lg shadow-md transition duration-300 text-[12px] md:text-[14px] w-full whitespace-nowrap"
+          onClick={() => setShowModal(true)}
+          className="flex items-center justify-center font-semibold gap-2 text-white px-4 py-2 rounded-lg shadow transition duration-300 text-[11px] sm:text-[14px] w-1/2 whitespace-nowrap"
           style={{
-            backgroundImage:
-              "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
+            backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
           }}
         >
           Browse all Programs
-          <Image src={arrow} alt="Arrow" className="w-[10px] h-[10px]" />
+          <Image src={arrow} alt="Arrow" className="w-[12px] h-[12px]" />
         </button>
 
-        <button className="flex items-center justify-center font-inter font-semibold gap-2 px-4 py-2 rounded-lg shadow-md transition duration-300 text-[12px] md:text-[14px] w-full border border-gray-300 bg-white hover:bg-gray-100 whitespace-nowrap">
+        <button
+          className="flex items-center justify-center font-semibold gap-2 px-4 py-2 rounded-lg shadow transition duration-300 text-[11px] sm:text-[14px] w-1/2 border border-gray-300 bg-white hover:bg-gray-100 whitespace-nowrap"
+        >
           Compare Universities
-          <Image src={arrowright} alt="Arrow" className="w-[10px] h-[10px]" />
+          <Image src={arrowright} alt="Arrow" className="w-[12px] h-[12px]" />
         </button>
       </div>
+
       {showModal && (
-        <div className="fixed inset-0 z-[9999] bg-black/50 bg-opacity-50 flex items-center justify-center">
-          <MainForm
-            onClose={() => setShowModal(false)}
-            course={selectedCourse}
-          />
+        <div className="fixed inset-0 z-[50] bg-black/50 flex items-center justify-center">
+          <MainForm onClose={() => setShowModal(false)} course={selectedCourse} />
         </div>
       )}
+
     </>
   );
 };
