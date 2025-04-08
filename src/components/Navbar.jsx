@@ -29,11 +29,13 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Image
-              className="md:h-[45px] w-full h-[30px]"
-              src={logo}
-              alt="Logo"
-            />
+            <Link href="/" >
+              <Image
+                className="md:h-[45px] w-full h-[30px]"
+                src={logo}
+                alt="Logo"
+              />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}

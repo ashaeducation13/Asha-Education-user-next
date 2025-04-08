@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useEffect, useState } from 'react';
 import logo from '../../src/assets/navbar/logo.png'
 import fb from '../../src/assets/footer/Facebook.svg'
