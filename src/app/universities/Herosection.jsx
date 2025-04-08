@@ -1,26 +1,32 @@
+'use client'
 import Image from "next/image";
-import React from "react";
-// import search from '../../assets/home/herosection/'
+import React, { useEffect, useState } from "react";
 import search from '../../assets/home/herosection/Search.svg'
 import arrow from '../../assets/home/herosection/Arrow.svg'
+import UnivCard from "@/components/universities/UnivCard";
 
-const HeroSecetion = () => {
+const HeroSecetion = ({ data }) => {
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredUniv, setFilteredUniv] = useState(data || []);
+
+    useEffect(() => {
+        const term = searchTerm.toLowerCase();
+        const filtered = data.filter(item =>
+            item.name.toLowerCase().includes(term)
+        );
+        setFilteredUniv(filtered);
+    }, [searchTerm, data]);
+
     return (
         <>
-            <section
-                className=" w-full mx-auto text-center lg:py-5 py-3 bg-[#F5F5F5]"
-                style={{ backdropFilter: "blur(44px)" }}
-            >
+            <section className="w-full mx-auto text-center lg:py-5 py-3 bg-[#F5F5F5]" style={{ backdropFilter: "blur(44px)" }}>
                 <div className="lg:w-[80%] md:w-[90%] mx-auto">
-                    <h1 className="leading-[100%]  font-normal">
+                    <h1 className="leading-[100%] font-normal">
                         <span
                             className="bg-clip-text text-transparent font-playfair font-normal lg:text-[40px] md:text-[32px] text-[26px] leading-[100%]"
-                            style={{
-                                backgroundImage:
-                                    "linear-gradient(90.02deg, #0A0078 2.5%, #FF383B 43.53%)",
-                            }}
+                            style={{ backgroundImage: "linear-gradient(90.02deg, #0A0078 2.5%, #FF383B 43.53%)" }}
                         >
-                            Top Universities 
+                            Top Universities
                         </span>
                         <span className="font-open-sans font-medium lg:text-[40px] md:text-[32px] text-[26px] leading-[40px]"> for</span>
                         <span className="block font-open-sans font-medium lg:text-[40px] md:text-[32px] text-[26px] leading-[40px]">Your Best Education</span>
@@ -40,8 +46,10 @@ const HeroSecetion = () => {
                         />
                         <input
                             type="text"
-                            placeholder="Search for..."
-                            className="pl-12 pr-4 py-3 w-full rounded-md font-inter shadow-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                            placeholder="Search for a university..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="pl-12 pr-4 py-3 w-full rounded-md font-inter shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm md:text-base"
                         />
                     </div>
 
@@ -50,16 +58,48 @@ const HeroSecetion = () => {
                         style={{
                             backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
                         }}
+                        onClick={(e) => e.preventDefault()}
                     >
-                        Browse Programs
-                        <Image
-                            src={arrow}
-                            alt="Arrow"
-                            className="w-[8.4px] h-[8.24px]"
-                        />
+                        Search
+                        <Image src={arrow} alt="Arrow" className="w-[8.4px] h-[8.24px]" />
                     </button>
                 </div>
             </section >
+
+            <section className='containers md:py-8 py-6'>
+                <div className="flex flex-col gap-10">
+                    {filteredUniv.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 md:gap-4 gap-2">
+                            {filteredUniv.map((item, index) => (
+                                <UnivCard key={index} item={item} />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="flex flex-col items-center justify-center text-center text-gray-500 py-16">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-12 h-12 mb-4 text-red-400"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={1.5}
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M12 9v2m0 4h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"
+                                />
+                            </svg>
+                            <p className="text-lg font-semibold">No results found</p>
+                            <p className="text-sm mt-1 text-gray-400 max-w-sm">
+                                We couldn’t find any universities matching your search. Try a different keyword or check your spelling.
+                            </p>
+                        </div>
+
+                    )}
+                </div>
+            </section>
+
         </>
     );
 };

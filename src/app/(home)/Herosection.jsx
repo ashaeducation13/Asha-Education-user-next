@@ -15,13 +15,13 @@ import float8 from '../../assets/home/herosection/float8.svg'
 import search from '../../assets/home/herosection/Search.svg'
 import arrow from '../../assets/home/herosection/Arrow.svg'
 import fog from '../../assets/home/herosection/fog.svg'
+import Link from "next/link";
 
-const Hero = ({ spData = [], universityData = [], typeData = [] }) => {
+const Hero = ({ spData = [], universityData = [] }) => {
   const floatingElementsRef = useRef([]);
   const mainContentRef = useRef(null);
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredResults, setFilteredResults] = useState([]);
+
 
   // ✨ Floating animation
   useEffect(() => {
@@ -56,12 +56,16 @@ const Hero = ({ spData = [], universityData = [], typeData = [] }) => {
     };
   }, []);
 
-  
   const addToRefs = (el) => {
     if (el && !floatingElementsRef.current.includes(el)) {
       floatingElementsRef.current.push(el);
     }
   };
+
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+
 
   // 🔍 Filter logic
   useEffect(() => {
@@ -85,14 +89,14 @@ const Hero = ({ spData = [], universityData = [], typeData = [] }) => {
         hasWordStartingWith(university?.name)
       );
 
-      const typeResults = typeData.filter((ty) =>
-        hasWordStartingWith(ty?.name) ||
-        hasWordStartingWith(ty?.full_name)
-      );
+      // const typeResults = typeData.filter((ty) =>
+      //   hasWordStartingWith(ty?.name) ||
+      //   hasWordStartingWith(ty?.full_name)
+      // );
 
       const uniqueResults = Array.from(
         new Map(
-          [...programResults, ...universityResults, ...typeResults].map((item) => {
+          [...programResults, ...universityResults].map((item) => {
             let uniqueKey;
             if (item.program_type_name) {
               uniqueKey = `sp-${item.id}`;
@@ -108,7 +112,7 @@ const Hero = ({ spData = [], universityData = [], typeData = [] }) => {
 
       setFilteredResults(uniqueResults);
     }
-  }, [searchTerm, spData, universityData, typeData]);
+  }, [searchTerm, spData, universityData]);
 
   return (
     <section className="relative py-2 md:py-10 text-center overflow-hidden">
@@ -228,65 +232,89 @@ const Hero = ({ spData = [], universityData = [], typeData = [] }) => {
 
           <div className="mt-6 flex flex-col md:flex-row justify-center items-center gap-4">
             {/* Search Box */}
-            <div className="relative w-full sm:w-[60%] xl:w-[72%]">
+            <div className="relative w-full sm:w-[60%] xl:w-[72%] font-rubik">
+              {/* 🔍 Search Icon */}
               <Image
                 src={search}
                 alt="Search"
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 md:w-4 md:h-4 text-gray-500"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
               />
+
+              {/* 🧠 Search Input */}
               <input
                 type="text"
-                placeholder="Search for programs or universities..."
-                className="pl-12 pr-4 py-3 w-full rounded-md font-inter shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 text-[12px] md:text-[14px] lg:text-[16px]"
+                placeholder="Search programs, universities..."
+                className="pl-12 pr-4 py-3 w-full rounded-xl font-medium shadow-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent text-sm md:text-base placeholder:text-gray-400"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
 
-              {/* Search Results Dropdown - Moved inside the search container for proper positioning */}
-              {searchTerm && filteredResults.length > 0 && (
-                <ul className="absolute top-full left-0 font-inter right-0 bg-white border rounded-md shadow-md mt-1 z-999 max-h-60 overflow-y-auto">
-                  {filteredResults.map((item) => {
-                    // Generate a unique key based on item type and ID
-                    let itemKey = "";
-                    if (item.program_type_name) {
-                      itemKey = `sp-${item.id}`;
-                    } else if (item.full_name) {
-                      itemKey = `type-${item.id}`;
-                    } else if (item.name) {
-                      itemKey = `university-${item.id}`;
-                    } else {
-                      itemKey = `item-${item.id}`;
-                    }
+              {/* 💡 Search Suggestions */}
+              {searchTerm && (
+                <ul className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-xl shadow-xl mt-2 z-[999] max-h-64 overflow-y-auto">
+                  {filteredResults.length > 0 ? (
+                    filteredResults.map((item) => {
+                      let itemKey = "";
+                      let href = "";
+                      let tag = "";
 
-                    return (
-                      <li
-                        key={itemKey}
-                        className="p-2 hover:bg-gray-100 cursor-pointer text-[12px] md:text-[14px]"
-                        onClick={() => console.log(`Navigating to ${item.str_representation || item.full_name || item.name}`)}
-                      >
-                        {item.str_representation || item.name || item.name}
-                      </li>
-                    );
-                  })}
+                      if (item.program_type_name) {
+                        itemKey = `sp-${item.id}`;
+                        href = `/programs/${item.id}`;
+                        tag = "Program";
+                      } else if (item.name) {
+                        itemKey = `university-${item.id}`;
+                        href = `/universities/${item.id}`;
+                        tag = "University";
+                      } else {
+                        itemKey = `item-${item.id}`;
+                        href = "#";
+                        tag = "Other";
+                      }
+
+                      return (
+                        <li key={itemKey}>
+                          <Link
+                            href={href}
+                            className="block px-4 py-3 hover:bg-gray-100 transition-all duration-150 text-left"
+                          >
+                            <div className="text-sm md:text-base font-medium text-gray-800 text-left">
+                              {item.str_representation || item.full_name || item.name}
+                            </div>
+                            <div className="text-xs text-gray-500 mt-0.5 text-left">{tag}</div>
+                          </Link>
+                        </li>
+
+
+                      );
+                    })
+                  ) : (
+                    <li className="px-4 py-3 text-sm text-gray-500">No results found</li>
+                  )}
                 </ul>
-
               )}
             </div>
 
+
             {/* Browse Button */}
-            <button
-              className="w-full sm:w-auto flex items-center justify-center font-inter gap-2 font-semibold text-white px-2 xl:px-6 py-3 rounded-md shadow-md transition duration-300 text-[12px] md:text-[14px]"
-              style={{
-                backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
-              }}
-            >
-              Browse
-              <Image
-                src={arrow}
-                alt="Arrow"
-                className="w-[8.4px] h-[8.24px]"
-              />
-            </button>
+            <Link
+              href='/programs'>
+
+
+              <button
+                className="w-full sm:w-auto flex items-center justify-center font-inter gap-2 font-semibold text-white px-2 xl:px-6 py-3 rounded-md shadow-md transition duration-300 text-[12px] md:text-[14px] cursor-pointer"
+                style={{
+                  backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
+                }}
+              >
+                Browse
+                <Image
+                  src={arrow}
+                  alt="Arrow"
+                  className="w-[8.4px] h-[8.24px]"
+                />
+              </button>
+            </Link>
           </div>
 
         </div>
