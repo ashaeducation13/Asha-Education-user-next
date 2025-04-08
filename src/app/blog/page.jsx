@@ -9,9 +9,7 @@ export default function page() {
     <div>
       <Navbar />
       <Listing />
-      <Inner />
       <Footer />
-      {/* <MainForm /> */}
     </div>
   )
 }
