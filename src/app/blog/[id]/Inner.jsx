@@ -2,14 +2,14 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { BlogCard } from "./Listing";
+import { BlogCard } from "../Listing";
 import { motion, useScroll, useSpring } from "framer-motion";
-import building from "../../assets/blog/building.png";
+import building from "../../../assets/blog/building.png";
 // Icons
-import FacebookRed from "../../../public/blog/Facebook-red.svg";
-import TwitterRed from "../../../public/blog/Twitter-red.svg";
-import InstagramRed from "../../../public/blog/Instagram-red.svg";
-import LinkedInRed from "../../../public/blog/LinkedIn-red.svg";
+import FacebookRed from "../../../assets/blog/Facebook-red.svg";
+import TwitterRed from "../../../assets/blog/Twitter-red.svg";
+import InstagramRed from "../../../assets/blog/Instagram-red.svg";
+import LinkedInRed from "../../../assets/blog/LinkedIn-red.svg";
 
 const content = `
     <p>Australia is a popular study destination for international students, and while many are well aware of universities in Sydney and Melbourne, Adelaide is yet another destination that could be the right fit for you.</p>
@@ -128,8 +128,8 @@ function BlogInner() {
     offset: ["start start", "end start"],
   });
   const scaleY = useSpring(scrollYProgress, {
-    stiffness: 50,
-    damping: 20,
+    stiffness: 250,
+    damping: 30,
     restDelta: 0.001,
   });
 
@@ -161,22 +161,33 @@ function BlogInner() {
             {/* Navigation List */}
             <div className="flex items-start">
               <nav className="flex-1">
-                <ul className="space-y-3">
-                  {headingList.map((item) => (
-                    <li key={item}>
-                      <button
-                        onClick={() => handleOnFocus(item)}
-                        className={`text-left w-full px-2 py-1 rounded transition-all font-normal lg:text-[14px] md:text-[12px] leading-[100%] ${
-                          selected === item
-                            ? "text-black font-medium font-rubik"
-                            : "text-gray-700 hover:text-black font-open-sans"
-                        }`}
-                      >
-                        {item.replace(/-/g, " ")}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+                {/* Scroll Progress Bar */}
+
+                {/* Sidebar container with relative positioning */}
+                <div className="relative">
+                  {/* Scroll Progress Bar */}
+                  <motion.div
+                    style={{ scaleY }}
+                    className="absolute left-0 top-3 w-[3px] h-full origin-top bg-red-500"
+                  />
+
+                  <ul className="space-y-3 pl-3">
+                    {headingList.map((item) => (
+                      <li key={item}>
+                        <button
+                          onClick={() => handleOnFocus(item)}
+                          className={`text-left w-full px-2 py-1 rounded transition-all font-normal lg:text-[14px] md:text-[12px] leading-[100%] ${
+                            selected === item
+                              ? "text-black font-medium font-rubik"
+                              : "text-gray-700 hover:text-black font-open-sans"
+                          }`}
+                        >
+                          {item.replace(/-/g, " ")}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </nav>
             </div>
 
