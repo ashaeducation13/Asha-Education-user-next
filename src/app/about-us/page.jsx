@@ -7,12 +7,12 @@ import WhyStudent from './WhyStudent'
 import SuccessfullStudents from './SuccessfullStudents'
 import WeHelp from './WeHelp'
 import OurGrowth from './OurGrowth'
-import { AboutusFetch } from '@/services/api'
+import { AboutusFetch, TestimonialFetch } from '@/services/api'
 
 export default async function page() {
+    const testimData = await TestimonialFetch() 
     const aboutusData = await AboutusFetch();
     const data= aboutusData[0]
-    console.log("data", data); 
   return (
     <div>
       <Navbar/>
@@ -20,7 +20,7 @@ export default async function page() {
       <MissionVision data={data}/>
       <WhyStudent/>
       <OurGrowth />
-      <SuccessfullStudents/>
+      <SuccessfullStudents data={testimData}/>
       <WeHelp data={data}/>
       <Footer/>
     </div>

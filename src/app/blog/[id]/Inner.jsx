@@ -192,7 +192,7 @@ function BlogInner() {
             </div>
 
             {/* Share Article Section (now sticky along with navigation) */}
-            <div className="mt-8 pt-6 border-t border-gray-200">
+            <div className="mt-8 pt-6 border-t border-gray-200 ">
               <h3 className="text-sm font-medium text-[#000000] mb-3">
                 Share Article
               </h3>
@@ -233,7 +233,7 @@ function BlogInner() {
       </section>
 
       {/* Recommended Articles */}
-      <section className="bg-gray-50 lg:py-10">
+      <section className="bg-gray-50 py-6 lg:py-10 ">
         <div className="containers ">
           <h2 className="text-2xl font-bold text-gray-900 py-5">
             Recommended Articles
