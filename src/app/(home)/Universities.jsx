@@ -104,7 +104,7 @@ const Universities = ({ data }) => {
             className="w-full"
           >
             {selectedUniversity?.programs?.map((course) => (
-             <SwiperSlide key={course.id} className="flex justify-center py-3">
+             <SwiperSlide key={course.id} className="flex justify-center md:pl-4 py-3">
 
                 <PartnerCard
                   course={course}

@@ -287,7 +287,7 @@ const Hero = ({ spData = [], universityData = [] }) => {
 
       {/* Carousel */}
       <div className="flex justify-center">
-        <HeroCarousel />
+        <HeroCarousel data={universityData} />
       </div>
 
       {/* Foggy Bottom Effect using SVG */}
