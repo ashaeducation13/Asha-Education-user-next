@@ -68,7 +68,7 @@ const StudentSwiper = ({data}) => {
           });
         }}
       >
-        {testim.map((student, index) => (
+        {testim?.map((student, index) => (
           <SwiperSlide key={index}>
             <div className="flex flex-col md:flex-row bg-white text-black rounded-[20px] overflow-hidden shadow-lg w-full max-w-3xl mx-auto md:min-h-[300px]">
               <div className="md:w-[260px] lg:w-[300px] h-[180px] md:h-[300px] relative">
@@ -133,7 +133,7 @@ const StudentSwiper = ({data}) => {
 
 function SuccessfulStudents({data}) {
   return (
-    <section className="bg-red-500 text-white md:py-14 py-6 px-4 md:px-[100px] relative my-10"
+    <section className="bg-red-500 text-white md:py-14 py-6 px-4 md:px-[100px] relative lg:my-10 md:my-6" 
       style={{
         backgroundImage: `url(${bg.src})`,
         backgroundSize: "cover",

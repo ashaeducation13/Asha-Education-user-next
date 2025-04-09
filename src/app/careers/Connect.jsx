@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import UploadIcon from "../../../public/careers/upload.svg";
+import { useState } from "react";
 
 export default function Connect() {
+  const [ selectedValue, setSelectedValue ] = useState('') 
   return (
     <section className="w-[80%] mx-auto px-[1px] my-10">
       <div className="">
@@ -47,14 +49,14 @@ export default function Connect() {
               Where did you hear about us from?
               </p>
               <select
-                className="w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter font-normal focus:outline-none text-[#BABABA]"
+                className="w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter font-normal focus:outline-none text-[#BABABA]" value={selectedValue} onChange={(e) => setSelectedValue(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option disabled>
                   Select Platform
                 </option>
-                <option value="">LinkedIn</option>
-                <option value="">Instagram</option>
-                <option value="">Youtube</option>
+                <option value="linkedin">LinkedIn</option>
+                <option value="instagram">Instagram</option>
+                <option value="youtube">Youtube</option>
               </select>
             </div>
 

@@ -4,7 +4,7 @@ import Career1 from "../../assets/careers/asha-career1.jpg";
 
 function HeroSection() {
   return (
-    <section className="containers flex flex-col lg:flex-row items-center justify-between mx-auto h-auto lg:h-[400px]">
+    <section className="containers flex flex-col lg:flex-row items-center justify-between mx-auto h-auto lg:h-[300px]">
       {/* Left Side - Text Content */}
       <div className="w-full mb-6 lg:mb-0">
         <div className="inline-block px-[12px] py-[4px] border rounded-[8px] border-red-500 mb-6">

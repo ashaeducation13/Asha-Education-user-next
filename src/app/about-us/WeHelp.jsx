@@ -89,9 +89,9 @@ function WeHelp({ data }) {
   ];
 
   return (
-    <div className="md:w-[80%] w-[90%] mx-auto md:flex justify-between items-start py-[10px] md:py-[50px] md:gap-16 lg:gap-0">
+    <div className="md:w-[80%] w-[90%] mx-auto flex flex-col md:flex-row justify-between items-stretch py-[10px] md:py-[50px]">
       {/* Contact Info Section */}
-      <div className="lg:w-[30%]">
+      <div className="lg:w-[38%] md:w-[45%] lg:mr-36">
         <h1 className="font-open-sans lg:text-[40px] md:text-[32px] text-[24px] leading-[24px] md:leading-[32px] lg:leading-[40px]">
           We’re Here to Help You!
         </h1>
@@ -127,8 +127,8 @@ function WeHelp({ data }) {
       </div>
 
       {/* Form Section */}
-      <div className="lg:w-[40%] md:w-[60%] flex flex-col items-center mt-6 md:mt-0">
-        <div className="w-full bg-white p-4 rounded-[20px] shadow-2xl">
+      <div className="lg:w-[40%] md:w-[52%] mt-6 md:mt-0">
+      <div className="w-full bg-white p-6 rounded-[20px] shadow-2xl h-full">
           <form className="flex flex-col gap-2 text-[#6D758F]" onSubmit={handleSubmit}>
             {/* Responsive Name & Phone */}
             <div className="flex flex-col md:flex-row gap-1">
