@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
     // Give it time to render the next page
     const timeout = setTimeout(() => {
       setLoading(false)
-    }, 300) // Adjust delay if needed
+    }, 300) // Adjust delay if needed 
 
     return () => clearTimeout(timeout)
   }, [pathname])

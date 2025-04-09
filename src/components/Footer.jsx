@@ -109,25 +109,25 @@ const Footer = () => {
                         <h3 className="text-[14px] lg:text-[16px] font-medium mb-4">Quick Links</h3>
                         <ul className="space-y-2 md:space-y-2 grid md:grid-cols-1 grid-cols-2 md:block font-rubik text-[14px] lg:text-[16px]">
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-white transition duration-300">Home</a>
+                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">Home</a>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-white transition duration-300">Programs</a>
+                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">Programs</a>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-white transition duration-300">Universities</a>
+                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">Universities</a>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-white transition duration-300">About Us</a>
+                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">About Us</a>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-white transition duration-300">Blog</a>
+                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">Blog</a>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-white transition duration-300">Contact Us</a>
+                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">Contact Us</a>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-white transition duration-300">Career</a>
+                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">Career</a>
                             </li>
                         </ul>
                     </div>
@@ -174,17 +174,18 @@ const Footer = () => {
 
 
                     {/* Fourth Section - Location */}
-                    <div>
-                        <h3 className="text-[14px] lg:text-[16px] font-medium mb-4">Location</h3>
-                        <div className="bg-gray-700 rounded-lg h-48 overflow-hidden">
-                            {/* This would be your map, using a placeholder for now */}
-                            <div className="w-full h-full flex items-center justify-center">
-                                <svg className="h-12 w-12 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                                </svg>
-                            </div>
-                        </div>
+                    <div className="w-full h-[300px] rounded-lg overflow-hidden shadow-md mt-6 border border-gray-200">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.9790556191876!2d72.8265398!3d19.2004843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b74ec2c18775%3A0x29c5d960d7559a01!2sPanchratna%20(A)%20Co%20op.%20Housing%20Society%20Ltd!5e0!3m2!1sen!2sin!4v1712572441234!5m2!1sen!2sin"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            allowFullScreen=""
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                        ></iframe>
                     </div>
+
                 </div>
 
                 <div className="pt-8 mt-8 text-center text-black font-medium text-sm flex flex-wrap items-center gap-x-4 gap-y-2 max-w-3xl mx-auto lg:max-w-full lg:justify-between">

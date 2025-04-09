@@ -49,7 +49,7 @@ const HeroSection = ({data}) => {
                     <p className='font-open-sans font-semibold lg:text-[20px] md:text-[18px] text-[16px] leading-[100%] text-[#121212]'>{data.university.name} {data.mode_of_study}</p>
                     {/* University Name */}
                     <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-semibold font-open-sans leading-[40px]">
-                        {data.program_name.full_name}
+                        {data.program_name.name} in {data.specialization.name}
                     </h2>
                     <div className="md:w-1/2 block md:hidden">
                         <div className="border-4 border-gray-200 rounded-xl p-2">
