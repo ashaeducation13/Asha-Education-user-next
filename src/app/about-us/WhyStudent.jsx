@@ -25,7 +25,7 @@ const cardData = [
 
 function WhyStudent() {
   return (
-    <section className="containers relative py-3 md:py-6 text-[#121212] px-4">
+    <section className="containers relative py-3 md:py-6 text-[#121212] md:px-4">
       <h2 className="font-open-sans lg:text-[40px] md:text-[32px] text-[21px] whitespace-nowrap leading-[40px] font-semibold md:mb-5 ">
         Why Students Trust Us
       </h2>

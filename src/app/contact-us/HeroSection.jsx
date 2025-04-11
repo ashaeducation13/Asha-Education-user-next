@@ -22,7 +22,7 @@ export default function HeroSection() {
 
       {/* Content section - will appear second on mobile (order-2) and first on desktop */}
       <div className="order-2 md:order-1 flex flex-col items-center justify-center md:pr-20 py-6">
-        <div className="relative flex flex-col lg:space-y-2 lg:h-[450px] md:h-[310px] lg:w-[450px] md:w-[250px] h-[230px] w-[250px] items-start justify-center lg:pl-23 md:pl-6 lg:pt-10 lg:mt-20 md:mt-0 mt-20 px-4">
+        <div className="relative flex flex-col lg:space-y-2 lg:h-[450px] md:h-[310px] lg:w-[450px] md:w-[250px] h-[230px] w-[280px] items-center justify-center lg:pl-23 md:pl-6 lg:pt-10 lg:mt-20 md:mt-0 mt-20 px-4">
           <Image
             src={topleft}
             alt="Top Left Decoration"
@@ -59,7 +59,7 @@ export default function HeroSection() {
           >
             Get in Touch{" "}
           </h1>
-          <h1 className="font-open-sans font-medium lg:text-[40px] md:text-[32px] text-[24px] lg:leading-[40px] md:leading-[32px] leading-[24px] mb-4">
+          <h1 className="font-open-sans text-center font-medium lg:text-[40px] md:text-[32px] text-[24px] lg:leading-[40px] md:leading-[32px] leading-[24px] mb-4">
             Touch with Us
           </h1>
           <p className="font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] lg:leading-[24px] md:leading-[21px] leading-[18px] mb-8 text-[#121212]">

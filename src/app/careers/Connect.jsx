@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function Connect() {
   const [ selectedValue, setSelectedValue ] = useState('') 
   return (
-    <section className="w-[80%] mx-auto px-[1px] my-10">
+    <section className="containers px-[1px] my-10">
       <div className="">
         <div className="md:p-[20px] p-[10px] border border-[#959595] bg-grey-400 rounded-[20px] bg-white">
           <div className="grid grid-cols-1 md:grid-cols-2 md:gap-[20px] gap-[10px]">
