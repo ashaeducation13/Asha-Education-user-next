@@ -40,13 +40,15 @@ const studentTestimonials = [
 ];
 
 const StudentSwiper = ({data}) => {
+  console.log("testim data",data);
+  
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [testim, setTestim] = useState(data || []);
 
 
   return (
-    <div className="relative w-full mt-6 px-4 md:px-0">
+    <div className="relative containers w-full mt-6 px-4 md:px-0">
       <Swiper
         spaceBetween={20}
         slidesPerView={1}
@@ -99,11 +101,8 @@ const StudentSwiper = ({data}) => {
                 </div>
 
                 <div>
-                  <h3 className="text-[16px] leading-[22px] text-grey-600 font-open-sans">
-                    {student.program_name}
-                    {/* <span className="font-semibold">{student.name}</span>
-                    <span className="block font-bold">{student.course}</span> */}
-                  </h3>
+                    <span className="font-semibold">{student.name}</span>
+                    <span className="block font-bold">{student.program_name}</span>
                 </div>
               </div>
             </div>
@@ -112,7 +111,7 @@ const StudentSwiper = ({data}) => {
       </Swiper>
 
       {/* Navigation Buttons */}
-      <div className="absolute top-[90%] md:top-1/2 left-[60%] sm:left-[70%] md:-left-18 lg:-left-4 xl:left-2 right-2 md:-right-18 lg:-right-4 xl:right-2 flex justify-between md:-translate-y-1/2 z-10 px-4 md:px-0 mt-6 md:mt-0 mb-4">
+      <div className="absolute  md:top-1/2 left-[60%] sm:left-[70%] md:-left-18 lg:-left-4 xl:left-2 right-2 md:-right-18 lg:-right-4 xl:right-2 flex justify-between md:-translate-y-1/2 z-10 px-4 md:px-0 mt-6 md:mt-0 mb-4">
         <button
           ref={prevRef}
           className="group w-10 h-10 flex items-center justify-center border-2 border-white rounded-md bg-transparent transition-all hover:bg-white"
@@ -133,7 +132,7 @@ const StudentSwiper = ({data}) => {
 
 function SuccessfulStudents({data}) {
   return (
-    <section className="bg-red-500 text-white md:py-14 py-6 px-4 md:px-[100px] relative lg:my-10 md:my-6" 
+    <section className="bg-red-500 text-white md:py-14 pt-6 pb-24 px-4 md:px-[100px] relative lg:my-10 md:my-6" 
       style={{
         backgroundImage: `url(${bg.src})`,
         backgroundSize: "cover",

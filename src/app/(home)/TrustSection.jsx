@@ -5,7 +5,8 @@ import thumbnail from '../../assets/home/Trustsection/thumbnail.webp'
 import play from '../../assets/home/Trustsection/play.svg'
 import topright from '../../assets/topright.svg'
 import ReactPlayer from "react-player";
-import {VideoContainer} from '../../components/VideoContainer'
+import { VideoContainer } from '../../components/VideoContainer'
+import Link from "next/link";
 const video2 = "/videos/vid2.mp4"
 
 const TrustSection = () => {
@@ -13,9 +14,9 @@ const TrustSection = () => {
     return (
         <div className="containers flex justify-center">
             <div className="w-full py-8 flex flex-col md:flex-row items-center justify-between gap-10">
-            <div className="flex-1 flex flex-col gap-6 items-center justify-center h-full">
-                        <VideoContainer video={video2}  />
-                    </div>
+                <div className="flex-1 flex flex-col gap-6 items-center justify-center h-full">
+                    <VideoContainer video={video2} />
+                </div>
 
                 {/* Right Section (Text - 60%) */}
                 <div className="md:w-[55%] flex flex-col gap-6 md:p-4 h-full">
@@ -29,7 +30,7 @@ const TrustSection = () => {
                             }}
                         >Trust Us</span></h2>
                         <p className="text-[12px] md:text-[14px] lg:text-[16px] text-gray-600 lg:w-[70%]">
-                        Proven success, expert guidance, top universities, and personalized support—helping students achieve their academic dreams
+                            Proven success, expert guidance, top universities, and personalized support—helping students achieve their academic dreams
                         </p>
 
                         {/* Feature Boxes (2 per row) */}
@@ -52,14 +53,16 @@ const TrustSection = () => {
 
                         {/* Download Button & Small Text */}
                         <div className="flex items-center gap-4 mt-4">
-                            <button className=" text-white text-[12px] md:text-[14px]  px-6 py-2 rounded-lg transition"
-                                style={{
-                                    backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
-                                }}
-                            >
-                                Download Now
-                            </button>
-                            <span className="text-[10px] md:text-[12px] lg:text-[14px]  text-gray-500 md:w-[60%] lg:w-[40%]">Want to know more? Download our brochure for detailed insights.</span>
+                            <Link href={'about-us/'}>
+                                <button className=" text-white text-[12px] md:text-[14px]  px-6 py-2 rounded-lg transition cursor-pointer"
+                                    style={{
+                                        backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
+                                    }}
+                                >
+                                     Know More
+                                </button>
+                            </Link>
+                            <span className="text-[10px] md:text-[12px] lg:text-[14px]  text-gray-500 md:w-[60%] lg:w-[40%]">Curious about us? Click ‘Know More’ to explore our story and mission.</span>
                         </div>
                     </div>
 
