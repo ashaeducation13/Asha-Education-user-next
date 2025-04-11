@@ -10,7 +10,7 @@ const PartnerCard = ({ course, onApplyClick }) => {
 
   return (
     <>
-    <div className="md:w-[85%] bg-white shadow-lg rounded-xl transition-transform duration-300 hover:scale-105 h-full flex flex-col justify-between">
+     <div className="md:w-[85%] bg-white shadow-lg rounded-xl transition-transform duration-300 hover:scale-105 h-full flex flex-col justify-between m-3">
         {/* Image */}
         <Link href={`/programs?id=${course.id}`} passHref>
 
@@ -20,7 +20,7 @@ const PartnerCard = ({ course, onApplyClick }) => {
               alt={course.program_name?.name || "Course Image"}
               width={200}
               height={200}
-              className="w-full h-[150px] md:h-[240px] lg:h-[260px] object-cover"
+              className="w-full h-[140px] md:h-[180px] lg:h-[200px] object-cover"
             />
           )}
         </Link>

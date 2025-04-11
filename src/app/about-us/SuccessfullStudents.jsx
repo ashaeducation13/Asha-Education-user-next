@@ -48,7 +48,7 @@ const StudentSwiper = ({data}) => {
 
 
   return (
-    <div className="relative containers w-full mt-6 px-4 md:px-0">
+    <div className="relative containers w-full mt-6 ">
       <Swiper
         spaceBetween={20}
         slidesPerView={1}
@@ -132,7 +132,7 @@ const StudentSwiper = ({data}) => {
 
 function SuccessfulStudents({data}) {
   return (
-    <section className="bg-red-500 text-white md:py-14 pt-6 pb-24 px-4 md:px-[100px] relative lg:my-10 md:my-6" 
+    <section className="bg-red-500 text-white md:py-14 pt-6 pb-24  relative lg:my-10 md:my-6" 
       style={{
         backgroundImage: `url(${bg.src})`,
         backgroundSize: "cover",

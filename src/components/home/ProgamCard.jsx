@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import arrow from '../../assets/home/programsection/Arrowright.svg'
+import Link from "next/link";
 
-const ProgramCard = ({ image, title, hover, previousHover, onMouseEnter }) => {
+const ProgramCard = ({ image, title, hover,id, previousHover, onMouseEnter }) => {
     const expandToLeft = previousHover > hover;
     
     // State for window width
@@ -26,7 +27,7 @@ const ProgramCard = ({ image, title, hover, previousHover, onMouseEnter }) => {
     const getCardWidth = () => {
         if (windowWidth >= 1024) return hover ? "315px" : "140px";
         if (windowWidth >= 768) return hover ? "220px" : "57px";
-        return hover ? "120px" : "50px"; // Default for small screens
+        return hover ? "170px" : "50px"; // Default for small screens
     };
 
     return (
@@ -38,6 +39,8 @@ const ProgramCard = ({ image, title, hover, previousHover, onMouseEnter }) => {
         >
             {/* Title */}
             <div className="z-99">
+            <Link href={`/programs?pgrm=${id}`} passHref> 
+
                 <h2
                     className={`absolute font-bold text-[14px] md:text-[16px] lg:text-[24px] leading-[14px] md:leading-[16px] lg:leading-[26px] z-100 transition-all duration-300 ease-in-out 
                         ${hover ? "text-[14px] sm:text-[20px] md:text-[24px] lg:text-[32px] leading-[20px] md:leading-[24px] lg:leading-[32px] top-4 md:left-4 rotate-0" : "bottom-1 md:bottom-4 left-10 md:left-12 -rotate-90 origin-left"}`}
@@ -51,7 +54,7 @@ const ProgramCard = ({ image, title, hover, previousHover, onMouseEnter }) => {
                         <Image src={arrow} alt="Arrow Right" className="w-4 h-4" />
                     </span>
                 </h2>
-
+            </Link>
                 {/* Image */}
                 <div className="absolute bottom-0 left-0 w-full">
                     <Image src={image} alt={title} className="w-full object-cover h-62" />

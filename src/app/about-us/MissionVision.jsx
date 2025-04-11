@@ -30,7 +30,7 @@ function MissionVision({data}) {
     }
   ]);
   return (
-    <section className="containers grid grid-cols-1 md:grid-cols-3 flex-wrap justify-center xl:gap-10 gap-2 md:gap-4 lg:gap-6 lg:pt-14 md:pt-12 md:pb-5 lg:pb-10 pt-5 pb-3 md:px-4">
+    <section className="containers grid grid-cols-1 md:grid-cols-3 flex-wrap justify-center xl:gap-10 gap-2 md:gap-4 lg:gap-6 lg:pt-14 md:pt-12 md:pb-5 lg:pb-10 pt-5 pb-3 ">
       {cardData.map((card)=> (
         <div
           className="group bg-white p-6 rounded-[20px] transition duration-300 hover:bg-[#FF383B] hover:text-white 

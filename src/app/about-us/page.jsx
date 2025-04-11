@@ -20,7 +20,7 @@ export default async function page() {
       <MissionVision data={data}/>
       <WhyStudent/>
       <OurGrowth />
-      <SuccessfullStudents data={testimData}/>
+      {/* <SuccessfullStudents data={testimData}/> */}
       <WeHelp data={data}/>
       <Footer/>
     </div>
