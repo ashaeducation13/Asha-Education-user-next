@@ -15,7 +15,7 @@ const Navbar = () => {
   const [univ, setUniv] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
-  
+
   // Add refs for each dropdown container to detect clicks outside
   const navRef = useRef(null);
   const programsContainerRef = useRef(null);
@@ -34,7 +34,7 @@ const Navbar = () => {
         }
         if (data2) {
           setProgram(data2);
-        } 
+        }
         if (!data1 && !data2) {
           setError('Failed to load data');
         }
@@ -52,25 +52,25 @@ const Navbar = () => {
     const handleClickOutside = (event) => {
       // Handle desktop dropdowns
       if (
-        (activeDropdown === "programs" && 
-         programsContainerRef.current && 
-         !programsContainerRef.current.contains(event.target)) ||
-        (activeDropdown === "universities" && 
-         universitiesContainerRef.current && 
-         !universitiesContainerRef.current.contains(event.target)) ||
-        (activeDropdown === "more" && 
-         moreContainerRef.current && 
-         !moreContainerRef.current.contains(event.target))
+        (activeDropdown === "programs" &&
+          programsContainerRef.current &&
+          !programsContainerRef.current.contains(event.target)) ||
+        (activeDropdown === "universities" &&
+          universitiesContainerRef.current &&
+          !universitiesContainerRef.current.contains(event.target)) ||
+        (activeDropdown === "more" &&
+          moreContainerRef.current &&
+          !moreContainerRef.current.contains(event.target))
       ) {
         setActiveDropdown(null);
       }
 
       // Handle mobile dropdowns
       if (
-        mobileMenuRef.current && 
+        mobileMenuRef.current &&
         !mobileMenuRef.current.contains(event.target) &&
-        (activeDropdown === "programs-mobile" || 
-         activeDropdown === "universities-mobile")
+        (activeDropdown === "programs-mobile" ||
+          activeDropdown === "universities-mobile")
       ) {
         setActiveDropdown(null);
       }
@@ -78,13 +78,13 @@ const Navbar = () => {
 
     // Add event listener
     document.addEventListener("mousedown", handleClickOutside);
-    
+
     // Clean up event listener
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [activeDropdown]);
-  
+
   const toggleDropdown = (menu) => {
     if (activeDropdown === menu) {
       setActiveDropdown(null);
@@ -132,30 +132,37 @@ const Navbar = () => {
               <Link href="/about-us" className="px-3 py-2 rounded-md hover:text-[#FF383B] transition-colors">
                 About Us
               </Link>
-              
+
               {/* Programs Dropdown */}
-              <div 
-                className="relative" 
-                ref={programsContainerRef}
-              >
-                <button 
-                  className={`flex items-center px-3 py-2 rounded-md hover:text-[#FF383B] transition-colors ${activeDropdown === "programs" ? "text-[#FF383B]" : ""}`}
-                  onClick={() => toggleDropdown("programs")}
-                  onMouseEnter={() => handleMouseEnter("programs")}
-                >
-                  Programs
-                  <svg
-                    className={`ml-1 h-5 w-5 transition-transform duration-200 ${activeDropdown === "programs" ? "rotate-180" : ""}`}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+              <div className="relative" ref={programsContainerRef}>
+                <div className="flex items-center px-3 py-2 rounded-md group">
+                  <Link
+                    href="/programs"
+                    className=" lg:text-[16px] md:text-[14px] text-[12px] hover:text-[#FF383B] transition-colors"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
+                    Programs
+                  </Link>
+
+                  <div
+                    onClick={() => toggleDropdown("programs")}
+                    onMouseEnter={() => handleMouseEnter("programs")}
+                    className="ml-2 cursor-pointer"
+                  >
+                    <svg
+                      className={`h-5 w-5 transition-transform duration-200 ${activeDropdown === "programs" ? "rotate-180 text-[#FF383B]" : ""
+                        } group-hover:text-[#FF383B]`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
                 {activeDropdown === "programs" && (
                   <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg z-50 border border-gray-100 overflow-hidden transition-all duration-200 ease-in-out">
                     <div className="py-1">
@@ -185,11 +192,11 @@ const Navbar = () => {
               </div>
 
               {/* Universities Dropdown */}
-              <div 
+              <div
                 className="relative"
                 ref={universitiesContainerRef}
               >
-                <button 
+                <button
                   className={`flex items-center px-3 py-2 rounded-md hover:text-[#FF383B] transition-colors ${activeDropdown === "universities" ? "text-[#FF383B]" : ""}`}
                   onClick={() => toggleDropdown("universities")}
                   onMouseEnter={() => handleMouseEnter("universities")}
@@ -234,9 +241,9 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-              
+
               {/* More Dropdown */}
-              <div 
+              <div
                 className="relative"
                 ref={moreContainerRef}
               >
@@ -346,7 +353,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div 
+        <div
           ref={mobileMenuRef}
           className="lg:hidden absolute top-full right-0 mt-1 w-full md:w-1/3 bg-white rounded-lg shadow-xl z-50 border border-gray-100 overflow-hidden transition-all duration-200 ease-in-out"
         >
@@ -365,7 +372,7 @@ const Navbar = () => {
             >
               About Us
             </Link>
-            
+
             {/* Programs Dropdown Mobile */}
             <div>
               <button
@@ -410,7 +417,7 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            
+
             {/* Universities Dropdown Mobile */}
             <div>
               <button
@@ -455,7 +462,7 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            
+
             <Link
               href="/careers"
               className="block px-3 py-2 rounded-md hover:text-[#FF383B] hover:bg-gray-50 transition-colors"
@@ -480,7 +487,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
-      
+
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 z-[9999] bg-black/50 bg-opacity-50 flex items-center justify-center">

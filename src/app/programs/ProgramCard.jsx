@@ -1,9 +1,14 @@
+'use client'
 import Image from "next/image";
 import logo from '../../assets/universities/logo.svg';
 import dwnld from '../../assets/program/dwnld.svg'
 import Link from "next/link";
+import EmailModal from "@/components/otp/EmailModal";
+import { useState } from "react";
 
 export const ProgramCard = ({ item }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
     console.log("br check", item);
 
     const downloadFile = (url, event) => {
@@ -51,7 +56,7 @@ export const ProgramCard = ({ item }) => {
                         }}
                     >
                         <span className="text-white text-[12px] md:text-[14px] leading-[20px] font-semibold font-rubik">
-                            "Admission ongoing"
+                            Admission ongoing
                         </span>
                     </span>
                 </div>
@@ -70,7 +75,7 @@ export const ProgramCard = ({ item }) => {
 
                             {/* Title */}
                             <h2 className="font-open-sans text-[18px] lg:text-[20px] leading-[24px] font-semibold ">
-                                {item.program_name.full_name}
+                                {item.specialization.str_representation}
                             </h2>
 
                             {/* Duration */}
@@ -92,12 +97,14 @@ export const ProgramCard = ({ item }) => {
                     {item.brochure && (
                         <div className="flex justify-center">
                             <button
-                                onClick={(e) => downloadFile(item.brochure, e)}
+                                // onClick={(e) => downloadFile(item.brochure, e)}
+                                onClick={() => setModalOpen(true)}
                                 className="w-full flex justify-center items-center gap-2 bg-[#FF383B] border border-[#FF383B] text-white font-semibold text-[12px] md:text-[14px] px-[12px] py-[8px] rounded-[8px]"
                             >
                                 <Image src={dwnld} alt="Download" className="w-4 h-4" />
                                 Download Brochure
                             </button>
+                            <EmailModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
                         </div>
                     )}
                 </div>
