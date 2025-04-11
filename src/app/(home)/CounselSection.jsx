@@ -18,32 +18,32 @@ const CounselSection = () => {
         <Image
           src={icon1}
           alt="Icon 1"
-          className="absolute top-[30px] left-[30px] w-8 h-8 hidden md:block"
+          className="absolute top-[30px] left-0 w-8 h-8 hidden md:block"
         />
 
         {/* Top-right Icon */}
         <Image
           src={icon2}
           alt="Icon 2"
-          className="absolute top-[30px] right-[30px] w-8 h-8 hidden md:block"
+          className="absolute top-[30px] right-0 w-8 h-8 hidden md:block"
         />
 
         {/* Bottom-left Icon */}
         <Image
           src={icon3}
           alt="Icon 3"
-          className="absolute bottom-[30px] left-[30px] w-8 h-8 hidden md:block"
+          className="absolute bottom-[30px] left-0 w-8 h-8 hidden md:block"
         />
 
         {/* Bottom-right Icon */}
         <Image
           src={icon4}
           alt="Icon 4"
-          className="absolute bottom-[30px] right-[30px] w-8 h-8 hidden md:block"
+          className="absolute bottom-[30px] right-0 w-8 h-8 hidden md:block"
         />
 
         {/* heading text */}
-        <div className="relative containers mx-auto text-center">
+        <div className="relative  mx-auto text-center">
           <h1 className="text-[24px] md:text-[36px] lg:text-[48px] font-semibold text-gray-900 font-open-sans">
             <span
               className="bg-clip-text text-transparent"
@@ -56,7 +56,7 @@ const CounselSection = () => {
             </span>{" "}
             Counselling
           </h1>
-          <p className="mt-4 text-[12px] md:text-[14px] lg:text-[16px] text-[#6D758F]  mx-auto font-rubik font-normal leading-[24px]">
+          <p className="mt-4 w-[80%] text-[12px] md:text-[14px] lg:text-[16px] text-[#6D758F]  mx-auto font-rubik font-normal leading-[24px]">
             Receive personalized academic guidance at no cost. Our expert
             counsellors are here to help you navigate your educational journey.
             Schedule your free session today.

@@ -88,11 +88,10 @@ const Universities = ({ data }) => {
         </div>
 
         {/* Right: Swiper Carousel */}
-        <div className="w-full flex justify-end overflow-hidden">
+        <div className="w-full flex justify-end overflow-x-hidden">
           <Swiper
             slidesPerView={1.1}
             spaceBetween={12}
-            loop={true}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
             breakpoints={{
               480: { slidesPerView: 1.2, spaceBetween: 12 },
@@ -104,7 +103,7 @@ const Universities = ({ data }) => {
             className="w-full"
           >
             {selectedUniversity?.programs?.map((course) => (
-             <SwiperSlide key={course.id} className="flex justify-center md:pl-4 py-3">
+            <SwiperSlide key={course.id} className="flex justify-center md:pl-4 py-4">
 
                 <PartnerCard
                   course={course}

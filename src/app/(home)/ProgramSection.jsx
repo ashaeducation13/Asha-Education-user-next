@@ -88,15 +88,15 @@ const ProgramsSection = () => {
 
                     {/* Cards */}
                     {programs.map((program, index) => (
-                        <Link href={`/programs?pgrm=${program.key}`} passHref key={index}>
                             <ProgramCard
+                                key={program.id || program.key || index} 
+                                id={program.key}
                                 image={program.image}
                                 title={program.title}
                                 hover={hoveredIndex === index}
                                 previousHover={hoveredIndex}
                                 onMouseEnter={() => setHoveredIndex(index)}
                             />
-                        </Link>
                     ))}
 
                 </div>

@@ -12,7 +12,7 @@ const CommunitySection = () => {
                 <Image src={backgroundSvg} alt="Background" layout="fill" objectFit="cover" />
             </div>
 
-            <div className="relative containers mx-auto flex flex-col md:flex-row gap-6 justify-center items-center px-4">
+            <div className="relative containers mx-auto flex flex-col md:flex-row gap-6 justify-between items-center">
                 {[
                     {
                         title: "Join Our MBA Community",

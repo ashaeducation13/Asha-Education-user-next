@@ -22,9 +22,9 @@ const HeroSection = ({ data }) => {
                     </div>
 
                     {/* University Name */}
-                    <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-medium font-playfair">
+                    <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-medium font-open-sans">
                         <span
-                            className="bg-clip-text text-transparent font-open-sans"
+                            className="bg-clip-text text-transparent font-playfair"
                             style={{
                                 backgroundImage: "linear-gradient(90.02deg, #0A0078 2.5%, #FF383B 43.53%)",
                             }}

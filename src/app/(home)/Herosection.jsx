@@ -286,17 +286,12 @@ const Hero = ({ spData = [], universityData = [] }) => {
       </div>
 
       {/* Carousel */}
-      <div className="flex justify-center">
+      <div className="flex justify-center my-2">
         <HeroCarousel data={universityData} />
+        <div className="absolute bottom-0 w-full h-32 sm:h-40 md:h-42 bg-gradient-to-t from-white/90 via-white/70 to-transparent blur-md pointer-events-none z-20" />
       </div>
 
-      {/* Foggy Bottom Effect using SVG */}
-      <Image
-        src={fog}
-        alt="Fog Effect"
-        className="absolute bottom-[8%] md:bottom-[12%] lg:bottom-[7%] xl:-bottom-[2%] left-0 w-full h-auto pointer-events-none z-20"
-
-      />
+      
     </section>
   );
 };

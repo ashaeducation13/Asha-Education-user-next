@@ -122,10 +122,10 @@ function HeroSection() {
       </div>
 
       {/* Your existing content - Modified container */}
-      <div className="containers relative mx-auto md:px-4 max-w-7xl">
+      <div className="containers relative ">
         <div className="flex flex-col md:flex-row items-stretch justify-between">
           {/* Left Side - Text Content */}
-          <div className="w-full md:w-1/2 text-center md:text-left order-2 md:order-1">
+          <div className="w-full md:w-1/2 xl:w-full text-center md:text-left order-2 md:order-1">
             <h1 className="pt-[20px] md:pt-[30px] text-[28px] leading-[32px] md:text-[42px] md:leading-[100%] lg:text-[64px] lg:leading-[70px] font-normal text-[#121212] font-open-sans text-start">
               <span
                 className="bg-clip-text text-transparent font-playfair"
@@ -139,7 +139,7 @@ function HeroSection() {
               Through Education
             </h1>
 
-            <p className="font-normal leading-[18px] md:leading-[21px] lg:leading-[24px] w-full md:w-[80%] lg:w-[70%] text-[12px] md:text-[16px] text-[#121212] font-rubik mt-3 md:mt-4 mb-6 md:mb-8 text-start">
+            <p className="font-normal leading-[18px] md:leading-[21px] lg:leading-[24px] w-full md:w-[80%] lg:w-[70%] xl:w-[95%] text-[12px] md:text-[16px] text-[#121212] font-rubik mt-3 md:mt-4 mb-6 md:mb-8 text-start">
               Asha Education empowers students with personalized counselling and
               top university partnerships, guiding them to academic success. Our
               commitment ensures each student achieves their educational
@@ -160,7 +160,7 @@ function HeroSection() {
           </div>
 
           {/* Right Side - Video */}
-          <div className="w-full md:w-1/2 flex md:justify-end order-1 md:order-2">
+          <div className="w-full md:w-1/2 xl:w-1/2 flex md:justify-end  order-1 md:order-2">
             <div className="w-full h-full md:w-[300px] lg:w-[470px] lg:h-[500px]">
               <VideoContainer video={video} />
             </div>
