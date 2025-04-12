@@ -196,24 +196,33 @@ const Navbar = () => {
                 className="relative"
                 ref={universitiesContainerRef}
               >
-                <button
-                  className={`flex items-center px-3 py-2 rounded-md hover:text-[#FF383B] transition-colors ${activeDropdown === "universities" ? "text-[#FF383B]" : ""}`}
-                  onClick={() => toggleDropdown("universities")}
-                  onMouseEnter={() => handleMouseEnter("universities")}
-                >
-                  Universities
-                  <svg
-                    className={`ml-1 h-5 w-5 transition-transform duration-200 ${activeDropdown === "universities" ? "rotate-180" : ""}`}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <div className="flex items-center px-3 py-2 rounded-md group">
+                  <Link
+                    href="/universities"
+                    className=" lg:text-[16px] md:text-[14px] text-[12px] hover:text-[#FF383B] transition-colors"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
+                    Universities
+                  </Link>
+
+                  <button
+                    className={`flex items-center px-3 py-2 rounded-md hover:text-[#FF383B] transition-colors ${activeDropdown === "universities" ? "text-[#FF383B]" : ""}`}
+                    onClick={() => toggleDropdown("universities")}
+                    onMouseEnter={() => handleMouseEnter("universities")}
+                  >
+
+                    <svg
+                      className={`ml-1 h-5 w-5 transition-transform duration-200 ${activeDropdown === "universities" ? "rotate-180" : ""}`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </div>
                 {activeDropdown === "universities" && (
                   <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg z-50 border border-gray-100 overflow-hidden transition-all duration-200 ease-in-out">
                     <div className="py-1">
@@ -239,6 +248,7 @@ const Navbar = () => {
                       )}
                     </div>
                   </div>
+
                 )}
               </div>
 

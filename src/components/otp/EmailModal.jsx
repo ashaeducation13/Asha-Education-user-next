@@ -2,8 +2,9 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
+import { sendOtp, verifyOtp } from '@/services/api';
 
-const EmailModal = ({ isOpen, onClose }) => {
+const EmailModal = ({ isOpen, onClose ,id}) => {
     const [step, setStep] = useState(1);
     const [email, setEmail] = useState('');
     const [otp, setOtp] = useState(Array(6).fill(''));
@@ -34,21 +35,49 @@ const EmailModal = ({ isOpen, onClose }) => {
         return () => clearInterval(timer);
     }, [step, timeLeft]);
 
+    // Send OTP to backend
+    const handleSendOtp = async (e) => {
+        e.preventDefault();
 
-    const handleSendOtp = () => {
-        console.log("Sending OTP to:", email);
-        setStep(2);
-        setTimeLeft(120);
-        setCanResend(false);
-        setOtp(Array(6).fill(''));
-        inputRefs.current[0]?.focus();
+        if (!email) return alert("Please enter an email");
+
+        try {
+            await sendOtp({ email });
+            setStep(2);
+            setTimeLeft(120);
+            setCanResend(false);
+            setOtp(Array(6).fill(''));
+            inputRefs.current[0]?.focus();
+        } catch (error) {
+            console.error("Error sending OTP:", error);
+            alert("Failed to send OTP. Please try again.");
+        }
     };
 
-    const handleVerifyOtp = () => {
+    // Verify OTP
+    const handleVerifyOtpSubmit = async (e) => {
+        e.preventDefault();
+    
         const fullOtp = otp.join('');
-        console.log("Verifying OTP:", fullOtp);
-        onClose(); // or handle validation
+        if (fullOtp.length < 6) {
+            return alert("Please enter the complete 6-digit OTP.");
+        }
+    
+        const formData = {
+            email,
+            otp: fullOtp,
+            pid: id, 
+        };
+        
+        try {
+            await verifyOtp(formData);
+            onClose(); 
+        } catch (error) {
+            console.error("Error verifying OTP:", error);
+            alert("Invalid OTP. Please try again.");
+        }
     };
+    
 
     const handleOtpChange = (index, value) => {
         if (!/^\d*$/.test(value)) return;
@@ -76,7 +105,7 @@ const EmailModal = ({ isOpen, onClose }) => {
 
     const handleResend = () => {
         if (canResend) {
-            handleSendOtp();
+            handleSendOtp(new Event('submit')); // simulate form submission
         }
     };
 
@@ -102,7 +131,7 @@ const EmailModal = ({ isOpen, onClose }) => {
                 </button>
 
                 {step === 1 ? (
-                    <div className="space-y-4">
+                    <form onSubmit={handleSendOtp} className="space-y-4">
                         <h2 className="text-xl font-semibold text-center">Enter Your Email</h2>
                         <input
                             type="email"
@@ -112,14 +141,14 @@ const EmailModal = ({ isOpen, onClose }) => {
                             className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
                         />
                         <button
-                            onClick={handleSendOtp}
+                            type="submit"
                             className="w-full bg-gradient-to-r from-blue-700 to-red-500 text-white py-2 rounded-md font-medium hover:opacity-90 transition"
                         >
                             Send OTP
                         </button>
-                    </div>
+                    </form>
                 ) : (
-                    <div className="space-y-5">
+                    <form onSubmit={handleVerifyOtpSubmit} className="space-y-5">
                         <h2 className="text-xl font-semibold text-center">Enter OTP</h2>
 
                         <div className="flex justify-center gap-2">
@@ -141,6 +170,7 @@ const EmailModal = ({ isOpen, onClose }) => {
                         <div className="text-center text-sm text-gray-600 space-y-1">
                             {canResend ? (
                                 <button
+                                    type="button"
                                     onClick={handleResend}
                                     className="text-blue-600 hover:underline"
                                 >
@@ -151,6 +181,7 @@ const EmailModal = ({ isOpen, onClose }) => {
                             )}
                             <div>
                                 <button
+                                    type="button"
                                     onClick={() => setStep(1)}
                                     className="text-sm text-gray-500 hover:text-blue-600 hover:underline"
                                 >
@@ -160,12 +191,12 @@ const EmailModal = ({ isOpen, onClose }) => {
                         </div>
 
                         <button
-                            onClick={handleVerifyOtp}
+                            type="submit"
                             className="w-full bg-green-600 text-white py-2 rounded-md font-medium hover:bg-green-700 transition"
                         >
                             Verify OTP
                         </button>
-                    </div>
+                    </form>
                 )}
             </div>
         </div>
