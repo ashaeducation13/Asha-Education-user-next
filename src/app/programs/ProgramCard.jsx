@@ -11,30 +11,7 @@ export const ProgramCard = ({ item }) => {
 
     console.log("br check", item);
 
-    const downloadFile = (url, event) => {
-        // Prevent any default behavior
-        event.preventDefault();
-        
-        // Create link element
-        const link = document.createElement('a');
-        link.href = url;
-        
-        // Set download attribute to force download behavior
-        link.setAttribute('download', 'brochure.pdf');
-        
-        // Set additional attribute to help browsers recognize as download
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener noreferrer');
-        
-        // Append to DOM, click, and remove
-        document.body.appendChild(link);
-        link.click();
-        
-        // Small timeout to ensure download starts before removal
-        setTimeout(() => {
-            document.body.removeChild(link);
-        }, 100);
-    };
+
 
     return (
         <>
@@ -104,7 +81,7 @@ export const ProgramCard = ({ item }) => {
                                 <Image src={dwnld} alt="Download" className="w-4 h-4" />
                                 Download Brochure
                             </button>
-                            <EmailModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+                            <EmailModal isOpen={modalOpen} onClose={() => setModalOpen(false)} id={item.id} />
                         </div>
                     )}
                 </div>

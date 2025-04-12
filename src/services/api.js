@@ -117,3 +117,51 @@ export const TypeFetch = async () => {
     }
   };
   
+
+  export const sendOtp = async (formData) => {
+    const url = `${BASE_URL}/contact/send-otp/`; 
+  
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.statusText}`);
+      }
+  
+      return await response.json();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      throw error;
+    }
+  };
+
+
+  export const verifyOtp = async (formData) => {
+    const url = `${BASE_URL}/contact/verify-otp/`; 
+    console.log("inner",formData);
+    
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.statusText}`);
+      }
+  
+      return await response.json();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      throw error;
+    }
+  };
