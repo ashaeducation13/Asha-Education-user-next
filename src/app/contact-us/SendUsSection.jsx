@@ -22,23 +22,23 @@ import four from "../../assets/contact-us/4.svg";
 
 // Define components first
 const ContactCard = ({ item }) => (
-  <div className={`p-4 rounded-[20px] bg-white flex flex-col justify-betwee shadow-2xl transition duration-300 hover:bg-gradient-to-r hover:from-[#0A0078] hover:to-[#FF383B] hover:text-white group`}>
-    <div className="flex items-start gap-4">
+  <div className={`px-4 py-2 rounded-[20px] bg-white flex flex-col justify-betwee shadow-2xl transition duration-300 hover:bg-gradient-to-r hover:from-[#0A0078] hover:to-[#FF383B] hover:text-white group`}>
+    <div className="flex items-start gap-2 md:gap-1 lg:gap-4">
       <Image
         src={item.icon}
         alt={item.title}
-        className="w-8 h-8 mt-1 group-hover:hidden"
+        className="lg:w-8 lg:h-8 md:h-7 md:w-7 h-6 w-6 mt-1 group-hover:hidden"
       />
       <Image
         src={item.hovIcon}
         alt={item.title}
         className="w-8 h-8 mt-1 hidden group-hover:block"
       />
-      <h3 className="font-open-sans font-semibold lg:text-[18px] text-[14px] leading-[24px] text-[#FF383B] group-hover:text-white">
+      <h3 className="font-open-sans font-semibold lg:text-[18px] text-[14px] leading-[24px] text-[#FF383B] group-hover:text-white whitespace-nowrap">
         {item.title}
       </h3>
     </div>
-    <div className={`pl-10 ${!item.subtitle1 ? "pt-2" : ""}`}>
+    <div className={`pl-7 ${!item.subtitle1 ? "pt-2" : ""}`}>
       {item.subtitle1 && (
         <div className="">
           <h4 className="font-rubik font-medium lg:text-[16px] text-[12px] leading-[28px] text-[#FF383B] group-hover:text-white">
@@ -75,20 +75,20 @@ const SocialMediaSection = () => (
       <Image
         src={hash}
         alt="hashcode"
-        className="mr-3 lg:w-[43px] lg:h-[44px] w-[24px] h-[25px]"
+        className="mr-3 lg:w-[40px] lg:h-[40px] w-[24px] h-[25px]"
       />
-      <h1 className="bg-clip-text text-transparent font-open-sans font-semibold lg:text-[24px] text-[14px] leading-[24px] whitespace-nowrap bg-gradient-to-r from-[#0A0078] to-[#FF383B]">
+      <h1 className="bg-clip-text text-transparent font-open-sans font-semibold lg:text-[18px] md:text-[14px] text-[12px] leading-[24px] whitespace-nowrap bg-gradient-to-r from-[#0A0078] to-[#FF383B]">
         Stay Connected with Us!
       </h1>
     </div>
 
     {/* Second grid item - Social icons */}
-    <div className="flex items-center md:justify-center gap-3 lg:gap-6">
+    <div className="flex items-center md:justify-center gap-3 lg:gap-4">
       {[facebook, twitter, instagram, linkedin, youtube].map((icon, idx) => (
         <Image
           key={idx}
           src={icon}
-          className="lg:size-[32px] size-[20px]"
+          className="lg:size-[28px] size-[20px]"
           alt="social-icon"
         />
       ))}
@@ -177,7 +177,7 @@ const ContactForm = () => {
         Send Us a Message
       </h2>
       <div className="bg-white p-8 rounded-[20px] shadow-2xl">
-        <form className="flex flex-col gap-5 text-[#6D758F]" onSubmit={handleSubmit}>
+        <form className="flex flex-col md:gap-3 lg:gap-5 text-[#6D758F]" onSubmit={handleSubmit}>
           {formFields.map((field, index) => (
             <FormField
             key={index}
@@ -204,15 +204,6 @@ export default function SendUsSection() {
       hovIcon: one,
     },
     {
-      title: "Phone Numbers",
-      subtitle1: "Admissions",
-      content1: "+91 98765 43210",
-      subtitle2: "General Inquiry",
-      content2: "+91 98765 43210",
-      icon: phone,
-      hovIcon: two,
-    },
-    {
       title: "Email Addresses",
       subtitle1: "Support",
       content1: "support@educationhub.com",
@@ -220,6 +211,15 @@ export default function SendUsSection() {
       content2: "admissions@educationhub.com",
       icon: email,
       hovIcon: three,
+    },
+    {
+      title: "Phone Numbers",
+      subtitle1: "Admissions",
+      content1: "+91 98765 43210",
+      subtitle2: "General Inquiry",
+      content2: "+91 98765 43210",
+      icon: phone,
+      hovIcon: two,
     },
     {
       title: "Office Hours",
@@ -237,12 +237,12 @@ export default function SendUsSection() {
       <div className="flex flex-col md:flex-row justify-between gap-2 md:gap-8 ">
         {/* Contact Info Section */}
         <div className="md:w-[60%] w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-[55%_1fr] gap-2 md:gap-4 mb-4">
+          <div className="grid grid-rows-1 lg:grid-rows-[55%_1fr] gap-2 md:gap-3 mb-2 md:mb-4 lg:mb-14">
             {contactInfo.slice(0, 2).map((item, index) => (
               <ContactCard key={index} item={item} />
             ))}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-[55%_1fr] gap-2 md:gap-4">
+          <div className="grid grid-rows-1 md:grid-cols-[55%_1fr] gap-2 md:gap-4">
             {contactInfo.slice(2, 4).map((item, index) => (
               <ContactCard key={index} item={item} />
             ))}
@@ -251,7 +251,7 @@ export default function SendUsSection() {
         </div>
 
         {/* Contact Form Section */}
-        <div className="lg:w-[35%] w-full">
+        <div className="lg:w-[35%] md:w-[40%] w-full">
           <ContactForm />
         </div>
       </div>
