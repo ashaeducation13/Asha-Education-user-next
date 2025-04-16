@@ -75,13 +75,13 @@ export const ProgramCard = ({ item }) => {
                         <div className="flex justify-center">
                             <button
                                 // onClick={(e) => downloadFile(item.brochure, e)}
-                                onClick={() => setModalOpen(true)}
+                                // onClick={() => setModalOpen(true)}
                                 className="w-full flex justify-center items-center gap-2 bg-[#FF383B] border border-[#FF383B] text-white font-semibold text-[12px] md:text-[14px] px-[12px] py-[8px] rounded-[8px]"
                             >
                                 <Image src={dwnld} alt="Download" className="w-4 h-4" />
                                 Download Brochure
                             </button>
-                            <EmailModal isOpen={modalOpen} onClose={() => setModalOpen(false)} id={item.id} />
+                            {/* <EmailModal isOpen={modalOpen} onClose={() => setModalOpen(false)} id={item.id} /> */}
                         </div>
                     )}
                 </div>
