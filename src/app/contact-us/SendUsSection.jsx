@@ -233,7 +233,7 @@ export default function SendUsSection() {
   ];
 
   return (
-    <div className="containers md:px-4 md:py-12 py-4">
+    <div className="containers md:py-12 py-4 pt-10">
       <div className="flex flex-col md:flex-row justify-between gap-2 md:gap-8 ">
         {/* Contact Info Section */}
         <div className="md:w-[60%] w-full">
