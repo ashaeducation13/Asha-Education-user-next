@@ -27,7 +27,7 @@ export default async function Home() {
       <CounselSection />
       <SuccessfulStudents data={testimData} />
       <InformedSection />
-      <CommunitySection />
+      <CommunitySection />  
       <Footer />
     </>
   );

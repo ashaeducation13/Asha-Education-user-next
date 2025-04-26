@@ -11,6 +11,7 @@ import topleft from '../../assets/topleft.svg'
 import topright from '../../assets/topright.svg'
 import bottomleft from '../../assets/bottomleft.svg'
 import bottomright from '../../assets/bottomright.svg'
+import { motion } from "framer-motion"; 
 
 import lines from '../../assets/home/programsection/lines.svg'
 import Link from "next/link";
@@ -23,17 +24,16 @@ const programs = [
 ];
 
 const ProgramsSection = () => {
-    const [hoveredIndex, setHoveredIndex] = useState(0); // Default to first card hovered
+    const [hoveredIndex, setHoveredIndex] = useState(0);
     return (
-        <section
+        <section className="relative overflow-hidden">
+            {/* Background Layer */}
+            <div
+                className="absolute inset-0 bg-cover bg-left bg-no-repeat z-0"
 
-            style={{
-                backgroundImage: `url(${bg.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "left",
-            }}>
+            ></div>
 
-            <div className=" flex flex-col w-full mx-auto justify-between containers md:flex-row gap-6"
+            <div className="z-10 flex flex-col w-full mx-auto justify-between containers md:flex-row gap-6"
             >
                 {/* Left Section (40%) */}
 
@@ -63,16 +63,30 @@ const ProgramsSection = () => {
                     ></div>
 
                     {/* Text Content */}
-                    <div className="text-center md:text-left p-6 lg:py-16 md:px-4 w-[80%] md:w-[100%]">
-                        <h2 className="sm:text-[24px] md:text-[32px] lg:text-[40px]  font-bold relative z-10 leading-[24px] md:leading-[0.9] w-[80%] md:w-[100%] mx-auto md:px-4">Find the Right Program for You</h2>
-                        <p className="text-[12px] md:text-[14px] relative z-10 mt-2 leading-[18px] md:leading-[21px] lg:leading-[24px] md:px-4">
+                    <motion.div
+                        initial={{ y: 50, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.3, duration: 0.8 }}
+                        viewport={{ once: true, amount: 0.5 }}
+                        className="text-center md:text-left p-6 lg:py-16 md:px-4 w-[80%] md:w-[100%]">
+                        <h2
+                            className="sm:text-[24px] md:text-[32px] lg:text-[40px]  font-bold relative z-10 leading-[24px] md:leading-[0.9] w-[80%] md:w-[100%] mx-auto md:px-4">Find the Right Program for You</h2>
+                        <p
+                            className="text-[12px] md:text-[14px] relative z-10 mt-2 leading-[18px] md:leading-[21px] lg:leading-[24px] md:px-4">
                             Discover the perfect program tailored to your goals with expert guidance and a wide range of academic choices.
                         </p>
-                    </div>
+                    </motion.div>
                 </div>
 
                 {/* Right Section (60%) */}
-                <div className="relative flex gap-2 md:p-6 justify-center md:justify-between w-[90%]  md:w-[60%] lg:w-[70%] max-w-[400px]  md:max-w-[500px] lg:max-w-[850px] mx-auto">
+                <motion.div className="relative flex gap-2 md:p-6 justify-center md:justify-between w-[90%]  md:w-[60%] lg:w-[70%] max-w-[400px]  md:max-w-[500px] lg:max-w-[850px] mx-auto"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    variants={{
+                        hidden: { opacity: 0, y: 50 },
+                        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                    }}>
 
 
                     {/* Background Overlay */}
@@ -88,8 +102,15 @@ const ProgramsSection = () => {
 
                     {/* Cards */}
                     {programs.map((program, index) => (
+                        <motion.div
+                            key={program.id || program.key || index}
+                            variants={{
+                                hidden: { opacity: 0, y: 30 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+                            }}
+                        >
                             <ProgramCard
-                                key={program.id || program.key || index} 
+                                key={program.id || program.key || index}
                                 id={program.key}
                                 image={program.image}
                                 title={program.title}
@@ -97,9 +118,10 @@ const ProgramsSection = () => {
                                 previousHover={hoveredIndex}
                                 onMouseEnter={() => setHoveredIndex(index)}
                             />
+                        </motion.div>
                     ))}
 
-                </div>
+                </motion.div>
 
             </div>
         </section>

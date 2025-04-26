@@ -11,6 +11,7 @@
   "dependencies": {
     "@tailwindcss/typography": "^0.5.16",
     "antd": "^5.24.4",
+    "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.5.0",
     "lucide-react": "^0.484.0",
     "next": "15.2.2",

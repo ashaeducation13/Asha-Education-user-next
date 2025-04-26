@@ -14,6 +14,7 @@ import phn from '../../src/assets/footer/Phone.svg'
 import email from '../../src/assets/footer/Email.svg'
 import Image from "next/image";
 import { AboutusFetch } from '@/services/api';
+import { motion } from "framer-motion"; 
 
 const Footer = () => {
     const [aboutus, setAboutus] = useState([]);
@@ -46,7 +47,11 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-[1fr_0.5fr_1.5fr_1.5fr]  lg:grid-cols-[1fr_0.75fr_1.5fr_1fr] gap-4 lg:gap-6">
 
                     {/* First Section - Logo, Subscription, Social Media */}
-                    <div className="space-y-6">
+                    <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }} className="space-y-6">
                         {/* Logo */}
                         <Image
                             src={logo}
@@ -102,7 +107,7 @@ const Footer = () => {
                                 <Image src={yt} alt="Youtube" className="h-6  md:h-10" />
                             </a>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Second Section - Quick Links */}
                     <div >
