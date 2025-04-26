@@ -62,7 +62,7 @@ export default function HeroCarousel({ data }) {
         loop={true}
         initialSlide={0}
         autoplay={{
-          delay: 3000, // Increased delay for smoother transitions
+          delay: 3000,
           disableOnInteraction: false,
         }}
         onSlideChange={updateSlidePositions}
@@ -79,39 +79,50 @@ export default function HeroCarousel({ data }) {
           const variant = getVariant(position, data.length);
 
           return (
-            <SwiperSlide key={src.id} virtualIndex={index} className="flex justify-center items-center py-10 md:py-20">
+            <SwiperSlide
+              key={src.id}
+              virtualIndex={index}
+              className="flex justify-center items-center py-10 md:py-20"
+            >
               <motion.div
                 initial={isInitialized ? false : variant}
                 animate={variant}
                 variants={slideVariants}
-                className="rounded-lg overflow-hidden shadow-lg"
-                whileHover={{ scale: variant === "center" ? 1.15 : 1.05, transition: { duration: 0.2 } }}
+                whileHover={{ scale: variant === "center" ? 1.15 : 1.05 }}
+                transition={{ duration: 0.2 }}
+                className="rounded-lg overflow-hidden"
               >
-                <Link href={`/universities/${src.id}`}>
-                  <div className="relative overflow-hidden rounded-lg">
-                    <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-                      <Image
-                        src={src.cover_image}
-                        alt={`University ${index + 1}`}
-                        width={223}
-                        height={223}
-                        quality={90}
-                        className="w-[150px] h-[100px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[170px] lg:w-[223px] lg:h-[223px] object-cover rounded-lg"
-                        priority={index < 3} // Preload first 3 for better UX
-                      />
+                <Link href={`/universities/${src.id}`} className="block">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                    className="relative rounded-lg overflow-hidden w-[150px] h-[100px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[170px] lg:w-[223px] lg:h-[223px]"
+                  >
+                    <Image
+                      src={src.cover_image}
+                      alt={`University ${index + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 180px, (max-width: 1024px) 200px, 223px"
+                      className="object-cover rounded-lg"
+                      quality={90}
+                      priority={index < 3}
+                    />
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute inset-0 flex items-center justify-center text-white text-center px-2 text-sm sm:text-base font-semibold"
+                      style={{ backgroundColor: "rgba(0, 0, 0, 0.56)" }} //  56% black
+                    >
+                      {src.name}
                     </motion.div>
-                    {position === 0 && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2, duration: 0.3 }}
-                        className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-lg"
-                      />
-                    )}
-                  </div>
+
+
+                  </motion.div>
                 </Link>
               </motion.div>
             </SwiperSlide>
+
           );
         })}
       </Swiper>

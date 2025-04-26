@@ -16,7 +16,6 @@ const Navbar = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
-  // Add refs for each dropdown container to detect clicks outside
   const navRef = useRef(null);
   const programsContainerRef = useRef(null);
   const universitiesContainerRef = useRef(null);
@@ -283,7 +282,7 @@ const Navbar = () => {
                       aria-orientation="vertical"
                     >
                       <Link
-                        href="/careers"
+                        href="/career"
                         className="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-[#FF383B] transition-colors"
                         role="menuitem"
                         onClick={handleLinkClick}
@@ -291,7 +290,7 @@ const Navbar = () => {
                         Careers
                       </Link>
                       <Link
-                        href="/blog"
+                        href="/blogs"
                         className="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-[#FF383B] transition-colors"
                         role="menuitem"
                         onClick={handleLinkClick}
@@ -304,7 +303,7 @@ const Navbar = () => {
                         role="menuitem"
                         onClick={handleLinkClick}
                       >
-                        Contact
+                        Contact Us
                       </Link>
                     </div>
                   </div>
@@ -471,17 +470,17 @@ const Navbar = () => {
                   )}
                 </div>
               )}
-            </div>
+            </div> 
 
             <Link
-              href="/careers"
+              href="/career"
               className="block px-3 py-2 rounded-md hover:text-[#FF383B] hover:bg-gray-50 transition-colors"
               onClick={handleLinkClick}
             >
               Career
             </Link>
             <Link
-              href="/blog"
+              href="/blogs"
               className="block px-3 py-2 rounded-md hover:text-[#FF383B] hover:bg-gray-50 transition-colors"
               onClick={handleLinkClick}
             >

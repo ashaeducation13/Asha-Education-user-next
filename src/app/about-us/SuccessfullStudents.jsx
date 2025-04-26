@@ -10,6 +10,7 @@ import University from "../../assets/about-us/unilogo.png";
 import Uimage from "../../assets/about-us/uimage1.jpg";
 import bg from '../../assets/home/programsection/bg1.svg'
 import { TestimonialFetch } from "@/services/api";
+import { motion } from "framer-motion";
 
 
 const studentTestimonials = [
@@ -39,9 +40,9 @@ const studentTestimonials = [
   },
 ];
 
-const StudentSwiper = ({data}) => {
-  console.log("testim data",data);
-  
+const StudentSwiper = ({ data }) => {
+  console.log("testim data", data);
+
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [testim, setTestim] = useState(data || []);
@@ -72,8 +73,14 @@ const StudentSwiper = ({data}) => {
       >
         {testim?.map((student, index) => (
           <SwiperSlide key={index}>
-            <div className="flex flex-col md:flex-row bg-white text-black rounded-[20px] overflow-hidden shadow-lg w-full max-w-3xl mx-auto md:min-h-[300px]">
-              <div className="md:w-[260px] lg:w-[300px] h-[180px] md:h-[300px] relative">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true, amount: 0.4 }} className="flex flex-col md:flex-row bg-white text-black rounded-[20px] overflow-hidden shadow-lg w-full max-w-3xl mx-auto md:min-h-[300px]">
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.4 }} className="md:w-[260px] lg:w-[300px] h-[180px] md:h-[300px] relative">
                 <Image
                   src={student.photo_video}
                   alt={student.name}
@@ -81,7 +88,7 @@ const StudentSwiper = ({data}) => {
                   height={400}
                   className="w-full h-full object-cover md:rounded-tl-[8px]"
                 />
-              </div>
+              </motion.div>
 
               <div className="flex-1 p-5 flex flex-col">
                 <div className="mb-4">
@@ -101,11 +108,11 @@ const StudentSwiper = ({data}) => {
                 </div>
 
                 <div>
-                    <span className="font-semibold">{student.name}</span>
-                    <span className="block font-bold">{student.program_name}</span>
+                  <span className="font-semibold">{student.name}</span>
+                  <span className="block font-bold">{student.program_name}</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </SwiperSlide>
         ))}
       </Swiper>
@@ -130,15 +137,19 @@ const StudentSwiper = ({data}) => {
   );
 };
 
-function SuccessfulStudents({data}) {
+function SuccessfulStudents({ data }) {
   return (
-    <section className="bg-red-500 text-white md:py-14 pt-6 pb-24  relative lg:my-10 md:my-6" 
+    <section className="bg-red-500 text-white md:py-14 pt-6 pb-24  relative lg:my-10 md:my-6"
       style={{
         backgroundImage: `url(${bg.src})`,
         backgroundSize: "cover",
         backgroundPosition: "left",
       }}>
-      <h2
+      <motion.h2
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true, amount: 0.4 }}
         className="font-open-sans text-[24px] md:text-[32px] lg:text-[40px] leading-[32px] md:leading-[40px] lg:leading-[48px] font-semibold text-center mb-4 bg-clip-text text-transparent"
         style={{
           backgroundImage:
@@ -146,10 +157,14 @@ function SuccessfulStudents({data}) {
         }}
       >
         Reviews and Success Stories <br /> from Our Alumni
-      </h2>
-      <p className="text-center font-inter font-normal text-[12px] md:text-[14px] lg:text-[16px] leading-[24px] mb-8">
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        viewport={{ once: true, amount: 0.4 }} className="text-center font-inter font-normal text-[12px] md:text-[14px] lg:text-[16px] leading-[24px] mb-8">
         98% of students achieved their admission goals.
-      </p>
+      </motion.p>
       <StudentSwiper data={data} />
     </section>
   );

@@ -20,7 +20,7 @@ const PartnerCard = ({ course, onApplyClick }) => {
               alt={course.program_name?.name || "Course Image"}
               width={200}
               height={200}
-              className="w-full h-[140px] md:h-[180px] lg:h-[200px] object-cover"
+              className="w-full h-[140px] md:h-[180px] lg:h-[200px] object-cover rounded-t-xl"
             />
           )}
         </Link>

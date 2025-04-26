@@ -49,12 +49,12 @@ export default function  ComparisonCard({ spec, pros, cons ,univ}) {
 
                 </span>
 
-                {/* <button
+                 <button
                   className="font-inter font-semibold text-[12px] leading-[18px] text-[#6D758F] px-2 py-1 bg-white rounded-[8px] border border-[#D9D9D9] w-fit"
                   onClick={() => setIsModalOpen(true)}
                 >
                   Choose Another
-                </button> */}
+                </button> 
               </div>
             </div>
 
