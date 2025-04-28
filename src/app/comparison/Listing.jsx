@@ -13,6 +13,7 @@ import once from "../../assets/universities/once.svg";
 import arrow from "../../assets/universities/arrow.svg";
 import { ProgramCard } from '../../app/programs/ProgramCard';
 import Link from "next/link";
+import { motion } from 'framer-motion';
 
 const Listing = ({ data }) => {
   const [selectedCourse, setSelectedCourse] = useState(Courses[0]);
@@ -90,9 +91,13 @@ const Listing = ({ data }) => {
     <>
       <section className="containers border-b border-b-[#E1E4ED]">
         <div className="mx-auto flex justify-between items-center py-5 overflow-x-scroll">
-          <ul className="flex gap-[6px]">
+          <motion.ul
+            initial={{ opacity: 0 }}  // Start with opacity 0
+            animate={{ opacity: 1 }}  // Fade in to full opacity
+            transition={{ duration: 0.5 }}  // Duration for the fade-in effect
+            className="flex gap-[6px]">
             {uniquePrograms.map((item, index) => (
-              <li
+              <motion.li
                 key={index}
                 onClick={() => {
                   setSelectedProgram(item);
@@ -113,11 +118,14 @@ const Listing = ({ data }) => {
                   ? "bg-[#FF383B] text-white"
                   : "bg-white text-[#6D758F] border border-[#D9D9D9]"
                   } hover:bg-[#FF383B] p-[14px] md:px-[22px] md:py-[18px] text-[16px] leading-[16px] font-bold hover:text-white rounded-[8px]`}
+                initial={{ opacity: 0, x: -20 }}  // Start slightly off-screen to the left
+                animate={{ opacity: 1, x: 0 }}  // Animate to full opacity and position
+                transition={{ duration: 0.3, delay: index * 0.1 }}  // Delay for each item
               >
                 {item.specialization.program_type_name}
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
           {/* <ul className="flex gap-2 items-center">
                 <Image src={filterIcon} alt="icon" height={18} />
                 <span className="text-[#FF383B] text-[16px]">Filter by state</span>
@@ -130,13 +138,25 @@ const Listing = ({ data }) => {
 
             {/* Compare section */}
             {comparedLogos.length > 0 && (
-              <div className="md:hidden px-[10px] py-[10px] flex gap-4 flex-col rounded-[6px] border-[1px] border-[#000000] mb-4">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="md:hidden px-[10px] py-[10px] flex gap-4 flex-col rounded-[6px] border-[1px] border-[#000000] mb-4">
                 <h1 className="font-rubik font-normal gap-2 px-4 py-2 rounded-lg text-[12px] w-full">
                   Add to Compare
                 </h1>
-                <div className="flex gap-2 my-2 items-center">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex gap-2 my-2 items-center">
                   {comparedLogos.map((logo, index) => (
-                    <div key={index} className="flex items-center gap-2">
+                    <motion.div key={index} className="flex items-center gap-2"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }} // Delay each item slightly for staggered effect
+                    >
                       <div className="relative">
                         <Image
                           src={logo.logo}
@@ -159,15 +179,25 @@ const Listing = ({ data }) => {
                           className="h-6 w-6"
                         />
                       )}
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
-                <Link href={`/comparison/d?pg=${selectedProgram.specialization.id}&spec=${selectedProgram.program_name.id}&ids=${idsString}`}>
-                  <button className="w-full bg-[#FF383B] py-[10px] font-inter px-4 font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md">
-                    Show Result
-                  </button>
-                </Link>
-              </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Link href={`/comparison/d?pg=${selectedProgram.specialization.id}&spec=${selectedProgram.program_name.id}&ids=${idsString}`}>
+                    <motion.button
+                      className="w-full bg-[#FF383B] py-[10px] font-inter px-4 font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Show Result
+                    </motion.button>
+                  </Link>
+                </motion.div>
+              </motion.div>
             )}
 
             {/* Mobile select dropdown */}
@@ -190,9 +220,20 @@ const Listing = ({ data }) => {
             {/* MD+ specialization list */}
             <div className="hidden md:flex flex-col gap-3">
               <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold">Specialisations</h2>
-              <ul className="flex flex-col gap-2">
+              <motion.ul
+                className="flex flex-col gap-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
                 {specializationList.map((spec, i) => (
-                  <li key={i} className="flex flex-col gap-2">
+                  <motion.li
+                    key={i}
+                    className="flex flex-col gap-2"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: i * 0.1 }} // Delay each item slightly for staggered effect
+                  >
                     <div
                       onClick={() => {
                         setSelectedSpecialization(spec);
@@ -244,9 +285,9 @@ const Listing = ({ data }) => {
                       )}
                     </div>
 
-                  </li>
+                  </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
             </div>
 
 
@@ -360,17 +401,17 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
           <span className="text-xs md:text-[13px] lg:text-[14px]">{item.university.rating} / 5 </span>
         </span>
         {item.brochure && (
-          
-            <button onClick={(e) => downloadFile(item.brochure, e)} className="w-fit bg-[#FFE3E4] inline-flex items-center justify-start gap-2 px-3 md:px-3.5 py-1.5 rounded-[8px]">
-              <Image
-                src={once}
-                alt="icon"
-                className="w-[14px] h-[14px] md:w-[15px] md:h-[15px] lg:w-[18px] lg:h-[18px]"
-              />
-              <span className="text-xs md:text-[13px] lg:text-[14px] text-[#FF383B] whitespace-nowrap">
-                Brouchure
-              </span>
-            </button>)}
+
+          <button onClick={(e) => downloadFile(item.brochure, e)} className="w-fit bg-[#FFE3E4] inline-flex items-center justify-start gap-2 px-3 md:px-3.5 py-1.5 rounded-[8px]">
+            <Image
+              src={once}
+              alt="icon"
+              className="w-[14px] h-[14px] md:w-[15px] md:h-[15px] lg:w-[18px] lg:h-[18px]"
+            />
+            <span className="text-xs md:text-[13px] lg:text-[14px] text-[#FF383B] whitespace-nowrap">
+              Brouchure
+            </span>
+          </button>)}
 
         <span className="text-[#6D758F] text-xs md:text-[13px] lg:text-[14px] xl:text-[16px]">
           {item.university.certifications

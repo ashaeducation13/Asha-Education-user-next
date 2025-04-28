@@ -1,5 +1,7 @@
+'use client';
 import React from "react";
 import Timeline from "./Timeline";
+import { motion } from "framer-motion";
 
 function OurGrowth() {
   const data = [
@@ -38,7 +40,13 @@ function OurGrowth() {
   return (
     <>
       <div className="containers flex flex-col justify-center items-center md:pt-7 pt-5 py-5">
-        <div className="space-y-2 my-6">
+        <motion.div
+          className="space-y-2 my-6"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
           <h1 className="text-center font-open-sans font-semibold lg:text-[48px] md:text-[32px] text-[24px] md:leading-[48px] leading-[24px]">
             <span
               className="bg-clip-text text-transparent"
@@ -55,8 +63,8 @@ function OurGrowth() {
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque,
             repellendus.
           </p>
-        </div>
-        {/* <div className='grid grid-cols-3 lg:gap-10 md:gap-[20px] py-10 '>
+      </motion.div>
+      {/* <div className='grid grid-cols-3 lg:gap-10 md:gap-[20px] py-10 '>
         {data.map((item, index)=>(
           <div className='shadow-lg p-10 rounded-[20px]' key={index}>
             <h1 className='font-open-sans font-semibold lg:text-[36px] md:text-[32px] text-[24px] leading-[48px]'>{item.year}</h1>
@@ -64,7 +72,7 @@ function OurGrowth() {
           </div>
         ))}
       </div> */}
-      </div>
+    </div >
       <Timeline data={data} />
     </>
   );

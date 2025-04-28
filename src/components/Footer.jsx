@@ -14,7 +14,7 @@ import phn from '../../src/assets/footer/Phone.svg'
 import email from '../../src/assets/footer/Email.svg'
 import Image from "next/image";
 import { AboutusFetch } from '@/services/api';
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 
 const Footer = () => {
     const [aboutus, setAboutus] = useState([]);
@@ -48,10 +48,10 @@ const Footer = () => {
 
                     {/* First Section - Logo, Subscription, Social Media */}
                     <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }} className="space-y-6">
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        viewport={{ once: true }} className="space-y-6">
                         {/* Logo */}
                         <Image
                             src={logo}
@@ -110,7 +110,11 @@ const Footer = () => {
                     </motion.div>
 
                     {/* Second Section - Quick Links */}
-                    <div >
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        viewport={{ once: true }} >
                         <h3 className="text-[14px] lg:text-[16px] font-medium mb-4">Quick Links</h3>
                         <ul className="space-y-2 md:space-y-2 grid md:grid-cols-1 grid-cols-2 md:block font-rubik text-[14px] lg:text-[16px]">
                             <li>
@@ -135,11 +139,15 @@ const Footer = () => {
                                 <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">Career</a>
                             </li>
                         </ul>
-                    </div>
+                    </motion.div>
 
 
                     {/* Third Section - Contact Info */}
-                    <div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        viewport={{ once: true }} >
                         <h3 className="text-[14px] lg:text-[16px] font-medium mb-4">Want to reach us directly</h3>
                         <ul className="space-y-4 text-[14px] lg:text-[16px]">
                             {/* Address */}
@@ -175,11 +183,16 @@ const Footer = () => {
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </motion.div>
 
 
                     {/* Fourth Section - Location */}
-                    <div className="w-full h-[300px] rounded-lg overflow-hidden shadow-md mt-6 border border-gray-200">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        viewport={{ once: true }} 
+                        className="w-full h-[300px] rounded-lg overflow-hidden shadow-md mt-6 border border-gray-200">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.9790556191876!2d72.8265398!3d19.2004843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b74ec2c18775%3A0x29c5d960d7559a01!2sPanchratna%20(A)%20Co%20op.%20Housing%20Society%20Ltd!5e0!3m2!1sen!2sin!4v1712572441234!5m2!1sen!2sin"
                             width="100%"
@@ -189,11 +202,15 @@ const Footer = () => {
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
                         ></iframe>
-                    </div>
+                    </motion.div>
 
                 </div>
 
-                <div className="pt-8 mt-8 text-center text-black font-medium text-sm flex flex-wrap items-center gap-x-4 gap-y-2 max-w-3xl mx-auto lg:max-w-full lg:justify-between">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }} className="pt-8 mt-8 text-center text-black font-medium text-sm flex flex-wrap items-center gap-x-4 gap-y-2 max-w-3xl mx-auto lg:max-w-full lg:justify-between">
                     <div className="flex flex-wrap justify-center sm:justify-start gap-x-4 gap-y-2 sm:w-auto w-full lg:w-auto">
                         <a href="#" className="transition duration-300">Privacy Policy</a>
                         <a href="#" className="transition duration-300">Terms and Plans</a>
@@ -207,7 +224,7 @@ const Footer = () => {
                         Designed and developed by <span className="text-[#FF383B] font-medium ml-1 mr-1">Accolades Integrated</span>
                         <Image src={acc} alt="acc" className="h-4 ml-1" />
                     </p>
-                </div>
+                </motion.div>
 
 
 

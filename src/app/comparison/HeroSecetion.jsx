@@ -1,4 +1,6 @@
+'use client';
 import React from "react";
+import { motion } from "framer-motion";
 
 
 const HeroSecetion = () => {
@@ -8,7 +10,12 @@ const HeroSecetion = () => {
         className=" w-full mx-auto text-center py-5 bg-[#F5F5F5]"
         style={{ backdropFilter: "blur(44px)" }}
       >
-        <div className="w-[80%] mx-auto">
+        <motion.div
+         initial={{ opacity: 0 }}
+         whileInView={{ opacity: 1 }}
+         transition={{ duration: 0.6 }}
+         viewport={{ once: true }}
+          className="w-[80%] mx-auto">
           <h1 className="text-[40px] leading-[100%] font-normal">
             <span
               className="bg-clip-text text-transparent font-playfair"
@@ -25,7 +32,7 @@ const HeroSecetion = () => {
           <p className="font-rubik font-medium pt-3">
             Committed to guiding students toward the best universities in India.
           </p>
-        </div>
+        </motion.div>
       </section>
     </>
   );

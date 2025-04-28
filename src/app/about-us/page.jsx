@@ -19,8 +19,8 @@ export default async function page() {
       <HeroSection/>
       <MissionVision data={data}/>
       <WhyStudent/>
-      <OurGrowth />
-      {/* <SuccessfullStudents data={testimData}/> */}
+      {/* <OurGrowth /> */}
+      <SuccessfullStudents data={testimData}/>
       <WeHelp data={data}/>
       <Footer/>
     </div>

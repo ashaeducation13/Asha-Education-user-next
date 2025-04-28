@@ -23,8 +23,8 @@ function HeroSection() {
           Of Our <br /> Mission
         </h1>
 
-        <p className="font-inter w-full lg:w-[60%] text-[16px] leading-[24px] text-black-600 font-rubik mt-[10px]">
-          We’re here to help! Reach out for inquiries about admissions, courses, or partnerships.
+        <p className="font-inter w-full lg:w-[80%] text-[16px] leading-[24px] text-black-600 font-rubik mt-[10px]">
+        At Asha Education, we are dedicated to creating a dynamic, inclusive workplace that champions innovation, teamwork, and continuous professional development. As a trusted educational consultancy, we are always looking for passionate individuals who are committed to empowering students and supporting their academic and career journeys. Join us in making a meaningful impact in the lives of learners around the world.
         </p>
       </div>
 
@@ -33,7 +33,7 @@ function HeroSection() {
         <Image
           src={Career1}
           alt="Hero Section"
-          className="w-full h-[200px] object-cover rounded-lg"
+          className="w-full h-[260px] object-cover rounded-lg"
         />
       </div>
     </section>
