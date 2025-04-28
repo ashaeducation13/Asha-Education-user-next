@@ -8,6 +8,7 @@ import Mail from "../../assets/about-us/mail-icon.svg";
 import arrow from "../../assets/contact-us/arrow.svg";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
 
 // Reusable form input component
 const FormField = ({ field, formData, handleChange }) => (
@@ -91,51 +92,82 @@ function WeHelp({ data }) {
   return (
     <div className="containers flex flex-col md:flex-row justify-between items-stretch py-[10px] md:py-[50px] ">
       {/* Contact Info Section */}
-      <div className="lg:w-[38%] md:w-[45%] lg:mr-50">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        viewport={{ once: true }} className="lg:w-[38%] md:w-[45%] lg:mr-50">
         <h1 className="font-open-sans lg:text-[40px] md:text-[32px] text-[24px] leading-[24px] md:leading-[32px] lg:leading-[40px]">
-          We’re Here to Help You!
+        Count on Us for Support!
         </h1>
-        <p className="font-rubik mt-4 text-[12px] md:text-[14px] lg:text-[16px] leading-[18px] md:leading-[21px] lg:leading-[24px]">
+        {/* <p className="font-rubik mt-4 text-[12px] md:text-[14px] lg:text-[16px] leading-[18px] md:leading-[21px] lg:leading-[24px]">
           Our dedicated team is here to support your educational journey. Contact us for personalized guidance and assistance.
+        </p> */}
+        <p className="font-rubik mt-4 text-[12px] md:text-[14px] lg:text-[16px] leading-[18px] md:leading-[21px] lg:leading-[24px]">
+        One Call, No Hassle – Get Straightforward Upskilling Guidance!
         </p>
+        <p className="font-rubik mt-4 text-[12px] md:text-[14px] lg:text-[16px] leading-[18px] md:leading-[21px] lg:leading-[24px]">
+        Request a Call Back at a Time That Works for You and Speak with Our Expert Counselor.
+        </p>
+
 
         <div className="space-y-6 mt-6">
           {/* Address */}
-          <div className="flex items-start space-x-4">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }} className="flex items-start space-x-4">
             <Image src={Address} alt="Address" className="w-[38px] h-[40px]" />
             <span className="text-black font-rubik text-[14px] md:text-[16px] lg:text-[20px] leading-[21px] md:leading-[24px] lg:leading-[28px]">
               {data.address}
             </span>
-          </div>
+          </motion.div>
 
           {/* Phone */}
-          <div className="flex items-start space-x-4">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }} className="flex items-start space-x-4">
             <Image src={Phone} alt="Phone" className="w-[38px] h-[40px]" />
             <span className="text-black font-rubik text-[14px] md:text-[16px] lg:text-[20px] leading-[28px]">
               {data.phone}
             </span>
-          </div>
+          </motion.div>
 
           {/* Email */}
-          <div className="flex items-start space-x-4">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }} className="flex items-start space-x-4">
             <Image src={Mail} alt="Email" className="w-[38px] h-[40px]" />
             <span className="text-black font-rubik text-[14px] md:text-[16px] lg:text-[20px] leading-[28px]">
               {data.email}
             </span>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Form Section */}
       <div className="lg:w-[50%] md:w-[52%] mt-6 md:mt-0 flex items-end ">
-      <div className="w-full bg-white p-6 rounded-[20px] shadow-2xl h-full">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="w-full bg-white p-6 rounded-[20px] shadow-2xl h-full">
           <form className="flex flex-col gap-2 text-[#6D758F]" onSubmit={handleSubmit}>
             {/* Responsive Name & Phone */}
             <div className="flex flex-col md:flex-row gap-1">
               {formFields.slice(0, 2).map((field, idx) => (
-                <div className="w-full md:w-1/2" key={idx}>
+                <motion.div className="w-full md:w-1/2" key={idx} initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 * idx }}
+                  viewport={{ once: true }}>
                   <FormField field={field} formData={formData} handleChange={handleChange} />
-                </div>
+                </motion.div>
               ))}
             </div>
 
@@ -148,7 +180,7 @@ function WeHelp({ data }) {
             {/* Submit Button */}
             <SubmitButton />
           </form>
-        </div>
+        </motion.div>
       </div>
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </div>

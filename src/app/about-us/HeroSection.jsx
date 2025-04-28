@@ -14,6 +14,7 @@ import float7 from "../../assets/home/herosection/float7.svg";
 import float8 from "../../assets/home/herosection/float8.svg";
 import { VideoContainer } from "@/components/VideoContainer";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const video = "/videos/vid3.mp4";
 
@@ -126,7 +127,11 @@ function HeroSection() {
         <div className="flex flex-col md:flex-row items-stretch justify-between">
           {/* Left Side - Text Content */}
           <div className="w-full md:w-1/2 xl:w-full text-center md:text-left order-2 md:order-1">
-            <h1 className="pt-[20px] md:pt-[30px] text-[28px] leading-[32px] md:text-[42px] md:leading-[100%] lg:text-[64px] lg:leading-[70px] font-normal text-[#121212] font-open-sans text-start">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true }} className="pt-[20px] md:pt-[30px] text-[28px] leading-[32px] md:text-[42px] md:leading-[100%] lg:text-[64px] lg:leading-[70px] font-normal text-[#121212] font-open-sans text-start">
               <span
                 className="bg-clip-text text-transparent font-playfair"
                 style={{
@@ -134,36 +139,46 @@ function HeroSection() {
                     "linear-gradient(90.02deg, #0A0078 2.5%, #FF383B 43.53%)",
                 }}
               >
-                Building Bright Futures
+                Turning Hopes Into Reality
               </span>{" "}
               Through Education
-            </h1>
+            </motion.h1>
 
-            <p className="font-normal leading-[18px] md:leading-[21px] lg:leading-[24px] w-full md:w-[80%] lg:w-[70%] xl:w-[95%] text-[12px] md:text-[16px] text-[#121212] font-rubik mt-3 md:mt-4 mb-6 md:mb-8 text-start">
-              Asha Education empowers students with personalized counselling and
-              top university partnerships, guiding them to academic success. Our
-              commitment ensures each student achieves their educational
-              aspirations.
-            </p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }} className="font-normal leading-[18px] md:leading-[21px] lg:leading-[24px] w-full md:w-[80%] lg:w-[70%] xl:w-[95%] text-[12px] md:text-[16px] text-[#121212] font-rubik mt-3 md:mt-4 mb-6 md:mb-8 text-start">
+              At Asha Education, we believe that every dream deserves a path, and every learner deserves the opportunity to succeed. Rooted in the word “Asha”— meaning hope, our mission is to empower students with the knowledge, skills, and confidence they need to shape a brighter future. We offer flexible, career-focused programs in collaboration with leading institutions and our strategic partner, Hike Education.
+
+            </motion.p>
             <Link href='/contact-us' >
-            <button
-              className="font-rubik flex items-center justify-start md:justify-start font-medium gap-2 text-[#FFFFFF] px-6 py-3 rounded-md shadow-md transition duration-300 text-[14px] leading-[20px] mt-4"
-              style={{
-                backgroundImage:
-                  "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
-              }}
-            >
-              Talk to a career expert
-              <img src="arrow.svg" alt="Arrow" className="w-[12px] h-[12px]" />
-            </button>
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="font-rubik flex items-center justify-start md:justify-start font-medium gap-2 text-[#FFFFFF] px-6 py-3 rounded-md shadow-md transition duration-300 text-[14px] leading-[20px] mt-4"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
+                }}
+              >
+                Have Questions? Get Heard!
+                <img src="arrow.svg" alt="Arrow" className="w-[12px] h-[12px]" />
+              </motion.button>
             </Link>
           </div>
 
           {/* Right Side - Video */}
           <div className="w-full md:w-1/2 xl:w-1/2 flex md:justify-end  order-1 md:order-2">
-            <div className="w-full h-full md:w-[300px] lg:w-[470px] lg:h-[500px]">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true, amount: 0.4 }} className="w-full h-full md:w-[300px] lg:w-[470px] lg:h-[500px]">
               <VideoContainer video={video} />
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

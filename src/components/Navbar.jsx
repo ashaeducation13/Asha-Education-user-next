@@ -282,20 +282,20 @@ const Navbar = () => {
                       aria-orientation="vertical"
                     >
                       <Link
-                        href="/career"
+                        href="/careers"
                         className="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-[#FF383B] transition-colors"
                         role="menuitem"
                         onClick={handleLinkClick}
                       >
-                        Careers
+                        Career
                       </Link>
                       <Link
-                        href="/blogs"
+                        href="/blog"
                         className="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-[#FF383B] transition-colors"
                         role="menuitem"
                         onClick={handleLinkClick}
                       >
-                        Blog
+                        Blogs
                       </Link>
                       <Link
                         href="/contact-us"
@@ -473,14 +473,14 @@ const Navbar = () => {
             </div> 
 
             <Link
-              href="/career"
+              href="/careers"
               className="block px-3 py-2 rounded-md hover:text-[#FF383B] hover:bg-gray-50 transition-colors"
               onClick={handleLinkClick}
             >
               Career
             </Link>
             <Link
-              href="/blogs"
+              href="/blog"
               className="block px-3 py-2 rounded-md hover:text-[#FF383B] hover:bg-gray-50 transition-colors"
               onClick={handleLinkClick}
             >

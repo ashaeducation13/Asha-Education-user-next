@@ -7,6 +7,7 @@ import Values1 from "../../assets/about-us/values1.svg";
 import Values2 from "../../assets/about-us/values2.svg";
 import Mission2 from "../../assets/about-us/mission2.svg";
 import Vision2 from "../../assets/about-us/vision2.svg";
+import { motion } from "framer-motion";
 
 function MissionVision({data}) {
   const [cardData, setCardData] = useState([
@@ -31,8 +32,12 @@ function MissionVision({data}) {
   ]);
   return (
     <section className="containers grid grid-cols-1 md:grid-cols-3 flex-wrap justify-center xl:gap-10 gap-2 md:gap-4 lg:gap-6 lg:pt-14 md:pt-12 md:pb-5 lg:pb-10 pt-5 pb-3 ">
-      {cardData.map((card)=> (
-        <div
+      {cardData.map((card, index)=> (
+        <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: index * 0.2 }}
+        viewport={{ once: true }}
           className="group bg-white p-6 rounded-[20px] transition duration-300 hover:bg-[#FF383B] hover:text-white 
                       text-center shadow-exact" key={card.title}
         >   
@@ -54,7 +59,7 @@ function MissionVision({data}) {
             </div>
           </div>
           <p className="font-rubik lg:text-[16px] lg:leading-[24px] md:text-[14px] md:leading-[21px] text-[12px] leading-[18px] font-normal text-left">{card.description}</p>
-        </div>
+        </motion.div>
       ))}
     </section>
   );
