@@ -22,6 +22,13 @@ const Navbar = () => {
   const moreContainerRef = useRef(null);
   const mobileMenuRef = useRef(null);
 
+  const programsList = [
+    { name: "Online MBA", url: "/programs?mba=MBA" },
+    { name: "Online PG Cources", url: "/programs?pg=PG" },
+    { name: "Online UG Cources", url: "/programs?ug=UG" },
+    { name: "Certifications", url: "/programs?pgrm=Certifications" },
+    { name: "Executive Cources", url: "/programs?pgrm=UG" }
+  ];
   useEffect(() => {
     const getData = async () => {
       try {
@@ -164,18 +171,12 @@ const Navbar = () => {
 
                 {activeDropdown === "programs" && (
                   <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg z-50 border border-gray-100 overflow-hidden transition-all duration-200 ease-in-out">
-                    <div className="py-1">
-                      {loading ? (
-                        <div className="px-4 py-3 text-center">
-                          <div className="animate-pulse h-4 bg-gray-200 rounded w-3/4 mx-auto"></div>
-                        </div>
-                      ) : error ? (
-                        <div className="px-4 py-2 text-red-500">{error}</div>
-                      ) : program && program.length > 0 ? (
-                        program.map((item, index) => (
+                     <div className="py-1">
+                      {programsList && programsList.length > 0 ? (
+                        programsList.map((item, index) => (
                           <Link
                             key={index}
-                            href={`/programs?type=${item.name}`}
+                            href={item.url}
                             className="block px-4 py-2 text-sm text-[#9C9C9C] hover:bg-gray-50 hover:text-[#FF383B] transition-colors"
                             onClick={handleLinkClick}
                           >

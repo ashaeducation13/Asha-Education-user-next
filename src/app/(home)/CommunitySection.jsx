@@ -6,6 +6,7 @@ import woman1 from "../../assets/home/informsection/women3.png";
 import woman2 from "../../assets/home/informsection/women4.png";
 import backgroundSvg from "../../assets/home/informsection/backlines.svg";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const cardVariants = {
     hidden: (direction) => ({
@@ -42,6 +43,7 @@ const CommunitySection = () => {
                         btnText: "Join Now →",
                         img: woman1,
                         direction: "left",
+                        link: "/community",
                     },
                     {
                         title: "Refer & Earn",
@@ -49,6 +51,7 @@ const CommunitySection = () => {
                         btnText: "Refer Now →",
                         img: woman2,
                         direction: "right",
+                        link: "/refer-and-earn",
                     },
                 ].map((card, index) => (
                     <motion.div
@@ -67,17 +70,21 @@ const CommunitySection = () => {
                         {/* Text Content */}
                         <div className="flex flex-col justify-center p-6 md:p-8 w-1/2 md:w-3/5">
                             <div>
+                                
                                 <h2 className="text-[20px] md:text-[24px] lg:text-[32px] font-semibold">
                                     {card.title}
                                 </h2>
+                               
+
                                 <p className="text-[12px] md:text-[14px] lg:text-[16px] mt-2 text-gray-200">
                                     {card.text}
                                 </p>
                             </div>
-
+                            <Link href={card.link}>
                             <button className="mt-4 bg-[#FF383B] text-[14px] md:text-[20px] text-white px-4 py-2 rounded-md font-semibold shadow-md w-fit self-start">
                                 {card.btnText}
                             </button>
+                            </Link>
                         </div>
 
                         {/* Image */}
