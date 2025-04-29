@@ -4,7 +4,6 @@ import UnivCard from '@/components/universities/UnivCard';
 
 const Listing = ({data}) => {
     const [univ, setUniv] = useState(data || []);
-    console.log(univ);
     
     return (
         <>

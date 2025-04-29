@@ -24,7 +24,7 @@ export const ProgramCard = ({ item }) => {
                     className="relative z-10 h-[50px] rounded-[8px] bg-cover bg-center"
                 >
                     <span className="absolute top-2 left-6 md:w-[65px] lg:w-[90px] h-[33px] bg-white rounded-[5px] flex justify-center">
-                        <Image src={logo} alt="logo" className="" />
+                        <Image src={item.university.logo} width={100} height={100} alt="logo" className="" />
                     </span>
                     <span
                         className="absolute top-2 -right-[4px] lg:-right-[10px] flex justify-center items-center w-auto h-[30px] rounded-tl-[10px] rounded-bl-[20px] px-2 lg:px-5"

@@ -299,6 +299,23 @@ const Navbar = () => {
                         Blogs
                       </Link>
                       <Link
+                        href="/refer-and-earn"
+                        className="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-[#FF383B] transition-colors"
+                        role="menuitem"
+                        onClick={handleLinkClick}
+                      >
+                        Refer & Earn
+                      </Link>
+                      <Link
+                        href="/contact-us"
+                        className="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-[#FF383B] transition-colors"
+                        role="menuitem"
+                        onClick={handleLinkClick}
+                      >
+                        Join Our MBA Community
+                      </Link>
+
+                      <Link
                         href="/contact-us"
                         className="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-[#FF383B] transition-colors"
                         role="menuitem"
