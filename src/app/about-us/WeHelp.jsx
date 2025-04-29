@@ -104,10 +104,7 @@ function WeHelp({ data }) {
           Our dedicated team is here to support your educational journey. Contact us for personalized guidance and assistance.
         </p> */}
         <p className="font-rubik mt-4 text-[12px] md:text-[14px] lg:text-[16px] leading-[18px] md:leading-[21px] lg:leading-[24px]">
-        One Call, No Hassle – Get Straightforward Upskilling Guidance!
-        </p>
-        <p className="font-rubik mt-4 text-[12px] md:text-[14px] lg:text-[16px] leading-[18px] md:leading-[21px] lg:leading-[24px]">
-        Request a Call Back at a Time That Works for You and Speak with Our Expert Counselor.
+        One Call, No Hassle – Get Straightforward Upskilling Guidance! <br /> Request a Call Back at a Time That Works for You and Speak with Our Expert Counselor.
         </p>
 
 

@@ -19,8 +19,8 @@ import Link from "next/link";
 const programs = [
     { image: img1, title: "Undergraduate Programs", key: "UG" },
     { image: img2, title: "Postgraduate Programs", key: "PG" },
-    { image: img3, title: "Doctoral Programs", key: "Doctoral" },
-    { image: img4, title: "Specialized MBAs", key: "Specialized MBA" },
+    { image: img3, title: "Certifications", key: "Certification" },
+    { image: img4, title: "Executive Cources", key: "Executive Program" },
 ];
 
 const ProgramsSection = () => {

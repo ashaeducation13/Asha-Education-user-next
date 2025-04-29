@@ -20,7 +20,7 @@ const Listing = ({ data }) => {
   const specializationList = Array.from(
     new Set(
       data
-        .filter(p => p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name)
+        .filter(p => p.specialization?.program_type_name === selectedProgram?.specialization?.program_type_name)
         .map(p => p.specialization?.name)
     )
   );
@@ -40,7 +40,7 @@ const Listing = ({ data }) => {
 
   // Filter programs
   const filteredPrograms = data.filter(p =>
-    p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name &&
+    p.specialization?.program_type_name === selectedProgram?.specialization?.program_type_name &&
     (selectedSpecialization ? p.specialization?.name === selectedSpecialization : true)
   );
 
@@ -54,7 +54,7 @@ const Listing = ({ data }) => {
               <li
                 key={index}
                 onClick={() => handleProgramChange(item)}
-                className={`cursor-pointer ${selectedProgram.specialization?.program_type_name === item.specialization?.program_type_name
+                className={`cursor-pointer ${selectedProgram?.specialization?.program_type_name === item.specialization?.program_type_name
                   ? "bg-[#FF383B] text-white"
                   : "bg-white text-[#6D758F] border border-[#D9D9D9]"
                   } hover:bg-[#FF383B] p-[14px] md:px-[22px] md:py-[18px] text-[16px] leading-[16px] font-bold hover:text-white rounded-[8px]`}
