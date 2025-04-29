@@ -47,7 +47,7 @@ const HeroSection = ({ data }) => {
                 {/* Right Section (Image) */}
                 <div className="md:w-1/2 hidden md:block">
                     <div className="border-4 border-gray-200 rounded-xl p-2">
-                        <Image src={data.cover_image} width={40} height={40} alt="University Building" className="rounded-lg w-full max-h-[340px]" />
+                        <Image src={data.cover_image} width={40} height={40} alt="University Building" className="rounded-lg w-full max-h-[340px] lg:max-h-none 2xl:w-auto 2xl:h-full" />
                     </div>
                 </div>
             </div>

@@ -64,7 +64,7 @@ const Universities = ({ data }) => {
                 onClick={() => setSelectedUniversity(university)}
               >
                 <Image
-                  src={university.logo}
+                  src={university.logo_vertical}
                   alt={university.name}
                   width={30}
                   height={30}

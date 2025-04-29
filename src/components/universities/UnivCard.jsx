@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const UnivCard = ({ item }) => {
   const programNames = item.certifications.map(p => p.name);
-  console.log(item.id);
 
 
   return (
