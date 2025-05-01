@@ -59,12 +59,12 @@ export default function  ComparisonCard({ spec, pros, cons ,univ}) {
             </div>
 
             {/* Price / Brochure */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-[30px] mb-4">
+            {/* <div className="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-[30px] mb-4">
               <button className="px-2 py-1 bg-[#FFE3E4] text-[#FF383B] rounded-md flex items-center gap-1 font-inter font-medium text-[12px] md:text-[14px] leading-tight w-fit">
                 <Image src={download} alt="Download" className="w-3 h-4" />
                 Brochure
               </button>
-            </div>
+            </div> */}
 
             {/* PROS */}
             <div className="bg-white p-4 md:p-6 rounded-[10px] mb-4">

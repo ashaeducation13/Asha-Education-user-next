@@ -74,7 +74,6 @@ export default function MainForm({ onClose, course = null }) {
     try {
       await submitCounselForm(formData);
       toast.success("Message sent successfully!");
-
       setFormData({
         name: "",
         phone: "",
@@ -82,7 +81,7 @@ export default function MainForm({ onClose, course = null }) {
         university: course?.university?.id || "",
         program: course?.program_name?.id || "",
       });
-
+      onClose();
       if (!course) {
         setSelectedUniversityId("");
         setPrograms([]);
@@ -99,133 +98,133 @@ export default function MainForm({ onClose, course = null }) {
         onClose(); // Close modal
       }
     };
-  
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [onClose]);  
+  }, [onClose]);
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      ref={modalRef}
-      className="containers max-w-md md:max-w-lg lg:max-w-2xl mx-auto p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 bg-white rounded-lg shadow-2xl z-[9999]"
-    >
-      {/* Name */}
-      <div className="space-y-2">
-        <label htmlFor="name" className="block text-sm font-medium text-[#6D758F]">
-          Name
-        </label>
-        <input
-          name="name"
-          id="name"
-          type="text"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Brian Clark"
-          className="w-full p-2 border rounded"
-        />
-      </div>
+    <>
 
-      {/* Phone */}
-      <div className="space-y-2">
-        <label htmlFor="phone" className="block text-sm font-medium text-[#6D758F]">
-          Phone
-        </label>
-        <input
-          name="phone"
-          id="phone"
-          type="text"
-          value={formData.phone}
-          onChange={handleChange}
-          placeholder="(123) 456 - 7890"
-          className="w-full p-2 border rounded"
-        />
-      </div>
-
-      {/* Email */}
-      <div className="space-y-2">
-        <label htmlFor="email" className="block text-sm font-medium text-[#6D758F]">
-          Email
-        </label>
-        <input
-          name="email"
-          id="email"
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="example@youremail.com"
-          className="w-full p-2 border rounded"
-        />
-      </div>
-
-      {/* University */}
-      <div className="space-y-2">
-        <label className="block text-sm font-medium text-[#6D758F]">University</label>
-        {course ? (
-          <input
-            type="text"
-            value={course.university?.name || ""}
-            readOnly
-            className="w-full p-2 border rounded bg-gray-100"
-          />
-        ) : (
-          <select
-            name="university"
-            value={formData.university}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            required
-          >
-            <option value="">Select University</option>
-            {universities.map((uni) => (
-              <option key={uni.id} value={uni.id}>
-                {uni.name}
-              </option>
-            ))}
-          </select>
-        )}
-      </div>
-
-      {/* Program */}
-      <div className="space-y-2">
-        <label className="block text-sm font-medium text-[#6D758F]">Program</label>
-        {course ? (
-          <input
-            type="text"
-            value={`${course.program_name?.name || ""} ${course.specialization?.name || ""}`}
-            readOnly
-            className="w-full p-2 border rounded bg-gray-100"
-          />
-        ) : (
-          <select
-            name="program"
-            value={formData.program}
-            onChange={handleChange}
-            disabled={!selectedUniversityId}
-            className="w-full p-2 border rounded"
-            required
-          >
-            <option value="">Select Program</option>
-            {programs.map((program) => (
-              <option key={program.id} value={program.id}>
-                {program.program_name.name} {program.specialization.name}
-              </option>
-            ))}
-          </select>
-        )}
-      </div>
-
-      {/* Submit */}
-      <button
-        type="submit"
-        className="w-full flex justify-center items-center gap-2 px-4 py-2 text-white bg-[#FF383B] rounded hover:bg-red-600"
+      <form
+        onSubmit={handleSubmit}
+        ref={modalRef}
+        className="containers max-w-md md:max-w-lg lg:max-w-2xl mx-auto p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 bg-white rounded-lg shadow-2xl z-1111"
       >
-        Submit Inquiry
-        <Image src={arrow} alt="arrow" />
-      </button>
+        {/* Name */}
+        <div className="space-y-2">
+          <label htmlFor="name" className="block text-sm font-medium text-[#6D758F]">
+            Name
+          </label>
+          <input
+            name="name"
+            id="name"
+            type="text"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Brian Clark"
+            className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
+          />
+        </div>
+
+        {/* Phone */}
+        <div className="space-y-2">
+          <label htmlFor="phone" className="block text-sm font-medium text-[#6D758F]">
+            Phone
+          </label>
+          <input
+            name="phone"
+            id="phone"
+            type="text"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="(123) 456 - 7890"
+            className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
+          />
+        </div>
+
+        {/* Email */}
+        <div className="space-y-2">
+          <label htmlFor="email" className="block text-sm font-medium text-[#6D758F]">
+            Email
+          </label>
+          <input
+            name="email"
+            id="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="example@youremail.com"
+            className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
+          />
+        </div>
+
+        {/* University */}
+        {course ? (
+          <div className="space-y-2">
+            <h2 className="text-sm font-normal text-[#6D758F]">
+              Enquiry:{" "}
+              <span className=" text-[#111216] font-rubik">
+                {course.program_name?.name} {course.specialization?.name} in {course.university?.name}
+              </span>
+            </h2>
+          </div>
+        ) : (
+          <>
+            {/* University Dropdown */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-[#6D758F]">University</label>
+              <select
+                name="university"
+                value={formData.university}
+                onChange={handleChange}
+                className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
+                required
+              >
+                <option value="">Select University</option>
+                {universities.map((uni) => (
+                  <option key={uni.id} value={uni.id}>
+                    {uni.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Program Dropdown */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-[#6D758F]">Program</label>
+              <select
+                name="program"
+                value={formData.program}
+                onChange={handleChange}
+                disabled={!selectedUniversityId}
+                className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
+                required
+              >
+                <option value="">Select Program</option>
+                {programs.map((program) => (
+                  <option key={program.id} value={program.id}>
+                    {program.program_name.name} {program.specialization.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </>
+        )}
+
+
+        {/* Submit */}
+        <button
+          type="submit"
+          className="w-full flex justify-center items-center gap-2 px-4 py-2 text-white bg-[#FF383B] rounded hover:bg-red-600"
+        >
+          Submit Inquiry
+          <Image src={arrow} alt="arrow" />
+        </button>
+      </form>
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-    </form>
+    </>
   );
 }

@@ -20,7 +20,7 @@ export default function ReferralPolicy() {
       ];
     
   return (
-    <div className="containers bg-gray-50 rounded-lg">
+    <div className="containers bg-gray-50 rounded-lg ">
       {/* Referral Policy Section */}
       <h2 className="font-open-sans font-bold lg:text-[24px] md:text-[22px] text-[20px] leading-[36px] text-[#000000] md:mb-6 mb-3">Referral Policy</h2>
       
@@ -39,7 +39,7 @@ export default function ReferralPolicy() {
       {/* Terms and Conditions Section */}
       <h2 className="font-open-sans font-bold lg:text-[24px] md:text-[22px] text-[20px] leading-[36px] text-[#000000] md:mb-6 mb-3">Terms and Conditions</h2>
       
-      <div className="space-y-4">
+      <div className="space-y-4 pb-6">
         {termsData.map((term, index) => (
           <div key={index} className="flex items-center justify-start gap-3">
               <Image src={vector} alt="vector" />

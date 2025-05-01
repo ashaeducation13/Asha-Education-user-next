@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "./HeroSection";
-import ReferralForm from "./ReferForm";
+import ReferralForm from "../../components/Forms/ReferForm";
 import ReferralPolicy from "./ReferralPolicy";
 import WhyAndHow from "./WhyAndHow";
 import Footer from "@/components/Footer";

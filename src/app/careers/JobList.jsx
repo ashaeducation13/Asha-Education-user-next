@@ -204,7 +204,7 @@ function JobList() {
 
         {isModalOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-black/50" onClick={handleClickOutside}>
-            <div className=" md:p-6 rounded-lg w-[80%] md:h-[407px] relative" ref={modalRef} onClick={(e) => e.stopPropagation()}>
+            <div className="z-[9999]  md:p-6 rounded-lg w-[80%] md:h-[407px] relative" ref={modalRef} onClick={(e) => e.stopPropagation()}>
               {/* Close Button */}
               {/* <button onClick={toggleModal} className="absolute top-2 right-3 text-xl font-bold text-red-700">✖</button> */}
               {/* Normal Form */}
@@ -217,7 +217,7 @@ function JobList() {
           </div>
         )}
 
-        <div className="flex justify-center mt-6">
+        {/* <div className="flex justify-center mt-6">
           <nav className="flex items-center gap-2">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
@@ -243,7 +243,7 @@ function JobList() {
               Next
             </button>
           </nav>
-        </div>
+        </div> */}
       </div>
     </section>
   );

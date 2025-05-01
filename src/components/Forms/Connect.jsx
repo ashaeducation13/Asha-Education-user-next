@@ -5,18 +5,19 @@ import UploadIcon from "../../../public/careers/upload.svg";
 import { useState } from "react";
 
 export default function Connect() {
-  const [ selectedValue, setSelectedValue ] = useState('') 
+  const [selectedValue, setSelectedValue] = useState('')
   return (
     <section className="containers px-[1px] my-10">
-      <div className="">
-        <div className="md:p-[20px] p-[10px] border border-[#959595] bg-grey-400 rounded-[20px] bg-white">
+      <div >
+        <h1 className="text-[18px] sm:text-[28px] leading-[32px] sm:leading-[46px] xl:leading-[70px] font-normal text-gray-900 w-[85%] sm:w-[75%] xl:w-full mx-auto" >Be Part of Our Growing Team</h1>
+        <div className="md:p-[20px] p-[10px] border border-[#959595] bg-grey-400 rounded-[20px] shadow-xl bg-white">
           <div className="grid grid-cols-1 md:grid-cols-2 md:gap-[20px] gap-[10px]">
             <div className="flex flex-col gap-2">
               <p className="text-[12px] md:text-[14px] leading-[12px] font-inter font-normal text-black">
                 Name
               </p>
               <input
-                className="w-full h-[40px] px-[15px] border-2 border-[#959595] rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter font-normal placeholder:text-[13px] md:placeholder:text-[15px] placeholder:text-[#BABABA] focus:outline-none"
+                className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
                 placeholder="Enter Your Name"
                 type="text"
               />
@@ -27,7 +28,7 @@ export default function Connect() {
                 Phone No
               </p>
               <input
-                className="w-full h-[40px] px-[15px] border-2 border-[#959595] rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter font-normal placeholder:text-[13px] md:placeholder:text-[15px] placeholder:text-[#BABABA] focus:outline-none"
+                className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
                 placeholder="Enter Phone Number"
                 type="number"
               />
@@ -38,7 +39,7 @@ export default function Connect() {
                 Email
               </p>
               <input
-                className="w-full h-[40px] px-[15px] border-2 border-[#959595] rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter font-normal placeholder:text-[13px] md:placeholder:text-[15px] placeholder:text-[#BABABA] focus:outline-none"
+                className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
                 placeholder="Enter Email"
                 type="email"
               />
@@ -46,10 +47,10 @@ export default function Connect() {
 
             <div className="flex flex-col gap-2">
               <p className="text-[12px] md:text-[14px] leading-[12px] font-inter font-normal text-black">
-              Where did you hear about us from?
+                Where did you hear about us from?
               </p>
               <select
-                className="w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter font-normal focus:outline-none text-[#BABABA]" value={selectedValue} onChange={(e) => setSelectedValue(e.target.value)}
+                className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none" value={selectedValue} onChange={(e) => setSelectedValue(e.target.value)}
               >
                 <option disabled>
                   Select Platform
@@ -66,11 +67,12 @@ export default function Connect() {
               </p>
               <div className="relative">
                 <input
-                  className="w-full h-[40px] pl-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter font-normal focus:outline-none cursor-pointer text-[#BABABA]"
+                  className="pl-10 pr-3 py-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
                   placeholder="Choose File"
                   type="text"
                   readOnly
                 />
+
                 <Image
                   src={UploadIcon}
                   alt="upload"
@@ -97,4 +99,3 @@ export default function Connect() {
   );
 }
 
-  

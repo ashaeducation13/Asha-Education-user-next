@@ -71,7 +71,7 @@ export const TypeFetch = async () => {
 
 
   export const submitCounselForm = async (formData) => {
-    const url = `${BASE_URL}/about/enquire/`; // ⬅️ Replace with the actual endpoint
+    const url = `${BASE_URL}/about/general-enquiry/`; 
   
     try {
       const response = await fetch(url, {
@@ -95,7 +95,7 @@ export const TypeFetch = async () => {
   
 
   export const contactForm = async (formData) => {
-    const url = `${BASE_URL}/about/contact/`; // ⬅️ Replace with the actual endpoint
+    const url = `${BASE_URL}/about/contact/`; 
   
     try {
       const response = await fetch(url, {
@@ -146,6 +146,33 @@ export const TypeFetch = async () => {
     const url = `${BASE_URL}/contact/verify-otp/`; 
     console.log("inner",formData);
     
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.statusText}`);
+      }
+  
+      return await response.json();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      throw error;
+    }
+  };
+
+
+  // about/referral/
+
+
+  export const referForm = async (formData) => {
+    const url = `${BASE_URL}/about/referral/`; 
+  
     try {
       const response = await fetch(url, {
         method: "POST",
