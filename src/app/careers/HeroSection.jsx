@@ -6,10 +6,8 @@ function HeroSection() {
   return (
     <section className="containers flex flex-col lg:flex-row items-center justify-between mx-auto h-auto lg:h-[300px]">
       {/* Left Side - Text Content */}
-      <div className="w-full mb-6 lg:mb-0">
-        <div className="inline-block px-[12px] py-[4px] border rounded-[8px] border-red-500 mb-6">
-          <p className="text-[12px] leading-[24px] text-red-500">We are Hiring!</p>
-        </div>
+      <div className="w-full my-6 lg:mb-0">
+
         <h1 className="font-playfair text-[32px] lg:text-[40px] leading-[40px] font-regular text-gray-900">
           <span
             className="bg-clip-text text-transparent font-playfair"
@@ -24,7 +22,7 @@ function HeroSection() {
         </h1>
 
         <p className="font-inter w-full lg:w-[80%] text-[16px] leading-[24px] text-black-600 font-rubik mt-[10px]">
-        At Asha Education, we are dedicated to creating a dynamic, inclusive workplace that champions innovation, teamwork, and continuous professional development. As a trusted educational consultancy, we are always looking for passionate individuals who are committed to empowering students and supporting their academic and career journeys. Join us in making a meaningful impact in the lives of learners around the world.
+          At Asha Education, we are dedicated to creating a dynamic, inclusive workplace that champions innovation, teamwork, and continuous professional development. As a trusted educational consultancy, we are always looking for passionate individuals who are committed to empowering students and supporting their academic and career journeys. Join us in making a meaningful impact in the lives of learners around the world.
         </p>
       </div>
 

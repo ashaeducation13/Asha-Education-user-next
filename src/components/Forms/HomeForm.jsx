@@ -66,6 +66,8 @@ const HomeForm = () => {
         university: "",
         program: "",
       });
+
+      
       setSelectedUniversity("");
       setPrograms([]);
     } catch (error) {

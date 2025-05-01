@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image"; // Import Next.js Image component
+import Image from "next/image";
 import UploadIcon from "../../../public/careers/upload.svg";
 
 function NormalForm({ initialData, onFormSubmit, saveFormData }) {
@@ -9,50 +9,33 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
     name: initialData.name || "",
     phone: initialData.phone || "",
     email: initialData.email || "",
+    position: initialData.position || "dev", // Default position value
   });
 
-  const [selectedPosition, setSelectedPosition] = useState(
-    initialData.position || ""
-  );
-  const [selectedLocation, setSelectedLocation] = useState(
-    initialData.location || ""
-  );
   const [selectedFile, setSelectedFile] = useState(initialData.file || null);
   const [isLoad, setIsLoad] = useState(false);
   const fileInputRef = useRef(null);
 
+  // Using useEffect with a ref to prevent infinite loops
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
+    // Skip the first render to avoid unnecessary updates
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     const currentFormData = {
       ...formData,
-      position: selectedPosition,
-      location: selectedLocation,
       file: selectedFile,
     };
     saveFormData(currentFormData);
-  }, [formData, selectedPosition, selectedLocation, selectedFile]);
-
-  const jobSuggestion = [
-    { id: "dev", job_title: "Developer" },
-    { id: "designer", job_title: "Designer" },
-    { id: "manager", job_title: "Manager" },
-  ];
-
-  const locations = [
-    { location: "New York" },
-    { location: "San Francisco" },
-    { location: "Los Angeles" },
-  ];
+    // Intentionally omit saveFormData from dependencies to prevent infinite loops
+  }, [formData, selectedFile]);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handlePositionChange = (e) => {
-    setSelectedPosition(e.target.value);
-  };
-
-  const handleLocationChange = (e) => {
-    setSelectedLocation(e.target.value);
   };
 
   const handleFileInputClick = () => {
@@ -78,15 +61,13 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
   const isFormFilled =
     formData.name &&
     formData.phone &&
-    formData.email &&
-    selectedPosition &&
-    selectedLocation;
+    formData.email;
 
   return (
-    <section className="px-[1px] md:px-[50px]">
-      <div className="lg:containers ">
-        <div className="md:p-[20px] p-[10px]  border border-[#959595] bg-grey-400 rounded-[20px] bg-white">
-          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-[20px] gap-[10px]">
+    <section className="px-[1px] md:px-[20px]">
+      <div className="max-w-md mx-auto">
+        <div className="md:p-[20px] p-[10px] border border-[#959595] bg-grey-400 rounded-[20px] bg-white">
+          <div className="flex flex-col gap-[20px]">
             {/* Name Field */}
             <div className="flex flex-col gap-2">
               <p className="text-[12px] md:text-[14px] leading-[12px] font-inter font-normal text-black">
@@ -96,34 +77,10 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full h-[40px] px-[15px] border-2 border-[#959595] rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter font-normal placeholder:text-[13px] md:placeholder:text-[15px] placeholder:text-[#BABABA] focus:outline-none"
+                className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
                 placeholder="Enter Your Name"
                 type="text"
               />
-            </div>
-
-            {/* Position Field */}
-            <div className="flex flex-col gap-2">
-              <p className="text-[12px] md:text-[14px] leading-[12px] font-inter font-normal text-black">
-                Position
-              </p>
-              <select
-                name="position"
-                value={selectedPosition}
-                onChange={handlePositionChange}
-                className={`w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter font-normal focus:outline-none ${
-                  selectedPosition ? "text-black" : "text-[#BABABA]"
-                }`}
-              >
-                <option value="" disabled>
-                  Select Job Position
-                </option>
-                {jobSuggestion.map((job) => (
-                  <option key={job.id} value={job.id}>
-                    {job.job_title}
-                  </option>
-                ))}
-              </select>
             </div>
 
             {/* Phone Field */}
@@ -135,34 +92,10 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className="w-full h-[40px] px-[15px] border-2 border-[#959595] rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter font-normal placeholder:text-[13px] md:placeholder:text-[15px] placeholder:text-[#BABABA] focus:outline-none"
+                className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
                 placeholder="Enter Phone Number"
                 type="number"
               />
-            </div>
-
-            {/* Location Field */}
-            <div className="flex flex-col gap-2">
-              <p className="text-[12px] md:text-[14px] leading-[12px] font-inter font-normal text-black">
-                Location
-              </p>
-              <select
-                name="location"
-                value={selectedLocation}
-                onChange={handleLocationChange}
-                className={`w-full h-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter font-normal focus:outline-none ${
-                  selectedLocation ? "text-black" : "text-[#BABABA]"
-                }`}
-              >
-                <option value="" disabled>
-                  Select Location
-                </option>
-                {locations.map((loc, index) => (
-                  <option key={index} value={loc.location}>
-                    {loc.location}
-                  </option>
-                ))}
-              </select>
             </div>
 
             {/* Email Field */}
@@ -174,7 +107,7 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full h-[40px] px-[15px] border-2 border-[#959595] rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter font-normal placeholder:text-[13px] md:placeholder:text-[15px] placeholder:text-[#BABABA] focus:outline-none"
+                className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
                 placeholder="Enter Email"
                 type="email"
               />
@@ -187,9 +120,8 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
               </p>
               <div className="relative">
                 <input
-                  className={`w-full h-[40px] pl-[40px] px-[15px] border-2 rounded-[6px] text-[13px] md:text-[15px] leading-[20px] font-inter font-normal focus:outline-none cursor-pointer ${
-                    selectedFile ? "text-black" : "text-[#BABABA]"
-                  }`}
+                  className={`pl-10 pr-3 py-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none cursor-pointer ${selectedFile ? "text-black" : "text-[#BABABA]"
+                    }`}
                   value={selectedFile ? selectedFile.name : "Choose File"}
                   type="text"
                   onClick={handleFileInputClick}
@@ -221,9 +153,8 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
           <div className="mt-6 md:flex md:justify-end">
             <button
               onClick={handleSubmit}
-              className={`w-full md:w-auto text-white bg-red-500 text-[12px] md:text-[15px] leading-[20px] px-2 md:px-6 py-2 rounded-md transition-all duration-300 ${
-                isFormFilled ? "" : "cursor-not-allowed"
-              }`}
+              className={`w-full md:w-auto text-white bg-red-500 text-[12px] md:text-[15px] leading-[20px] px-2 md:px-6 py-2 rounded-md transition-all duration-300 ${isFormFilled ? "" : "cursor-not-allowed"
+                }`}
               disabled={!isFormFilled || isLoad}
             >
               {isLoad ? "Loading..." : "Submit"}
