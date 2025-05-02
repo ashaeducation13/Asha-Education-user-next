@@ -68,6 +68,14 @@ export const TypeFetch = async () => {
     return fetchData(`/universities/program-types`);
   };
 
+export const JobFetch = async () => {
+    return fetchData(`/career/jobs`);
+  };
+  
+export const ExoppFetch = async () => {
+    return fetchData(`/career/exclusive-opportunities`);
+  };
+
 
 
   export const submitCounselForm = async (formData) => {

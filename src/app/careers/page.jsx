@@ -5,18 +5,21 @@ import Footer from "@/components/Footer";
 import JobList from "./JobList";
 import Connect from "../../components/Forms/Connect";
 import Whyjoin from "./Whyjoin";
+import { ExoppFetch, JobFetch } from "@/services/api";
 
-function page() {
+export default async function page (){
+  const jobdata = await JobFetch();
+  const exData = await ExoppFetch();
+  console.log("exclusive opportunites",exData);
+  
   return (
     <div>
       <Navbar />
       <HeroSection />
       <Whyjoin />
-      <JobList />
+      <JobList jobs={jobdata} ex={exData}/>
       <Connect />
       <Footer />
     </div>
   );
 }
-
-export default page;
