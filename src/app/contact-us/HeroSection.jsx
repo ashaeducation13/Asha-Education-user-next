@@ -42,28 +42,28 @@ export default function HeroSection() {
         {/* Left Section - Content with containers class */}
         <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-8  order-2 md:order-none relative mt-[105px] md:mt-0">
           {/* Corner arrows */}
-          <Image
+          {/* <Image
             src={topleft}
             alt="Top Left Decoration"
-            className="absolute top-1 md:top-10 left-5 md:left-10 lg:left-15 xl:left-20 2xl:left-30 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
+            className="absolute top-1 md:top-10 left-5 md:left-10 lg:left-25 xl:left-30 2xl:left-35 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
           />
           <Image
             src={topright}
             alt="Top Right Decoration"
-            className="absolute top-1 md:top-10 right-6 md:right-20 lg:right-30 xl:right-45 2xl:right-55 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
+            className="absolute top-1 md:top-10 right-6 md:right-20 lg:right-25 xl:right-40 2xl:right-55 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
           />
           <Image
             src={bottomleft}
             alt="Bottom Left Decoration"
-            className="absolute bottom-0 md:bottom-10 left-5 md:left-10 lg:left-15 xl:left-20 2xl:left-30 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
+            className="absolute bottom-0 md:bottom-10 left-5 md:left-10 lg:left-25 xl:left-35 2xl:left-30 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
           />
           <Image
             src={bottomright}
             alt="Bottom Right Decoration"
-            className="absolute bottom-0 md:bottom-10 right-6 md:right-20 lg:right-30 xl:right-45 2xl:right-55 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
-          />
+            className="absolute bottom-0 md:bottom-10 right-6 md:right-20 lg:right-25 xl:right-40 2xl:right-55 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
+          /> */}
 
-          <div className="containers max-w-md text-start md:pl-8">
+          <div className="containers max-w-md text-start md:pl-8 lg:pl-16">
             <h1
               className="bg-clip-text text-transparent font-playfair font-normal lg:text-[40px] md:text-[32px] text-[24px] lg:leading-[40px] md:leading-[32px] leading-[24px]"
               style={{
