@@ -42,10 +42,10 @@ export default function HeroSection() {
         {/* Left Section - Content with containers class */}
         <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-8  order-2 md:order-none relative mt-[105px] md:mt-0">
           {/* Corner arrows */}
-          {/* <Image
+          <Image
             src={topleft}
             alt="Top Left Decoration"
-            className="absolute top-1 md:top-10 left-5 md:left-10 lg:left-25 xl:left-30 2xl:left-35 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
+            className="absolute top-1 md:top-10 left-5 md:left-10 lg:left-14 xl:left-37 2xl:left-38 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
           />
           <Image
             src={topright}
@@ -55,15 +55,15 @@ export default function HeroSection() {
           <Image
             src={bottomleft}
             alt="Bottom Left Decoration"
-            className="absolute bottom-0 md:bottom-10 left-5 md:left-10 lg:left-25 xl:left-35 2xl:left-30 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
+            className="absolute bottom-0 md:bottom-10 left-5 md:left-10 lg:left-14 xl:left-37 2xl:left-38 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
           />
           <Image
             src={bottomright}
             alt="Bottom Right Decoration"
             className="absolute bottom-0 md:bottom-10 right-6 md:right-20 lg:right-25 xl:right-40 2xl:right-55 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
-          /> */}
+          />
 
-          <div className="containers max-w-md text-start md:pl-8 lg:pl-16">
+          <div className="containers max-w-md text-start md:pl-4 lg:pl-12">
             <h1
               className="bg-clip-text text-transparent font-playfair font-normal lg:text-[40px] md:text-[32px] text-[24px] lg:leading-[40px] md:leading-[32px] leading-[24px]"
               style={{
@@ -106,7 +106,7 @@ export default function HeroSection() {
         {/* Circular Map with Ring positioned at the center dividing line */}
 
         <div className="absolute left-1/2 md:top-1/2 top-[300px] transform -translate-x-1/2 -translate-y-1/2 z-10">
-          <div className="relative w-[220px] h-[220px] md:w-[220px] md:h-[220px] lg:w-[250px] lg:h-[250px]">
+          <div className="relative w-[220px] h-[220px] md:w-[220px] md:h-[220px] lg:w-[250px] lg:h-[250px] xl:h-[300px] xl:w-[300px]">
             <a
               href="https://www.google.com/maps/place/Panchratna+(A)+Co+op.+Housing+Society+Ltd/@19.2004843,72.8265398,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7b74ec2c18775:0x29c5d960d7559a01!8m2!3d19.2004843!4d72.8265398!16s%2Fg%2F11c1z3w0y4?entry=ttu"
               target="_blank"
