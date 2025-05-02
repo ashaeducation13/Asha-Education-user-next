@@ -8,6 +8,7 @@ import topright from "../../../public/topright.svg";
 import topleft from "../../../public/topleft.svg";
 import bottomright from "../../../public/bottomright.svg";
 import bottomleft from "../../../public/bottomleft.svg";
+import { motion } from "framer-motion";
 
 export default function HeroSection() {
   const [isMapExpanded, setIsMapExpanded] = useState(false);
@@ -63,8 +64,35 @@ export default function HeroSection() {
             className="absolute bottom-0 md:bottom-10 right-6 md:right-20 lg:right-25 xl:right-40 2xl:right-55 lg:w-[26px] lg:h-[24px] md:w-[17px] md:h-[16px] w-[15px] h-[14px]"
           />
 
-          <div className="containers max-w-md text-start md:pl-4 lg:pl-12">
-            <h1
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+            className="containers max-w-md text-start md:pl-4 lg:pl-12"
+          >
+            <motion.h1
+            variants={{
+              hidden: {
+                opacity: 0,
+                clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)",
+              },
+              visible: {
+                opacity: 1,
+                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                transition: {
+                  duration: 1.2,
+                  ease: [0.2, 0.65, 0.3, 0.9],
+                },
+              },
+            }}
               className="bg-clip-text text-transparent font-playfair font-normal lg:text-[40px] md:text-[32px] text-[24px] lg:leading-[40px] md:leading-[32px] leading-[24px]"
               style={{
                 backgroundImage:
@@ -72,14 +100,47 @@ export default function HeroSection() {
               }}
             >
               Get in Touch{" "}
-            </h1>
-            <h1 className="font-open-sans text-start font-medium lg:text-[40px] md:text-[32px] text-[24px] lg:leading-[40px] md:leading-[32px] leading-[24px] mb-4">
+            </motion.h1>
+            <motion.h1 
+            variants={{
+              hidden: {
+                opacity: 0,
+                clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)",
+              },
+              visible: {
+                opacity: 1,
+                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                transition: {
+                  duration: 1.2,
+                  ease: [0.2, 0.65, 0.3, 0.9],
+                },
+              },
+            }}
+            className="font-open-sans text-start font-medium lg:text-[40px] md:text-[32px] text-[24px] lg:leading-[40px] md:leading-[32px] leading-[24px] mb-4">
               with Us
-            </h1>
-            <p className="font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] lg:leading-[24px] md:leading-[21px] leading-[18px] mb-6 text-[#121212] md:w-[75%] xl:w-[90%]">
+            </motion.h1>
+            <motion.p 
+             variants={{
+              hidden: {
+                opacity: 0,
+                filter: "blur(4px)",
+                y: 10,
+              },
+              visible: {
+                opacity: 1,
+                filter: "blur(0px)",
+                y: 0,
+                transition: {
+                  delay: 0.4,
+                  duration: 0.8,
+                  ease: "easeOut",
+                },
+              },
+            }}
+            className="font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] lg:leading-[24px] md:leading-[21px] leading-[18px] mb-6 text-[#121212] md:w-[75%] xl:w-[90%]">
               Reach out for expert guidance, admissions support, and answers to
               all your education-related queries
-            </p>
+            </motion.p>
             <button
               className="flex items-center justify-center gap-2 text-white font-rubik font-medium md:text-[14px] text-[12px] leading-[20px] rounded-[6px] px-4 py-[6px]"
               style={{
@@ -90,7 +151,7 @@ export default function HeroSection() {
               Send a Message
               <Image src={arrow} alt="arrow" />
             </button>
-          </div>
+          </motion.div>
         </div>
         {/* Right Section - Image */}
         <div className="w-full md:w-1/2 relative order-1 md:order-none h-[300px] md:h-auto">
