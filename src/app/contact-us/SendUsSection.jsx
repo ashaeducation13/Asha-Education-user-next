@@ -127,7 +127,7 @@ const FormTextArea = ({ formData, handleChange }) => (
 const SubmitButton = () => (
   <button
     type="submit"
-    className="relative flex items-center justify-center mt-2 bg-[#FF383B] text-white rounded-lg font-semibold hover:bg-[#e02e33] transition w-[150px] h-[45px] text-sm leading-5"
+    className="relative flex items-center justify-center mt-2 bg-[#FF383B] text-white rounded-lg font-semibold hover:bg-[#e02e33] transition w-3/5 px-3 py-[6px] lg:py-3 text-sm leading-5"
   >
     Submit Inquiry
     <Image
@@ -172,11 +172,11 @@ const ContactForm = () => {
     }
   };
   return (
-    <div className="hidden md:block w-full">
+    <div className="w-full">
       <h2 className="lg:text-[24px] leading-[24px] md:text-[20px] text-[14px] font-semibold font-open-sans bg-clip-text text-transparent mb-4 bg-gradient-to-r from-[#0A0078] to-[#FF383B]">
         Send Us a Message
       </h2>
-      <div className="bg-white p-8 rounded-[20px] shadow-2xl">
+      <div className="bg-white p-4 lg:p-8 rounded-[20px] shadow-2xl">
         <form className="flex flex-col md:gap-3 lg:gap-5 text-[#6D758F]" onSubmit={handleSubmit}>
           {formFields.map((field, index) => (
             <FormField
