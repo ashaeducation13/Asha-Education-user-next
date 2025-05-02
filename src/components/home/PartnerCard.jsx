@@ -14,9 +14,9 @@ const PartnerCard = ({ course, onApplyClick }) => {
         {/* Image */}
         <Link href={`/programs/${course.id}`} passHref>
 
-          {course?.image && (
+          {course?.specialization?.image && (
             <Image
-              src={course.image}
+              src={course.specialization.image}
               alt={course.program_name?.name || "Course Image"}
               width={200}
               height={200}
