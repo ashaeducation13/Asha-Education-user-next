@@ -11,17 +11,18 @@ import cont from '../../src/assets/footer/Container.svg'
 import acc from '../../src/assets/footer/acc.svg'
 import copyright from '../../src/assets/footer/copyright.svg'
 import phn from '../../src/assets/footer/Phone.svg'
-import email from '../../src/assets/footer/Email.svg'
+import email1 from '../../src/assets/footer/Email.svg'
 import Image from "next/image";
-import { AboutusFetch } from '@/services/api';
+import { AboutusFetch, subscribeToNewsletter } from '@/services/api';
 import { motion } from "framer-motion";
+import Swal from "sweetalert2";
 
 const Footer = () => {
     const [aboutus, setAboutus] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-
+    const [email, setEmail] = useState("");
     useEffect(() => {
         const getData = async () => {
             setLoading(true);
@@ -41,6 +42,43 @@ const Footer = () => {
 
         getData();
     }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!email) {
+            Swal.fire({
+                title: "Error!",
+                text: "Please enter a valid email address.",
+                icon: "error",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
+
+        try {
+            // Simulate an API call or form submission logic
+            await subscribeToNewsletter({"email":email});
+
+            Swal.fire({
+                title: "Success!",
+                text: "You have successfully subscribed!",
+                icon: "success",
+                confirmButtonText: "OK",
+            });
+
+            setEmail(""); // Reset the form field after successful submission
+        } catch (error) {
+            console.error("Error submitting form:", error);
+
+            Swal.fire({
+                title: "Error!",
+                text: "Something went wrong. Please try again.",
+                icon: "error",
+                confirmButtonText: "OK",
+            });
+        }
+    };
     return (
         <footer className="lg:pt-12 md:pt-8 pt-6 pb-8">
             <div className="containers md:mx-auto">
@@ -70,10 +108,14 @@ const Footer = () => {
                                     type="email"
                                     placeholder="Enter your email address"
                                     className="px-4 py-2 rounded-md flex-grow focus:outline-none focus:ring-2 focus:ring-red-500 shadow-sm"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
-                                <div className='flex'>
-
-                                    <button className="px-4 py-2 bg-[#FF383B] text-white rounded-md hover:bg-red-700 transition duration-300 w-auto inline-flex">
+                                <div className="flex">
+                                    <button
+                                        onClick={handleSubmit}
+                                        className="px-4 py-2 bg-[#FF383B] text-white rounded-md hover:bg-red-700 transition duration-300 w-auto inline-flex"
+                                    >
                                         Subscribe
                                     </button>
                                 </div>
@@ -163,7 +205,7 @@ const Footer = () => {
 
                             {/* Email */}
                             <li className="flex items-start gap-2">
-                                <Image src={email} alt="Email Icon" className="h-6 md:h-10" />
+                                <Image src={email1} alt="Email Icon" className="h-6 md:h-10" />
                                 <div className="text-[#6D758F] flex flex-col w-[75%]">
                                     <span className="font-normal">Email:</span>
                                     <a href={`mailto:${aboutus.email}`} className="font-semibold transition duration-300 break-words">
@@ -191,7 +233,7 @@ const Footer = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        viewport={{ once: true }} 
+                        viewport={{ once: true }}
                         className="w-full h-[300px] rounded-lg overflow-hidden shadow-md mt-6 border border-gray-200">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.9790556191876!2d72.8265398!3d19.2004843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b74ec2c18775%3A0x29c5d960d7559a01!2sPanchratna%20(A)%20Co%20op.%20Housing%20Society%20Ltd!5e0!3m2!1sen!2sin!4v1712572441234!5m2!1sen!2sin"

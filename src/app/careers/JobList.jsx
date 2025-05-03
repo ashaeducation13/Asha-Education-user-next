@@ -269,11 +269,11 @@ function JobList({ jobs = [], ex = [] }) {
 
         {isModalOpen && (
           <div
-            className="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
+            className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 "
             onClick={handleClickOutside}
           >
             <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
               ref={modalRef}
               onClick={(e) => e.stopPropagation()}
             >

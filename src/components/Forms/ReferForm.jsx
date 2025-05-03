@@ -3,8 +3,7 @@ import arrow from "../../../public/arrow.svg";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { referForm, UniversityFetch } from "@/services/api";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 
 export default function ReferForm({course = null }) {
   const modalRef = useRef(null);
@@ -75,11 +74,17 @@ export default function ReferForm({course = null }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-    
+  
     try {
       await referForm(formData);
-      toast.success("Message sent successfully!");
-
+  
+      Swal.fire({
+        title: "Success!",
+        text: "Message sent successfully!",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+  
       setFormData({
         name: "",
         phone: "",
@@ -90,17 +95,23 @@ export default function ReferForm({course = null }) {
         friend_name: "", // Reset friend's name
         friend_contact: "", // Reset friend's contact
       });
-
+  
       if (!course) {
         setSelectedUniversityId("");
         setPrograms([]);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Something went wrong. Please try again.");
+  
+      Swal.fire({
+        title: "Error!",
+        text: "Something went wrong. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
-
+  
 
   return (
     <form
@@ -292,8 +303,6 @@ export default function ReferForm({course = null }) {
           <Image src={arrow} alt="arrow" />
         </button>
       </div>
-
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </form>
   );
 }

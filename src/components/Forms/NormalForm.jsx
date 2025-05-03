@@ -3,24 +3,29 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import UploadIcon from "../../../public/careers/upload.svg";
+import Swal from "sweetalert2";
+import { ExecutiveApply, Jobapply } from "@/services/api";
 
-function NormalForm({ initialData, onFormSubmit, saveFormData }) {
+function NormalForm({
+  initialData,
+  onFormSubmit,
+  saveFormData,
+  opportunityType,
+  opportunityId,
+  opportunityTitle,
+}) {
   const [formData, setFormData] = useState({
     name: initialData.name || "",
     phone: initialData.phone || "",
     email: initialData.email || "",
-    position: initialData.position || "dev", // Default position value
   });
 
   const [selectedFile, setSelectedFile] = useState(initialData.file || null);
   const [isLoad, setIsLoad] = useState(false);
   const fileInputRef = useRef(null);
-
-  // Using useEffect with a ref to prevent infinite loops
   const isFirstRender = useRef(true);
 
   useEffect(() => {
-    // Skip the first render to avoid unnecessary updates
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
@@ -31,7 +36,6 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
       file: selectedFile,
     };
     saveFormData(currentFormData);
-    // Intentionally omit saveFormData from dependencies to prevent infinite loops
   }, [formData, selectedFile]);
 
   const handleInputChange = (e) => {
@@ -48,31 +52,63 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
     }
   };
 
-  const handleSubmit = () => {
+  const isFormFilled = formData.name && formData.phone && formData.email;
+
+  const handleSubmit = async () => {
+    if (!isFormFilled || isLoad) return;
+  
     setIsLoad(true);
-    // Simulate form submission
-    setTimeout(() => {
-      setIsLoad(false);
-      alert("Form submitted successfully!");
+  
+    const formPayload = new FormData();
+    formPayload.append("name", formData.name);
+    formPayload.append("email", formData.email);
+    formPayload.append("phone_number", formData.phone);
+    if (selectedFile) {
+      formPayload.append("resume", selectedFile);
+    }
+  
+    if (opportunityType === "executive") {
+      formPayload.append("opportunity", opportunityId);
+    } else {
+      formPayload.append("job", opportunityId);
+    }
+  
+    console.log("Form Data: ", JSON.stringify(formData));
+  
+    try {
+      if (opportunityType === "executive") {
+        await ExecutiveApply(formPayload);
+      } else {
+        await Jobapply(formPayload);
+      }
+  
+      Swal.fire({
+        title: "Success!",
+        text: "Form submitted successfully!",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+  
       onFormSubmit();
-    }, 2000);
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: "Submission failed. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    } finally {
+      setIsLoad(false);
+    }
   };
-
-  const isFormFilled =
-    formData.name &&
-    formData.phone &&
-    formData.email;
-
   return (
-    <section className="px-[1px] md:px-[20px]">
+    <section className="px-[1px] md:px-[20px] p-4">
       <div className="max-w-md mx-auto">
         <div className="md:p-[20px] p-[10px] border border-[#959595] bg-grey-400 rounded-[20px] bg-white">
           <div className="flex flex-col gap-[20px]">
-            {/* Name Field */}
+            {/* Name */}
             <div className="flex flex-col gap-2">
-              <p className="text-[12px] md:text-[14px] leading-[12px] font-inter font-normal text-black">
-                Name
-              </p>
+              <p className="text-[12px] md:text-[14px] text-black">Name</p>
               <input
                 name="name"
                 value={formData.name}
@@ -83,11 +119,9 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
               />
             </div>
 
-            {/* Phone Field */}
+            {/* Phone */}
             <div className="flex flex-col gap-2">
-              <p className="text-[12px] md:text-[14px] leading-[12px] font-inter font-normal text-black">
-                Phone No
-              </p>
+              <p className="text-[12px] md:text-[14px] text-black">Phone No</p>
               <input
                 name="phone"
                 value={formData.phone}
@@ -98,11 +132,9 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
               />
             </div>
 
-            {/* Email Field */}
+            {/* Email */}
             <div className="flex flex-col gap-2">
-              <p className="text-[12px] md:text-[14px] leading-[12px] font-inter font-normal text-black">
-                Email
-              </p>
+              <p className="text-[12px] md:text-[14px] text-black">Email</p>
               <input
                 name="email"
                 value={formData.email}
@@ -115,16 +147,16 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
 
             {/* Upload CV */}
             <div className="flex flex-col gap-2">
-              <p className="text-[12px] md:text-[14px] leading-[12px] font-inter font-normal text-black">
-                Upload CV
-              </p>
+              <p className="text-[12px] md:text-[14px] text-black">Upload CV</p>
               <div className="relative">
                 <input
-                  className={`pl-10 pr-3 py-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none cursor-pointer ${selectedFile ? "text-black" : "text-[#BABABA]"
-                    }`}
+                  className={`pl-10 pr-3 py-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none cursor-pointer ${
+                    selectedFile ? "text-black" : "text-[#BABABA]"
+                  }`}
                   value={selectedFile ? selectedFile.name : "Choose File"}
                   type="text"
                   onClick={handleFileInputClick}
+                  accept=".pdf,.doc,.docx,.rtf"
                   readOnly
                 />
                 <Image
@@ -142,7 +174,7 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
                   onChange={handleFileChange}
                 />
               </div>
-              <div className="font-inter font-normal mt-2 text-black text-[10px] md:text-[11px] leading-[12px]">
+              <div className="font-inter font-normal mt-2 text-black text-[10px] md:text-[11px]">
                 <p>Allowed file types: pdf, doc, docx, rtf</p>
                 <p>Maximum file size allowed: 5MB</p>
               </div>
@@ -153,8 +185,9 @@ function NormalForm({ initialData, onFormSubmit, saveFormData }) {
           <div className="mt-6 md:flex md:justify-end">
             <button
               onClick={handleSubmit}
-              className={`w-full md:w-auto text-white bg-red-500 text-[12px] md:text-[15px] leading-[20px] px-2 md:px-6 py-2 rounded-md transition-all duration-300 ${isFormFilled ? "" : "cursor-not-allowed"
-                }`}
+              className={`w-full md:w-auto text-white bg-red-500 text-[12px] md:text-[15px] px-2 md:px-6 py-2 rounded-md transition-all duration-300 ${
+                isFormFilled ? "" : "cursor-not-allowed"
+              }`}
               disabled={!isFormFilled || isLoad}
             >
               {isLoad ? "Loading..." : "Submit"}

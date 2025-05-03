@@ -71,7 +71,7 @@ export const TypeFetch = async () => {
 export const JobFetch = async () => {
     return fetchData(`/career/jobs`);
   };
-  
+
 export const ExoppFetch = async () => {
     return fetchData(`/career/exclusive-opportunities`);
   };
@@ -104,6 +104,30 @@ export const ExoppFetch = async () => {
 
   export const contactForm = async (formData) => {
     const url = `${BASE_URL}/about/contact/`; 
+  
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.statusText}`);
+      }
+  
+      return await response.json();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      throw error;
+    }
+  };
+
+
+  export const subscribeToNewsletter = async (formData) => {
+    const url = `${BASE_URL}/about/subscribe/`; 
   
     try {
       const response = await fetch(url, {
@@ -200,3 +224,67 @@ export const ExoppFetch = async () => {
       throw error;
     }
   };
+
+
+
+
+// career/jobs
+export const Jobapply = async (formData) => {
+  const url = `${BASE_URL}/career/apply/`;
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: formData, // send FormData directly
+    });
+
+    if (!response.ok) {
+      throw new Error(`Form submission failed: ${response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    throw error;
+  }
+};
+
+export const ExecutiveApply = async (formData) => {
+  const url = `${BASE_URL}/career/apply-exclusive/`;
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: formData, // send FormData directly
+    });
+
+    if (!response.ok) {
+      throw new Error(`Form submission failed: ${response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    throw error;
+  }
+};
+
+export const BePartofUs = async (formData) => {
+  const url = `${BASE_URL}/career/be-part-of-us/`;
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`Form submission failed: ${response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    throw error;
+  }
+};
