@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import filterIcon from "../../../src/assets/universities/Vector.svg";
 import tick from "../../assets/comparison/tick.svg";
 import cross from "../../assets/comparison/cross.svg";
@@ -19,25 +19,8 @@ const Listing = ({ data }) => {
   const [selectedCourse, setSelectedCourse] = useState(Courses[0]);
   const [comparedLogos, setComparedLogos] = useState([]);
   const [comparedId, setComparedId] = useState([]);
-
-  const handleAddToCompare = (logo) => {
-    if (comparedLogos.length < 2 && !comparedId.includes(logo.id)) {
-      setComparedLogos((prevLogos) => [...prevLogos, logo]);
-      setComparedId((prevIds) => [...(prevIds || []), logo.id]);
-    }
-  };
-
-  const handleRemoveLogo = (index) => {
-    const logoToRemove = comparedLogos[index];
-
-    // Remove logo from comparedLogos
-    setComparedLogos((prevLogos) => prevLogos.filter((_, i) => i !== index));
-
-    // Remove logo.id from comparedId (ensuring prevIds is an array)
-    setComparedId((prevIds) => (prevIds || []).filter((id) => id !== logoToRemove.id)); // Ensure prevIds is an array
-  };
-  const idsString = comparedId.join(',');
-  console.log(idsString);
+  const [allUniversityIds, setAllUniversityIds] = useState([]);
+  
   const [selectedProgram, setSelectedProgram] = useState(data[0]);
 
   // Unique programs by program_type_name
@@ -57,11 +40,53 @@ const Listing = ({ data }) => {
   // Initialize with first specialization instead of null
   const [selectedSpecialization, setSelectedSpecialization] = useState(specializationList[0] || null);
 
-  // Filter programs
-  const filteredPrograms = data.filter(p =>
-    p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name &&
-    (selectedSpecialization ? p.specialization?.name === selectedSpecialization : true)
+  // Filter programs using useMemo to prevent unnecessary recalculations
+  const filteredPrograms = useMemo(() => 
+    data.filter(p =>
+      p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name &&
+      (selectedSpecialization ? p.specialization?.name === selectedSpecialization : true)
+    ),
+    [data, selectedProgram, selectedSpecialization]
   );
+
+  // Update allUniversityIds only when necessary components change
+  useEffect(() => {
+    // Extract all university IDs from filtered programs
+    const allIds = filteredPrograms.map(program => program.university.id);
+    setAllUniversityIds(allIds);
+    
+    // Note: We're NOT resetting compared IDs here to avoid infinite loops
+  }, [selectedProgram, selectedSpecialization]);
+
+  const handleAddToCompare = (logo) => {
+    if (comparedLogos.length < 2 && !comparedId.includes(logo.id)) {
+      setComparedLogos((prevLogos) => [...prevLogos, logo]);
+      setComparedId((prevIds) => [...(prevIds || []), logo.id]);
+    }
+  };
+
+  const handleRemoveLogo = (index) => {
+    const logoToRemove = comparedLogos[index];
+
+    // Remove logo from comparedLogos
+    setComparedLogos((prevLogos) => prevLogos.filter((_, i) => i !== index));
+
+    // Remove logo.id from comparedId (ensuring prevIds is an array)
+    setComparedId((prevIds) => (prevIds || []).filter((id) => id !== logoToRemove.id));
+  };
+  
+  // Get unselected university IDs - memoized to prevent recalculations
+  const unselectedIds = useMemo(() => {
+    return allUniversityIds.filter(id => !comparedId.includes(id));
+  }, [allUniversityIds, comparedId]);
+  
+  // Prepare URL parameters - memoized to prevent recalculations
+  const comparisonUrl = useMemo(() => {
+    const selectedIdsString = comparedId.join(',');
+    const unselectedIdsString = unselectedIds.join(',');
+    
+    return `/comparison/d?ids=${selectedIdsString}&unselectedIds=${unselectedIdsString}`;
+  }, [selectedProgram, comparedId, unselectedIds]);
 
   const downloadFile = (url, event) => {
     // Prevent any default behavior
@@ -100,9 +125,12 @@ const Listing = ({ data }) => {
               <motion.li
                 key={index}
                 onClick={() => {
-                  setSelectedProgram(item);
+                  // Clear compared items first
                   setComparedLogos([]);
                   setComparedId([]);
+                  
+                  // Then update the program
+                  setSelectedProgram(item);
 
                   // Select first specialization of the newly selected program
                   const newSpecList = Array.from(
@@ -187,7 +215,7 @@ const Listing = ({ data }) => {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Link href={`/comparison/d?pg=${selectedProgram.specialization.id}&spec=${selectedProgram.program_name.id}&ids=${idsString}`}>
+                  <Link href={comparisonUrl}>
                     <motion.button
                       className="w-full bg-[#FF383B] py-[10px] font-inter px-4 font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md"
                       whileHover={{ scale: 1.05 }}
@@ -206,9 +234,12 @@ const Listing = ({ data }) => {
                                 hover:ring-2 hover:ring-[#FF383B] focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
               value={selectedSpecialization || ""}
               onChange={(e) => {
-                setSelectedSpecialization(e.target.value || specializationList[0]);
+                // Clear compared items first
                 setComparedLogos([]);
                 setComparedId([]);
+                
+                // Then update specialization
+                setSelectedSpecialization(e.target.value || specializationList[0]);
               }}
 
             >
@@ -236,9 +267,12 @@ const Listing = ({ data }) => {
                   >
                     <div
                       onClick={() => {
-                        setSelectedSpecialization(spec);
+                        // Clear compared items first
                         setComparedLogos([]);
                         setComparedId([]);
+                        
+                        // Then update specialization
+                        setSelectedSpecialization(spec);
                       }}
                       className={`cursor-pointer p-[16px] text-[14px] rounded-[6px] border font-bold shadow-lg
                 ${selectedSpecialization === spec
@@ -276,7 +310,7 @@ const Listing = ({ data }) => {
                               </div>
                             ))}
                           </div>
-                          <Link href={`/comparison/d?pg=${selectedProgram.specialization.id}&spec=${selectedProgram.program_name.id}&ids=${idsString}`}>
+                          <Link href={comparisonUrl}>
                             <button className="w-full bg-[#FF383B] py-[10px] font-inter px-4 font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md">
                               Show Result
                             </button>
