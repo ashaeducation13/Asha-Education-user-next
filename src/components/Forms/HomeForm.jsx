@@ -1,6 +1,6 @@
 "use client";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import arrow from "../../assets/home/counsel/Arrow.png";
@@ -55,10 +55,17 @@ const HomeForm = () => {
   // Submit form data
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       await submitCounselForm(formData);
-      toast.success("Message sent successfully!");
+  
+      Swal.fire({
+        title: "Success!",
+        text: "Message sent successfully!",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+  
       setFormData({
         name: "",
         phone: "",
@@ -66,13 +73,18 @@ const HomeForm = () => {
         university: "",
         program: "",
       });
-
-      
+  
       setSelectedUniversity("");
       setPrograms([]);
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Something went wrong. Please try again.");
+  
+      Swal.fire({
+        title: "Error!",
+        text: "Something went wrong. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
 
@@ -176,7 +188,6 @@ const HomeForm = () => {
           Submit
           <Image src={arrow} alt="Arrow" className="w-[8.4px] h-[8.24px]" />
         </motion.button>
-        <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
       </motion.form>
     </>
   );
