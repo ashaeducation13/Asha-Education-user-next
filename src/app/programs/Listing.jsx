@@ -1,115 +1,152 @@
 "use client"
 import React, { useState, useEffect } from 'react'
-// import { cardData, Courses } from '../comparison/Data';
-import Image from 'next/image';
-import { Card } from '../comparison/Listing';
 import { ProgramCard } from './ProgramCard';
 import { cardData, Courses } from './PrData';
-import Link from 'next/link';
 
 const Listing = ({ data }) => {
-  const [selectedProgram, setSelectedProgram] = useState(data[0]);
+  const [selectedProgram, setSelectedProgram] = useState(null);
   const [selectedSpecialization, setSelectedSpecialization] = useState(null);
 
-  // Unique programs by program_type_name
-  const uniquePrograms = Array.from(
-    new Set(data.map(p => p.specialization?.program_type_name))
-  ).map(programType => data.find(p => p.specialization?.program_type_name === programType));
+  // Get unique programs by program_type_name
+  const uniquePrograms = React.useMemo(() => {
+    if (!data || data.length === 0) return [];
+    
+    return Array.from(
+      new Set(data.filter(p => p.specialization?.program_type_name).map(p => p.specialization.program_type_name))
+    ).map(programType => {
+      return data.find(p => p.specialization?.program_type_name === programType);
+    });
+  }, [data]);
 
-  // Specializations under selected program
-  const specializationList = Array.from(
-    new Set(
-      data
-        .filter(p => p.specialization?.program_type_name === selectedProgram?.specialization?.program_type_name)
-        .map(p => p.specialization?.name)
-    )
-  );
+  // Get specializations for the currently selected program
+  const specializationList = React.useMemo(() => {
+    if (!selectedProgram || !data || data.length === 0) return [];
+    
+    return Array.from(
+      new Set(
+        data
+          .filter(p => p.specialization?.program_type_name === selectedProgram.specialization.program_type_name)
+          .map(p => p.specialization?.name)
+          .filter(Boolean) // Filter out null/undefined values
+      )
+    );
+  }, [selectedProgram, data]);
 
-  // Set default specialization when program changes or on initial load
+  // Initialize selected program and specialization
   useEffect(() => {
-    if (specializationList.length > 0 && !selectedSpecialization) {
+    if (uniquePrograms.length > 0 && !selectedProgram) {
+      const firstProgram = uniquePrograms[0];
+      setSelectedProgram(firstProgram);
+    }
+  }, [uniquePrograms, selectedProgram]);
+
+  // Set first specialization when program changes
+  useEffect(() => {
+    if (selectedProgram && specializationList.length > 0 && !selectedSpecialization) {
       setSelectedSpecialization(specializationList[0]);
     }
   }, [selectedProgram, specializationList, selectedSpecialization]);
 
-  // Handle program change - reset specialization to ensure it's valid for the new program
+  // Handle program change
   const handleProgramChange = (program) => {
     setSelectedProgram(program);
-    setSelectedSpecialization(null); // This will trigger the useEffect to set the first specialization
+    setSelectedSpecialization(null); // Reset specialization to trigger the useEffect
   };
 
-  // Filter programs
-  const filteredPrograms = data.filter(p =>
-    p.specialization?.program_type_name === selectedProgram?.specialization?.program_type_name &&
-    (selectedSpecialization ? p.specialization?.name === selectedSpecialization : true)
-  );
+  // Handle specialization change
+  const handleSpecializationChange = (spec) => {
+    setSelectedSpecialization(spec);
+  };
+
+  // Filter programs based on selected criteria
+  const filteredPrograms = React.useMemo(() => {
+    if (!selectedProgram || !selectedSpecialization) return [];
+    
+    return data.filter(p =>
+      p.specialization?.program_type_name === selectedProgram.specialization.program_type_name &&
+      p.specialization?.name === selectedSpecialization
+    );
+  }, [data, selectedProgram, selectedSpecialization]);
+
+  // For debugging
+  useEffect(() => {
+    console.log("Selected Program:", selectedProgram?.specialization?.program_type_name);
+    console.log("Selected Specialization:", selectedSpecialization);
+    console.log("Filtered Programs:", filteredPrograms.length);
+  }, [selectedProgram, selectedSpecialization, filteredPrograms]);
 
   return (
     <>
-    {data.length > 0 ? (
-      <section className="containers border-b border-b-[#E1E4ED]">
-        <div className="mx-auto flex justify-between items-center py-5 overflow-x-scroll scrollbar-hide">
-          <ul className="flex gap-[6px]">
-            {uniquePrograms.map((item, index) => (
-              <li
-                key={index}
-                onClick={() => handleProgramChange(item)}
-                className={`cursor-pointer ${selectedProgram?.specialization?.program_type_name === item.specialization?.program_type_name
-                  ? "bg-[#FF383B] text-white"
-                  : "bg-white text-[#6D758F] border border-[#D9D9D9]"
-                  } hover:bg-[#FF383B] p-[14px] md:px-[22px] md:py-[18px] text-[16px] leading-[16px] font-bold hover:text-white rounded-[8px]`}
-              >
-                {item.specialization.program_type_name}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] pt-5 pb-10">
-          <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold md:hidden">Specialisations</h2>
-
-          <select
-            className="md:hidden p-[16px] text-[#696969] text-[12px] border border-[#F1F3F7] bg-white rounded-[6px] w-fit
-                             hover:ring-2 hover:ring-[#FF383B] focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
-            value={selectedSpecialization || ""}
-            onChange={(e) => setSelectedSpecialization(e.target.value || specializationList[0])}
-          >
-            {specializationList.map((spec, i) => (
-              <option key={i} value={spec}>{spec}</option>
-            ))}
-          </select>
-
-          {/* Desktop Sidebar */}
-          <div className="hidden md:flex flex-col gap-3">
-            <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold">Specialisations</h2>
-            <ul className="flex flex-col gap-2">
-              {specializationList.map((spec, i) => (
+      {data && data.length > 0 ? (
+        <section className="containers border-b border-b-[#E1E4ED]">
+          <div className="mx-auto flex justify-between items-center py-5 overflow-x-scroll scrollbar-hide">
+            <ul className="flex gap-[6px]">
+              {uniquePrograms.map((item, index) => (
                 <li
-                  key={i}
-                  onClick={() => setSelectedSpecialization(spec)}
-                  className={`cursor-pointer p-[16px] text-[14px] rounded-[6px] border shadow-lg
-                                        ${selectedSpecialization === spec
-                      ? "border-[#FF383B] text-[#FF383B]"
-                      : "bg-white text-[#696969] border-[#F1F3F7]"
-                    }`}
+                  key={index}
+                  onClick={() => handleProgramChange(item)}
+                  className={`cursor-pointer ${
+                    selectedProgram?.specialization?.program_type_name === item.specialization?.program_type_name
+                      ? "bg-[#FF383B] text-white"
+                      : "bg-white text-[#6D758F] border border-[#D9D9D9]"
+                  } hover:bg-[#FF383B] p-[14px] md:px-[22px] md:py-[18px] text-[16px] leading-[16px] font-bold hover:text-white rounded-[8px]`}
                 >
-                  {spec}
+                  {item.specialization.program_type_name}
                 </li>
               ))}
             </ul>
           </div>
+          <div className="mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] pt-5 pb-10">
+            <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold md:hidden">Specialisations</h2>
 
-          <div className="flex flex-col xl:mx-8">
-            <div className="grid grid-row md:grid-cols-2 gap-2 xl:gap-16">
-              {filteredPrograms.map((item, index) => (
-                
-                  <ProgramCard key={index} item={item} />
-             
+            <select
+              className="md:hidden p-[16px] text-[#696969] text-[12px] border border-[#F1F3F7] bg-white rounded-[6px] w-fit
+                hover:ring-2 hover:ring-[#FF383B] focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
+              value={selectedSpecialization || ""}
+              onChange={(e) => handleSpecializationChange(e.target.value)}
+              disabled={!specializationList.length}
+            >
+              {specializationList.map((spec, i) => (
+                <option key={i} value={spec}>{spec}</option>
               ))}
+            </select>
+
+            {/* Desktop Sidebar */}
+            <div className="hidden md:flex flex-col gap-3">
+              <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold">Specialisations</h2>
+              <ul className="flex flex-col gap-2">
+                {specializationList.map((spec, i) => (
+                  <li
+                    key={i}
+                    onClick={() => handleSpecializationChange(spec)}
+                    className={`cursor-pointer p-[16px] text-[14px] rounded-[6px] border shadow-lg
+                      ${selectedSpecialization === spec
+                        ? "border-[#FF383B] text-[#FF383B]"
+                        : "bg-white text-[#696969] border-[#F1F3F7]"
+                      }`}
+                  >
+                    {spec}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex flex-col xl:mx-8">
+              <div className="grid grid-row md:grid-cols-2 gap-2 xl:gap-16">
+                {filteredPrograms.length > 0 ? (
+                  filteredPrograms.map((item, index) => (
+                    <ProgramCard key={index} item={item} />
+                  ))
+                ) : (
+                  <div className="col-span-2 text-center py-8 text-gray-500">
+                    No programs found for this specialization.
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      ): (
+        </section>
+      ) : (
         <section className="containers border-b border-b-[#E1E4ED] py-12">
           <div className="text-center text-[#6D758F] text-[18px] md:text-[22px] font-medium">
             No programs found matching your selection.

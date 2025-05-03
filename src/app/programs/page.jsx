@@ -13,6 +13,8 @@ export default async function Page({ searchParams }) {
   const mba = searchParams?.mba || '';
   const onlinepg = searchParams?.pg || '';
   const onlineug = searchParams?.ug || '';
+  const cert = searchParams?.cert || '';
+  const ex = searchParams?.ex || '';
 
   let filteredData = prData;
 
@@ -33,13 +35,29 @@ export default async function Page({ searchParams }) {
   }
   else if (onlinepg) {
     filteredData = prData.filter((item) =>
-      item.specialization?.program_type_name?.toLowerCase()==='pg' &&
+      item.categories?.some((category) =>
+        category.name?.toLowerCase() === 'pg'
+      ) &&
       item.mode_of_study === 'Online'
     );
   } else if (onlineug) {
     filteredData = prData.filter((item) =>
-      item.specialization?.program_type_name?.toLowerCase()==='ug'&&
+      item.categories?.some((category) =>
+        category.name?.toLowerCase() ==='ug'
+      ) &&
       item.mode_of_study === 'Online'
+    );
+  } else if (cert) {
+    filteredData = prData.filter((item) =>
+      item.categories?.some((category) =>
+        category.name?.toLowerCase().includes('certification')
+      )
+    );
+  } else if (ex) {
+    filteredData = prData.filter((item) =>
+      item.categories?.some((category) =>
+        category.name?.toLowerCase().includes('executive program')
+      )
     );
   }
 
