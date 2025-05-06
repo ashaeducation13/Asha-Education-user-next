@@ -10,13 +10,25 @@ const Listing = ({ data }) => {
   // Get unique programs by program_type_name
   const uniquePrograms = React.useMemo(() => {
     if (!data || data.length === 0) return [];
-    
-    return Array.from(
-      new Set(data.filter(p => p.specialization?.program_type_name).map(p => p.specialization.program_type_name))
-    ).map(programType => {
-      return data.find(p => p.specialization?.program_type_name === programType);
+  
+    const programMap = new Map();
+  
+    data.forEach(p => {
+      const name = p.specialization?.program_type_name;
+      const order = p.specialization?.order ?? Infinity;
+  
+      if (!name) return;
+  
+      if (!programMap.has(name) || order < (programMap.get(name)?.specialization?.order ?? Infinity)) {
+        programMap.set(name, p);
+      }
     });
+  
+    return Array.from(programMap.values()).sort(
+      (a, b) => (a.specialization?.order ?? Infinity) - (b.specialization?.order ?? Infinity)
+    );
   }, [data]);
+  
 
   // Get specializations for the currently selected program
   const specializationList = React.useMemo(() => {

@@ -6,8 +6,8 @@ import Modal from "./Modal";
 import { ProgramFetch, ProsConsById } from "@/services/api";
 
 export default async function Page({ params, searchParams }) {
-  const ids = searchParams?.ids?.split(',') || [];
-  const unselectedIds = searchParams?.unselectedIds?.split(',') || [];
+  const ids = (searchParams?.ids?.split(',') || []).filter(Boolean);
+  const unselectedIds = (searchParams?.unselectedIds?.split(',') || []).filter(Boolean);
   const allIds = [...new Set([...ids, ...unselectedIds])];
 
 
@@ -19,7 +19,7 @@ export default async function Page({ params, searchParams }) {
     <div>
       <Navbar />
       <BestCollege selectedIds={ids}
-      allProsCons={allProsCons}
+        allProsCons={allProsCons}
       />
       <Footer />
       <Modal />
