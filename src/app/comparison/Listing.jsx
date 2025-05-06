@@ -25,9 +25,17 @@ const Listing = ({ data }) => {
 
   // Unique programs by program_type_name
   const uniquePrograms = Array.from(
-    new Set(data.map(p => p.specialization?.program_type_name))
-  ).map(programType => data.find(p => p.specialization?.program_type_name === programType));
-
+    data.reduce((map, p) => {
+      const name = p.specialization?.program_type_name;
+      const order = p.specialization?.order ?? Infinity;
+  
+      if (!map.has(name) || order < (map.get(name)?.specialization?.order ?? Infinity)) {
+        map.set(name, p);
+      }
+      return map;
+    }, new Map()).values()
+  ).sort((a, b) => (a.specialization?.order ?? Infinity) - (b.specialization?.order ?? Infinity));
+  
   // Specializations under selected program
   const specializationList = Array.from(
     new Set(
@@ -472,13 +480,14 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
             />
             Add to compare
           </button>
-
+              <Link href={`/programs/${item.id}`}>  
           <button
             className="flex-1 text-xs md:text-[13px] lg:text-[14px] text-[#6D758F] font-semibold rounded-[8px] 
-              flex justify-center items-center border border-[#D9D9D9] px-2 py-2 md:px-3 hover:bg-gray-50 transition-colors duration-200"
+              flex justify-center items-center border border-[#D9D9D9] px-2 py-2 md:px-3 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
           >
             View Details
           </button>
+          </Link>
         </div>
       </div>
     </section>

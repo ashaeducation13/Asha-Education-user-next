@@ -53,7 +53,7 @@ const HeroSection = ({data}) => {
                     </h2>
                     <div className="md:w-1/2 block md:hidden">
                         <div className="border-4 border-gray-200 rounded-xl p-2">
-                            <Image src={data.image} width={100} height={100} alt="University Building" className="rounded-lg w-full max-h-[340px]" />
+                            <Image src={data.specialization.image} width={100} height={100} alt="University Building" className="rounded-lg w-full max-h-[340px]" />
                         </div>
                     </div>
                     {/* Description */}
@@ -72,7 +72,7 @@ const HeroSection = ({data}) => {
                 {/* Right Section (Image) */}
                 <div className="md:w-1/2 hidden md:block">
                     <div className="border-4 border-gray-200 rounded-xl p-2">
-                        <Image src={data.image} width={100} height={100} alt="University Building" className="rounded-lg w-full max-h-[340px]" />
+                        <Image src={data.specialization.image} width={100} height={100} alt="University Building" className="rounded-lg w-full max-h-[340px]" />
                     </div>
                 </div>
             </div>
