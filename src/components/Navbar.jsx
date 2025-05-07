@@ -24,10 +24,10 @@ const Navbar = () => {
 
   const programsList = [
     { name: "Online MBA", url: "/programs?mba=MBA" },
-    { name: "Online PG Cources", url: "/programs?pg=PG" },
-    { name: "Online UG Cources", url: "/programs?ug=UG" },
+    { name: "Online PG Courses", url: "/programs?pg=PG" },
+    { name: "Online UG Courses", url: "/programs?ug=UG" },
     { name: "Certifications", url: "/programs?cert=cert" },
-    { name: "Executive Cources", url: "/programs?ex=ex" }
+    { name: "Executive Courses", url: "/programs?ex=ex" }
   ];
   useEffect(() => {
     const getData = async () => {

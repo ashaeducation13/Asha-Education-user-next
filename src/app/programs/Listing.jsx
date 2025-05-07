@@ -1,5 +1,5 @@
-"use client"
-import React, { useState, useEffect } from 'react'
+"use client";
+import React, { useState, useEffect } from 'react';
 import { ProgramCard } from './ProgramCard';
 import { cardData, Courses } from './PrData';
 
@@ -7,44 +7,40 @@ const Listing = ({ data }) => {
   const [selectedProgram, setSelectedProgram] = useState(null);
   const [selectedSpecialization, setSelectedSpecialization] = useState(null);
 
-  // Get unique programs by program_type_name
   const uniquePrograms = React.useMemo(() => {
     if (!data || data.length === 0) return [];
-  
+
     const programMap = new Map();
-  
+
     data.forEach(p => {
       const name = p.specialization?.program_type_name;
       const order = p.specialization?.order ?? Infinity;
-  
+
       if (!name) return;
-  
+
       if (!programMap.has(name) || order < (programMap.get(name)?.specialization?.order ?? Infinity)) {
         programMap.set(name, p);
       }
     });
-  
+
     return Array.from(programMap.values()).sort(
       (a, b) => (a.specialization?.order ?? Infinity) - (b.specialization?.order ?? Infinity)
     );
   }, [data]);
-  
 
-  // Get specializations for the currently selected program
   const specializationList = React.useMemo(() => {
     if (!selectedProgram || !data || data.length === 0) return [];
-    
+
     return Array.from(
       new Set(
         data
           .filter(p => p.specialization?.program_type_name === selectedProgram.specialization.program_type_name)
           .map(p => p.specialization?.name)
-          .filter(Boolean) // Filter out null/undefined values
+          .filter(Boolean)
       )
     );
   }, [selectedProgram, data]);
 
-  // Initialize selected program and specialization
   useEffect(() => {
     if (uniquePrograms.length > 0 && !selectedProgram) {
       const firstProgram = uniquePrograms[0];
@@ -52,35 +48,32 @@ const Listing = ({ data }) => {
     }
   }, [uniquePrograms, selectedProgram]);
 
-  // Set first specialization when program changes
   useEffect(() => {
     if (selectedProgram && specializationList.length > 0 && !selectedSpecialization) {
       setSelectedSpecialization(specializationList[0]);
     }
   }, [selectedProgram, specializationList, selectedSpecialization]);
 
-  // Handle program change
   const handleProgramChange = (program) => {
     setSelectedProgram(program);
-    setSelectedSpecialization(null); // Reset specialization to trigger the useEffect
+    setSelectedSpecialization(null);
   };
 
-  // Handle specialization change
   const handleSpecializationChange = (spec) => {
     setSelectedSpecialization(spec);
   };
 
-  // Filter programs based on selected criteria
   const filteredPrograms = React.useMemo(() => {
     if (!selectedProgram || !selectedSpecialization) return [];
-    
-    return data.filter(p =>
-      p.specialization?.program_type_name === selectedProgram.specialization.program_type_name &&
-      p.specialization?.name === selectedSpecialization
-    );
+
+    return data
+      .filter(p =>
+        p.specialization?.program_type_name === selectedProgram.specialization.program_type_name &&
+        p.specialization?.name === selectedSpecialization
+      )
+      .sort((a, b) => (a.university?.ordering_priority ?? Infinity) - (b.university?.ordering_priority ?? Infinity));
   }, [data, selectedProgram, selectedSpecialization]);
 
-  // For debugging
   useEffect(() => {
     console.log("Selected Program:", selectedProgram?.specialization?.program_type_name);
     console.log("Selected Specialization:", selectedSpecialization);
@@ -108,6 +101,7 @@ const Listing = ({ data }) => {
               ))}
             </ul>
           </div>
+
           <div className="mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] pt-5 pb-10">
             <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold md:hidden">Specialisations</h2>
 
@@ -123,8 +117,8 @@ const Listing = ({ data }) => {
               ))}
             </select>
 
-            {/* Desktop Sidebar */}
-            <div className="hidden md:flex flex-col gap-3">
+            {/* Scrollable Desktop Sidebar */}
+            <div className="hidden md:flex flex-col gap-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
               <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold">Specialisations</h2>
               <ul className="flex flex-col gap-2">
                 {specializationList.map((spec, i) => (
@@ -166,7 +160,7 @@ const Listing = ({ data }) => {
         </section>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Listing
+export default Listing;

@@ -50,12 +50,15 @@ const Listing = ({ data }) => {
 
   // Filter programs using useMemo to prevent unnecessary recalculations
   const filteredPrograms = useMemo(() => 
-    data.filter(p =>
-      p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name &&
-      (selectedSpecialization ? p.specialization?.name === selectedSpecialization : true)
-    ),
+    data
+      .filter(p =>
+        p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name &&
+        (selectedSpecialization ? p.specialization?.name === selectedSpecialization : true)
+      )
+      .sort((a, b) => (a.university?.ordering_priority ?? Infinity) - (b.university?.ordering_priority ?? Infinity)),
     [data, selectedProgram, selectedSpecialization]
   );
+  
 
   // Update allUniversityIds only when necessary components change
   useEffect(() => {
@@ -257,7 +260,8 @@ const Listing = ({ data }) => {
             </select>
 
             {/* MD+ specialization list */}
-            <div className="hidden md:flex flex-col gap-3">
+            <div className="hidden md:flex flex-col gap-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+
               <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold">Specialisations</h2>
               <motion.ul
                 className="flex flex-col gap-2"
@@ -434,14 +438,14 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
           {item.specialization.str_representation}
         </h2>
 
-        <span className="flex justify-start items-center gap-1.5 md:gap-2">
+        {/* <span className="flex justify-start items-center gap-1.5 md:gap-2">
           <Image
             src={star}
             alt="icon"
             className="w-[14px] h-[14px] md:w-[15px] md:h-[15px] lg:w-[18px] lg:h-[18px]"
           />
           <span className="text-xs md:text-[13px] lg:text-[14px]">{item.university.rating} / 5 </span>
-        </span>
+        </span> */}
         {item.brochure && (
 
           <button onClick={(e) => downloadFile(item.brochure, e)} className="w-fit bg-[#FFE3E4] inline-flex items-center justify-start gap-2 px-3 md:px-3.5 py-1.5 rounded-[8px]">

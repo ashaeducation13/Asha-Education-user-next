@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import PartnerCard from "@/components/home/PartnerCard";
 import Image from "next/image";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 import arrow from "../../assets/home/herosection/Arrow.svg";
 import arrowright from "../../assets/home/partnersection/darkarrowright.svg";
 import MainForm from "@/components/Forms/MainForm";
@@ -44,10 +44,10 @@ const Universities = ({ data }) => {
       </div>
 
       {/* Main Content Section - Keeping w-[90%] ml-auto as requested */}
-      <section className="relative  md:py-6 flex flex-row justify-between gap-4 md:gap-8 lg:gap-16 items-start w-[90%] ml-auto ">
+      <section className="relative md:py-6 flex flex-row justify-between gap-4 md:gap-8 lg:gap-16 items-start w-[90%] md:ml-auto mx-auto  md:mx-0">
         {/* Left: University Buttons - Keeping visible on all screen sizes */}
         <div className="flex flex-col gap-3 md:min-w-[200px] lg:min-w-[220px]">
-          <div className="flex flex-col gap-3 max-h-[280px] overflow-y-auto pr-1 scrollbar-thin">
+          <div className="flex flex-col gap-3 max-h-[360px] md:max-h-[400px] overflow-y-auto pr-1 custom-scrollbar">
             {univ.map((university) => (
               <motion.button
                 key={university.id}
@@ -56,24 +56,27 @@ const Universities = ({ data }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className={`w-full flex flex-col md:flex-row items-center gap-2 px-1 md:px-3 py-2 border rounded-md text-black text-xs md:text-sm font-normal transition-all font-rubik md:text-left
-              ${selectedUniversity?.id === university.id
-                    ? "border-[#0A0078] text-black"
+                className={`w-full flex flex-col md:flex-row items-center gap-2 px-1 md:px-2 py-2 border rounded-md text-xs md:text-sm font-normal transition-all font-rubik
+        ${selectedUniversity?.id === university.id
+                    ? "border-[#0A0078] text-black bg-[#F1F4FF]"
                     : "border-gray-300 bg-white hover:bg-gray-100"
                   }`}
                 onClick={() => setSelectedUniversity(university)}
               >
-                <Image
-                  src={university.logo_vertical}
-                  alt={university.name}
-                  width={30}
-                  height={30}
-                  className="object-contain flex-shrink-0"
-                />
-                <span className="break-words">{university.name}</span>
+                <div className="flex-shrink-0">
+                  <Image
+                    src={university.logo_vertical}
+                    alt={university.name}
+                    width={30}
+                    height={30}
+                    className="object-contain"
+                  />
+                </div>
+                <span className="text-center md:text-left break-words whitespace-normal">{university.name}</span>
               </motion.button>
             ))}
           </div>
+
 
           {/* Desktop Buttons (Hidden on small screens) */}
           <div className="flex-col justify-between w-full gap-3 items-center hidden md:flex mt-3">
@@ -105,8 +108,8 @@ const Universities = ({ data }) => {
         {/* Right: Swiper Carousel */}
         <div className="w-full flex justify-end overflow-x-hidden">
           <Swiper
-            slidesPerView={1.1}
-            spaceBetween={12}
+            slidesPerView={1}
+            spaceBetween={2}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
             breakpoints={{
               480: { slidesPerView: 1.2, spaceBetween: 12 },

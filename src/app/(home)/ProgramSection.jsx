@@ -20,7 +20,7 @@ const programs = [
     { image: img1, title: "Undergraduate Programs", key: "UG" },
     { image: img2, title: "Postgraduate Programs", key: "PG" },
     { image: img3, title: "Certifications", key: "Certification" },
-    { image: img4, title: "Executive Cources", key: "Executive Program" },
+    { image: img4, title: "Executive Courses", key: "Executive Program" },
 ];
 
 const ProgramsSection = () => {

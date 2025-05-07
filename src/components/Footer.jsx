@@ -260,7 +260,7 @@ const Footer = () => {
                     <p className="inline-flex items-center w-full sm:w-auto justify-center sm:justify-start lg:w-auto">
                         Copyright
                         <Image src={copyright} alt="copyright" className="h-4 mx-1" />
-                        2024 <span className="text-[#FF383B] font-medium">Asha Education</span> All Rights Reserved
+                        2024 <span className="text-[#FF383B] font-medium mx-1">Asha Education</span> All Rights Reserved
                     </p>
                     <p className="inline-flex items-center w-full sm:w-auto justify-center sm:justify-start lg:w-auto">
                         Designed and developed by <span className="text-[#FF383B] font-medium ml-1 mr-1">Accolades Integrated</span>
