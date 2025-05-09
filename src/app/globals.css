@@ -46,3 +46,19 @@
       0px 459px 128px rgba(0, 0, 0, 0);
   }
 }
+
+/* Customize scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 1px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #FF383B;
+  border-radius: 4px;
+}
+.custom-scrollbar {
+  scrollbar-color: #FF383B #f1f1f1;
+  scrollbar-width: thin;
+}

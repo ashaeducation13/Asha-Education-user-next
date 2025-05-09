@@ -55,14 +55,14 @@ const UnivCard = ({ item }) => {
           {item.name}
         </h2>
 
-        <span className="flex justify-start items-center gap-1.5 md:gap-2">
+        {/* <span className="flex justify-start items-center gap-1.5 md:gap-2">
           <Image
             src={star}
             alt="icon"
             className="w-[14px] h-[14px] md:w-[15px] md:h-[15px] lg:w-[18px] lg:h-[18px]"
           />
           <span className="text-xs md:text-[13px] lg:text-[14px]">{item.rating}</span>
-        </span>
+        </span> */}
 
         <span className="text-[#6D758F] text-xs md:text-[13px] lg:text-[14px] xl:text-[16px]">
           {programNames.join(', ')}

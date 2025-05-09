@@ -16,13 +16,13 @@ const Herosection = () => {
                   "linear-gradient(90.02deg, #0A0078 2.5%, #FF383B 43.53%)",
               }}
             >
-              Let's Find out
+              Let's find the 
             </span>{" "}
-            Best Program
-            <br /> In Your Dream
+            Best Programme
+            <br />of Your dreams
           </h1>
           <p className="font-rubik text-[12px] md:text-[14px] lg:text-[16px] font-normal pt-3">
-            Committed to guiding students toward the best universities in India.
+          Committed to guiding students towards the best universities in India
           </p>
         </div>
       </section>

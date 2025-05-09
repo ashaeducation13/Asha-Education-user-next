@@ -20,49 +20,92 @@ const Listing = ({ data }) => {
   const [comparedLogos, setComparedLogos] = useState([]);
   const [comparedId, setComparedId] = useState([]);
   const [allUniversityIds, setAllUniversityIds] = useState([]);
-  
+
   const [selectedProgram, setSelectedProgram] = useState(data[0]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
 
   // Unique programs by program_type_name
   const uniquePrograms = Array.from(
     data.reduce((map, p) => {
       const name = p.specialization?.program_type_name;
       const order = p.specialization?.order ?? Infinity;
-  
+
       if (!map.has(name) || order < (map.get(name)?.specialization?.order ?? Infinity)) {
         map.set(name, p);
       }
       return map;
     }, new Map()).values()
   ).sort((a, b) => (a.specialization?.order ?? Infinity) - (b.specialization?.order ?? Infinity));
-  
+
   // Specializations under selected program
-  const specializationList = Array.from(
-    new Set(
-      data
-        .filter(p => p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name)
-        .map(p => p.specialization?.name)
-    )
+  const specializationList = useMemo(() => {
+    if (!selectedProgram || !data?.length) return [];
+
+    const seen = new Set();
+
+    return data
+      .filter(p => p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name)
+      .sort(
+        (a, b) => (a.specialization?.ordering_priority ?? Infinity) - (b.specialization?.ordering_priority ?? Infinity)
+      )
+      .map(p => p.specialization?.name)
+      .filter(name => {
+        if (!name || seen.has(name)) return false;
+        seen.add(name);
+        return true;
+      });
+  }, [selectedProgram, data]);
+
+
+  // Filtered specializations based on search term
+  const filteredSpecializations = useMemo(() =>
+    specializationList.filter(spec =>
+      spec.toLowerCase().includes(searchTerm.toLowerCase())
+    ),
+    [specializationList, searchTerm]
   );
 
   // Initialize with first specialization instead of null
   const [selectedSpecialization, setSelectedSpecialization] = useState(specializationList[0] || null);
 
+  // Update selected specialization when program changes or when filtered results change
+  useEffect(() => {
+    if (filteredSpecializations.length > 0) {
+      // If current selection isn't in filtered results, select first filtered item
+      if (!filteredSpecializations.includes(selectedSpecialization)) {
+        setSelectedSpecialization(filteredSpecializations[0]);
+      }
+    } else if (specializationList.length > 0) {
+      // If no filtered results but specializations exist, select first one
+      setSelectedSpecialization(specializationList[0]);
+    } else {
+      setSelectedSpecialization(null);
+    }
+  }, [selectedProgram, filteredSpecializations, specializationList]);
+
   // Filter programs using useMemo to prevent unnecessary recalculations
-  const filteredPrograms = useMemo(() => 
-    data.filter(p =>
-      p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name &&
-      (selectedSpecialization ? p.specialization?.name === selectedSpecialization : true)
-    ),
+  const filteredPrograms = useMemo(() =>
+    data
+      .filter(p =>
+        p.specialization?.program_type_name === selectedProgram.specialization?.program_type_name &&
+        (selectedSpecialization ? p.specialization?.name === selectedSpecialization : true)
+      )
+      .sort((a, b) => (a.university?.ordering_priority ?? Infinity) - (b.university?.ordering_priority ?? Infinity)),
     [data, selectedProgram, selectedSpecialization]
   );
+
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   // Update allUniversityIds only when necessary components change
   useEffect(() => {
     // Extract all university IDs from filtered programs
     const allIds = filteredPrograms.map(program => program.university.id);
     setAllUniversityIds(allIds);
-    
+
     // Note: We're NOT resetting compared IDs here to avoid infinite loops
   }, [selectedProgram, selectedSpecialization]);
 
@@ -82,17 +125,17 @@ const Listing = ({ data }) => {
     // Remove logo.id from comparedId (ensuring prevIds is an array)
     setComparedId((prevIds) => (prevIds || []).filter((id) => id !== logoToRemove.id));
   };
-  
+
   // Get unselected university IDs - memoized to prevent recalculations
   const unselectedIds = useMemo(() => {
     return allUniversityIds.filter(id => !comparedId.includes(id));
   }, [allUniversityIds, comparedId]);
-  
+
   // Prepare URL parameters - memoized to prevent recalculations
   const comparisonUrl = useMemo(() => {
     const selectedIdsString = comparedId.join(',');
     const unselectedIdsString = unselectedIds.join(',');
-    
+
     return `/comparison/d?ids=${selectedIdsString}&unselectedIds=${unselectedIdsString}`;
   }, [selectedProgram, comparedId, unselectedIds]);
 
@@ -136,9 +179,13 @@ const Listing = ({ data }) => {
                   // Clear compared items first
                   setComparedLogos([]);
                   setComparedId([]);
-                  
+
                   // Then update the program
                   setSelectedProgram(item);
+
+                  // Reset search term when changing program type
+                  setSearchTerm('');
+                  setMobileDropdownOpen(false);
 
                   // Select first specialization of the newly selected program
                   const newSpecList = Array.from(
@@ -162,10 +209,6 @@ const Listing = ({ data }) => {
               </motion.li>
             ))}
           </motion.ul>
-          {/* <ul className="flex gap-2 items-center">
-                <Image src={filterIcon} alt="icon" height={18} />
-                <span className="text-[#FF383B] text-[16px]">Filter by state</span>
-              </ul> */}
         </div>
 
         <div className="mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] pt-5 pb-10">
@@ -236,111 +279,187 @@ const Listing = ({ data }) => {
               </motion.div>
             )}
 
-            {/* Mobile select dropdown */}
-            <select
-              className="md:hidden p-[16px] text-[#696969]  text-[12px] border border-[#F1F3F7] bg-white rounded-[6px] w-fit
-                                hover:ring-2 hover:ring-[#FF383B] focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
-              value={selectedSpecialization || ""}
-              onChange={(e) => {
-                // Clear compared items first
-                setComparedLogos([]);
-                setComparedId([]);
-                
-                // Then update specialization
-                setSelectedSpecialization(e.target.value || specializationList[0]);
-              }}
+            {/* Mobile view with search-enabled dropdown */}
+            <div className="md:hidden">
+              <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold mb-2">Specializations</h2>
 
-            >
-              {specializationList.map((spec, i) => (
-                <option key={i} value={spec}>{spec}</option>
-              ))}
-            </select>
-
-            {/* MD+ specialization list */}
-            <div className="hidden md:flex flex-col gap-3">
-              <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold">Specialisations</h2>
-              <motion.ul
-                className="flex flex-col gap-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                {specializationList.map((spec, i) => (
-                  <motion.li
-                    key={i}
-                    className="flex flex-col gap-2"
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: i * 0.1 }} // Delay each item slightly for staggered effect
+              {/* Custom mobile dropdown with internal search */}
+              <div className="relative">
+                {/* Dropdown trigger button */}
+                <button
+                  onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                  className="w-full p-[16px] text-[#696969] text-[14px] border border-[#F1F3F7] bg-white rounded-[6px] flex justify-between items-center
+                    hover:ring-2 hover:ring-[#FF383B] focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
+                >
+                  <span>{selectedSpecialization || "Select specialization"}</span>
+                  <svg
+                    className={`w-4 h-4 transition-transform ${mobileDropdownOpen ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <div
-                      onClick={() => {
-                        // Clear compared items first
-                        setComparedLogos([]);
-                        setComparedId([]);
-                        
-                        // Then update specialization
-                        setSelectedSpecialization(spec);
-                      }}
-                      className={`cursor-pointer p-[16px] text-[14px] rounded-[6px] border font-bold shadow-lg
-                ${selectedSpecialization === spec
-                          ? "border-[#FF383B] text-[#696969]"
-                          : "bg-white text-[#696969] border-[#F1F3F7]"}
-              `}
-                    >
-                      {spec}
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
 
-                      {/* Conditionally render Add to Compare inside selected spec */}
-                      {selectedSpecialization === spec && comparedLogos.length > 0 && (
-                        <div className="px-[10px] py-[10px] flex gap-4 flex-col rounded-[6px]  ">
+                {/* Dropdown menu */}
+                {mobileDropdownOpen && (
+                  <div className="absolute z-50 w-full mt-1 bg-white border border-[#F1F3F7] rounded-md shadow-lg">
+                    {/* Search inside dropdown */}
+                    <div className="relative p-2 border-b border-[#F1F3F7]">
+                      <input
+                        type="text"
+                        placeholder="Search specializations..."
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                        className="w-full p-2 pl-8 text-sm border border-[#F1F3F7] rounded-md focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
+                        autoFocus
+                      />
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                      </div>
+                    </div>
 
-                          <div className="flex gap-2 my-2 items-center">
-                            {comparedLogos.map((logo, index) => (
-                              <div key={index} className="flex items-center gap-2">
-                                <div className="relative">
-                                  <Image
-                                    src={logo.logo}
-                                    alt="compared logo"
-                                    width={40}
-                                    height={40}
-                                    className="h-10 w-auto object-contain rounded-[5px] border border-[#EDEDED] px-1"
-                                  />
-                                  <Image
-                                    src={cross}
-                                    alt="cross"
-                                    className="absolute -top-2 -right-2 cursor-pointer"
-                                    onClick={() => handleRemoveLogo(index)}
-                                  />
-                                </div>
-                                {index < comparedLogos.length - 1 && (
-                                  <Image src={plus} alt="add more" className="h-6 w-6" />
-                                )}
-                              </div>
-                            ))}
+                    {/* Options list */}
+                    <div className="max-h-[200px] overflow-y-auto">
+                      {filteredSpecializations.length > 0 ? (
+                        filteredSpecializations.map((spec, i) => (
+                          <div
+                            key={i}
+                            onClick={() => {
+                              // Clear compared items first
+                              setComparedLogos([]);
+                              setComparedId([]);
+
+                              // Then update specialization
+                              setSelectedSpecialization(spec);
+                              setMobileDropdownOpen(false);
+                            }}
+                            className={`p-3 cursor-pointer hover:bg-gray-50 ${selectedSpecialization === spec ? "text-[#FF383B] font-medium" : "text-[#696969]"
+                              }`}
+                          >
+                            {spec}
                           </div>
-                          <Link href={comparisonUrl}>
-                            <button className="w-full bg-[#FF383B] py-[10px] font-inter px-4 font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md">
-                              Show Result
-                            </button>
-                          </Link>
+                        ))
+                      ) : (
+                        <div className="p-3 text-center text-gray-500">
+                          No specializations match your search.
                         </div>
                       )}
                     </div>
-
-                  </motion.li>
-                ))}
-              </motion.ul>
+                  </div>
+                )}
+              </div>
             </div>
 
+            {/* MD+ specialization list with search */}
+            <div className="hidden md:flex flex-col gap-3">
+              <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold">Specialisations</h2>
 
+              {/* Search bar for specializations */}
+              <div className="relative mb-2">
+                <input
+                  type="text"
+                  placeholder="Search specializations..."
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  className="w-full p-3 pl-9 text-sm border border-[#F1F3F7] rounded-md focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
+                />
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </div>
+              </div>
+
+              {/* Scrollable specialization list */}
+              <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
+                <motion.ul
+                  className="flex flex-col gap-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {filteredSpecializations.length > 0 ? (
+                    filteredSpecializations.map((spec, i) => (
+                      <motion.li
+                        key={i}
+                        className="flex flex-col gap-2"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: i * 0.1 }} // Delay each item slightly for staggered effect
+                      >
+                        <div
+                          onClick={() => {
+                            // Clear compared items first
+                            setComparedLogos([]);
+                            setComparedId([]);
+
+                            // Then update specialization
+                            setSelectedSpecialization(spec);
+                          }}
+                          className={`cursor-pointer p-[16px] text-[14px] rounded-[6px] border font-bold shadow-lg
+                            ${selectedSpecialization === spec
+                              ? "border-[#FF383B] text-[#696969]"
+                              : "bg-white text-[#696969] border-[#F1F3F7]"}
+                          `}
+                        >
+                          {spec}
+
+                          {/* Conditionally render Add to Compare inside selected spec */}
+                          {selectedSpecialization === spec && comparedLogos.length > 0 && (
+                            <div className="px-[10px] py-[10px] flex gap-4 flex-col rounded-[6px]  ">
+
+                              <div className="flex gap-2 my-2 items-center">
+                                {comparedLogos.map((logo, index) => (
+                                  <div key={index} className="flex items-center gap-2">
+                                    <div className="relative">
+                                      <Image
+                                        src={logo.logo}
+                                        alt="compared logo"
+                                        width={40}
+                                        height={40}
+                                        className="h-10 w-auto object-contain rounded-[5px] border border-[#EDEDED] px-1"
+                                      />
+                                      <Image
+                                        src={cross}
+                                        alt="cross"
+                                        className="absolute -top-2 -right-2 cursor-pointer"
+                                        onClick={() => handleRemoveLogo(index)}
+                                      />
+                                    </div>
+                                    {index < comparedLogos.length - 1 && (
+                                      <Image src={plus} alt="add more" className="h-6 w-6" />
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                              <Link href={comparisonUrl}>
+                                <button className="w-full bg-[#FF383B] py-[10px] font-inter px-4 font-semibold text-[12px] leading-[18px] text-[#FFFFFF] rounded-[8px] shadow-md">
+                                  Show Result
+                                </button>
+                              </Link>
+                            </div>
+                          )}
+                        </div>
+                      </motion.li>
+                    ))
+                  ) : (
+                    <div className="text-center py-4 text-gray-500">
+                      No specializations match your search.
+                    </div>
+                  )}
+                </motion.ul>
+              </div>
+            </div>
           </div>
 
           {/* Second column for cards */}
           <div className="flex flex-col xl:mx-8">
             <div className="grid grid-row md:grid-cols-2 gap-2 xl:gap-16">
-              {/* {filteredPrograms.map((item, index) => (
-                  <ProgramCard key={index} item={item} />
-                ))} */}
               {filteredPrograms.map((item, index) => (
                 <Card
                   key={index}
@@ -403,7 +522,6 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
             fill
             alt="logo"
             className="object-contain w-full h-full"
-          // sizes="(max-width: 768px) 90px, (max-width: 1024px) 95px, 120px"
           />
         </span>
 
@@ -423,9 +541,6 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
 
       {/* Rest of the card content remains the same as previous optimized version */}
       <div className="w-full px-1 md:px-1.5 flex flex-col gap-2 md:gap-2.5 lg:gap-3">
-        {/* <h2 className="text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] leading-tight font-semibold">
-          {item.program_name.full_name}
-          </h2> */}
         <h2 className="text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] leading-tight font-semibold">
           {item.university.name}
         </h2>
@@ -434,16 +549,7 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
           {item.specialization.str_representation}
         </h2>
 
-        <span className="flex justify-start items-center gap-1.5 md:gap-2">
-          <Image
-            src={star}
-            alt="icon"
-            className="w-[14px] h-[14px] md:w-[15px] md:h-[15px] lg:w-[18px] lg:h-[18px]"
-          />
-          <span className="text-xs md:text-[13px] lg:text-[14px]">{item.university.rating} / 5 </span>
-        </span>
         {item.brochure && (
-
           <button onClick={(e) => downloadFile(item.brochure, e)} className="w-fit bg-[#FFE3E4] inline-flex items-center justify-start gap-2 px-3 md:px-3.5 py-1.5 rounded-[8px]">
             <Image
               src={once}
@@ -461,7 +567,6 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
             .map(cert => cert.name)
             .join(', ') +
             (item.university.certifications.length > 4 ? ', ...' : '')}
-
         </span>
 
         <div className="flex justify-between gap-2 md:gap-3 items-center mt-1">
@@ -480,13 +585,13 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
             />
             Add to compare
           </button>
-              <Link href={`/programs/${item.id}`}>  
-          <button
-            className="flex-1 text-xs md:text-[13px] lg:text-[14px] text-[#6D758F] font-semibold rounded-[8px] 
-              flex justify-center items-center border border-[#D9D9D9] px-2 py-2 md:px-3 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
-          >
-            View Details
-          </button>
+          <Link href={`/programs/${item.id}`}>
+            <button
+              className="flex-1 text-xs md:text-[13px] lg:text-[14px] text-[#6D758F] font-semibold rounded-[8px] 
+                flex justify-center items-center border border-[#D9D9D9] px-2 py-2 md:px-3 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
+            >
+              View Details
+            </button>
           </Link>
         </div>
       </div>

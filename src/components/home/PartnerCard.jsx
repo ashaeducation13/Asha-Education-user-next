@@ -29,7 +29,12 @@ const PartnerCard = ({ course, onApplyClick }) => {
         {/* Title */}
         <div className='p-2 md:px-4 flex flex-col flex-grow text-left mx-auto'>
 
-          <h3 className="text-[14px] md:text-[16px] lg:text-[18px] font-open-sans font-semibold text-[#121212]">{course.program_name?.name} in {course.specialization?.name} </h3>
+          <h3 className="text-[14px] md:text-[16px] lg:text-[18px] font-open-sans font-semibold text-[#121212]">
+            {course.specialization?.name?.toLowerCase().includes("general")
+              ? course.program_name?.name
+              : `${course.program_name?.name} in ${course.specialization?.name}`}
+          </h3>
+
           {/* Subtitle */}
           <p className="text-[#6D758F] text-[12px] md:text-[13px] lg:text-[14px] font-inter mt-1">{course.specialization?.description}</p>
         </div>
