@@ -23,23 +23,35 @@ const certdata = [
 
 const itemsList = ["Learning Efforts - 12/15 hrs a week", "Duration - 3 Years", "Credits - 126"]
 
-const CertificationSection = () => {
+const CertificationSection = ({data}) => {
+    const learningEfforts = data?.learning_efforts;
+    const duration = data?.duration_in_months;
+    const credits = data?.credits;
+
     return (
         <section className="containers py-6 border-b border-[#E3E3E3]">
             {/* Items List Row - Top Section */}
-            <div className="flex flex-wrap gap-2 mb-6">
-                {itemsList.map((item, index) => (
-                    <div 
-                        key={index} 
-                        className="px-4 py-2 text-[#FF383B] border border-[#D9D9D9] rounded-md font-open-sans font-bold lg:text-[20px] md:text-[16px] text-[12px] leading-[22px]"
-                    >
-                        {item}
+             <div className="flex flex-wrap gap-2 mb-6">
+                {learningEfforts && (
+                    <div className="px-4 py-2 text-[#FF383B] border border-[#D9D9D9] rounded-md font-open-sans font-bold lg:text-[20px] md:text-[16px] text-[12px] leading-[22px]">
+                        Learning Efforts - {learningEfforts}
                     </div>
-                ))}
+                )}
+                {duration && (
+                    <div className="px-4 py-2 text-[#FF383B] border border-[#D9D9D9] rounded-md font-open-sans font-bold lg:text-[20px] md:text-[16px] text-[12px] leading-[22px]">
+                        Duration - {duration} Months
+                    </div>
+                )}
+                {credits && (
+                    <div className="px-4 py-2 text-[#FF383B] border border-[#D9D9D9] rounded-md font-open-sans font-bold lg:text-[20px] md:text-[16px] text-[12px] leading-[22px]">
+                        Credits - {credits}
+                    </div>
+                )}
             </div>
 
+
             {/* Bottom Section - Title and Certifications */}
-            <div>
+            {/* <div>
                 <h2 className="text-[20px] md:text-[24px] lg:text-[32px] font-medium font-open-sans pb-4">
                     Accreditations
                 </h2>
@@ -49,7 +61,7 @@ const CertificationSection = () => {
                         <Certcard key={index} imgSrc={uni.imgSrc}/>
                     ))}
                 </div>
-            </div>
+            </div> */}
         </section>
     )
 }

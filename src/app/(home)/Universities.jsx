@@ -109,7 +109,7 @@ const Universities = ({ data }) => {
         <div className="w-full flex justify-end overflow-x-hidden">
           <Swiper
             slidesPerView={1}
-            spaceBetween={2}
+            spaceBetween={0.5}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
             breakpoints={{
               480: { slidesPerView: 1.2, spaceBetween: 12 },

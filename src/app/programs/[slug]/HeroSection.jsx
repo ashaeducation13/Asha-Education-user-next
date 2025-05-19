@@ -6,6 +6,8 @@ import amitylogo from '../../../assets/universities/inner/amitylogo.png';
 import progress from '../../../../public/progress.svg'
 
 const HeroSection = ({data}) => {
+    
+    console.log("program data", data);
     const downloadFile = (url, event) => {
         // Prevent any default behavior
         event.preventDefault();
@@ -72,7 +74,7 @@ const HeroSection = ({data}) => {
                 {/* Right Section (Image) */}
                 <div className="md:w-1/2 hidden md:block">
                     <div className="border-4 border-gray-200 rounded-xl p-2">
-                        <Image src={data.specialization.image} width={100} height={100} alt="University Building" className="rounded-lg w-full max-h-[340px]" />
+                        <Image src={data.specialization.image} width={100} height={100} alt="University Building" className="rounded-lg w-full md:h-[360px] lg:h-[350px] xl:h-[400px] 2xl:h-[350px] object-cover" />
                     </div>
                 </div>
             </div>

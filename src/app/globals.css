@@ -62,3 +62,9 @@
   scrollbar-color: #FF383B #f1f1f1;
   scrollbar-width: thin;
 }
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

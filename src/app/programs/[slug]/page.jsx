@@ -13,7 +13,7 @@ export default async function page({ params }) {
         <Navbar />
 
         <HeroSection data={prData} />
-        <CertificationSection />
+        <CertificationSection data={prData}  />
         <Footer/>
     </div>
   )
