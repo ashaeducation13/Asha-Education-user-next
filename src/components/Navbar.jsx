@@ -122,7 +122,7 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" >
               <Image
-                className="md:h-[45px] w-full h-[30px]"
+                className="md:h-[45px] w-auto h-[30px]"
                 src={logo}
                 alt="Logo"
               />

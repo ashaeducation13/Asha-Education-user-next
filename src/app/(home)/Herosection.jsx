@@ -127,10 +127,7 @@ const Hero = ({ spData = [], universityData = [] }) => {
 
         {/* Main Heading */}
         <div className="containers z-20">
-          <motion.h1
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
+          <h1
             className="text-[28px] sm:text-[40px] xl:text-[64px] leading-[32px] sm:leading-[46px] xl:leading-[70px] font-normal text-gray-900 w-[85%] sm:w-[75%] xl:w-full mx-auto"
           >
             <span
@@ -142,7 +139,7 @@ const Hero = ({ spData = [], universityData = [] }) => {
               Empowering
             </span>{" "}
             Your Academic Dreams with <span className="font-bold">India's Top </span> Universities
-          </motion.h1>
+          </h1>
 
           {/* Subheading */}
           <motion.p
