@@ -15,9 +15,9 @@ const HeroSection = ({ data }) => {
                     {/* Logo and Online Badge */}
                     <div className="flex items-center space-x-3">
                         <Image src={data.logo} width={400} height={400} alt="Amity University Online" className="h-12 w-auto" />
-                        <span className="px-3 py-2 text-xs font-semibold text-red-600 bg-white border border-red-600 rounded-lg">
+                        {/* <span className="px-3 py-2 font-rubik text-xs font-semibold text-red-600 bg-white border border-red-600 rounded-lg">
                             Online
-                        </span>
+                        </span> */}
                     </div>
 
                     {/* University Name */}

@@ -35,29 +35,22 @@ export default async function Page({ searchParams }) {
   }
   else if (onlinepg) {
     filteredData = prData.filter((item) =>
-      item.categories?.some((category) =>
-        category.name?.toLowerCase() === 'pg'
-      ) &&
-      item.mode_of_study === 'Online'
-    );
+      item.categories?.name?.toLowerCase() === 'pg'
+       &&
+      item.mode_of_study === 'Online')
+
   } else if (onlineug) {
     filteredData = prData.filter((item) =>
-      item.categories?.some((category) =>
-        category.name?.toLowerCase() ==='ug'
-      ) &&
-      item.mode_of_study === 'Online'
-    );
+      item.categories?.name?.toLowerCase() === 'ug'
+       &&
+      item.mode_of_study === 'Online')
+
   } else if (cert) {
     filteredData = prData.filter((item) =>
-      item.categories?.some((category) =>
-        category.name?.toLowerCase().includes('certification')
-      )
-    );
+      item.program_name?.name?.toLowerCase() === 'certifications');
   } else if (ex) {
     filteredData = prData.filter((item) =>
-      item.categories?.some((category) =>
-        category.name?.toLowerCase().includes('executive program')
-      )
+      item.is_executive_cource
     );
   }
 
