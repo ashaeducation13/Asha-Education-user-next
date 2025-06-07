@@ -7,7 +7,7 @@ import EmailModal from "@/components/otp/EmailModal";
 import { useState } from "react";
 
 export const ProgramCard = ({ item }) => {
-  const [modalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
     console.log("br check", item);
 
@@ -44,15 +44,30 @@ export const ProgramCard = ({ item }) => {
                         passHref
                     >
                         <div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 py-2">
                                 <span className="w-fit px-3 py-1 text-[14px] font-inter font-semibold text-[#FF383B] bg-white border border-[#E3E3E3] rounded-lg">
                                     Online
                                 </span>
+                                <div className="flex gap-2 flex-wrap mt-2">
+                                    {item.is_dual_specialization && (
+                                        <span className="inline-block bg-[#E0F2FE] text-[#0284C7] text-xs font-semibold px-3 py-1 rounded-full">
+                                            Dual Specialization
+                                        </span>
+                                    )}
+                                    {item.is_executive_course && (
+                                        <span className="inline-block bg-[#FEF3C7] text-[#B45309] text-xs font-semibold px-3 py-1 rounded-full">
+                                            Executive Course
+                                        </span>
+                                    )}
+                                </div>
                             </div>
 
                             {/* Title */}
                             <h2 className="font-open-sans text-[18px] lg:text-[20px] leading-[24px] font-semibold ">
-                                {item.specialization.str_representation}
+                               {item.program_name.name} in {item.specialization.name}
+                        {item.is_dual_specialization && item.second_specialization
+                            ? ` and ${item.second_specialization.name}`
+                            : ""}
                             </h2>
 
                             {/* Duration */}
@@ -69,7 +84,7 @@ export const ProgramCard = ({ item }) => {
                             </span>
                         </div>
                     </Link>
-                    
+
                     {/* Button Always at Bottom */}
                     {item.brochure && (
                         <div className="flex justify-center">

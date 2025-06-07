@@ -16,6 +16,7 @@ import Image from "next/image";
 import { AboutusFetch, subscribeToNewsletter } from '@/services/api';
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
+import Link from 'next/link';
 
 const Footer = () => {
     const [aboutus, setAboutus] = useState([]);
@@ -58,7 +59,7 @@ const Footer = () => {
 
         try {
             // Simulate an API call or form submission logic
-            await subscribeToNewsletter({"email":email});
+            await subscribeToNewsletter({ "email": email });
 
             Swal.fire({
                 title: "Success!",
@@ -160,25 +161,25 @@ const Footer = () => {
                         <h3 className="text-[14px] lg:text-[16px] font-medium mb-4">Quick Links</h3>
                         <ul className="space-y-2 md:space-y-2 grid md:grid-cols-1 grid-cols-2 md:block font-rubik text-[14px] lg:text-[16px]">
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">Home</a>
+                                <Link href="/" className="text-gray-400 hover:text-red-500 transition duration-300">Home</Link>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">Programs</a>
+                                <Link href="/programs" className="text-gray-400 hover:text-red-500 transition duration-300">Programs</Link>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">Universities</a>
+                                <Link href="/universities" className="text-gray-400 hover:text-red-500 transition duration-300">Universities</Link>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">About Us</a>
+                                <Link href="/about-us" className="text-gray-400 hover:text-red-500 transition duration-300">About Us</Link>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">Blog</a>
+                                <Link href="/blog" className="text-gray-400 hover:text-red-500 transition duration-300">Blog</Link>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">Contact Us</a>
+                                <Link href="/contact-us" className="text-gray-400 hover:text-red-500 transition duration-300">Contact Us</Link>
                             </li>
                             <li>
-                                <a href="#" className="text-gray-400 hover:text-red-500  transition duration-300">Career</a>
+                                <Link href="/careers" className="text-gray-400 hover:text-red-500 transition duration-300">Career</Link>
                             </li>
                         </ul>
                     </motion.div>
@@ -254,8 +255,7 @@ const Footer = () => {
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }} className="pt-8 mt-8 text-center text-black font-medium text-sm flex flex-wrap items-center gap-x-4 gap-y-2 max-w-3xl mx-auto lg:max-w-full lg:justify-between">
                     <div className="flex flex-wrap justify-center sm:justify-start gap-x-4 gap-y-2 sm:w-auto w-full lg:w-auto">
-                        <a href="#" className="transition duration-300">Privacy Policy</a>
-                        <a href="#" className="transition duration-300">Terms and Plans</a>
+                        <a href="#" className="transition duration-300">Privacy Policy &nbsp; Terms and Conditions</a>
                     </div>
                     <p className="inline-flex items-center w-full sm:w-auto justify-center sm:justify-start lg:w-auto">
                         Copyright
@@ -267,9 +267,6 @@ const Footer = () => {
                         <Image src={acc} alt="acc" className="h-4 ml-1" />
                     </p>
                 </motion.div>
-
-
-
             </div>
         </footer>
     );
