@@ -50,9 +50,26 @@ const HeroSection = ({ data }) => {
                     </div>
                     <p className='font-open-sans font-semibold lg:text-[20px] md:text-[18px] text-[16px] leading-[100%] text-[#121212]'>{data.university.name}</p>
                     {/* University Name */}
-                    <h2 className="text-[24px] md:text-[32px]  lg:text-[40px] font-semibold font-open-sans leading-[24px] md:leading-[40px]">
+                    <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-semibold font-open-sans leading-[24px] md:leading-[40px]">
                         {data.program_name.name} in {data.specialization.name}
+                        {data.is_dual_specialization && data.second_specialization
+                            ? ` and ${data.second_specialization.name}`
+                            : ""}
                     </h2>
+
+                    <div className="flex gap-2 flex-wrap mt-2">
+                        {data.is_dual_specialization && (
+                            <span className="inline-block bg-[#E0F2FE] text-[#0284C7] text-xs font-semibold px-3 py-1 rounded-full">
+                                Dual Specialization
+                            </span>
+                        )}
+                        {data.is_executive_course && (
+                            <span className="inline-block bg-[#FEF3C7] text-[#B45309] text-xs font-semibold px-3 py-1 rounded-full">
+                                Executive Course
+                            </span>
+                        )}
+                    </div>
+
                     {/* {data.program_name.is_dual_specialization && ( */}
                     {/* <span className="inline-block bg-[#E0F2FE] text-[#0284C7] text-xs font-semibold px-3 py-1 rounded-full">
                         Dual Specialization

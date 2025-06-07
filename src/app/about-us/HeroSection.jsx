@@ -20,7 +20,7 @@ const video = "/videos/vid3.mp4";
 
 function HeroSection() {
   const [playVideo, setPlayVideo] = useState(false);
-  const floatingElementsRef = useRef([]);
+  const floatingElementsRef = useRef([]);                                                           
   const mainContentRef = useRef(null);
 
   // Simple floating animation effect
