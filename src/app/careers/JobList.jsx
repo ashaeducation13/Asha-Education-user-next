@@ -103,7 +103,7 @@ function JobList({ jobs = [], ex = [] }) {
               onClick={() => {
                 setCurrentFilter(filter.value);
               }}
-              className={`px-4 py-2 border rounded-[8px] font-inter transition-all duration-300 text-sm ${currentFilter === filter.value
+              className={`px-4 py-2 border rounded-[8px] font-inter cursor-pointer transition-all duration-300 text-sm ${currentFilter === filter.value
                 ? "text-white bg-gradient-to-r from-blue-700 to-red-500"
                 : "border-gray-500 text-gray-700"
                 }`}
@@ -183,7 +183,7 @@ function JobList({ jobs = [], ex = [] }) {
                       onClick={() => toggleModal(job)}
                     >
                       <p
-                        className="font-open-sans-normal md:text-[14px] text-[12px] lg:text-[16px] leading-[100%] text-transparent bg-clip-text"
+                        className="font-open-sans-normal md:text-[14px] text-[12px] lg:text-[16px] leading-[100%] text-transparent bg-clip-text cursor-alias"
                         style={{
                           backgroundImage:
                             "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",

@@ -40,7 +40,7 @@ const ProgramCard = ({ image, title, hover, id, previousHover, onMouseEnter }) =
         >
             {/* Title */}
             <div className="z-99">
-                <Link href={`/programs?pgrm=${id}`} passHref>
+                <Link href={`/programs?${id}`} passHref>
 
                     <motion.h2
                         initial={{ y: 40, opacity: 0 }}

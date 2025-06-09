@@ -17,10 +17,10 @@ import lines from '../../assets/home/programsection/lines.svg'
 import Link from "next/link";
 
 const programs = [
-    { image: img1, title: "Undergraduate Programs", key: "UG" },
-    { image: img2, title: "Postgraduate Programs", key: "PG" },
-    { image: img3, title: "Certifications", key: "Certification" },
-    { image: img4, title: "Executive Courses", key: "Executive Program" },
+    { image: img1, title: "Undergraduate Programs", key: "pgrm=UG" },
+    { image: img2, title: "Postgraduate Programs", key: "pgrm=PG" },
+    { image: img3, title: "Certifications", key: "cert=Certifications" },
+    { image: img4, title: "Executive Courses", key: "ex=ex" },
 ];
 
 const ProgramsSection = () => {
