@@ -56,9 +56,9 @@ function NormalForm({
 
   const handleSubmit = async () => {
     if (!isFormFilled || isLoad) return;
-  
+
     setIsLoad(true);
-  
+
     const formPayload = new FormData();
     formPayload.append("name", formData.name);
     formPayload.append("email", formData.email);
@@ -66,29 +66,29 @@ function NormalForm({
     if (selectedFile) {
       formPayload.append("resume", selectedFile);
     }
-  
+
     if (opportunityType === "executive") {
       formPayload.append("opportunity", opportunityId);
     } else {
       formPayload.append("job", opportunityId);
     }
-  
+
     console.log("Form Data: ", JSON.stringify(formData));
-  
+
     try {
       if (opportunityType === "executive") {
         await ExecutiveApply(formPayload);
       } else {
         await Jobapply(formPayload);
       }
-  
+
       Swal.fire({
         title: "Success!",
         text: "Form submitted successfully!",
         icon: "success",
         confirmButtonText: "OK",
       });
-  
+
       onFormSubmit();
     } catch (error) {
       Swal.fire({
@@ -106,6 +106,9 @@ function NormalForm({
       <div className="max-w-md mx-auto">
         <div className="md:p-[20px] p-[10px] border border-[#959595] bg-grey-400 rounded-[20px] bg-white">
           <div className="flex flex-col gap-[20px]">
+            <h2 className="text-xl md:text-2xl font-semibold text-[#1A1A1A] border-b border-gray-300 pb-2">
+              {opportunityTitle}
+            </h2>
             {/* Name */}
             <div className="flex flex-col gap-2">
               <p className="text-[12px] md:text-[14px] text-black">Name</p>
@@ -150,9 +153,8 @@ function NormalForm({
               <p className="text-[12px] md:text-[14px] text-black">Upload CV</p>
               <div className="relative">
                 <input
-                  className={`pl-10 pr-3 py-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none cursor-pointer ${
-                    selectedFile ? "text-black" : "text-[#BABABA]"
-                  }`}
+                  className={`pl-10 pr-3 py-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none cursor-pointer ${selectedFile ? "text-black" : "text-[#BABABA]"
+                    }`}
                   value={selectedFile ? selectedFile.name : "Choose File"}
                   type="text"
                   onClick={handleFileInputClick}
@@ -185,9 +187,8 @@ function NormalForm({
           <div className="mt-6 md:flex md:justify-end">
             <button
               onClick={handleSubmit}
-              className={`w-full md:w-auto text-white bg-red-500 text-[12px] md:text-[15px] px-2 md:px-6 py-2 rounded-md transition-all duration-300 ${
-                isFormFilled ? "" : "cursor-not-allowed"
-              }`}
+              className={`w-full md:w-auto text-white bg-red-500 text-[12px] md:text-[15px] px-2 md:px-6 py-2 rounded-md transition-all duration-300 ${isFormFilled ? "" : "cursor-not-allowed"
+                }`}
               disabled={!isFormFilled || isLoad}
             >
               {isLoad ? "Loading..." : "Submit"}

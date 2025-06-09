@@ -20,9 +20,7 @@ export default async function Page({ searchParams }) {
 
   if (selectedPgrm) {
     filteredData = prData.filter((item) =>
-      item.categories?.some((category) =>
-        category.name.toLowerCase().includes(selectedPgrm.toLowerCase())
-      ) 
+      item.categories?.name?.toLowerCase().includes(selectedPgrm.toLowerCase())
     );
   } else if (selectedType) {
     filteredData = prData.filter((item) =>
@@ -50,7 +48,7 @@ export default async function Page({ searchParams }) {
       item.program_name?.name?.toLowerCase() === 'certifications');
   } else if (ex) {
     filteredData = prData.filter((item) =>
-      item.is_executive_cource
+      item.is_executive_course
     );
   }
 
