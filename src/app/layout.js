@@ -6,6 +6,8 @@ import "./globals.css";
 
 import { Inter, Rubik, Playfair_Display, Open_Sans } from 'next/font/google';
 import Loader from '@/components/Loader';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 // Initialize the fonts
@@ -54,6 +56,17 @@ export default function RootLayout({ children }) {
       <body>
         {loading && <Loader />}
         {children}
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </body>
     </html>
   );
