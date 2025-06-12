@@ -1,8 +1,5 @@
 
 
-// const BASE_URL = 'https://your-backend-api-url.com';  
-
-// const BASE_URL ='http://127.0.0.1:8000';
 const BASE_URL = 'https://backend.asha.education'; // Replace with your actual backend UR
 
 // Create a reusable API utility function for fetching data
@@ -78,7 +75,7 @@ export const ExoppFetch = async () => {
 
 
 
-  export const submitCounselForm = async (formData) => {
+export const submitCounselForm = async (formData) => {
     const url = `${BASE_URL}/about/general-enquiry/`; 
   
     try {
@@ -174,29 +171,55 @@ export const ExoppFetch = async () => {
   };
 
 
-  export const verifyOtp = async (formData) => {
-    const url = `${BASE_URL}/contact/verify-otp/`; 
-    console.log("inner",formData);
-    
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-  
-      if (!response.ok) {
-        throw new Error(`Form submission failed: ${response.statusText}`);
-      }
-  
-      return await response.json();
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      throw error;
-    }
-  };
+export const verifyOtp = async (formData) => {
+  const url = `${BASE_URL}/contact/verify-otp/`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    // Don't throw, just return structured error
+    return {
+      success: false,
+      error: result?.details?.message || result?.message || 'OTP verification failed',
+    };
+  }
+
+  return { success: true, data: result };
+};
+
+export const ResendOtp = async (formData) => {
+  const url = `${BASE_URL}/contact/resend-otp/`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    // Don't throw, just return structured error
+    return {
+      success: false,
+      error: result?.details?.message || result?.message || 'OTP verification failed',
+    };
+  }
+
+  return { success: true, data: result };
+};
+
+
 
 
   // about/referral/

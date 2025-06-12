@@ -4,13 +4,16 @@ import Image from 'next/image';
 // import img from '../../../assets/universities/inner/heroimg.png';
 import amitylogo from '../../../assets/universities/inner/amitylogo.png';
 import progress from '../../../../public/progress.svg'
+import EmailModal from '@/components/otp/EmailModal';
 
 const HeroSection = ({ data }) => {
 
-    console.log("program data", data);
-    const downloadFile = (url, event) => {
+    const [isVerified, setIsVerified] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const downloadFile = (url) => {
         // Prevent any default behavior
-        event.preventDefault();
+        // event.preventDefault();
 
         // Create link element
         const link = document.createElement('a');
@@ -31,6 +34,33 @@ const HeroSection = ({ data }) => {
         setTimeout(() => {
             document.body.removeChild(link);
         }, 100);
+    };
+
+
+
+    useEffect(() => {
+        // Check if already verified
+        const verified = sessionStorage.getItem('isVerified') === 'true';
+        setIsVerified(verified);
+    }, []);
+
+    const handleDownloadClick = () => {
+        if (isVerified) {
+            // Trigger download
+            downloadFile(data.brochure);
+        } else {
+            // Show email modal for OTP
+            setModalOpen(true);
+        }
+    };
+
+    const handleVerificationSuccess = () => {
+        sessionStorage.setItem('isVerified', 'true');
+        setIsVerified(true);
+        setModalOpen(false);
+
+        // Trigger download after verification
+        downloadFile(data.brochure);
     };
 
     return (
@@ -85,11 +115,14 @@ const HeroSection = ({ data }) => {
                         {data.program_name.description}
                     </p>
                     {data.brochure && (
-                        <button onClick={(e) => downloadFile(data.brochure, e)} className='flex gap-3 bg-[#FF383B] text-white px-6 py-2 rounded-[8px] font-inter font-semibold lg:text-[14px] text-[12px] leading-[18px]'>
+                        <button onClick={handleDownloadClick}
+                            className='flex gap-3 bg-[#FF383B] text-white px-6 py-2 rounded-[8px] font-inter font-semibold lg:text-[14px] text-[12px] leading-[18px]'>
+
                             <Image src={progress} alt='progress' className='lg:w-4 lg:h-4 h-[14px] w-[14px]' />
                             Full Details
                         </button>
                     )}
+                    <EmailModal isOpen={modalOpen} onClose={() => setModalOpen(false)} id={data.id} onSuccess={handleVerificationSuccess} />
 
                 </div>
 

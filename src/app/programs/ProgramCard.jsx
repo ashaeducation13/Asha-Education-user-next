@@ -4,21 +4,70 @@ import logo from '../../assets/universities/logo.svg';
 import dwnld from '../../assets/program/dwnld.svg'
 import Link from "next/link";
 import EmailModal from "@/components/otp/EmailModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const ProgramCard = ({ item }) => {
+    const [isVerified, setIsVerified] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
 
-    console.log("br check", item);
+    const downloadFile = (url) => {
+        // Prevent any default behavior
+        // event.preventDefault();
+
+        // Create link element
+        const link = document.createElement('a');
+        link.href = url;
+
+        // Set download attribute to force download behavior
+        link.setAttribute('download', 'brochure.pdf');
+
+        // Set additional attribute to help browsers recognize as download
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+
+        // Append to DOM, click, and remove
+        document.body.appendChild(link);
+        link.click();
+
+        // Small timeout to ensure download starts before removal
+        setTimeout(() => {
+            document.body.removeChild(link);
+        }, 100);
+    };
+    
 
 
+    useEffect(() => {
+        // Check if already verified
+        const verified = sessionStorage.getItem('isVerified') === 'true';
+        setIsVerified(verified);
+    }, []);
+
+    const handleDownloadClick = () => {
+        if (isVerified) {
+            // Trigger download
+            downloadFile(item.brochure);
+        } else {
+            // Show email modal for OTP
+            setModalOpen(true);
+        }
+    };
+
+    const handleVerificationSuccess = () => {
+        sessionStorage.setItem('isVerified', 'true');
+        setIsVerified(true);
+        setModalOpen(false);
+
+        // Trigger download after verification
+        downloadFile(item.brochure);
+    };
 
     return (
         <>
             <section
                 className="h-auto flex flex-col gap-4 border border-[#0A0078] rounded-[18px] 
-        px-[2px] lg:px-[10px] pt-[10px] pb-[20px]
-        hover:shadow-[0px_12.05px_26.77px_0px_#0000001A,0px_48.86px_48.86px_0px_#00000017,0px_110.43px_66.26px_0px_#0000000D,0px_196.09px_78.3px_0px_#00000003,0px_307.19px_85.67px_0px_#00000000] cursor-pointer"
+                            px-[2px] lg:px-[10px] pt-[10px] pb-[20px]
+                            hover:shadow-[0px_12.05px_26.77px_0px_#0000001A,0px_48.86px_48.86px_0px_#00000017,0px_110.43px_66.26px_0px_#0000000D,0px_196.09px_78.3px_0px_#00000003,0px_307.19px_85.67px_0px_#00000000] cursor-pointer"
             >
                 <div
                     className="relative z-10 h-[50px] rounded-[8px] bg-cover bg-center"
@@ -64,10 +113,10 @@ export const ProgramCard = ({ item }) => {
 
                             {/* Title */}
                             <h2 className="font-open-sans text-[18px] lg:text-[20px] leading-[24px] font-semibold ">
-                               {item.program_name.name} in {item.specialization.name}
-                        {item.is_dual_specialization && item.second_specialization
-                            ? ` and ${item.second_specialization.name}`
-                            : ""}
+                                {item.program_name.name} in {item.specialization.name}
+                                {item.is_dual_specialization && item.second_specialization
+                                    ? ` and ${item.second_specialization.name}`
+                                    : ""}
                             </h2>
 
                             {/* Duration */}
@@ -87,16 +136,18 @@ export const ProgramCard = ({ item }) => {
 
                     {/* Button Always at Bottom */}
                     {item.brochure && (
-                        <div className="flex justify-center">
+                        <div className="flex justify-center ">
                             <button
                                 // onClick={(e) => downloadFile(item.brochure, e)}
                                 // onClick={() => setModalOpen(true)}
-                                className="w-full flex justify-center items-center gap-2 bg-[#FF383B] border border-[#FF383B] text-white font-semibold text-[12px] md:text-[14px] px-[12px] py-[8px] rounded-[8px]"
+                                onClick={handleDownloadClick}
+
+                                className="w-full flex justify-center items-center gap-2 bg-[#FF383B] border border-[#FF383B] text-white font-semibold text-[12px] md:text-[14px] px-[12px] py-[8px] rounded-[8px] cursor-pointer"
                             >
                                 <Image src={dwnld} alt="Download" className="w-4 h-4" />
                                 Download Brochure
                             </button>
-                            {/* <EmailModal isOpen={modalOpen} onClose={() => setModalOpen(false)} id={item.id} /> */}
+                            <EmailModal isOpen={modalOpen} onClose={() => setModalOpen(false)} id={item.id} onSuccess={handleVerificationSuccess}/>
                         </div>
                     )}
                 </div>
