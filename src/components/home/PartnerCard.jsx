@@ -35,7 +35,7 @@ const PartnerCard = ({ course, onApplyClick }) => {
 
         {/* Buttons */}
         <div className="flex gap-3 justify-center mt-auto pt-4">
-          <Link href={`/programs/${course.id}`} passHref>
+          <Link href={`/programs/${course.slug}`} passHref>
             <button className="px-1 md:px-4 py-2 border border-gray-400 text-[#6D758F] font-semibold font-inter text-[10px] md:text-[12px] rounded-lg hover:bg-gray-100 transition">
               View Details
             </button>

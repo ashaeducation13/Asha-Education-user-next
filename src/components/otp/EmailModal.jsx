@@ -258,7 +258,7 @@ const EmailModal = ({ isOpen, onClose, id, onSuccess }) => {
                     <form onSubmit={handleVerifyOtpSubmit} className="space-y-6">
                         <h2 className="text-2xl font-semibold text-center">Enter OTP</h2>
                         <p className="text-base text-gray-600 text-center">
-                            OTP sent to {formData.email}
+                          {`OTP sent to +91${formData.phone}`}
                         </p>
 
                         <div className="flex justify-center gap-3">
