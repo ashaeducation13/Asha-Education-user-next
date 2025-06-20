@@ -11,7 +11,6 @@ export default async function page ({params}){
   const universityData = await fetchUniversityById(id);
   const certifications = universityData.certifications
   const programs = universityData.programs
-  console.log(universityData);
   
   return (
     <>

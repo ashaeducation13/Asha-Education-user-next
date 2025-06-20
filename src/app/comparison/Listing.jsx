@@ -585,7 +585,7 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
             />
             Add to compare
           </button>
-          <Link href={`/programs/${item.id}`}>
+          <Link href={`/programs/${item.slug}`}>
             <button
               className="flex-1 text-xs md:text-[13px] lg:text-[14px] text-[#6D758F] font-semibold rounded-[8px] 
                 flex justify-center items-center border border-[#D9D9D9] px-2 py-2 md:px-3 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"

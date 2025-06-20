@@ -89,7 +89,7 @@ export const ProgramCard = ({ item }) => {
                 <div className="w-[95%] mx-auto flex flex-col gap-2 h-full p-4 rounded-lg">
                     {/* University Name and Online Badge */}
                     <Link
-                        href={`/programs/${item.id}`}
+                        href={`/programs/${item.slug}`}
                         passHref
                     >
                         <div>

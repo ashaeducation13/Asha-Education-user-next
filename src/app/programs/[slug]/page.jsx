@@ -5,8 +5,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export default async function page({ params }) {
-  const programId = params.slug;
-  const prData = await ProgramFetchById(programId);
+  const slug = params.slug;
+  const prData = await ProgramFetchById(slug);
   
   return (
     <div>
