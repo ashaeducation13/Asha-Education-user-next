@@ -7,7 +7,7 @@ const PartnerCard = ({ course, onApplyClick }) => {
   return (
     <div className="md:w-[85%] bg-white shadow-lg rounded-xl transition-transform duration-300 hover:scale-105 h-full flex flex-col my-3">
       {/* Image */}
-      <Link href={`/programs/${course.id}`} passHref>
+      <Link href={`/programs/${course.slug}`} passHref>
         {course?.specialization?.image && (
           <Image
             src={course.specialization.image}
