@@ -291,7 +291,7 @@ const Navbar = () => {
                         Career
                       </Link>
                       <Link
-                        href="/blog"
+                        href="/blogs"
                         className="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-[#FF383B] transition-colors"
                         role="menuitem"
                         onClick={handleLinkClick}
@@ -498,7 +498,7 @@ const Navbar = () => {
               Career
             </Link>
             <Link
-              href="/blog"
+              href="/blogs"
               className="block px-3 py-2 rounded-md hover:text-[#FF383B] hover:bg-gray-50 transition-colors"
               onClick={handleLinkClick}
             >

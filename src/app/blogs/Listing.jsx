@@ -87,7 +87,7 @@ const blogData = [
   // },
 ];
 
-export default function Listing() {
+export default function Listing({data}) {
   const router = useRouter();
   // const [currentPage, setCurrentPage] = useState(1);
   // const pageSize = 6;
@@ -125,7 +125,7 @@ export default function Listing() {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 md:gap-[20px] gap-[10px] xl:gap-[40px]">
-        {blogData.map((item, index) => (
+        {data.map((item, index) => (
           <BlogCard item={item} key={index} router={router} />
         ))}
       </div>
@@ -143,12 +143,14 @@ export default function Listing() {
 }
 
 export const BlogCard = ({ item, router }) => (
-  <Link href={`/blog/${item.id}`}>
+  <Link href={`/blogs/${item.slug}`}>
     <div className="flex flex-col lg:gap-[18px] gap-[8px] p-2 group cursor-pointer transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-[18px] border border-[#0A0078]">
       <div className="overflow-hidden">
         <Image
           src={item?.image}
           alt={item?.title}
+          width={40}
+          height={40}
           loading="lazy"
           className="h-[220px] w-full object-cover rounded-[8px] transition-transform duration-300 ease-in-out transform group-hover:scale-110 "
         />

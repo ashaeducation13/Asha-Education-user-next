@@ -1,15 +1,14 @@
 import Navbar from "@/components/Navbar";
-import Inner from "./[id]/Inner";
 import Listing from "./Listing";
-
-import MainForm from "@/components/Forms/MainForm";
 import Footer from "@/components/Footer";
+import { BlogFetch } from "@/services/api";
 
-export default function page() {
+export default async function page() {
+  const data = await BlogFetch()
   return (
     <div>
       <Navbar />
-      <Listing />
+      <Listing data={data}/>
       <Footer />
     </div>
   )

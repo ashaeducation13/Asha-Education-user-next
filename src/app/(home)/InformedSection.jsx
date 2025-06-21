@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import featuredImg from "../../assets/home/informsection/blogimg.png";
+import Link from "next/link";
 
 
-const InformedSection = () => {
+const InformedSection = ({ data }) => {
   return (
     <div className="py-32 bg-[#F5F5F5]">
       {/* Header Section */}
@@ -22,46 +23,40 @@ const InformedSection = () => {
           with the <span className="text-[#FF383B]">Latest Resources</span>
         </h2>
         <p className="mt-2 text-gray-600 text-[16px] leading-[24px]">
-          Explore our blogs and news. Stay updated with the latest information and insights in education sector.
+          Explore our blogs. Stay updated with the latest information and insights in education sector.
         </p>
 
       </div>
       {/* Content Section */}
       <div className="pt-2 md:pt-6 containers  mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 ">
         {/* Featured Article */}
-        <div className="bg-white shadow-xl rounded-xl overflow-hidden">
-          <Image src={featuredImg} alt="Featured article" className="w-full h-[200px] object-cover" />
-          <div className="p-4">
-            <p className="text-sm text-gray-500">Category — Jan 24, 2024</p>
-            <h3 className="text-lg font-semibold mt-1">
-              Web design best practices: Optimizing speed
-            </h3>
+        <Link href={`/blogs/${data[0].slug}`}>
+
+          <div className="bg-white shadow-xl rounded-xl overflow-hidden">
+            <Image src={data[0].image} alt="Featured article" width={40} height={40} className="w-full h-[200px] object-cover" />
+            <div className="p-4">
+              <p className="text-sm text-gray-500">{data[0].date_added}</p>
+              <h3 className="text-lg font-semibold mt-1">
+                {data[0].title}
+              </h3>
+            </div>
           </div>
-        </div>
+        </Link>
 
         {/* Other Articles */}
         <div className="flex flex-col gap-4">
-          {[
-            {
-              date: "Jan 18, 2022",
-              title: "How to build the ultimate tech stack for growth",
-            },
-            {
-              date: "Jan 20, 2024",
-              title: "Web design trends 2023: Stay ahead of the curve",
-            },
-            {
-              date: "Jan 18, 2024",
-              title: "Inclusive design: Accessible websites for all users",
-            },
-          ].map((article, index) => (
-            <div
-              key={index}
-              className="p-4 border-b border-gray-300"
-            >
-              <p className="text-sm text-gray-500">Category — {article.date}</p>
-              <h3 className="text-lg font-semibold mt-1">{article.title}</h3>
-            </div>
+          {data.slice(1).map((article, index) => (
+            <Link href={`/blogs/${article.slug}`} key={article.slug}>
+
+              <div
+                key={index}
+                className="p-4 border-b border-gray-300"
+              >
+                <p className="text-sm text-gray-500">{article.date_added}</p>
+                <h3 className="text-lg font-semibold mt-1">{article.title}</h3>
+              </div>
+            </Link>
+
           ))}
         </div>
       </div>
