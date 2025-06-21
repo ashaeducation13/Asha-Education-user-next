@@ -92,7 +92,7 @@ export default function HeroCarousel({ data }) {
                 transition={{ duration: 0.2 }}
                 className="rounded-lg overflow-hidden"
               >
-                <Link href={`/universities/${src.id}`} className="block">
+                <Link href={`/universities/${src.slug}`} className="block">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}

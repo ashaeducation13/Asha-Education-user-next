@@ -236,7 +236,7 @@ const Navbar = () => {
                         univ.map((item, index) => (
                           <Link
                             key={index}
-                            href={`/universities/${item.id}`}
+                            href={`/universities/${item.slug}`}
                             className="block px-4 py-2 text-sm text-[#9C9C9C] hover:bg-gray-50 hover:text-[#FF383B] transition-colors"
                             onClick={handleLinkClick}
                           >
@@ -476,7 +476,7 @@ const Navbar = () => {
                     univ.map((item, index) => (
                       <Link
                         key={index}
-                        href={`/universities/${item.id}`}
+                        href={`/universities/${item.slug}`}
                         className="block px-3 py-2 rounded-md hover:text-[#FF383B] hover:bg-gray-100 transition-colors"
                         onClick={handleLinkClick}
                       >
