@@ -8,15 +8,16 @@ import CounselSection from "./(home)/CounselSection";
 import SuccessfulStudents from "./about-us/SuccessfullStudents";
 import InformedSection from "./(home)/InformedSection";
 import CommunitySection from "./(home)/CommunitySection";
-import { ProgramFetch, SpecializationFetch, TestimonialFetch, TypeFetch, UniversityFetch } from "@/services/api";
+import { BlogFetch, ProgramFetch, SpecializationFetch, TestimonialFetch, TypeFetch, UniversityFetch } from "@/services/api";
 
 export default async function Home() {
   const universityData = await UniversityFetch();
   const testimData = await TestimonialFetch();
   const prData = await ProgramFetch();
 
-
-  const spData = await SpecializationFetch();
+  const blogdata = await BlogFetch()
+  const blogdata2 = blogdata.slice(-4)
+  // const spData = await SpecializationFetch();
   return (
     <>
       <Navbar />
@@ -26,7 +27,7 @@ export default async function Home() {
       <TrustSection />
       <CounselSection />
       <SuccessfulStudents data={testimData} />
-      <InformedSection />
+      <InformedSection data={blogdata2}/>
       <CommunitySection />  
       <Footer />
     </>

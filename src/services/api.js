@@ -33,8 +33,8 @@ export const UniversityFetch = async () => {
     return fetchData(`/universities/university`);
   }; 
 
-export const fetchUniversityById = async (id) => {
-    return fetchData(`/universities/university/${id}/`);
+export const fetchUniversityById = async (slug) => {
+    return fetchData(`/universities/university/${slug}/`);
 };
 
 export const ProsConsById = async (id) => {
@@ -72,6 +72,16 @@ export const JobFetch = async () => {
 export const ExoppFetch = async () => {
     return fetchData(`/career/exclusive-opportunities`);
   };
+
+
+export const BlogFetch = async () => {
+    return fetchData(`/blogs/list`);
+};
+
+export const BlogSlugFetch = async (slug) => {
+    return fetchData(`/blogs/list/${slug}/`);
+};
+
 
 
 

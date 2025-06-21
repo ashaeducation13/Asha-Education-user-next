@@ -7,8 +7,8 @@ import Innerlisting from './Innerlisting';
 import { fetchUniversityById } from '@/services/api';
 
 export default async function page ({params}){
-  const id  = params.id; 
-  const universityData = await fetchUniversityById(id);
+  const slug  = params.id; 
+  const universityData = await fetchUniversityById(slug);
   const certifications = universityData.certifications
   const programs = universityData.programs
   

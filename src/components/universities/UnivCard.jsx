@@ -15,7 +15,7 @@ const UnivCard = ({ item }) => {
        transition-shadow duration-200 justify-between"
     >
       {/* Image Container - Adjusted for tablet spacing */}
-      <Link href={`/universities/${item.id}`} className="block">
+      <Link href={`/universities/${item.slug}`} className="block">
         <div
           className="relative h-[180px] md:h-[200px] lg:h-[230px] w-full rounded-[8px] bg-cover bg-center"
           style={{ backgroundImage: `url(${item.cover_image})` }}
