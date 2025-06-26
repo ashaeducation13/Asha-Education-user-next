@@ -1,4 +1,4 @@
-'use client'; // Important if you're using the /app directory in Next.js 13+
+'use client'; 
 
 import React from "react";
 import Image from "next/image";
@@ -56,7 +56,7 @@ const CommunitySection = () => {
                 ].map((card, index) => (
                     <motion.div
                         key={index}
-                        className="relative flex flex-row justify-between rounded-xl shadow-lg w-full md:w-[500px] h-[330px] md:h-[339px] lg:h-[386px] text-white overflow-hidden"
+                        className="relative flex flex-col sm:flex-row justify-between rounded-xl shadow-lg w-full max-w-lg lg:max-w-[500px] h-auto sm:h-[280px] lg:h-[339px] xl:h-[386px] text-white overflow-hidden"
                         style={{
                             backgroundImage:
                                 "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
@@ -68,22 +68,20 @@ const CommunitySection = () => {
                         custom={card.direction}
                     >
                         {/* Text Content */}
-                        <div className="flex flex-col justify-center p-6 md:p-8 w-1/2 md:w-3/5">
-                            <div>
-                                
-                                <h2 className="text-[20px] md:text-[24px] lg:text-[32px] font-semibold">
+                        <div className="flex flex-col justify-center p-4 sm:p-6 lg:p-8 w-full sm:w-3/5 order-1 sm:order-none">
+                            <div className="space-y-2 sm:space-y-3">
+                                <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold leading-tight">
                                     {card.title}
                                 </h2>
-                               
 
-                                <p className="text-[12px] md:text-[14px] lg:text-[16px] mt-2 text-gray-200">
+                                <p className="text-xs sm:text-sm lg:text-base text-gray-200 leading-relaxed">
                                     {card.text}
                                 </p>
                             </div>
                             <Link href={card.link}>
-                            <button className="mt-4 bg-[#FF383B] text-[14px] md:text-[20px] text-white px-4 py-2 rounded-md font-semibold shadow-md w-fit self-start">
-                                {card.btnText}
-                            </button>
+                                <button className="mt-3 sm:mt-4 bg-[#FF383B] text-sm sm:text-base lg:text-lg text-white px-3 sm:px-4 py-2 rounded-md font-semibold shadow-md w-fit hover:bg-[#e53134] transition-colors">
+                                    {card.btnText}
+                                </button>
                             </Link>
                         </div>
 
@@ -93,9 +91,9 @@ const CommunitySection = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
                             viewport={{ once: true, amount: 0.3 }}
-                            className="flex items-end justify-end w-1/2 md:w-2/5 h-full"
+                            className="flex items-end justify-center sm:justify-end w-full sm:w-2/5 h-48 sm:h-full order-2 sm:order-none"
                         >
-                            <div className="relative h-[190px] sm:h-[238px] lg:h-[280px] w-full">
+                            <div className="relative h-full w-full max-w-[200px] sm:max-w-none">
                                 <Image
                                     src={card.img}
                                     alt={card.title}

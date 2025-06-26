@@ -72,7 +72,7 @@ const Universities = ({ data }) => {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-center md:text-left break-words whitespace-normal">{university.name}</span>
+                <span className="text-center md:text-left break-words text-xs md:text-sm whitespace-normal">{university.name}</span>
               </motion.button>
             ))}
           </div>
@@ -116,12 +116,12 @@ const Universities = ({ data }) => {
               640: { slidesPerView: 1.5, spaceBetween: 16 },
               768: { slidesPerView: 2, spaceBetween: 16 },
               1024: { slidesPerView: 2.2, spaceBetween: 20 },
-              1280: { slidesPerView: 3, spaceBetween: 24 },
+              1280: { slidesPerView: 3.5, spaceBetween: 15 },
             }}
             className="w-full"
           >
             {selectedUniversity?.programs?.map((course) => (
-              <SwiperSlide key={course.id} className="flex justify-center md:pl-4 pb-14">
+              <SwiperSlide key={course.id} className="flex justify-center  pb-14">
 
                 <PartnerCard
                   course={course}

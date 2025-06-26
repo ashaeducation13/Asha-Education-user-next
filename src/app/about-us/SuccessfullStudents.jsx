@@ -54,7 +54,7 @@ const StudentSwiper = ({ data }) => {
         spaceBetween={20}
         slidesPerView={1}
         loop={true}
-        className="px-4 md:px-10"
+        className="px-4 md:px-14"
         modules={[Navigation]}
         navigation={{
           prevEl: prevRef.current,
@@ -77,10 +77,10 @@ const StudentSwiper = ({ data }) => {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true, amount: 0.4 }} className="flex flex-col md:flex-row bg-white text-black rounded-[20px] overflow-hidden shadow-lg w-full max-w-3xl mx-auto md:min-h-[300px]">
+              viewport={{ once: true, amount: 0.4 }} className="flex flex-col md:flex-row bg-white text-black rounded-[20px] overflow-hidden shadow-lg w-full md:max-w-lg  lg:max-w-3xl mx-auto md:min-h-[300px]">
               <motion.div
                 whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.4 }} className="md:w-[260px] lg:w-[300px] h-[180px] md:h-[300px] relative">
+                transition={{ duration: 0.4 }} className="md:w-[240px] lg:w-[300px] h-[180px] md:h-[390px] lg:h-[300px] relative">
                 <Image
                   src={student.photo_video}
                   alt={student.name}
@@ -118,7 +118,7 @@ const StudentSwiper = ({ data }) => {
       </Swiper>
 
       {/* Navigation Buttons */}
-      <div className="absolute  md:top-1/2 left-[60%] sm:left-[70%] md:-left-18 lg:-left-4 xl:left-2 right-2 md:-right-18 lg:-right-4 xl:right-2 flex justify-between md:-translate-y-1/2 z-10 px-4 md:px-0 mt-6 md:mt-0 mb-4">
+      <div className="absolute  md:top-1/2 left-[60%] sm:left-[70%] md:-left-0 lg:-left-4 xl:left-2 right-2 md:-right-0 lg:-right-4 xl:right-2 flex justify-between md:-translate-y-1/2 z-10 px-4 md:px-0 mt-6 md:mt-0 mb-4">
         <button
           ref={prevRef}
           className="group w-10 h-10 flex items-center justify-center border-2 border-white rounded-md bg-transparent transition-all hover:bg-white"

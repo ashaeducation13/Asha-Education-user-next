@@ -9,6 +9,8 @@ import WeHelp from './WeHelp'
 import OurGrowth from './OurGrowth'
 import { AboutusFetch, TestimonialFetch } from '@/services/api'
 
+export const dynamic = "force-dynamic";
+
 export default async function page() {
     const testimData = await TestimonialFetch() 
     const aboutusData = await AboutusFetch();
