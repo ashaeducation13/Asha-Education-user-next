@@ -7,6 +7,8 @@ import Connect from "../../components/Forms/Connect";
 import Whyjoin from "./Whyjoin";
 import { ExoppFetch, JobFetch } from "@/services/api";
 
+export const dynamic = "force-dynamic";
+
 export default async function page (){
   const jobdata = await JobFetch();
   const exData = await ExoppFetch();

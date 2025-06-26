@@ -82,7 +82,9 @@ export const BlogSlugFetch = async (slug) => {
     return fetchData(`/blogs/list/${slug}/`);
 };
 
-
+export const SeoFetch = async (name) => {
+    return fetchData(`/seo/list/${name}/`);
+};
 
 
 export const submitCounselForm = async (formData) => {

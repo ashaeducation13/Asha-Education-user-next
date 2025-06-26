@@ -5,6 +5,8 @@ import Listing from './Listing'
 import Footer from '@/components/Footer'
 import { ProgramFetch } from '@/services/api'
 
+export const dynamic = "force-dynamic";
+
 export default async function Page({ searchParams }) {
   const prData = await ProgramFetch();
 
