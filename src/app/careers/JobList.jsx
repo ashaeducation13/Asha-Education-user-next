@@ -61,7 +61,6 @@ function JobList({ jobs = [], ex = [] }) {
 
   useEffect(() => {
     // For debugging
-    console.log("Executive opportunities:", executiveOpportunities);
 
     return () => {
       if (lastClosedTime && Date.now() - lastClosedTime >= DATA_TIMEOUT) {

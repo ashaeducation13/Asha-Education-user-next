@@ -41,7 +41,6 @@ const studentTestimonials = [
 ];
 
 const StudentSwiper = ({ data }) => {
-  console.log("testim data", data);
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);

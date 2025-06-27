@@ -77,7 +77,6 @@ const HomeForm = () => {
       setSelectedUniversity("");
       setPrograms([]);
     } catch (error) {
-      console.error("Error submitting form:", error);
   
       Swal.fire({
         title: "Error!",

@@ -12,7 +12,6 @@ export const dynamic = "force-dynamic";
 export default async function page (){
   const jobdata = await JobFetch();
   const exData = await ExoppFetch();
-  console.log("exclusive opportunites",exData);
   
   return (
     <div>

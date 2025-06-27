@@ -109,9 +109,6 @@ const specializationList = React.useMemo(() => {
   }, [data, selectedProgram, selectedSpecialization]);
 
   useEffect(() => {
-    console.log("Selected Program:", selectedProgram?.specialization?.program_type_name);
-    console.log("Selected Specialization:", selectedSpecialization);
-    console.log("Filtered Programs:", filteredPrograms.length);
   }, [selectedProgram, selectedSpecialization, filteredPrograms]);
 
   return (
