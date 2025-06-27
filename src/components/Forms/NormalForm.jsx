@@ -73,8 +73,6 @@ function NormalForm({
       formPayload.append("job", opportunityId);
     }
 
-    console.log("Form Data: ", JSON.stringify(formData));
-
     try {
       if (opportunityType === "executive") {
         await ExecutiveApply(formPayload);

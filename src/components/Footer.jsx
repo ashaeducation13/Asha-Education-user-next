@@ -30,7 +30,7 @@ const Footer = () => {
             setError(null);
 
             const data = await AboutusFetch();
-            console.log('aboutusdata', data);
+           
 
             if (data) {
                 setAboutus(data[0]);
@@ -70,7 +70,6 @@ const Footer = () => {
 
             setEmail(""); // Reset the form field after successful submission
         } catch (error) {
-            console.error("Error submitting form:", error);
 
             Swal.fire({
                 title: "Error!",

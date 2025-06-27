@@ -97,7 +97,6 @@ export default function MainForm({ onClose, course = null }) {
         setPrograms([]);
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
   
       Swal.fire({
         title: "Error!",

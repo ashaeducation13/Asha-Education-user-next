@@ -9,16 +9,17 @@ import SuccessfulStudents from "./about-us/SuccessfullStudents";
 import InformedSection from "./(home)/InformedSection";
 import CommunitySection from "./(home)/CommunitySection";
 import { BlogFetch, ProgramFetch, SeoFetch, SpecializationFetch, TestimonialFetch, TypeFetch, UniversityFetch } from "@/services/api";
+import Head from 'next/head';
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
 
-const seo = await SeoFetch('home')  // fetch blog post dynamically
+  const seo = await SeoFetch('home')  // fetch blog post dynamically
 
 
   return {
-    title:seo.meta_title,
+    title: seo.meta_title,
     description: seo.meta_description,
   };
 }
@@ -30,19 +31,22 @@ export default async function Home() {
   const blogdata = await BlogFetch()
   const blogdata2 = blogdata.slice(-4)
 
-  
+
   // const spData = await SpecializationFetch();
   return (
     <>
+      <Head>
+        <link rel="canonical" href="https://www.asha.education/" />
+      </Head>
       <Navbar />
-      <Herosection spData={prData}universityData={universityData}/>
+      <Herosection spData={prData} universityData={universityData} />
       <Universities data={universityData} />
       <ProgramSection />
       <TrustSection />
       <CounselSection />
       <SuccessfulStudents data={testimData} />
-      <InformedSection data={blogdata2}/>
-      <CommunitySection />  
+      <InformedSection data={blogdata2} />
+      <CommunitySection />
       <Footer />
     </>
   );

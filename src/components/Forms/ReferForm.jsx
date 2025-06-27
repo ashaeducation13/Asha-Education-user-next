@@ -73,7 +73,7 @@ export default function ReferForm({course = null }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
   
     try {
       await referForm(formData);

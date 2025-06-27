@@ -65,7 +65,6 @@ function Timeline({data}) {
           }}
           className="mySwiper"
           onSlideChange={(swiper) => {
-            console.log("Current Swiper Index:", swiper.activeIndex + 1);
             setActiveIndex(swiper.activeIndex + (isMobile ? 1 : 2));
           }}
           breakpoints={{

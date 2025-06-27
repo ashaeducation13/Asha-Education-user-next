@@ -3,7 +3,6 @@ import star from "../../../assets/universities/star.svg";
 // import once from "../../assets/universities/once.svg";
 
 export const Card = ({item, onCompareClick}) => {
-  console.log("legend",item);
   
   return (
     <>

@@ -26,7 +26,7 @@ const Navbar = () => {
     { name: "Online MBA", url: "/programs?mba=MBA" },
     { name: "Online PG Cources", url: "/programs?pg=PG" },
     { name: "Online UG Cources", url: "/programs?ug=UG" },
-    { name: "Certifications", url: "/programs?cert=Certifications"},
+    { name: "Certifications", url: "/programs?cert=Certifications" },
     { name: "Executive Cources", url: "/programs?ex=ex" }
   ];
   useEffect(() => {
@@ -120,13 +120,17 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" >
-              <Image
-                className="md:h-[45px] w-auto h-[30px]"
-                src={logo}
-                alt="Logo"
-              />
-            </Link>
+            <div className="h-[45px] aspect-[2.45]">
+              <Link href="/" >
+                <Image
+                  src={logo}
+                  alt="Logo"
+                  className="w-full h-full object-contain"
+                  priority
+                />
+              </Link>
+            </div>
+
           </div>
 
           {/* Desktop Navigation */}
@@ -171,7 +175,7 @@ const Navbar = () => {
 
                 {activeDropdown === "programs" && (
                   <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg z-50 border border-gray-100 overflow-hidden transition-all duration-200 ease-in-out">
-                     <div className="py-1">
+                    <div className="py-1">
                       {programsList && programsList.length > 0 ? (
                         programsList.map((item, index) => (
                           <Link
@@ -488,7 +492,7 @@ const Navbar = () => {
                   )}
                 </div>
               )}
-            </div> 
+            </div>
 
             <Link
               href="/careers"
