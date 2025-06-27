@@ -56,7 +56,7 @@ const Universities = ({ data }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className={`w-full flex flex-col md:flex-row items-center gap-2 px-1 md:px-2 py-2 border rounded-md text-xs md:text-sm font-normal transition-all font-rubik
+                className={`w-4/5 md:w-full flex flex-col md:flex-row items-center gap-2 px-1 md:px-2 py-2 border rounded-md text-xs md:text-sm font-normal transition-all font-rubik mx-auto md:mx-0
         ${selectedUniversity?.id === university.id
                     ? "border-[#0A0078] text-black bg-[#F1F4FF]"
                     : "border-gray-300 bg-white hover:bg-gray-100"
@@ -72,7 +72,7 @@ const Universities = ({ data }) => {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-center md:text-left break-words text-xs md:text-sm whitespace-normal">{university.name}</span>
+                <span className="text-center md:text-left break-words whitespace-normal">{university.name}</span>
               </motion.button>
             ))}
           </div>

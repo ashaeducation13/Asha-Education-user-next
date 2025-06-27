@@ -20,10 +20,6 @@ const seo = await SeoFetch('home')  // fetch blog post dynamically
   return {
     title:seo.meta_title,
     description: seo.meta_description,
-    robots: {
-      index: false,
-      follow: false,
-    },
   };
 }
 export default async function Home() {

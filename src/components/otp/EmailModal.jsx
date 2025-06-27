@@ -18,17 +18,21 @@ const EmailModal = ({ isOpen, onClose, id, onSuccess }) => {
     const [canResend, setCanResend] = useState(false);
     const inputRefs = useRef([]);
     const modalRef = useRef(null);
+    const [shake, setShake] = useState(false);
+
 
     // Close modal on outside click
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (modalRef.current && !modalRef.current.contains(event.target)) {
-                onClose();
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, [onClose]);
+    const handleClickOutside = (event) => {
+        if (modalRef.current && !modalRef.current.contains(event.target)) {
+            setShake(true); // trigger animation
+            setTimeout(() => setShake(false), 500); // remove it after animation ends
+        }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+}, []);
+
 
     // Timer for OTP resend
     useEffect(() => {
@@ -194,8 +198,8 @@ const EmailModal = ({ isOpen, onClose, id, onSuccess }) => {
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex justify-center items-center">
             <div
                 ref={modalRef}
-                className="bg-white rounded-xl shadow-lg w-[90%] max-w-lg p-8 relative max-h-[90vh] overflow-y-auto"
-            >
+                className={`bg-white rounded-xl shadow-lg w-[90%] max-w-lg p-8 relative max-h-[90vh] overflow-y-auto transition duration-300 ${shake ? 'animate-spin' : ''}`}
+>
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 text-gray-500 hover:text-red-500"
