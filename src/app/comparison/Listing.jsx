@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import filterIcon from "../../../src/assets/universities/Vector.svg";
 import tick from "../../assets/comparison/tick.svg";
 import cross from "../../assets/comparison/cross.svg";
@@ -8,12 +8,12 @@ import Image from "next/image";
 import { Courses } from "./Data";
 import { cardData } from "./Data";
 
-import star from "../../assets/universities/star.svg";
 import once from "../../assets/universities/once.svg";
 import arrow from "../../assets/universities/arrow.svg";
 import { ProgramCard } from '../../app/programs/ProgramCard';
 import Link from "next/link";
 import { motion } from 'framer-motion';
+import EmailModal from "@/components/otp/EmailModal";
 
 const Listing = ({ data }) => {
   const [selectedCourse, setSelectedCourse] = useState(Courses[0]);
@@ -24,6 +24,14 @@ const Listing = ({ data }) => {
   const [selectedProgram, setSelectedProgram] = useState(data[0]);
   const [searchTerm, setSearchTerm] = useState('');
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+
+
+  const [page, setPage] = useState(1);
+  const [paginatedPrograms, setPaginatedPrograms] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const observerRef = useRef();
+
 
   // Unique programs by program_type_name
   const uniquePrograms = Array.from(
@@ -163,6 +171,59 @@ const Listing = ({ data }) => {
       document.body.removeChild(link);
     }, 100);
   };
+
+
+
+
+
+  useEffect(() => {
+    if (loadingMore || !hasMore) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setLoadingMore(true);
+          setTimeout(() => {
+            loadNextPage();
+          }, 800); // simulate slight delay
+        }
+      },
+      { threshold: 1 }
+    );
+
+    if (observerRef.current) observer.observe(observerRef.current);
+
+    return () => observer.disconnect();
+  }, [loadingMore, hasMore, paginatedPrograms]);
+
+  const ITEMS_PER_PAGE = 4;
+
+  useEffect(() => {
+    // Reset on specialization change
+    setPage(1);
+    setPaginatedPrograms(filteredPrograms.slice(0, ITEMS_PER_PAGE));
+    setHasMore(filteredPrograms.length > ITEMS_PER_PAGE);
+  }, [filteredPrograms]);
+
+  const loadNextPage = () => {
+    const nextPage = page + 1;
+    const start = page * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+
+    const nextItems = filteredPrograms.slice(start, end);
+
+    if (nextItems.length === 0) {
+      setHasMore(false);
+    } else {
+      setPaginatedPrograms(prev => [...prev, ...nextItems]);
+      setPage(nextPage);
+    }
+
+    setLoadingMore(false);
+  };
+
+
+
   return (
     <>
       <section className="containers border-b border-b-[#E1E4ED]">
@@ -289,7 +350,7 @@ const Listing = ({ data }) => {
                 <button
                   onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
                   className="w-full p-[16px] text-[#696969] text-[14px] border border-[#F1F3F7] bg-white rounded-[6px] flex justify-between items-center
-                    hover:ring-2 hover:ring-[#FF383B] focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
+                      hover:ring-2 hover:ring-[#FF383B] focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
                 >
                   <span>{selectedSpecialization || "Select specialization"}</span>
                   <svg
@@ -402,10 +463,10 @@ const Listing = ({ data }) => {
                             setSelectedSpecialization(spec);
                           }}
                           className={`cursor-pointer p-[16px] text-[14px] rounded-[6px] border font-bold shadow-lg
-                            ${selectedSpecialization === spec
+                              ${selectedSpecialization === spec
                               ? "border-[#FF383B] text-[#696969]"
                               : "bg-white text-[#696969] border-[#F1F3F7]"}
-                          `}
+                            `}
                         >
                           {spec}
 
@@ -460,7 +521,7 @@ const Listing = ({ data }) => {
           {/* Second column for cards */}
           <div className="flex flex-col xl:mx-8">
             <div className="grid grid-row md:grid-cols-2 gap-2 xl:gap-16">
-              {filteredPrograms.map((item, index) => (
+              {paginatedPrograms.map((item, index) => (
                 <Card
                   key={index}
                   item={item}
@@ -469,6 +530,22 @@ const Listing = ({ data }) => {
                 />
               ))}
             </div>
+            <div ref={observerRef} className="h-8" />
+            {loadingMore && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                {[...Array(4)].map((_, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 rounded-lg border border-gray-200 shadow animate-pulse bg-white"
+                  >
+                    <div className="h-5 w-3/4 bg-gray-200 rounded mb-4"></div>
+                    <div className="h-4 w-full bg-gray-100 rounded mb-2"></div>
+                    <div className="h-4 w-2/3 bg-gray-100 rounded" />
+                  </div>
+                ))}
+              </div>
+            )}
+
           </div>
         </div>
       </section>
@@ -477,10 +554,12 @@ const Listing = ({ data }) => {
 };
 
 export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
-  console.log("carddata", item);
-  const downloadFile = (url, event) => {
+  const [isVerified, setIsVerified] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const downloadFile = (url) => {
     // Prevent any default behavior
-    event.preventDefault();
+    // event.preventDefault();
 
     // Create link element
     const link = document.createElement('a');
@@ -503,6 +582,30 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
     }, 100);
   };
 
+  useEffect(() => {
+    // Check if already verified
+    const verified = sessionStorage.getItem('isVerified') === 'true';
+    setIsVerified(verified);
+  }, []);
+
+  const handleDownloadClick = () => {
+    if (isVerified) {
+      // Trigger download
+      downloadFile(item.brochure);
+    } else {
+      // Show email modal for OTP
+      setModalOpen(true);
+    }
+  };
+
+  const handleVerificationSuccess = () => {
+    sessionStorage.setItem('isVerified', 'true');
+    setIsVerified(true);
+    setModalOpen(false);
+
+    // Trigger download after verification
+    downloadFile(item.brochure);
+  };
   return (
     <section
       className="h-auto flex flex-col gap-3 md:gap-3.5 lg:gap-4 border border-[#0A0078] rounded-[18px] 
@@ -550,7 +653,7 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
         </h2>
 
         {item.brochure && (
-          <button onClick={(e) => downloadFile(item.brochure, e)} className="w-fit bg-[#FFE3E4] inline-flex items-center justify-start gap-2 px-3 md:px-3.5 py-1.5 rounded-[8px]">
+          <button onClick={handleDownloadClick} className="w-fit bg-[#FFE3E4] inline-flex items-center justify-start gap-2 px-3 md:px-3.5 py-1.5 rounded-[8px]">
             <Image
               src={once}
               alt="icon"
@@ -593,6 +696,7 @@ export const Card = ({ item, onAddToCompare, isCompareDisabled }) => {
               View Details
             </button>
           </Link>
+          <EmailModal isOpen={modalOpen} onClose={() => setModalOpen(false)} id={item.id} onSuccess={handleVerificationSuccess} />
         </div>
       </div>
     </section>
