@@ -128,6 +128,11 @@ export default function MainForm({ onClose, course = null }) {
         ref={modalRef}
         className="containers max-w-md md:max-w-lg lg:max-w-2xl mx-auto p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 bg-white rounded-lg shadow-2xl z-9999"
       >
+
+        <h1 className="text-xl sm:text-2xl font-semibold text-[#111216] mb-4 text-center">
+  Tell Us About Your Interest
+</h1>
+
         {/* Name */}
         <div className="space-y-2">
           <label htmlFor="name" className="block text-sm font-medium text-[#6D758F]">

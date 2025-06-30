@@ -78,7 +78,7 @@ const CounselSection = () => {
         {/* form and video section */}
 
         <div className="containers w-full py-4 md:p-8 flex flex-col-reverse md:flex-row items-stretch justify-center md:gap-6 lg:gap:8 mx-auto">
-          <div className="flex-1 flex flex-col">
+            <div className="flex-1 flex flex-col">
             <HomeForm />
           </div>
 
