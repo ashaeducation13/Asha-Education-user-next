@@ -21,6 +21,7 @@ export default function ReferForm({course = null }) {
     college: "", // College field for MBA
     friend_name: "",  // Friend's name
     friend_contact: "",  // Friend's contact
+    friend_email: "",  // Friend's contact
   });
 
   useEffect(() => {
@@ -51,6 +52,7 @@ export default function ReferForm({course = null }) {
         college: "", // Reset college
         friend_name: "", // Reset friend's name
         friend_contact: "", // Reset friend's contact
+        friend_email:"",
       });
     }
   }, [course]);
@@ -73,7 +75,8 @@ export default function ReferForm({course = null }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(formData);
+    
   
     try {
       await referForm(formData);
@@ -94,6 +97,7 @@ export default function ReferForm({course = null }) {
         college: "", // Reset college
         friend_name: "", // Reset friend's name
         friend_contact: "", // Reset friend's contact
+        friend_email:"",
       });
   
       if (!course) {
@@ -119,10 +123,13 @@ export default function ReferForm({course = null }) {
       ref={modalRef}
       className="containers max-w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 bg-white rounded-lg shadow-2xl z-1111"
     >
+
+      <h2 className="text-lg font-semibold text-[#111216] mb-3">Your Information</h2>
+
       {/* First row: Name & Phone */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div className="space-y-2">
-          <label htmlFor="name" className="block text-sm font-medium text-[#6D758F]">Name</label>
+          <label htmlFor="name" className="block text-sm font-medium text-[#6D758F]">Your Full Name</label>
           <input
             name="name"
             id="name"
@@ -134,7 +141,7 @@ export default function ReferForm({course = null }) {
           />
         </div>
         <div className="space-y-2">
-          <label htmlFor="phone" className="block text-sm font-medium text-[#6D758F]">Phone</label>
+          <label htmlFor="phone" className="block text-sm font-medium text-[#6D758F]">Your Contact Number</label>
           <input
             name="phone"
             id="phone"
@@ -145,6 +152,23 @@ export default function ReferForm({course = null }) {
             className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
           />
         </div>
+      </div>
+
+       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div className="space-y-2">
+          <label htmlFor="email" className="block text-sm font-medium text-[#6D758F]">Your Email Address</label>
+          <input
+            name="email"
+            id="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="example@youremail.com"
+            className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
+          />
+        </div>
+        {/* Empty column for layout symmetry */}
+        <div></div>
       </div>
 
       {/* Second row: MBA Radio + College */}
@@ -191,11 +215,13 @@ export default function ReferForm({course = null }) {
           </div>
         )}
       </div>
+      <hr className="border-t border-gray-300 my-6" />
+      <h2 className="text-lg font-semibold text-[#111216] my-3">Your Friend's Information</h2>
 
       {/* Third row: Friend's Name & Friend's Contact */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div className="space-y-2">
-          <label htmlFor="friend_name" className="block text-sm font-medium text-[#6D758F]">Your Friend's Name</label>
+          <label htmlFor="friend_name" className="block text-sm font-medium text-[#6D758F]">	Friend’s Full Name</label>
           <input
             name="friend_name"
             id="friend_name"
@@ -207,7 +233,7 @@ export default function ReferForm({course = null }) {
           />
         </div>
         <div className="space-y-2">
-          <label htmlFor="friend_contact" className="block text-sm font-medium text-[#6D758F]">Your Friend's Contact</label>
+          <label htmlFor="friend_contact" className="block text-sm font-medium text-[#6D758F]">Friend’s Contact Number</label>
           <input
             name="friend_contact"
             id="friend_contact"
@@ -223,12 +249,12 @@ export default function ReferForm({course = null }) {
       {/* Fourth row: Email */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div className="space-y-2">
-          <label htmlFor="email" className="block text-sm font-medium text-[#6D758F]">Email</label>
+          <label htmlFor="friend_email" className="block text-sm font-medium text-[#6D758F]">Friend’s Email Address</label>
           <input
-            name="email"
-            id="email"
+            name="friend_email"
+            id="friend_email"
             type="email"
-            value={formData.email}
+            value={formData.friend_email}
             onChange={handleChange}
             placeholder="example@youremail.com"
             className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
@@ -253,7 +279,7 @@ export default function ReferForm({course = null }) {
           {/* University Dropdown */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-[#6D758F]">University</label>
+              <label className="block text-sm font-medium text-[#6D758F]">Preferred University</label>
               <select
                 name="university"
                 value={formData.university}
@@ -261,7 +287,7 @@ export default function ReferForm({course = null }) {
                 className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
                 required
               >
-                <option value="">Select University</option>
+                <option value="">Select Preferred University</option>
                 {universities.map((uni) => (
                   <option key={uni.id} value={uni.id}>
                     {uni.name}
@@ -272,7 +298,7 @@ export default function ReferForm({course = null }) {
 
             {/* Program Dropdown */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-[#6D758F]">Program</label>
+              <label className="block text-sm font-medium text-[#6D758F]">Preferred Program</label>
               <select
                 name="program"
                 value={formData.program}
@@ -281,7 +307,7 @@ export default function ReferForm({course = null }) {
                 className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
                 required
               >
-                <option value="">Select Program</option>
+                <option value="">Select Preferred Program</option>
                 {programs.map((program) => (
                   <option key={program.id} value={program.id}>
                     {program.program_name.name} {program.specialization.name}
