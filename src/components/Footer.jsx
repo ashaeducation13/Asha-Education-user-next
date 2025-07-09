@@ -30,7 +30,7 @@ const Footer = () => {
             setError(null);
 
             const data = await AboutusFetch();
-           
+
 
             if (data) {
                 setAboutus(data[0]);
@@ -254,7 +254,12 @@ const Footer = () => {
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }} className="pt-8 mt-8 text-center text-black font-medium text-sm flex flex-wrap items-center gap-x-4 gap-y-2 max-w-3xl mx-auto lg:max-w-full lg:justify-between">
                     <div className="flex flex-wrap justify-center sm:justify-start gap-x-4 gap-y-2 sm:w-auto w-full lg:w-auto">
-                        <a href="#" className="transition duration-300">Privacy Policy &nbsp; Terms and Conditions</a>
+                        <Link href="/privacy-policy" className="transition duration-300">
+                            Privacy Policy
+                        </Link>
+                        <Link href="/terms-and-conditions" className="transition duration-300">
+                            Terms and Conditions
+                        </Link>
                     </div>
                     <p className="inline-flex items-center w-full sm:w-auto justify-center sm:justify-start lg:w-auto">
                         Copyright

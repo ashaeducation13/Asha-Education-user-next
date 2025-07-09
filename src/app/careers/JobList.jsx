@@ -7,7 +7,7 @@ import Work from "../../assets/careers/work.svg";
 import Toggles from "../../assets/careers/vector.svg";
 import NormalForm from "@/components/Forms/NormalForm";
 
-function JobList({ jobs = [], ex = [] }) {
+function  JobList({ jobs = [], ex = [] }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formDataCache, setFormDataCache] = useState(null);
   const [lastClosedTime, setLastClosedTime] = useState(null);
