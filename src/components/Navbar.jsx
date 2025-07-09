@@ -310,14 +310,14 @@ const Navbar = () => {
                       >
                         Refer & Earn
                       </Link>
-                      <Link
+                      {/* <Link
                         href="/contact-us"
                         className="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-[#FF383B] transition-colors"
                         role="menuitem"
                         onClick={handleLinkClick}
                       >
                         Join Our MBA Community
-                      </Link>
+                      </Link> */}
 
                       <Link
                         href="/contact-us"

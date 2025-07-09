@@ -79,7 +79,8 @@ function NormalForm({
       } else {
         await Jobapply(formPayload);
       }
-
+      console.log("payload",formPayload);
+      
       Swal.fire({
         title: "Success!",
         text: "Form submitted successfully!",
@@ -99,98 +100,172 @@ function NormalForm({
       setIsLoad(false);
     }
   };
+
   return (
-    <section className="px-[1px] md:px-[20px] p-4">
-      <div className="max-w-md mx-auto">
-        <div className="md:p-[20px] p-[10px] border border-[#959595] bg-grey-400 rounded-[20px] bg-white">
-          <div className="flex flex-col gap-[20px]">
-            <h2 className="text-xl md:text-2xl font-semibold text-[#1A1A1A] border-b border-gray-300 pb-2">
+    <section className="min-h-screen sm:min-h-0 overflow-y-auto sm:overflow-visible px-0 sm:px-4 md:px-8 lg:px-16 py-8">
+      <div className="w-full max-w-full sm:max-w-md md:max-w-4xl mx-auto">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+          {/* Header Section */}
+          <div className="bg-gradient-to-r from-red-500 to-red-600 px-8 py-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
               {opportunityTitle}
             </h2>
-            {/* Name */}
-            <div className="flex flex-col gap-2">
-              <p className="text-[12px] md:text-[14px] text-black">Name</p>
-              <input
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
-                placeholder="Enter Your Name"
-                type="text"
-              />
-            </div>
-
-            {/* Phone */}
-            <div className="flex flex-col gap-2">
-              <p className="text-[12px] md:text-[14px] text-black">Phone No</p>
-              <input
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
-                placeholder="Enter Phone Number"
-                type="number"
-              />
-            </div>
-
-            {/* Email */}
-            <div className="flex flex-col gap-2">
-              <p className="text-[12px] md:text-[14px] text-black">Email</p>
-              <input
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="p-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none"
-                placeholder="Enter Email"
-                type="email"
-              />
-            </div>
-
-            {/* Upload CV */}
-            <div className="flex flex-col gap-2">
-              <p className="text-[12px] md:text-[14px] text-black">Upload CV</p>
-              <div className="relative">
-                <input
-                  className={`pl-10 pr-3 py-3 rounded-lg w-full text-[#6D758F] shadow-md focus:ring-2 focus:ring-[#a2a4ac] focus:outline-none cursor-pointer ${selectedFile ? "text-black" : "text-[#BABABA]"
-                    }`}
-                  value={selectedFile ? selectedFile.name : "Choose File"}
-                  type="text"
-                  onClick={handleFileInputClick}
-                  accept=".pdf,.doc,.docx,.rtf"
-                  readOnly
-                />
-                <Image
-                  src={UploadIcon}
-                  alt="upload"
-                  width={20}
-                  height={20}
-                  className="absolute top-1/2 left-3 transform -translate-y-1/2 cursor-pointer"
-                  onClick={handleFileInputClick}
-                />
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  className="hidden"
-                  onChange={handleFileChange}
-                />
-              </div>
-              <div className="font-inter font-normal mt-2 text-black text-[10px] md:text-[11px]">
-                <p>Allowed file types: pdf, doc, docx, rtf</p>
-                <p>Maximum file size allowed: 5MB</p>
-              </div>
-            </div>
+            <p className="text-red-100 mt-2 text-sm md:text-base">
+              Fill out the form below to apply for this position
+            </p>
           </div>
 
-          {/* Submit Button */}
-          <div className="mt-6 md:flex md:justify-end">
-            <button
-              onClick={handleSubmit}
-              className={`w-full md:w-auto text-white bg-red-500 text-[12px] md:text-[15px] px-2 md:px-6 py-2 rounded-md transition-all duration-300 ${isFormFilled ? "" : "cursor-not-allowed"
-                }`}
-              disabled={!isFormFilled || isLoad}
-            >
-              {isLoad ? "Loading..." : "Submit"}
-            </button>
+          {/* Form Content */}
+          <div className="p-8 md:p-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Personal Info Section */}
+              <div className="space-y-6">
+                <h3 className="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-2">
+                  Personal Information
+                </h3>
+
+                {/* Name */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700 flex items-center">
+                    <svg className="w-4 h-4 mr-2 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                    </svg>
+                    Full Name
+                  </label>
+                  <input
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 text-gray-700 placeholder-gray-400"
+                    placeholder="Enter your full name"
+                    type="text"
+                  />
+                </div>
+
+                {/* Phone */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700 flex items-center">
+                    <svg className="w-4 h-4 mr-2 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                    </svg>
+                    Phone Number
+                  </label>
+                  <input
+                    name="phone"
+                    value={formData.phone}
+                    maxLength={10}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 text-gray-700 placeholder-gray-400"
+                    placeholder="Enter your phone number"
+                    type="number"
+                  />
+                </div>
+
+                {/* Email */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700 flex items-center">
+                    <svg className="w-4 h-4 mr-2 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                    Email Address
+                  </label>
+                  <input
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 text-gray-700 placeholder-gray-400"
+                    placeholder="Enter your email address"
+                    type="email"
+                  />
+                </div>
+              </div>
+
+              {/* Upload Section */}
+              <div className="space-y-6">
+                <h3 className="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-2">
+                  Documents
+                </h3>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700 flex items-center">
+                    <svg className="w-4 h-4 mr-2 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2zM3 9a1 1 0 011-1h12a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1V9z" clipRule="evenodd" />
+                    </svg>
+                    Upload Resume/CV
+                  </label>
+
+                  <div
+                    className="relative border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-red-400 transition-colors duration-200 cursor-pointer group"
+                    onClick={handleFileInputClick}
+                  >
+                    <div className="text-center">
+                      <div className="mx-auto w-12 h-12 bg-red-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-red-100 transition-colors">
+                        <Image
+                          src={UploadIcon}
+                          alt="upload"
+                          width={24}
+                          height={24}
+                          className="text-red-500"
+                        />
+                      </div>
+
+                      {selectedFile ? (
+                        <div className="space-y-2">
+                          <p className="text-sm font-medium text-gray-700">{selectedFile.name}</p>
+                          <p className="text-xs text-gray-500">Click to change file</p>
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          <p className="text-sm font-medium text-gray-700">Click to upload your resume</p>
+                          <p className="text-xs text-gray-500">or drag and drop</p>
+                        </div>
+                      )}
+                    </div>
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      className="hidden"
+                      onChange={handleFileChange}
+                      accept=".pdf,.doc,.docx,.rtf"
+                    />
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-4 text-xs text-gray-600 space-y-1">
+                    <p className="font-medium">File Requirements:</p>
+                    <p>• Accepted formats: PDF, DOC, DOCX, RTF</p>
+                    <p>• Maximum file size: 5MB</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <div className="mt-12 flex justify-center md:justify-end">
+              <button
+                onClick={handleSubmit}
+                disabled={!isFormFilled || isLoad}
+                className={`
+                  px-8 py-3 rounded-lg font-medium text-white transition-all duration-200
+                  ${isFormFilled && !isLoad 
+                    ? 'bg-red-500 hover:bg-red-600 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5' 
+                    : 'bg-gray-400 cursor-not-allowed'
+                  }
+                `}
+              >
+                {isLoad ? (
+                  <div className="flex items-center space-x-2">
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" className="opacity-25" />
+                      <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" className="opacity-75" />
+                    </svg>
+                    <span>Submitting...</span>
+                  </div>
+                ) : (
+                  <span>Submit Application</span>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>
