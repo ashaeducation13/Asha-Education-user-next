@@ -7,7 +7,7 @@ import Work from "../../assets/careers/work.svg";
 import Toggles from "../../assets/careers/vector.svg";
 import NormalForm from "@/components/Forms/NormalForm";
 
-function  JobList({ jobs = [], ex = [] }) {
+function JobList({ jobs = [], ex = [] }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formDataCache, setFormDataCache] = useState(null);
   const [lastClosedTime, setLastClosedTime] = useState(null);
@@ -80,8 +80,8 @@ function  JobList({ jobs = [], ex = [] }) {
     currentFilter === "all"
       ? jobs
       : currentFilter === "executive"
-        ? []
-        : jobs.filter(
+      ? []
+      : jobs.filter(
           (job) => job.work_type.toLowerCase() === currentFilter.toLowerCase()
         );
 
@@ -102,10 +102,11 @@ function  JobList({ jobs = [], ex = [] }) {
               onClick={() => {
                 setCurrentFilter(filter.value);
               }}
-              className={`px-4 py-2 border rounded-[8px] font-inter cursor-pointer transition-all duration-300 text-sm ${currentFilter === filter.value
-                ? "text-white bg-gradient-to-r from-blue-700 to-red-500"
-                : "border-gray-500 text-gray-700"
-                }`}
+              className={`px-4 py-2 border rounded-[8px] font-inter cursor-pointer transition-all duration-300 text-sm ${
+                currentFilter === filter.value
+                  ? "text-white bg-gradient-to-r from-blue-700 to-red-500"
+                  : "border-gray-500 text-gray-700"
+              }`}
             >
               {filter.label}
             </button>
@@ -146,7 +147,9 @@ function  JobList({ jobs = [], ex = [] }) {
                       />
                     </div>
                   </div>
-                  <p className="mt-3 text-sm text-gray-700">{opportunity.description}</p>
+                  <p className="mt-3 text-sm text-gray-700">
+                    {opportunity.description}
+                  </p>
                 </div>
               ))
             ) : (
@@ -202,16 +205,16 @@ function  JobList({ jobs = [], ex = [] }) {
 
                   {expandedJobs[job.id] ? (
                     <div className="mt-2">
-
                       <div className="flex text-[14px] leading-[21px] flex-col font-inter-medium mt-4">
-
                         <p className="w-full font-inter text-sm text-black-700 mt-2">
                           {job.description}
                         </p>
 
                         {job.skills && (
                           <div className="mt-3">
-                            <h6 className="text-[14px] leading-[21px] font-semibold">Skills</h6>
+                            <h6 className="text-[14px] leading-[21px] font-semibold">
+                              Skills
+                            </h6>
                             <p className="w-full font-inter text-sm text-black-700 mt-1">
                               {job.skills}
                             </p>
@@ -220,7 +223,9 @@ function  JobList({ jobs = [], ex = [] }) {
 
                         {job.education_criteria && (
                           <div className="mt-3">
-                            <h6 className="text-[14px] leading-[21px] font-semibold">Education</h6>
+                            <h6 className="text-[14px] leading-[21px] font-semibold">
+                              Education
+                            </h6>
                             <p className="w-full font-inter text-sm text-black-700 mt-1">
                               {job.education_criteria}
                             </p>
@@ -229,7 +234,9 @@ function  JobList({ jobs = [], ex = [] }) {
 
                         {job.experience_required && (
                           <div className="mt-3">
-                            <h6 className="text-[14px] leading-[21px] font-semibold">Experience</h6>
+                            <h6 className="text-[14px] leading-[21px] font-semibold">
+                              Experience
+                            </h6>
                             <p className="w-full font-inter text-sm text-black-700 mt-1">
                               {job.experience_required}
                             </p>
@@ -238,9 +245,7 @@ function  JobList({ jobs = [], ex = [] }) {
                       </div>
                     </div>
                   ) : (
-                    <div className="mt-2">
-
-                    </div>
+                    <div className="mt-2"></div>
                   )}
 
                   <div
@@ -252,8 +257,9 @@ function  JobList({ jobs = [], ex = [] }) {
                       width={15}
                       src={Toggles}
                       alt="toggle"
-                      className={`transition-transform duration-300 ${expandedJobs[job.id] ? "rotate-180" : ""
-                        }`}
+                      className={`transition-transform duration-300 ${
+                        expandedJobs[job.id] ? "rotate-180" : ""
+                      }`}
                     />
                   </div>
                 </div>
@@ -268,11 +274,11 @@ function  JobList({ jobs = [], ex = [] }) {
 
         {isModalOpen && (
           <div
-            className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 "
+            className="fixed inset-0 flex items-center justify-center bg-black/50 z-10 p-4 md:p-12"
             onClick={handleClickOutside}
           >
             <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
+              className="w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg"
               ref={modalRef}
               onClick={(e) => e.stopPropagation()}
             >
@@ -280,7 +286,9 @@ function  JobList({ jobs = [], ex = [] }) {
                 initialData={formDataCache || {}}
                 onFormSubmit={handleFormSubmit}
                 saveFormData={saveFormData}
-                opportunityType={currentFilter === "executive" ? "executive" : "job"}
+                opportunityType={
+                  currentFilter === "executive" ? "executive" : "job"
+                }
                 opportunityId={currentOpportunity?.id}
                 opportunityTitle={
                   currentFilter === "executive" && currentOpportunity
@@ -291,7 +299,6 @@ function  JobList({ jobs = [], ex = [] }) {
             </div>
           </div>
         )}
-
       </div>
     </section>
   );
