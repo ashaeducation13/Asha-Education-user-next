@@ -115,7 +115,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="mt-4 rounded-[20px] relative z-50" ref={navRef}>
+    <nav className="mt-4 rounded-[20px] relative z-40" ref={navRef}>
       <div className="containers">
         <div className="flex justify-between h-16">
           {/* Logo */}

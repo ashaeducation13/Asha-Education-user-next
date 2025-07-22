@@ -168,9 +168,9 @@ function NormalForm({
   };
 
   return (
-    <section className="min-h-[100dvh] overflow-hidden px-1 sm:min-h-0 sm:overflow-visible sm:px-4 md:px-8 lg:px-16">
+    <section className=" px-1 mt-12 md:mt-10 sm:min-h-0 sm:overflow-visible sm:px-4 md:px-8 lg:px-16">
       <div className="w-full max-w-full sm:max-w-md md:max-w-4xl mx-auto">
-        <div className="bg-white rounded-md sm:rounded-2xl shadow sm:shadow-xl border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-md sm:rounded-2xl shadow sm:shadow-xl border border-gray-200 overflow-hidden z-50">
           {/* Header Section */}
           <div className="bg-gradient-to-r from-red-500 to-red-600 px-2 sm:px-3 md:px-6 lg:px-8 py-3 sm:py-6">
             <h2 className="text-[15px] sm:text-[20px] md:text-[22px] lg:text-[24px] font-bold text-white leading-[100%]">
