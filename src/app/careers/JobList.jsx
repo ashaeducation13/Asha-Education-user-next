@@ -278,7 +278,7 @@ function JobList({ jobs = [], ex = [] }) {
             onClick={handleClickOutside}
           >
             <div
-              className="w-full max-w-4xl  md:h-[90vh] rounded-lg"
+              className="w-full max-w-4xl  md:h-[100vh] rounded-lg"
               ref={modalRef}
               onClick={(e) => e.stopPropagation()}
             >
