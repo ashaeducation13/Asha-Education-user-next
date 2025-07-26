@@ -43,7 +43,7 @@ const CommunitySection = () => {
                         btnText: "Join Now →",
                         img: woman1,
                         direction: "left",
-                        link: "/community",
+                        link: "https://www.instagram.com/channel/AbaOJ-Wbdhn3HdRR/?igsh=MXRsbmd3dmZsMzRlbw==",
                     },
                     {
                         title: "Refer & Earn",
