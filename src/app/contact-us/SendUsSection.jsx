@@ -297,7 +297,7 @@ export default function SendUsSection() {
       subtitle2: "Admissions",
       content2: "admissions@educationhub.com",
       icon: email,
-      hovIcon: three,
+      hovIcon: two,
     },
     {
       title: "Phone Numbers",
@@ -306,7 +306,7 @@ export default function SendUsSection() {
       subtitle2: "General Inquiry",
       content2: "+91 98765 43210",
       icon: phone,
-      hovIcon: two,
+      hovIcon: four,
     },
     {
       title: "Office Hours",
@@ -315,7 +315,7 @@ export default function SendUsSection() {
       subtitle2: "Saturday",
       content2: "10 AM - 4 PM",
       icon: time,
-      hovIcon: four,
+      hovIcon: three,
     },
   ];
 
