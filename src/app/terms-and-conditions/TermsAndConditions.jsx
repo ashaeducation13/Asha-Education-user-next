@@ -30,7 +30,7 @@ export default function TermsAndConditions() {
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-2">Important Notice</h2>
               <p className="text-gray-600 leading-relaxed">
-                By accessing or using asha.education ("Site"), you agree to these Terms & Conditions and our Privacy Policy. 
+                By accessing or using asha.education ("Site"), you agree to these Terms & Conditions and our Privacy Policy.
                 If you disagree, please refrain from using the Site.
               </p>
             </div>
@@ -49,11 +49,11 @@ export default function TermsAndConditions() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                By accessing or using asha.education ("Site"), you agree to these Terms & Conditions and our Privacy Policy. 
+                By accessing or using asha.education ("Site"), you agree to these Terms & Conditions and our Privacy Policy.
                 If you disagree, please refrain from using the Site.
               </p>
               <p className="text-gray-700 leading-relaxed">
-                These Terms govern your use of our website and services. By accessing the Site, you acknowledge that you have 
+                These Terms govern your use of our website and services. By accessing the Site, you acknowledge that you have
                 read, understood, and agree to be bound by these Terms.
               </p>
             </div>
@@ -69,7 +69,7 @@ export default function TermsAndConditions() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                asha.education may update these Terms at any time. Updates become effective upon posting. 
+                asha.education may update these Terms at any time. Updates become effective upon posting.
                 Continued use after changes constitutes acceptance.
               </p>
             </div>
@@ -85,7 +85,7 @@ export default function TermsAndConditions() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                You may view, download, or print content for personal, non‑commercial use. Reuse beyond this—such 
+                You may view, download, or print content for personal, non‑commercial use. Reuse beyond this—such
                 as reproduction or distribution—requires written permission.
               </p>
             </div>
@@ -101,7 +101,7 @@ export default function TermsAndConditions() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                Some features may require creating an account. You are responsible for maintaining confidentiality 
+                Some features may require creating an account. You are responsible for maintaining confidentiality
                 of your login information and for all activities under your account.
               </p>
             </div>
@@ -117,8 +117,8 @@ export default function TermsAndConditions() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                Any content you submit (comments, suggestions, messages) is non‑confidential and non‑proprietary. 
-                You grant asha.education a worldwide, royalty‑free license to use, reproduce, adapt, and display 
+                Any content you submit (comments, suggestions, messages) is non‑confidential and non‑proprietary.
+                You grant asha.education a worldwide, royalty‑free license to use, reproduce, adapt, and display
                 such content at our discretion.
               </p>
             </div>
@@ -159,7 +159,7 @@ export default function TermsAndConditions() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                All content—text, graphics, logos, images—is the property of asha.education or its licensors. 
+                All content—text, graphics, logos, images—is the property of asha.education or its licensors.
                 Unauthorized use is prohibited.
               </p>
             </div>
@@ -175,7 +175,7 @@ export default function TermsAndConditions() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                Information is provided "as is" without warranties of accuracy, reliability, or fitness. 
+                Information is provided "as is" without warranties of accuracy, reliability, or fitness.
                 asha.education disclaims responsibility for errors or omissions.
               </p>
             </div>
@@ -191,7 +191,7 @@ export default function TermsAndConditions() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                asha.education and its team are not liable for indirect, incidental, or consequential damages 
+                asha.education and its team are not liable for indirect, incidental, or consequential damages
                 arising from your use of the Site.
               </p>
             </div>
@@ -207,8 +207,8 @@ export default function TermsAndConditions() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                You agree to indemnify and hold harmless asha.education, its staff, and affiliates from all claims, 
-                losses, and expenses (including attorneys' fees) arising out of your use of the Site or violation 
+                You agree to indemnify and hold harmless asha.education, its staff, and affiliates from all claims,
+                losses, and expenses (including attorneys' fees) arising out of your use of the Site or violation
                 of these Terms.
               </p>
             </div>
@@ -224,7 +224,7 @@ export default function TermsAndConditions() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                These Terms are governed by the laws of [Jurisdiction, e.g., India or applicable]. Disputes are 
+                These Terms are governed by the laws of [Jurisdiction, e.g., India or applicable]. Disputes are
                 subject to the exclusive jurisdiction of courts in that region.
               </p>
             </div>
@@ -240,7 +240,7 @@ export default function TermsAndConditions() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                asha.education reserves the right to suspend or terminate access at any time, without notice, 
+                asha.education reserves the right to suspend or terminate access at any time, without notice,
                 for violations of these Terms.
               </p>
             </div>
@@ -260,8 +260,21 @@ export default function TermsAndConditions() {
               </p>
               <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                 <div className="space-y-2">
-                  <p className="text-gray-700"><strong>Email:</strong> [insert contact email]</p>
-                  <p className="text-gray-700"><strong>Address:</strong> [insert physical address]</p>
+                  <p className="text-gray-700">
+                    <strong>Email:</strong>{' '}
+                    <a href="mailto:admission@asha.education" className="text-blue-600 hover:underline">
+                      admission@asha.education
+                    </a>
+                  </p>
+
+                  <p className="text-gray-700 w-[60%]">
+                    <strong>Address:</strong><br />
+                    6th Floor, Lightbridge Hiranandani Business Park<br />
+                    Saki Vihar Road, Andheri (East) - Saki Naka, Chandivali<br />
+                    Andheri East - 400076<br />
+                    Mumbai
+                  </p>
+
                 </div>
               </div>
             </div>

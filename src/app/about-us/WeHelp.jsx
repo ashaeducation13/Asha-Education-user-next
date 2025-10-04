@@ -69,7 +69,7 @@ const ConsentCheckbox = ({ consent, handleConsentChange, errors }) => (
         className="text-[12px] md:text-[14px] text-gray-700 leading-[18px] md:leading-[20px]"
       >
         I agree to the{" "}
-        <a href="/terms-of-service" className="text-[#FF383B] hover:underline">
+        <a href="/terms-and-conditions" className="text-[#FF383B] hover:underline">
           Terms and Conditions
         </a>{" "}
         and{" "}

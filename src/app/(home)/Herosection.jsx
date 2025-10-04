@@ -128,7 +128,7 @@ const Hero = ({ spData = [], universityData = [] }) => {
         {/* Main Heading */}
         <div className="containers z-20">
           <h1
-            className="text-[28px] sm:text-[40px] xl:text-[64px] leading-[32px] sm:leading-[46px] xl:leading-[70px] font-normal text-gray-900 w-[85%] sm:w-[75%] xl:w-full mx-auto"
+            className="text-[30px] sm:text-[40px] xl:text-[64px] leading-[32px] sm:leading-[46px] xl:leading-[70px] font-normal text-gray-900 w-[85%] sm:w-[75%] xl:w-full mx-auto"
           >
             <span
               className="bg-clip-text text-transparent font-playfair"
@@ -174,15 +174,15 @@ const Hero = ({ spData = [], universityData = [] }) => {
                   {filteredResults.length > 0 ? (
                     filteredResults.map((item) => {
                       const isProgram = item.specialization !== undefined;
-                      const id = item.id;
-                      const href = isProgram ? `/programs/${id}` : `/universities/${id}`;
+                      const slug = item.slug;
+                      const href = isProgram ? `/programs/${slug}` : `/universities/${slug}`;
                       const label = isProgram
                         ? `${item.specialization.str_representation} (${item.university.name})`
                         : item.name;
                       const tag = isProgram ? "Program" : "University";
 
                       return (
-                        <li key={`${isProgram ? "sp" : "university"}-${id}`}>
+                        <li key={`${isProgram ? "sp" : "university"}-${slug}`}>
                           <Link href={href} className="block px-4 py-3 hover:bg-gray-100 transition-all duration-150 text-left">
                             <div className="text-sm md:text-base font-medium text-gray-800">{label}</div>
                             <div className="text-xs text-gray-500 mt-0.5">{tag}</div>
@@ -200,7 +200,7 @@ const Hero = ({ spData = [], universityData = [] }) => {
             {/* Browse Button */}
             <Link href="/programs">
               <button
-                className="w-full sm:w-auto flex items-center justify-center font-inter gap-2 font-semibold text-white px-2 xl:px-6 py-3 rounded-md shadow-md transition duration-300 text-[12px] md:text-[14px] cursor-pointer"
+                className="w-full sm:w-auto flex items-center justify-center font-inter gap-2 font-semibold text-white px-4 xl:px-8 py-3 rounded-md shadow-md transition duration-300 text-[12px] md:text-[14px] cursor-pointer"
                 style={{ backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)" }}
               >
                 Browse

@@ -21,7 +21,7 @@ import three from "../../assets/contact-us/3.svg";
 import four from "../../assets/contact-us/4.svg";
 
 const ContactCard = ({ item }) => (
-  <div className="px-4 py-2 rounded-[20px] bg-white flex flex-col justify-between shadow-2xl transition duration-300 hover:bg-gradient-to-r hover:from-[#0A0078] hover:to-[#FF383B] hover:text-white group">
+  <div className="px-4 py-2 rounded-[20px] bg-white flex flex-col justify-center shadow-2xl transition duration-300 hover:bg-gradient-to-r hover:from-[#0A0078] hover:to-[#FF383B] hover:text-white group">
     <div className="flex items-start gap-2 md:gap-1 lg:gap-4">
       <Image
         src={item.icon}
@@ -281,30 +281,32 @@ const ContactForm = () => {
   );
 };
 
-export default function SendUsSection() {
+export default function SendUsSection({data}) {
+  console.log("dataasadas",data);
+  
   const contactInfo = [
     {
       title: "Address",
       content1:
-        "1234 Knowledge Avenue,\nEducation City,\nNew Delhi, India - 110001",
+        data.address,
       icon: address,
       hovIcon: one,
     },
     {
       title: "Email Addresses",
-      subtitle1: "Support",
-      content1: "support@educationhub.com",
+      // subtitle1: "Support",
+      // content1: "support@educationhub.com",
       subtitle2: "Admissions",
-      content2: "admissions@educationhub.com",
+      content2: data.email,
       icon: email,
       hovIcon: two,
     },
     {
       title: "Phone Numbers",
-      subtitle1: "Admissions",
-      content1: "+91 98765 43210",
+      // subtitle1: "Admissions",
+      // content1: "+91 98765 43210",
       subtitle2: "General Inquiry",
-      content2: "+91 98765 43210",
+      content2: data.phone,
       icon: phone,
       hovIcon: four,
     },

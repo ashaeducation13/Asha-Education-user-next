@@ -112,17 +112,18 @@ const Universities = ({ data }) => {
             spaceBetween={0.5}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
             breakpoints={{
-              480: { slidesPerView: 1.2, spaceBetween: 12 },
+              480: { slidesPerView: 1.2, spaceBetween: 6 },
               640: { slidesPerView: 1.5, spaceBetween: 16 },
               768: { slidesPerView: 2, spaceBetween: 16 },
               1024: { slidesPerView: 2.2, spaceBetween: 20 },
-              1280: { slidesPerView: 3.5, spaceBetween: 15 },
+              1280: { slidesPerView: 3, spaceBetween: 32 },
+              1780: { slidesPerView: 3.75, spaceBetween: 32 },
             }}
             className="w-full"
           >
             {selectedUniversity?.programs?.map((course) => (
-              <SwiperSlide key={course.id} className="flex justify-center  pb-14">
-
+              <SwiperSlide key={course.id} className="pb-12 md:py-12">
+                <div className="flex justify-center w-full h-full">
                 <PartnerCard
                   course={course}
                   onApplyClick={(course) => {
@@ -130,6 +131,7 @@ const Universities = ({ data }) => {
                     setShowModal(true);
                   }}
                 />
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>

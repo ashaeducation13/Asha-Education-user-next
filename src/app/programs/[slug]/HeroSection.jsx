@@ -111,7 +111,7 @@ const HeroSection = ({ data }) => {
                         </div>
                     </div>
                     {/* Description */}
-                    <p className="text-[#121212]text-sm leading-[24px] font-inter font-normal md:w-[85%] text-[12px] md:text-[14px] lg:text-[16px] text-justify">
+                    <p className="text-[#121212]text-sm leading-[24px] font-inter font-normal md:w-[85%] text-[12px] md:text-[14px] lg:text-[16px] ">
                         {data.program_name.description}
                     </p>
                     {data.brochure && (

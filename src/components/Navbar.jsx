@@ -351,7 +351,7 @@ const Navbar = () => {
               className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-rubik rounded-md text-white bg-[#FF383B] hover:bg-red-500 transition-colors shadow-md"
             >
               <span className="font-inter font-semibold text-[14px] leading-[20px]">
-                enquire
+                Enquire
               </span>
             </button>
 
@@ -388,7 +388,7 @@ const Navbar = () => {
           ref={mobileMenuRef}
           className="lg:hidden absolute top-full right-0 mt-1 w-full md:w-1/3 bg-white rounded-lg shadow-xl z-50 border border-gray-100 overflow-hidden transition-all duration-200 ease-in-out"
         >
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] leading-[20px] text-[#9C9C9C]">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 font-rubik font-normal lg:text-[16px] text-[14px] leading-[20px] text-[#9C9C9C]">
             <Link
               href="/"
               className="block px-3 py-2 rounded-md hover:text-[#FF383B] hover:bg-gray-50 transition-colors"
@@ -424,7 +424,7 @@ const Navbar = () => {
                 </svg>
               </button>
               {activeDropdown === 'programs-mobile' && (
-                <div className="ml-4 space-y-1 font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] leading-[20px] text-[#9C9C9C] bg-gray-50 rounded-md mt-1">
+                <div className="ml-4 space-y-1 font-rubik font-normal lg:text-[16px] text-[14px] leading-[20px] text-[#9C9C9C] bg-gray-50 rounded-md mt-1">
                   {loading ? (
                     <div className="px-3 py-3 text-center">
                       <div className="animate-pulse h-4 bg-gray-200 rounded w-3/4 mx-auto"></div>
@@ -469,7 +469,7 @@ const Navbar = () => {
                 </svg>
               </button>
               {activeDropdown === 'universities-mobile' && (
-                <div className="ml-4 space-y-1 font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] leading-[20px] text-[#9C9C9C] bg-gray-50 rounded-md mt-1">
+                <div className="ml-4 space-y-1 font-rubik font-normal lg:text-[16px] text-[14px] leading-[20px] text-[#9C9C9C] bg-gray-50 rounded-md mt-1">
                   {loading ? (
                     <div className="px-3 py-3 text-center">
                       <div className="animate-pulse h-4 bg-gray-200 rounded w-3/4 mx-auto"></div>
