@@ -10,9 +10,10 @@ import bottomright from "../../../public/bottomright.svg";
 import bottomleft from "../../../public/bottomleft.svg";
 import { motion } from "framer-motion";
 
-export default function HeroSection() {
+export default function HeroSection({loc}) {
   const [isMapExpanded, setIsMapExpanded] = useState(false);
-
+  // console.log("location data",loc);
+  
   const toggleMap = () => {
     setIsMapExpanded(!isMapExpanded);
   };
@@ -177,7 +178,9 @@ export default function HeroSection() {
             />
             <div className="absolute -inset-1 m-[15px] rounded-full overflow-hidden shadow-xl">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3770.9790556191876!2d72.8265398!3d19.2004843!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b74ec2c18775%3A0x29c5d960d7559a01!2sPanchratna%20(A)%20Co%20op.%20Housing%20Society%20Ltd!5e0!3m2!1sen!2sin!4v1712572441234!5m2!1sen!2sin"
+                // src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3770.9790556191876!2d72.8265398!3d19.2004843!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b74ec2c18775%3A0x29c5d960d7559a01!2sPanchratna%20(A)%20Co%20op.%20Housing%20Society%20Ltd!5e0!3m2!1sen!2sin!4v1712572441234!5m2!1sen!2sin"
+                           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d593.329187304031!2d72.88926899999997!3d19.11561500000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9085f4e7399%3A0xffcae387220f04e6!2sHiranandani%20Business%20Park%20-%20Lightbridge!5e1!3m2!1sen!2sin!4v1754891958333!5m2!1sen!2sin"
+                
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

@@ -70,9 +70,8 @@ const UnivCard = ({ item }) => {
 
 
 
-
         <div className="mt-1">
-          <Link href={`/universities/${item.id}`} className="block">
+          <Link href={`/universities/${item.slug}`} className="block">
             <div
               className="w-full px-2 md:px-4 py-2 bg-[#FF383B] text-white font-semibold font-inter text-[12px] rounded-lg transition cursor-pointer"
             >

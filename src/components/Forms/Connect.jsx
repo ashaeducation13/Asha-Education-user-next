@@ -285,7 +285,7 @@ export default function Connect() {
             />
             <label htmlFor="consent" className="text-[13px] md:text-[14px] text-gray-700">
               I agree to the{" "}
-              <a href="/terms" className="text-red-500 underline" target="_blank">
+              <a href="/terms-and-conditions" className="text-red-500 underline" target="_blank">
                 Terms and Conditions
               </a>{" "}
               and{" "}

@@ -30,7 +30,7 @@ export default function PrivacyPolicy() {
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-2">Your Privacy Matters</h2>
               <p className="text-gray-600 leading-relaxed">
-                This Privacy Policy describes how asha.education ("we", "us", or "our") collects, uses, and protects 
+                This Privacy Policy describes how asha.education ("we", "us", or "our") collects, uses, and protects
                 your information when you use our website and services.
               </p>
             </div>
@@ -114,7 +114,7 @@ export default function PrivacyPolicy() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                We do not share your personal information with third parties, except when legally required or for 
+                We do not share your personal information with third parties, except when legally required or for
                 maintenance (e.g., hosting services under confidentiality).
               </p>
             </div>
@@ -130,7 +130,7 @@ export default function PrivacyPolicy() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                We implement appropriate technical and organizational measures (e.g., encryption, access controls) 
+                We implement appropriate technical and organizational measures (e.g., encryption, access controls)
                 to protect your data.
               </p>
             </div>
@@ -146,7 +146,7 @@ export default function PrivacyPolicy() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                We retain personal data as needed for its original purpose or as required by law. Unused info is 
+                We retain personal data as needed for its original purpose or as required by law. Unused info is
                 deleted after a reasonable period.
               </p>
             </div>
@@ -234,7 +234,7 @@ export default function PrivacyPolicy() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                If you're outside [Jurisdiction] and we transfer your data internationally, we'll use appropriate 
+                If you're outside [Jurisdiction] and we transfer your data internationally, we'll use appropriate
                 safeguards to comply with applicable law.
               </p>
             </div>
@@ -250,7 +250,7 @@ export default function PrivacyPolicy() {
             </div>
             <div className="prose prose-gray max-w-none">
               <p className="text-gray-700 leading-relaxed mb-4">
-                asha.education may update this Privacy Policy. Notice of significant changes will be provided 
+                asha.education may update this Privacy Policy. Notice of significant changes will be provided
                 (e.g., via email). Continued use implies acceptance.
               </p>
             </div>
@@ -270,8 +270,21 @@ export default function PrivacyPolicy() {
               </p>
               <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                 <div className="space-y-2">
-                  <p className="text-gray-700"><strong>Email:</strong> [insert contact email]</p>
-                  <p className="text-gray-700"><strong>Address:</strong> [insert physical address]</p>
+                  <p className="text-gray-700">
+                    <strong>Email:</strong>{' '}
+                    <a href="mailto:admission@asha.education" className="text-blue-600 hover:underline">
+                      admission@asha.education
+                    </a>
+                  </p>
+
+                  <p className="text-gray-700 w-[60%]">
+                    <strong>Address:</strong><br />
+                    6th Floor, Lightbridge Hiranandani Business Park<br />
+                    Saki Vihar Road, Andheri (East) - Saki Naka, Chandivali<br />
+                    Andheri East - 400076<br />
+                    Mumbai
+                  </p>
+
                 </div>
               </div>
             </div>
