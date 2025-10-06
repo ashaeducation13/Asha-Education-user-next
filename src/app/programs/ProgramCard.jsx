@@ -7,60 +7,34 @@ import EmailModal from "@/components/otp/EmailModal";
 import { useEffect, useState } from "react";
 
 export const ProgramCard = ({ item }) => {
-    const [isVerified, setIsVerified] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
 
-    const downloadFile = (url) => {
-        // Prevent any default behavior
-        // event.preventDefault();
-
-        // Create link element
-        const link = document.createElement('a');
-        link.href = url;
-
-        // Set download attribute to force download behavior
-        link.setAttribute('download', 'brochure.pdf');
-
-        // Set additional attribute to help browsers recognize as download
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener noreferrer');
-
-        // Append to DOM, click, and remove
-        document.body.appendChild(link);
-        link.click();
-
-        // Small timeout to ensure download starts before removal
-        setTimeout(() => {
-            document.body.removeChild(link);
-        }, 100);
-    };
+  const downloadFile = (url) => {
+    if (!url) return console.error("No brochure file found!");
     
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "brochure.pdf");
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener noreferrer");
 
+    document.body.appendChild(link);
+    link.click();
 
-    useEffect(() => {
-        // Check if already verified
-        const verified = sessionStorage.getItem('isVerified') === 'true';
-        setIsVerified(verified);
-    }, []);
+    setTimeout(() => {
+      document.body.removeChild(link);
+    }, 100);
+  };
 
-    const handleDownloadClick = () => {
-        if (isVerified) {
-            // Trigger download
-            downloadFile(item.brochure);
-        } else {
-            // Show email modal for OTP
-            setModalOpen(true);
-        }
-    };
+  const handleDownloadClick = () => {
+    // Always show the modal first
+    setModalOpen(true);
+  };
 
-    const handleVerificationSuccess = () => {
-        sessionStorage.setItem('isVerified', 'true');
-        setIsVerified(true);
-        setModalOpen(false);
-
-        // Trigger download after verification
-        downloadFile(item.brochure);
-    };
+  const handleVerificationSuccess = () => {
+    setModalOpen(false);
+    downloadFile(item.brochure);
+  };
 
     return (
         <>
