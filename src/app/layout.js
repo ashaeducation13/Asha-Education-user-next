@@ -8,6 +8,7 @@ import { Inter, Rubik, Playfair_Display, Open_Sans } from 'next/font/google';
 import Loader from '@/components/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Image from "next/image";
 
 
 // Initialize the fonts
@@ -67,6 +68,21 @@ export default function RootLayout({ children }) {
           pauseOnHover
           theme="light"
         />
+
+        <a
+          href="https://wa.me/917208804245" // Replace with actual number
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-6 right-6 z-50"
+        >
+          <Image
+            src="/whatsapp_icon.png"
+            width={56}
+            height={56}
+            alt="Chat on WhatsApp"
+            className="w-14 h-14"
+          />
+        </a>
       </body>
     </html>
   );
