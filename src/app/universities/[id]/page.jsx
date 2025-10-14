@@ -4,8 +4,18 @@ import React from 'react'
 import HeroSection from './HeroSection'
 import CertificationSection from './CertificationSection'
 import Innerlisting from './Innerlisting';
-import { fetchUniversityById } from '@/services/api';
+import { fetchUniversityById, SeoFetch } from '@/services/api';
 
+export async function generateMetadata() {
+
+  const seo = await SeoFetch('university_inner')  
+
+
+  return {
+    title: seo.meta_title,
+    description: seo.meta_description,
+  };
+}
 export default async function page ({params}){
   const slug  = params.id; 
   const universityData = await fetchUniversityById(slug);

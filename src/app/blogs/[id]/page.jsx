@@ -1,7 +1,20 @@
 import Inner from "./Inner";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { BlogFetch, BlogSlugFetch } from "@/services/api";
+import { BlogFetch, BlogSlugFetch, SeoFetch } from "@/services/api";
+
+
+
+export async function generateMetadata() {
+
+  const seo = await SeoFetch('blogs_inner')  
+
+
+  return {
+    title: seo.meta_title,
+    description: seo.meta_description,
+  };
+}
 
 export default async function page({params}) {
   const slug = params.id;

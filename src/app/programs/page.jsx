@@ -3,9 +3,20 @@ import React from 'react'
 import Herosection from './Herosection'
 import Listing from './Listing'
 import Footer from '@/components/Footer'
-import { ProgramFetch } from '@/services/api'
+import { ProgramFetch, SeoFetch } from '@/services/api'
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata() {
+
+  const seo = await SeoFetch('programs')  
+
+
+  return {
+    title: seo.meta_title,
+    description: seo.meta_description,
+  };
+}
 
 export default async function Page({ searchParams }) {
   const prData = await ProgramFetch();
