@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
 
-  const seo = await SeoFetch('home')  // fetch blog post dynamically
+  const seo = await SeoFetch('home')  
 
 
   return {

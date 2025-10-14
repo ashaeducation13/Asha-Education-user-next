@@ -21,7 +21,7 @@ const HeroSection = ({ data }) => {
                     </div>
 
                     {/* University Name */}
-                    <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-medium font-open-sans">
+                    <h1 className="text-[24px] md:text-[32px] lg:text-[40px] font-medium font-open-sans">
                         <span
                             className="bg-clip-text text-transparent font-playfair"
                             style={{
@@ -31,7 +31,7 @@ const HeroSection = ({ data }) => {
                             {data.name.split(" ").slice(0, -1).join(" ")}
                         </span>{" "}
                         {data.name.split(" ").slice(-1)}
-                    </h2>
+                    </h1>
                     
                     {/* Mobile Image */}
                     <div className="md:w-full block md:hidden">

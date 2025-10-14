@@ -9,7 +9,7 @@ const Certcard = ({ imgSrc }) => {
           <Image src={imgSrc} alt='img' className="w-full h-full" />
         </div>
       </div>
-    );
+    );  
   };
 
 export default Certcard

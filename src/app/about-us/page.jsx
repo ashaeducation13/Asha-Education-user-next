@@ -7,10 +7,20 @@ import WhyStudent from './WhyStudent'
 import SuccessfullStudents from './SuccessfullStudents'
 import WeHelp from './WeHelp'
 import OurGrowth from './OurGrowth'
-import { AboutusFetch, TestimonialFetch } from '@/services/api'
+import { AboutusFetch, SeoFetch, TestimonialFetch } from '@/services/api'
 
 export const dynamic = "force-dynamic";
 
+export async function generateMetadata() {
+
+  const seo = await SeoFetch('aboutus')  
+
+
+  return {
+    title: seo.meta_title,
+    description: seo.meta_description,
+  };
+}
 export default async function page() {
     const testimData = await TestimonialFetch() 
     const aboutusData = await AboutusFetch();
