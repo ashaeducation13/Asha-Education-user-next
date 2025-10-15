@@ -262,9 +262,9 @@ function WeHelp({ data }) {
         viewport={{ once: true }}
         className="lg:w-[38%] md:w-[45%] lg:mr-50"
       >
-        <h1 className="font-open-sans lg:text-[40px] md:text-[32px] text-[24px]">
+        <h2 className="font-open-sans lg:text-[40px] md:text-[32px] text-[24px]">
           Count on Us for Support!
-        </h1>
+        </h2>
         <p className="font-rubik mt-4 text-[12px] md:text-[14px] lg:text-[16px]">
           One Call, No Hassle – Get Straightforward Upskilling Guidance!
         </p>

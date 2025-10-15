@@ -23,14 +23,14 @@ const Universities = ({ data }) => {
     <>
       {/* Header Section */}
       <div className="relative mx-auto text-center my-6 md:my-10 px-4">
-        <motion.h1
+        <motion.h2
           initial={{ x: -50, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
           viewport={{ once: true, amount: 0.5 }}
           className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 font-open-sans">
           Our Prestigious Partner Universities
-        </motion.h1>
+        </motion.h2>
         <motion.p
           initial={{ x: 50, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}

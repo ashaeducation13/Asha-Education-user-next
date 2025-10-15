@@ -49,7 +49,7 @@ export default function QuestionSection() {
   return (
     <div className="md:pb-12 pb-4 md:px-6">
       <div className="max-w-[1200px] mx-auto px-4">
-        <h1 className="text-start font-open-sans font-semibold text-[20px] md:text-[24px] lg:text-[30px] leading-[36px] mb-4 md:mb-6 lg:mb-8">
+        <h2 className="text-start font-open-sans font-semibold text-[20px] md:text-[24px] lg:text-[30px] leading-[36px] mb-4 md:mb-6 lg:mb-8">
           Frequently Asked{" "}
           <span
             className="bg-clip-text text-transparent"
@@ -60,7 +60,7 @@ export default function QuestionSection() {
           >
             Questions
           </span>
-        </h1>
+        </h2>
 
         {/* Vertical columns container */}
         <div className="flex flex-col md:flex-row gap-3 md:gap-4 lg:gap-6">

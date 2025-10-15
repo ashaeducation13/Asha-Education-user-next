@@ -63,14 +63,14 @@ const HeroSection = ({ data }) => {
 
                     <div className="flex gap-2 flex-wrap mt-2">
                         {data.is_dual_specialization && (
-                            <span className="inline-block bg-[#E0F2FE] text-[#0284C7] text-xs font-semibold px-3 py-1 rounded-full">
+                            <h2 className="inline-block bg-[#E0F2FE] text-[#0284C7] text-xs font-semibold px-3 py-1 rounded-full">
                                 Dual Specialization
-                            </span>
+                            </h2>
                         )}
                         {data.is_executive_course && (
-                            <span className="inline-block bg-[#FEF3C7] text-[#B45309] text-xs font-semibold px-3 py-1 rounded-full">
+                            <h2 className="inline-block bg-[#FEF3C7] text-[#B45309] text-xs font-semibold px-3 py-1 rounded-full">
                                 Executive Course
-                            </span>
+                            </h2>
                         )}
                     </div>
 

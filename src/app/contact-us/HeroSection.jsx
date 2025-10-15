@@ -102,7 +102,7 @@ export default function HeroSection({loc}) {
             >
               Get in Touch{" "}
             </motion.h1>
-            <motion.h1 
+            <motion.h2 
             variants={{
               hidden: {
                 opacity: 0,
@@ -119,7 +119,7 @@ export default function HeroSection({loc}) {
             }}
             className="font-open-sans text-start font-medium lg:text-[40px] md:text-[32px] text-[24px] lg:leading-[40px] md:leading-[32px] leading-[24px] mb-4">
               with Us
-            </motion.h1>
+            </motion.h2>
             <motion.p 
              variants={{
               hidden: {
