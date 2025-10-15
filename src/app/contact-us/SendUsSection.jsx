@@ -74,9 +74,9 @@ const SocialMediaSection = () => (
         alt="hashcode"
         className="mr-3 lg:w-[40px] lg:h-[40px] w-[24px] h-[25px]"
       />
-      <h1 className="bg-clip-text text-transparent font-open-sans font-semibold lg:text-[18px] md:text-[14px] text-[12px] leading-[24px] whitespace-nowrap bg-gradient-to-r from-[#0A0078] to-[#FF383B]">
+      <h2 className="bg-clip-text text-transparent font-open-sans font-semibold lg:text-[18px] md:text-[14px] text-[12px] leading-[24px] whitespace-nowrap bg-gradient-to-r from-[#0A0078] to-[#FF383B]">
         Stay Connected with Us!
-      </h1>
+      </h2>
     </div>
     <div className="flex items-center md:justify-center gap-3 lg:gap-4">
       {[facebook, twitter, instagram, linkedin, youtube].map((icon, idx) => (

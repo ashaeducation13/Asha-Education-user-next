@@ -48,7 +48,7 @@ const CounselSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true, amount: 0.4 }} className="relative  mx-auto text-center">
-          <motion.h1
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -63,7 +63,7 @@ const CounselSection = () => {
               Get Free{" "}
             </span>{" "}
             Counselling
-          </motion.h1>
+          </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

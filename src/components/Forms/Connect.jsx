@@ -151,9 +151,9 @@ export default function Connect() {
   return (
     <section className="containers px-[1px] my-10">
       <div>
-        <h1 className="text-[18px] sm:text-[28px] leading-[32px] sm:leading-[46px] xl:leading-[70px] font-normal text-gray-900 w-[85%] sm:w-[75%] xl:w-full mx-auto">
+        <h2 className="text-[18px] sm:text-[28px] leading-[32px] sm:leading-[46px] xl:leading-[70px] font-normal text-gray-900 w-[85%] sm:w-[75%] xl:w-full mx-auto">
           Be Part of Our Growing Team
-        </h1>
+        </h2>
 
         <div className="md:p-[20px] p-[10px] border border-[#959595] bg-grey-400 rounded-[20px] shadow-xl bg-white">
           <div className="grid grid-cols-1 md:grid-cols-2 md:gap-[20px] gap-[10px]">

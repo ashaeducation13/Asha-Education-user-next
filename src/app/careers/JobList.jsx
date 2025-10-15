@@ -165,9 +165,9 @@ function JobList({ jobs = [], ex = [] }) {
                 <div key={job.id} className="py-6 border-b border-gray-300">
                   <div className="flex justify-between items-center gap-4">
                     <div className="flex items-center md:gap-4">
-                      <h1 className="font-bold font-open-sans text-lg text-gray-900">
+                      <h2 className="font-bold font-open-sans text-lg text-gray-900">
                         {job.name}
-                      </h1>
+                      </h2>
                       <div className="flex items-center gap-2 border border-red-500 rounded-md px-1 py-1 flex-shrink-0">
                         <Image
                           height={12}

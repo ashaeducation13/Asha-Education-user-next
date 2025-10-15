@@ -6,6 +6,7 @@ import WhyAndHow from "./WhyAndHow";
 import Footer from "@/components/Footer";
 import { SeoFetch } from "@/services/api";
 
+export const dynamic = 'force-dynamic';
 export async function generateMetadata() {
 
   const seo = await SeoFetch('refer-and-earn')  
