@@ -26,7 +26,7 @@ export default function WhyAndHow() {
         </div>
       </div>
       <div className="md:pt-12 pb-6 py-6">
-        <h2 className="font-open-sans font-bold text-[24px] md:text-[28px] lg:text-[32px] leading-[36px] text-[#000000] mb-3">How to refer?</h2>
+        <h3 className="font-open-sans font-bold text-[24px] md:text-[28px] lg:text-[32px] leading-[36px] text-[#000000] mb-3">How to refer?</h3>
         <p className="font-inter font-normal text-[16px] leading-[24px] lg:w-[80%] md:w-[85%]">Submit a referral through the below form or mail at <a href="" className="text-[#FF383B] underline">admission@asha.education</a> mentioning your details and your reference details both.</p>
       </div>
       <div className="flex flex-col md:flex-row gap-3 md:gap-6 w-full mx-auto pb-7 md:py-10 lg:py-16">

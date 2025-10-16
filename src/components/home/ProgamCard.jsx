@@ -42,7 +42,7 @@ const ProgramCard = ({ image, title, hover, id, previousHover, onMouseEnter }) =
             <div >
                 <Link href={`/programs?${id}`} passHref>
 
-                    <motion.h2
+                    <motion.h3
                         initial={{ y: 40, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
@@ -56,7 +56,7 @@ const ProgramCard = ({ image, title, hover, id, previousHover, onMouseEnter }) =
                             View Programs
                             <Image src={arrow} alt="Arrow Right" className="w-4 h-4" />
                         </span>
-                    </motion.h2>
+                    </motion.h3>
                 </Link>
                 {/* Image */}
                 <div className="absolute bottom-0 left-0 w-full z-15">

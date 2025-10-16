@@ -6,7 +6,7 @@ export const Courses = [
     title_full:"MBA (Master of Business Administration)",
     title: "MBA",
     duration: "2 years",
-    description: "A postgraduate program focused on business and management, offering specializations in various domains.",
+    description: "A postgraduate program focused on business and management, offering specialisations in various domains.",
     specs: [
       "Marketing",
       "Finance",
@@ -69,7 +69,7 @@ export const Courses = [
     title_full:"MA (Master of Arts)",
     title: "MA",
     duration: "2 years",
-    description: "A postgraduate degree focusing on humanities and social sciences, with specializations in various disciplines.",
+    description: "A postgraduate degree focusing on humanities and social sciences, with specialisations in various disciplines.",
     specs: [
       "English Literature",
       "Political Science",

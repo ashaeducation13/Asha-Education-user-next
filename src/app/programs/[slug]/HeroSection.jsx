@@ -1,16 +1,13 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-// import img from '../../../assets/universities/inner/heroimg.png';
-import amitylogo from '../../../assets/universities/inner/amitylogo.png';
 import progress from '../../../../public/progress.svg'
 import EmailModal from '@/components/otp/EmailModal';
 
 const HeroSection = ({ data }) => {
+const [modalOpen, setModalOpen] = useState(false);
 
-    const [modalOpen, setModalOpen] = useState(false);
-
-  const downloadFile = (url) => {
+const downloadFile = (url) => {
     if (!url) return console.error("No brochure file found!");
     
     const link = document.createElement("a");
@@ -37,7 +34,7 @@ const HeroSection = ({ data }) => {
     downloadFile(item.brochure);
   };
 
-    return (
+return (
         <section className="containers mx-auto md:py-12 py-6 border-b border-[#E3E3E3]">
             {/* Container for Flex Layout */}
             <div className="flex flex-col md:flex-row items-center gap-6">
@@ -73,12 +70,7 @@ const HeroSection = ({ data }) => {
                             </h2>
                         )}
                     </div>
-
-                    {/* {data.program_name.is_dual_specialization && ( */}
-                    {/* <span className="inline-block bg-[#E0F2FE] text-[#0284C7] text-xs font-semibold px-3 py-1 rounded-full">
-                        Dual Specialization
-                    </span> */}
-                    {/* )} */}
+                    
                     <div className="md:w-1/2 block md:hidden">
                         <div className="border-4 border-gray-200 rounded-xl p-2">
                             <Image src={data.specialization.image} width={100} height={100} alt="University Building" className="rounded-lg w-full max-h-[340px]" />
@@ -100,7 +92,6 @@ const HeroSection = ({ data }) => {
 
                 </div>
 
-                {/* Right Section (Image) */}
                 <div className="md:w-1/2 hidden md:block">
                     <div className="border-4 border-gray-200 rounded-xl p-2">
                         <Image src={data.specialization.image} width={100} height={100} alt="University Building" className="rounded-lg w-full md:h-[360px] lg:h-[350px] xl:h-[400px] 2xl:h-[350px] object-cover" />
@@ -110,5 +101,4 @@ const HeroSection = ({ data }) => {
         </section>
     );
 };
-
 export default HeroSection;

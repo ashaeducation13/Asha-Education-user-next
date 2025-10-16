@@ -51,9 +51,9 @@ const UnivCard = ({ item }) => {
 
       {/* Rest of the card content remains the same as previous optimized version */}
       <div className="w-full px-1 md:px-1.5 flex flex-col gap-2 md:gap-2.5 lg:gap-3">
-        <h2 className="text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] leading-tight font-semibold">
+        <h3 className="text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] leading-tight font-semibold">
           {item.name}
-        </h2>
+        </h3>
 
         {/* <span className="flex justify-start items-center gap-1.5 md:gap-2">
           <Image
