@@ -156,9 +156,9 @@ const ContactForm = () => {
 
   return (
     <div className="w-full">
-      <h2 className="lg:text-[24px] leading-[24px] md:text-[20px] text-[14px] font-semibold font-open-sans bg-clip-text text-transparent mb-4 bg-gradient-to-r from-[#0A0078] to-[#FF383B]">
+      <h3 className="lg:text-[24px] leading-[24px] md:text-[20px] text-[14px] font-semibold font-open-sans bg-clip-text text-transparent mb-4 bg-gradient-to-r from-[#0A0078] to-[#FF383B]">
         Send Us a Message
-      </h2>
+      </h3>
       <div className="bg-white p-4 lg:p-8 rounded-[20px] shadow-2xl">
         <form
           onSubmit={handleSubmit}

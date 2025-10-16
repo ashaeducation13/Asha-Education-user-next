@@ -135,7 +135,7 @@ const specializationList = React.useMemo(() => {
 
           <div className="mx-auto grid md:grid-cols-[25%_1fr] gap-[10px] pt-5 pb-10">
             <div className="md:hidden">
-              <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold mb-2">Specialisations</h2>
+              <h3 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold mb-2">Specialisations</h3>
               
               {/* Custom mobile dropdown with internal search */}
               <div className="relative">
@@ -164,7 +164,7 @@ const specializationList = React.useMemo(() => {
                     <div className="relative p-2 border-b border-[#F1F3F7]">
                       <input
                         type="text"
-                        placeholder="Search specializations..."
+                        placeholder="Search specialisations..."
                         value={searchTerm}
                         onChange={handleSearchChange}
                         className="w-full p-2 pl-8 text-sm border border-[#F1F3F7] rounded-md focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
@@ -196,7 +196,7 @@ const specializationList = React.useMemo(() => {
                         ))
                       ) : (
                         <div className="p-3 text-center text-gray-500">
-                          No specializations match your search.
+                          No specialisations match your search.
                         </div>
                       )}
                     </div>
@@ -208,13 +208,13 @@ const specializationList = React.useMemo(() => {
             {/* Desktop Sidebar */}
             <div className="hidden md:flex flex-col gap-3">
               {/* Fixed header and search bar */}
-              <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold">Specializations</h2>
+              <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold">Specialisations</h2>
               
               {/* Search bar for specializations */}
               <div className="relative mb-2">
                 <input
                   type="text"
-                  placeholder="Search specializations..."
+                  placeholder="Search specialisations..."
                   value={searchTerm}
                   onChange={handleSearchChange}
                   className="w-full p-3 pl-9 text-sm border border-[#F1F3F7] rounded-md focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
@@ -246,7 +246,7 @@ const specializationList = React.useMemo(() => {
                   </ul>
                 ) : (
                   <div className="text-center py-4 text-gray-500">
-                    No specializations match your search.
+                    No specialisations match your search.
                   </div>
                 )}
               </div>

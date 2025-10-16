@@ -31,9 +31,9 @@ const HeroSecetion = ({ data }) => {
                         <span className="font-open-sans font-medium lg:text-[40px] md:text-[32px] text-[26px] leading-[40px]"> for</span>
                         <span className="block font-open-sans font-medium lg:text-[40px] md:text-[32px] text-[26px] leading-[40px]">Your Best Education</span>
                     </h1>
-                    <p className="font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] leading-[24px] pt-3">
+                    <h2 className="font-rubik font-normal lg:text-[16h2x] md:text-[14px] text-[12px] leading-[24px] pt-3">
                         Committed to guiding students toward the best universities in India.
-                    </p>
+                    </h2>
                 </div>
 
                 {/* Search & Browse */}

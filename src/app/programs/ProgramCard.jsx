@@ -86,12 +86,12 @@ export const ProgramCard = ({ item }) => {
                             </div>
 
                             {/* Title */}
-                            <h2 className="font-open-sans text-[18px] lg:text-[20px] leading-[24px] font-semibold ">
+                            <h3 className="font-open-sans text-[18px] lg:text-[20px] leading-[24px] font-semibold ">
                                 {item.program_name.name} in {item.specialization.name}
                                 {item.is_dual_specialization && item.second_specialization
                                     ? ` and ${item.second_specialization.name}`
                                     : ""}
-                            </h2>
+                            </h3>
 
                             {/* Duration */}
                             <div className="flex justify-between items-center">

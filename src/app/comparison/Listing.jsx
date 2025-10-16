@@ -342,7 +342,7 @@ const Listing = ({ data }) => {
 
             {/* Mobile view with search-enabled dropdown */}
             <div className="md:hidden">
-              <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold mb-2">Specializations</h2>
+              <h2 className="text-[14px] md:text-[16px] lg:text-[20px] font-semibold mb-2">Specialisations</h2>
 
               {/* Custom mobile dropdown with internal search */}
               <div className="relative">
@@ -371,7 +371,7 @@ const Listing = ({ data }) => {
                     <div className="relative p-2 border-b border-[#F1F3F7]">
                       <input
                         type="text"
-                        placeholder="Search specializations..."
+                        placeholder="Search specialisations..."
                         value={searchTerm}
                         onChange={handleSearchChange}
                         className="w-full p-2 pl-8 text-sm border border-[#F1F3F7] rounded-md focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
@@ -407,7 +407,7 @@ const Listing = ({ data }) => {
                         ))
                       ) : (
                         <div className="p-3 text-center text-gray-500">
-                          No specializations match your search.
+                          No specialisations match your search.
                         </div>
                       )}
                     </div>
@@ -424,7 +424,7 @@ const Listing = ({ data }) => {
               <div className="relative mb-2">
                 <input
                   type="text"
-                  placeholder="Search specializations..."
+                  placeholder="Search specialisations..."
                   value={searchTerm}
                   onChange={handleSearchChange}
                   className="w-full p-3 pl-9 text-sm border border-[#F1F3F7] rounded-md focus:ring-2 focus:ring-[#FF383B] focus:outline-none"
@@ -510,7 +510,7 @@ const Listing = ({ data }) => {
                     ))
                   ) : (
                     <div className="text-center py-4 text-gray-500">
-                      No specializations match your search.
+                      No specialisations match your search.
                     </div>
                   )}
                 </motion.ul>

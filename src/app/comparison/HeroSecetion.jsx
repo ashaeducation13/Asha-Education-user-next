@@ -29,9 +29,9 @@ const HeroSecetion = () => {
             For POST
             <br /> Graduations
           </h1>
-          <p className="font-rubik font-medium pt-3">
+          <h2 className="font-rubik font-medium h2t-3">
             Committed to guiding students toward the best universities in India.
-          </p>
+          </h2>
         </motion.div>
       </section>
     </>
