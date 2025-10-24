@@ -6,14 +6,25 @@ import { SeoFetch } from '@/services/api'
 
 export const dynamic = 'force-dynamic';
 export async function generateMetadata() {
+  try {
+    const seo = await SeoFetch('terms-and-conditions');
 
-  const seo = await SeoFetch('terms-and-conditions')  
-
-  return {
-    title: seo.meta_title,
-    description: seo.meta_description,
-  };
+    return {
+      title: seo?.meta_title || "Terms & Conditions | Asha Education",
+      description:
+        seo?.meta_description ||
+        "Read the Terms and Conditions for using Asha Education’s website and services.",
+    };
+  } catch (error) {
+    console.error("SEO fetch failed (terms-and-conditions):", error);
+    return {
+      title: "Terms & Conditions | Asha Education",
+      description:
+        "Read the Terms and Conditions for using Asha Education’s website and services.",
+    };
+  }
 }
+
 
 const page = () => {
   return (

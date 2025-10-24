@@ -7,14 +7,20 @@ import { SeoFetch } from '@/services/api'
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata() {
-
-  const seo = await SeoFetch('privacy_policy')  
-
-  return {
-    title: seo.meta_title,
-    description: seo.meta_description,
-  };
+  try {
+    const seo = await SeoFetch('privacy_policy');
+    return {
+      title: seo?.meta_title || "Privacy Policy | Asha Education",
+      description: seo?.meta_description || "Read the privacy policy of Asha Education."
+    };
+  } catch (error) {
+    return {
+      title: "Privacy Policy | Asha Education",
+      description: "Read the privacy policy of Asha Education."
+    };
+  }
 }
+
 const page = () => {
   return (
     <>
