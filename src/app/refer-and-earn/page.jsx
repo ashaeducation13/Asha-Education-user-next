@@ -8,15 +8,26 @@ import { SeoFetch } from "@/services/api";
 
 export const dynamic = 'force-dynamic';
 export async function generateMetadata() {
+  try {
+    const seo = await SeoFetch('refer-and-earn');
 
-  const seo = await SeoFetch('refer-and-earn')  
-
-
-  return {
-    title: seo.meta_title,
-    description: seo.meta_description,
-  };
+    return {
+      title: seo?.meta_title || "Refer & Earn Rewards | Asha Education Referral Program",
+      description:
+        seo?.meta_description ||
+        "Invite your friends and earn exciting rewards with Asha Education’s Refer & Earn program.",
+    };
+  } catch (error) {
+    console.error("SEO fetch failed (refer-and-earn):", error);
+    return {
+      title: "Refer & Earn Rewards | Asha Education Referral Program",
+      description:
+        "Invite your friends and earn exciting rewards with Asha Education’s Refer & Earn program.",
+    };
+  }
 }
+
+
 export default function page() {
   return (
     <>

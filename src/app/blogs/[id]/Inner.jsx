@@ -182,7 +182,7 @@ function BlogInner({data, latest}) {
                     >
                       <Image
                         src={icon}
-                        alt=""
+                        alt="social-icon"
                         width={20}
                         height={20}
                         className="w-full h-full object-contain"
