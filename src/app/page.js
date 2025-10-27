@@ -21,6 +21,9 @@ export async function generateMetadata() {
   return {
     title: seo.meta_title,
     description: seo.meta_description,
+    alternates: {
+      canonical: "https://www.asha.education/",
+    },
   };
 }
 export default async function Home() {
@@ -35,9 +38,6 @@ export default async function Home() {
   // const spData = await SpecializationFetch();
   return (
     <>
-      <Head>
-        <link rel="canonical" href="https://www.asha.education/" />
-      </Head>
       <Navbar />
       <Herosection spData={prData} universityData={universityData} />
       <Universities data={universityData} />
