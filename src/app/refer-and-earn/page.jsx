@@ -16,6 +16,9 @@ export async function generateMetadata() {
       description:
         seo?.meta_description ||
         "Invite your friends and earn exciting rewards with Asha Education’s Refer & Earn program.",
+        alternates: {
+        canonical: "https://www.asha.education/refer-and-earn",
+      },
     };
   } catch (error) {
     console.error("SEO fetch failed (refer-and-earn):", error);
@@ -23,6 +26,9 @@ export async function generateMetadata() {
       title: "Refer & Earn Rewards | Asha Education Referral Program",
       description:
         "Invite your friends and earn exciting rewards with Asha Education’s Refer & Earn program.",
+      alternates: {
+        canonical: "https://www.asha.education/refer-and-earn",
+      },
     };
   }
 }

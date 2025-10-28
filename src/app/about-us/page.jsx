@@ -19,6 +19,9 @@ export async function generateMetadata() {
   return {
     title: seo.meta_title,
     description: seo.meta_description,
+    alternates: {
+      canonical: "https://www.asha.education/about-us",
+    },
   };
 }
 export default async function page() {

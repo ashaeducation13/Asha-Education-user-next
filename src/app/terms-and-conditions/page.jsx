@@ -14,6 +14,9 @@ export async function generateMetadata() {
       description:
         seo?.meta_description ||
         "Read the Terms and Conditions for using Asha Education’s website and services.",
+        alternates: {
+        canonical: "https://www.asha.education/terms-and-conditions",
+      },
     };
   } catch (error) {
     console.error("SEO fetch failed (terms-and-conditions):", error);
@@ -21,6 +24,9 @@ export async function generateMetadata() {
       title: "Terms & Conditions | Asha Education",
       description:
         "Read the Terms and Conditions for using Asha Education’s website and services.",
+      alternates: {
+        canonical: "https://www.asha.education/terms-and-conditions",
+      },  
     };
   }
 }

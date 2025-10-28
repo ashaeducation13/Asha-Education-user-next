@@ -14,6 +14,9 @@ export async function generateMetadata() {
   return {
     title: seo.meta_title,
     description: seo.meta_description,
+    alternates: {
+      canonical: `https://www.asha.education/comparison/${seo.slug}`,
+    },
   };
 }
 

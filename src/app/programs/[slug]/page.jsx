@@ -6,7 +6,6 @@ import Footer from '@/components/Footer';
 
 export async function generateMetadata({ params }) {
   try {
-    // Fetch global programs_inner SEO defaults
     const seo = await SeoFetch('programs_inner');
 
     return {
@@ -16,6 +15,9 @@ export async function generateMetadata({ params }) {
       description:
         seo?.meta_description ||
         "Get full details on online UG & PG programs — curriculum, eligibility, fees, and universities offering the course. Apply easily with Asha Education.",
+        alternates: {
+        canonical: `https://www.asha.education/programs/${seo?.slug}`,
+      },
     };
   } catch (error) {
     console.error("SEO fetch failed (programs_inner):", error);
@@ -23,6 +25,9 @@ export async function generateMetadata({ params }) {
       title: "Program Overview & Admission Info | Asha Education",
       description:
         "Get full details on online UG & PG programs — curriculum, eligibility, fees, and universities offering the course. Apply easily with Asha Education.",
+      alternates: {
+        canonical: `https://www.asha.education/programs/${seo?.slug}`,
+      },
     };
   }
 }
