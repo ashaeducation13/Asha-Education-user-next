@@ -16,7 +16,10 @@ export async function generateMetadata() {
   } catch (error) {
     return {
       title: "Privacy Policy | Asha Education",
-      description: "Read the privacy policy of Asha Education."
+      description: "Read the privacy policy of Asha Education.",
+      alternates: {
+      canonical: "https://www.asha.education/privacy-policy",
+    },
     };
   }
 }

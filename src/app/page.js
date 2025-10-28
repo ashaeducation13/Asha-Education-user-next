@@ -32,7 +32,7 @@ export default async function Home() {
   const prData = await ProgramFetch();
 
   const blogdata = await BlogFetch()
-  const blogdata2 = blogdata.slice(-4)
+  const blogdata2 = blogdata.slice(-4)  
 
 
   // const spData = await SpecializationFetch();
