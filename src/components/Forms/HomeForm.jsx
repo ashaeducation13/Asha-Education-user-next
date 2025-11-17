@@ -7,6 +7,7 @@ import arrow from "../../assets/home/counsel/Arrow.png";
 import { UniversityFetch, submitCounselForm } from "@/services/api";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { trackFormSubmit } from "@/lib/gtm";
 
 const HomeForm = () => {
   const [universities, setUniversities] = useState([]);
@@ -75,7 +76,7 @@ const HomeForm = () => {
 
     try {
       await submitCounselForm(formData);
-
+      trackFormSubmit("Navbar Form");
       Swal.fire({
         title: "🎓 Enquiry Received!",
         text: "Thanks for your interest! Our team will contact you shortly",

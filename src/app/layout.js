@@ -9,6 +9,7 @@ import Loader from '@/components/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Image from "next/image";
+import Script from 'next/script';
 
 
 // Initialize the fonts
@@ -54,6 +55,21 @@ export default function RootLayout({ children }) {
   return (
 
     <html lang="en" className={`${rubik.variable} ${playfair.variable} ${openSans.variable}`}>
+       <head>
+        {/* Google Tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17627262854"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17627262854');
+          `}
+        </Script>
+      </head>
       <body>
         {loading && <Loader />}
         {children}

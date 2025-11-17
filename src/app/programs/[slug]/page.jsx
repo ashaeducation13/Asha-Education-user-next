@@ -7,7 +7,6 @@ import Footer from '@/components/Footer';
 export async function generateMetadata({ params }) {
   try {
     const seo = await SeoFetch('programs_inner');
-
     return {
       title:
         seo?.meta_title ||
@@ -31,16 +30,12 @@ export async function generateMetadata({ params }) {
     };
   }
 }
-
-
 export default async function page({ params }) {
   const slug = params.slug;
-  const prData = await ProgramFetchById(slug);
-  
+  const prData = await ProgramFetchById(slug);  
   return (
     <div>
         <Navbar />
-
         <HeroSection data={prData} />
         <CertificationSection data={prData}  />
         <Footer/>
