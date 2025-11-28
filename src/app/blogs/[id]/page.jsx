@@ -5,19 +5,19 @@ import { BlogFetch, BlogSlugFetch, SeoFetch } from "@/services/api";
 
 
 
-export async function generateMetadata() {
+// export async function generateMetadata() {
 
-  const seo = await SeoFetch('blogs_inner')  
+//   const seo = await SeoFetch('blogs_inner')  
 
 
-  return {
-    title: seo.meta_title,
-    description: seo.meta_description,
-    alternates: {
-      canonical: `https://www.asha.education/blogs/${seo.slug}`,
-    },
-  };
-}
+//   return {
+//     title: seo.meta_title,
+//     description: seo.meta_description,
+//     alternates: {
+//       canonical: `https://www.asha.education/blogs/${seo.slug}`,
+//     },
+//   };
+// }
 
 export default async function page({params}) {
   const slug = params.id;
@@ -31,7 +31,7 @@ export default async function page({params}) {
     <div>
       <Navbar />
       <Inner data={data} latest={latest}/>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }
