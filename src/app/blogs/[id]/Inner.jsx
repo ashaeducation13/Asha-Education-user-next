@@ -4,43 +4,14 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { BlogCard } from "../Listing";
 import { motion, useScroll, useSpring } from "framer-motion";
-import building from "../../../assets/blog/building.png";
 // Icons
 import FacebookRed from "../../../assets/blog/Facebook-red.svg";
 import TwitterRed from "../../../assets/blog/Twitter-red.svg";
 import InstagramRed from "../../../assets/blog/Instagram-red.svg";
 import LinkedInRed from "../../../assets/blog/LinkedIn-red.svg";
+import FaqSection from "./FaqSection";
 
 
-const relatedBlogData = [
-  {
-    image: building,
-    date_added: "14 Jan 2024",
-    title: "Study abroad with us ,easy procesures",
-    description: `As the most widely accepted test to analyze the proficiency of 
-                non-native English speakers, attaining a high TOEFL score can aid in your 
-                efforts non-native English speakers, attaining a high TOEFL score can aid 
-                in your efforts`,
-  },
-  {
-    image: building,
-    date_added: "14 Jan 2024",
-    title: "Study abroad with us ,easy procesures",
-    description: `As the most widely accepted test to analyze the proficiency of 
-                non-native English speakers, attaining a high TOEFL score can aid in your 
-                efforts non-native English speakers, attaining a high TOEFL score can aid 
-                in your efforts`,
-  },
-  {
-    image: building,
-    date_added: "14 Jan 2024",
-    title: "Study abroad with us ,easy procesures",
-    description: `As the most widely accepted test to analyze the proficiency of 
-                non-native English speakers, attaining a high TOEFL score can aid in your 
-                efforts non-native English speakers, attaining a high TOEFL score can aid 
-                in your efforts`,
-  },
-];
 const toSlug = (text) => {
   return text
     .toLowerCase()
@@ -208,20 +179,26 @@ function BlogInner({data, latest}) {
           </article>
         </div>
       </section>
+       <section className="containers md:py-12 py-6">
+
+        <FaqSection faqs={data.faqs} />
+       </section>
 
       {/* Latest Articles */}
-      <section className="bg-gray-50 py-6 lg:py-10 ">
-        <div className="containers ">
-          <h2 className="text-2xl font-bold text-gray-900 py-5">
-            Latest Articles
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 md:gap-6 gap-2">
-            {latest.map((item, index) => (
-              <BlogCard key={index} item={item} router={router} />
-            ))}
-          </div>
-        </div>
-      </section>
+     {latest?.length > 0 && (
+  <section className="bg-gray-50 py-6 lg:py-10 ">
+    <div className="containers ">
+      <h2 className="text-2xl font-bold text-gray-900 py-5">
+        Latest Articles
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 md:gap-6 gap-2">
+        {latest.map((item, index) => (
+          <BlogCard key={index} item={item} router={router} />
+        ))}
+      </div>
+    </div>
+  </section>
+)}
     </div>
   );
 }

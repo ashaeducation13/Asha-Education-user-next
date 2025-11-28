@@ -162,7 +162,7 @@ export default function MainForm({ onClose, course = null }) {
         timer: 6000,
         timerProgressBar: true
       });
-    }
+    } 
   };
 
   useEffect(() => {
