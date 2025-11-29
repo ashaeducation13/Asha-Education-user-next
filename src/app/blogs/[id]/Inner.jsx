@@ -1,80 +1,93 @@
 "use client";
+
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { BlogCard } from "../Listing";
 import { motion, useScroll, useSpring } from "framer-motion";
-// Icons
+import parse from "html-react-parser";
+
 import FacebookRed from "../../../assets/blog/Facebook-red.svg";
 import TwitterRed from "../../../assets/blog/Twitter-red.svg";
 import InstagramRed from "../../../assets/blog/Instagram-red.svg";
 import LinkedInRed from "../../../assets/blog/LinkedIn-red.svg";
 import FaqSection from "./FaqSection";
 
-
-const toSlug = (text) => {
-  return text
+// ----------------------
+// SLUG GENERATOR
+// ----------------------
+const toSlug = (text) =>
+  text
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, "")
     .replace(/\s+/g, "-")
     .trim();
-};
 
-// Function to inject IDs into headings (only runs in the browser)
-const injectIdsIntoContent = (htmlContent) => {
-  if (typeof window === "undefined")
-    return { contentWithIds: htmlContent, headingList: [] };
-
+// ----------------------
+// SAFE ID INJECTOR (NO DOMParser)
+// ----------------------
+const injectIdsIntoContent = (html) => {
   const headingList = [];
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlContent, "text/html");
 
-  const headings = doc.querySelectorAll("h1, h2, h3, h4, h5, h6, b");
-  headings.forEach((heading, index) => {
-    const baseSlug = toSlug(heading.textContent || heading.innerText || "");
-    let slug = baseSlug;
-    let count = 1;
+  const modified = html.replace(
+    /<(h[1-6])([^>]*)>(.*?)<\/h[1-6]>/gi,
+    (match, tag, attrs, inner) => {
+      const textOnly = inner.replace(/<[^>]+>/g, "");
+      const baseSlug = toSlug(textOnly);
 
-    while (headingList.includes(slug)) {
-      slug = `${baseSlug}-${count}`;
-      count++;
-    }
+      if (!baseSlug) return match;
 
-    if (slug) {
+      let slug = baseSlug;
+      let count = 1;
+
+      while (headingList.includes(slug)) {
+        slug = `${baseSlug}-${count}`;
+        count++;
+      }
+
       headingList.push(slug);
-      heading.setAttribute("id", slug);
-    }
-  });
 
-  return { contentWithIds: doc.body.innerHTML, headingList };
+      return `<${tag} id="${slug}" ${attrs}>${inner}</${tag}>`;
+    }
+  );
+
+  return { modifiedHtml: modified, headingList };
 };
 
-function BlogInner({data, latest}) {
+// ----------------------
+// COMPONENT
+// ----------------------
+export default function BlogInner({ data, latest }) {
   const router = useRouter();
-  const [contentWithIds, setContentWithIds] = useState("");
-  const [headingList, setHeadingList] = useState([]);
-  const [selected, setSelected] = useState("");
   const containerRef = useRef(null);
 
+  const [parsedContent, setParsedContent] = useState(null);
+  const [headingList, setHeadingList] = useState([]);
+  const [selected, setSelected] = useState("");
+
+  // Process blog content
   useEffect(() => {
-    const { contentWithIds, headingList } = injectIdsIntoContent(data.content);
-    setContentWithIds(contentWithIds);
+    if (!data?.content) return;
+
+    const { modifiedHtml, headingList } = injectIdsIntoContent(data.content);
+
+    setParsedContent(parse(modifiedHtml));
     setHeadingList(headingList);
     setSelected(headingList[0] || "");
-  }, []);
+  }, [data]);
 
   const handleOnFocus = (id) => {
-    const element = document.getElementById(id);
+    const el = document.getElementById(id);
     setSelected(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
+    el?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
+  // Scroll progress bar
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
+
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 250,
     damping: 30,
@@ -83,37 +96,37 @@ function BlogInner({data, latest}) {
 
   return (
     <div className="bg-white">
-      {/* Hero Section */}
+
+      {/* ---------- HERO SECTION ---------- */}
       <section className="containers md:py-12 py-6">
-        <div className=" mx-auto text-center">
+        <div className="mx-auto text-center">
           <h1 className="font-open-sans font-semibold lg:text-[40px] md:text-[32px] text-[26px] text-gray-900 mb-4">
             {data.title}
           </h1>
+
           <div className="relative w-full h-[300px] md:h-[500px] overflow-hidden">
             <Image
               src={data.image}
-              alt="Students enjoying education in Adelaide"
+              alt={data.title}
               fill
               className="object-cover object-center"
               priority
             />
           </div>
-        </div>  
+        </div>
       </section>
 
-      {/* Main Content */}
+      {/* ---------- MAIN CONTENT ---------- */}
       <section className="containers" ref={containerRef}>
         <div className="flex flex-col md:flex-row lg:gap-8 md:gap-4 max-w-7xl mx-auto">
-          {/* Sidebar Navigation (30%) */}
+
+          {/* ----- SIDEBAR / TOC ----- */}
           <aside className="hidden md:block lg:w-1/3 md:w-2/5 xl:w-1/4 sticky top-10 self-start">
-            {/* Navigation List */}
             <div className="flex items-start">
               <nav className="flex-1">
-                {/* Scroll Progress Bar */}
-
-                {/* Sidebar container with relative positioning */}
                 <div className="relative">
-                  {/* Scroll Progress Bar */}
+
+                  {/* Scroll Bar */}
                   <motion.div
                     style={{ scaleY }}
                     className="absolute left-0 top-3 w-[3px] h-full origin-top bg-red-500"
@@ -139,25 +152,17 @@ function BlogInner({data, latest}) {
               </nav>
             </div>
 
-            {/* Share Article Section (now sticky along with navigation) */}
-            <div className="mt-8 pt-6 border-t border-gray-200 ">
-              <h3 className="text-sm font-medium text-[#000000] mb-3">
+            {/* SHARE SECTION */}
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <h3 className="text-sm font-medium text-black mb-3">
                 Share Article
               </h3>
+
               <div className="flex gap-4">
                 {[FacebookRed, TwitterRed, InstagramRed, LinkedInRed].map(
                   (icon, i) => (
-                    <a
-                      key={i}
-                      className="hover:opacity-75 transition-opacity flex items-center justify-center w-4 h-4"
-                    >
-                      <Image
-                        src={icon}
-                        alt="social-icon"
-                        width={20}
-                        height={20}
-                        className="w-full h-full object-contain"
-                      />
+                    <a key={i} className="hover:opacity-75 transition-opacity">
+                      <Image src={icon} alt="icon" width={20} height={20} />
                     </a>
                   )
                 )}
@@ -165,42 +170,48 @@ function BlogInner({data, latest}) {
             </div>
           </aside>
 
-          {/* Blog Content (70%) */}
+          {/* ---------- BLOG CONTENT ---------- */}
           <article className="lg:w-2/3 md:w-3/5 xl:w-3/4 lg:pl-8 py-5 md:py-0">
             <div
-              className="[&>h2]:font-open-sans [&>h2]:font-semibold 
-               [&>h2]:text-[16px] md:[&>h2]:text-[18px] lg:[&>h2]:text-[20px]
-               [&>h2]:leading-[1.17] [&>h2]:mt-8 [&>h2]:mb-4
-               [&>p]:font-rubik [&>p]:font-normal 
-               [&>p]:text-[12px] lg:[&>p]:text-[14px]
-               [&>p]:leading-[21px] [&>p]:mb-4"
-              dangerouslySetInnerHTML={{ __html: contentWithIds }}
-            />
+              className="
+                [&_h1]:font-open-sans [&_h1]:font-semibold
+                [&_h2]:font-open-sans [&_h2]:font-semibold
+                [&_h2]:text-[18px] lg:[&_h2]:text-[20px]
+                [&_h2]:mt-8 [&_h2]:mb-4
+
+                [&_p]:font-rubik [&_p]:text-[14px] [&_p]:mb-4 [&_p]:leading-[22px]
+                [&_ul]:list-disc [&_ul]:ml-6 [&_li]:mb-2
+
+                [&_img]:rounded-lg [&_img]:my-4
+              "
+            >
+              {parsedContent}
+            </div>
           </article>
         </div>
       </section>
-       <section className="containers md:py-12 py-6">
 
+      {/* ---------- FAQ SECTION ---------- */}
+      <section className="containers md:py-12 py-6">
         <FaqSection faqs={data.faqs} />
-       </section>
+      </section>
 
-      {/* Latest Articles */}
-     {latest?.length > 0 && (
-  <section className="bg-gray-50 py-6 lg:py-10 ">
-    <div className="containers ">
-      <h2 className="text-2xl font-bold text-gray-900 py-5">
-        Latest Articles
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 md:gap-6 gap-2">
-        {latest.map((item, index) => (
-          <BlogCard key={index} item={item} router={router} />
-        ))}
-      </div>
-    </div>
-  </section>
-)}
+      {/* ---------- LATEST ARTICLES ---------- */}
+      {latest?.length > 0 && (
+        <section className="bg-gray-50 py-6 lg:py-10">
+          <div className="containers">
+            <h2 className="text-2xl font-bold text-gray-900 py-5">
+              Latest Articles
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 md:gap-6 gap-2">
+              {latest.map((item, index) => (
+                <BlogCard key={index} item={item} router={router} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
-
-export default BlogInner;

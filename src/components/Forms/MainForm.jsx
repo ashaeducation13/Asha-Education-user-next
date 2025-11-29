@@ -65,7 +65,7 @@ export default function MainForm({ onClose, course = null }) {
     // Handle phone number validation
     if (name === "phone") {
       // Remove any non-digit characters
-      const numbersOnly = value.replace(/\D/g, '');
+      const numbersOnly = value.replace(/\D/g, "");
 
       // Limit to 10 digits
       if (numbersOnly.length <= 10) {
@@ -120,7 +120,10 @@ export default function MainForm({ onClose, course = null }) {
       console.log(formData);
 
       await submitCounselForm(formData);
-
+      if (typeof window !== "undefined") {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: "form_submit" });
+      }
       Swal.fire({
         title: "🎓 Enquiry Received!",
         text: "Thanks for your interest! Our team will contact you shortly",
@@ -130,10 +133,9 @@ export default function MainForm({ onClose, course = null }) {
         timer: 5000,
         timerProgressBar: true,
         showClass: {
-          popup: 'animate__animated animate__zoomIn'
-        }
+          popup: "animate__animated animate__zoomIn",
+        },
       });
-
 
       setFormData({
         name: "",
@@ -152,7 +154,6 @@ export default function MainForm({ onClose, course = null }) {
         setPrograms([]);
       }
     } catch (error) {
-
       Swal.fire({
         title: "❌ Submission Error",
         text: "Unable to submit your Enquiry. Please verify your details and try again.",
@@ -160,9 +161,9 @@ export default function MainForm({ onClose, course = null }) {
         confirmButtonText: "Sure thing!",
         confirmButtonColor: "#dc3545",
         timer: 6000,
-        timerProgressBar: true
+        timerProgressBar: true,
       });
-    } 
+    }
   };
 
   useEffect(() => {
@@ -191,7 +192,10 @@ export default function MainForm({ onClose, course = null }) {
 
         {/* Name */}
         <div className="space-y-2">
-          <label htmlFor="name" className="block text-sm font-medium text-[#6D758F]">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-[#6D758F]"
+          >
             Name
           </label>
           <input
@@ -208,7 +212,10 @@ export default function MainForm({ onClose, course = null }) {
 
         {/* Phone */}
         <div className="space-y-2">
-          <label htmlFor="phone" className="block text-sm font-medium text-[#6D758F]">
+          <label
+            htmlFor="phone"
+            className="block text-sm font-medium text-[#6D758F]"
+          >
             Phone Number
           </label>
           <div className="relative">
@@ -234,7 +241,10 @@ export default function MainForm({ onClose, course = null }) {
 
         {/* Email */}
         <div className="space-y-2">
-          <label htmlFor="email" className="block text-sm font-medium text-[#6D758F]">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-[#6D758F]"
+          >
             Email
           </label>
           <input
@@ -255,7 +265,8 @@ export default function MainForm({ onClose, course = null }) {
             <h2 className="text-sm font-normal text-[#6D758F]">
               Enquiry:{" "}
               <span className=" text-[#111216] font-rubik">
-                {course.program_name?.name} {course.specialization?.name} in {course.university?.name}
+                {course.program_name?.name} {course.specialization?.name} in{" "}
+                {course.university?.name}
               </span>
             </h2>
           </div>
@@ -263,7 +274,9 @@ export default function MainForm({ onClose, course = null }) {
           <>
             {/* University Dropdown */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-[#6D758F]">University</label>
+              <label className="block text-sm font-medium text-[#6D758F]">
+                University
+              </label>
               <select
                 name="university"
                 value={formData.university}
@@ -282,7 +295,9 @@ export default function MainForm({ onClose, course = null }) {
 
             {/* Program Dropdown */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-[#6D758F]">Program</label>
+              <label className="block text-sm font-medium text-[#6D758F]">
+                Program
+              </label>
               <select
                 name="program"
                 value={formData.program}
@@ -313,7 +328,10 @@ export default function MainForm({ onClose, course = null }) {
               className="mt-1 h-4 w-4 text-[#FF383B] focus:ring-[#FF383B] border-gray-300 rounded"
               required
             />
-            <label htmlFor="consent" className="text-sm text-[#6D758F] leading-5">
+            <label
+              htmlFor="consent"
+              className="text-sm text-[#6D758F] leading-5"
+            >
               I agree to the{" "}
               <Link
                 href="/terms-and-conditions"
@@ -321,8 +339,8 @@ export default function MainForm({ onClose, course = null }) {
                 className="text-[#FF383B] underline hover:text-red-600"
               >
                 Terms and Conditions
-              </Link>
-              {" "}and{" "}
+              </Link>{" "}
+              and{" "}
               <Link
                 href="/privacy-policy"
                 target="_blank"
@@ -330,7 +348,8 @@ export default function MainForm({ onClose, course = null }) {
               >
                 Privacy Policy
               </Link>
-              . I consent to receiving communication about educational programs and services.
+              . I consent to receiving communication about educational programs
+              and services.
             </label>
           </div>
         </div>
@@ -339,10 +358,11 @@ export default function MainForm({ onClose, course = null }) {
         <button
           type="submit"
           disabled={!consentChecked}
-          className={`w-full flex justify-center items-center gap-2 px-4 py-2 text-white rounded transition-colors ${consentChecked
-            ? 'bg-[#FF383B] hover:bg-red-600 cursor-pointer'
-            : 'bg-gray-400 cursor-not-allowed'
-            }`}
+          className={`w-full flex justify-center items-center gap-2 px-4 py-2 text-white rounded transition-colors ${
+            consentChecked
+              ? "bg-[#FF383B] hover:bg-red-600 cursor-pointer"
+              : "bg-gray-400 cursor-not-allowed"
+          }`}
         >
           Submit Inquiry
           <Image src={arrow} alt="arrow" />

@@ -13,6 +13,7 @@
     "antd": "^5.24.4",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.5.0",
+    "html-react-parser": "^5.2.10",
     "lucide-react": "^0.484.0",
     "next": "15.2.2",
     "next-sitemap": "^4.2.3",
