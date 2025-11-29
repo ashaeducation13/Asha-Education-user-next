@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-
 import "./globals.css";
 
 import { Inter, Rubik, Playfair_Display, Open_Sans } from 'next/font/google';
@@ -11,8 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Image from "next/image";
 import Script from 'next/script';
 
-
-// Initialize the fonts
+// Fonts
 const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -43,25 +41,22 @@ export default function RootLayout({ children }) {
 
   useEffect(() => {
     setLoading(true)
-
-    // Give it time to render the next page
-    const timeout = setTimeout(() => {
-      setLoading(false)
-    }, 300) // Adjust delay if needed 
-
+    const timeout = setTimeout(() => setLoading(false), 300)
     return () => clearTimeout(timeout)
   }, [pathname])
 
   return (
-
     <html lang="en" className={`${rubik.variable} ${playfair.variable} ${openSans.variable}`}>
-       <head>
-        {/* Google Tag (gtag.js) */}
+      
+      <head>
+        {/* ------------------------------------------------ */}
+        {/* ⭐ GOOGLE ADS (AW TAG) — DO NOT REMOVE ⭐ */}
+        {/* ------------------------------------------------ */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-17627262854"
           strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-ads-config" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -69,10 +64,37 @@ export default function RootLayout({ children }) {
             gtag('config', 'AW-17627262854');
           `}
         </Script>
+
+        {/* ------------------------------------------------ */}
+        {/* ⭐ GOOGLE TAG MANAGER (GTM) — HEAD ⭐ */}
+        {/* ------------------------------------------------ */}
+        <Script id="gtm-head" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-536HZ564');
+          `}
+        </Script>
       </head>
+
       <body>
+        {/* ------------------------------------------------ */}
+        {/* ⭐ GOOGLE TAG MANAGER (GTM) — BODY ⭐ */}
+        {/* ------------------------------------------------ */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-536HZ564"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
+
         {loading && <Loader />}
         {children}
+
         <ToastContainer
           position="top-right"
           autoClose={3000}
@@ -86,7 +108,7 @@ export default function RootLayout({ children }) {
         />
 
         <a
-          href="https://wa.me/917208804245" // Replace with actual number
+          href="https://wa.me/917208804245"
           target="_blank"
           rel="noopener noreferrer"
           className="fixed bottom-6 right-6 z-50"
