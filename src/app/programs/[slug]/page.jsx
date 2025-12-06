@@ -3,6 +3,7 @@ import CertificationSection from './CertificationSection'
 import { ProgramFetchById, SeoFetch } from '@/services/api';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import HtmlContentSection from './HtmlContentSection';
 
 export async function generateMetadata({ params }) {
   try {
@@ -38,6 +39,9 @@ export default async function page({ params }) {
         <Navbar />
         <HeroSection data={prData} />
         <CertificationSection data={prData}  />
+        {/* 🔥 Only render if html exists */}
+      {prData?.html_content && <HtmlContentSection data={prData.html_content} />}
+
         <Footer/>
     </div>
   )

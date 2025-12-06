@@ -5,19 +5,19 @@ import { BlogFetch, SeoFetch } from "@/services/api";
 
 export const dynamic = "force-dynamic";
 
-// export async function generateMetadata() {
+export async function generateMetadata() {
 
-//   const seo = await SeoFetch('blogs')  
+  const seo = await SeoFetch('blogs')  
 
 
-//   return {
-//     title: seo.meta_title,
-//     description: seo.meta_description,
-//     alternates: {
-//       canonical: "https://www.asha.education/blogs",
-//     },
-//   };
-// }
+  return {
+    title: seo.meta_title,
+    description: seo.meta_description,
+    alternates: {
+      canonical: "https://www.asha.education/blogs",
+    },
+  };
+}
 
 export default async function page() {
   const data = await BlogFetch()

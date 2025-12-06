@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import heroImg from "../../assets/contact-us/h-Img.jpeg";
+import heroImg from "../../assets/contact-us/women.webp";
 import arrow from "../../assets/contact-us/arrow.svg";
 import ring from "../../assets/contact-us/ring.png";
 import topright from "../../../public/topright.svg";
@@ -10,10 +10,14 @@ import bottomright from "../../../public/bottomright.svg";
 import bottomleft from "../../../public/bottomleft.svg";
 import { motion } from "framer-motion";
 
-export default function HeroSection({loc}) {
+export default function HeroSection({ loc }) {
   const [isMapExpanded, setIsMapExpanded] = useState(false);
   // console.log("location data",loc);
-  
+
+  const handleScroll = () => {
+    const el = document.getElementById("send-us-section");
+    el?.scrollIntoView({ behavior: "smooth" });
+  };
   const toggleMap = () => {
     setIsMapExpanded(!isMapExpanded);
   };
@@ -80,20 +84,20 @@ export default function HeroSection({loc}) {
             className="containers max-w-md text-start md:pl-4 lg:pl-12"
           >
             <motion.h1
-            variants={{
-              hidden: {
-                opacity: 0,
-                clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)",
-              },
-              visible: {
-                opacity: 1,
-                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-                transition: {
-                  duration: 1.2,
-                  ease: [0.2, 0.65, 0.3, 0.9],
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)",
                 },
-              },
-            }}
+                visible: {
+                  opacity: 1,
+                  clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                  transition: {
+                    duration: 1.2,
+                    ease: [0.2, 0.65, 0.3, 0.9],
+                  },
+                },
+              }}
               className="bg-clip-text text-transparent font-playfair font-normal lg:text-[40px] md:text-[32px] text-[24px] lg:leading-[40px] md:leading-[32px] leading-[24px]"
               style={{
                 backgroundImage:
@@ -102,48 +106,51 @@ export default function HeroSection({loc}) {
             >
               Get in Touch{" "}
             </motion.h1>
-            <motion.h2 
-            variants={{
-              hidden: {
-                opacity: 0,
-                clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)",
-              },
-              visible: {
-                opacity: 1,
-                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-                transition: {
-                  duration: 1.2,
-                  ease: [0.2, 0.65, 0.3, 0.9],
+            <motion.h2
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)",
                 },
-              },
-            }}
-            className="font-open-sans text-start font-medium lg:text-[40px] md:text-[32px] text-[24px] lg:leading-[40px] md:leading-[32px] leading-[24px] mb-4">
+                visible: {
+                  opacity: 1,
+                  clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+                  transition: {
+                    duration: 1.2,
+                    ease: [0.2, 0.65, 0.3, 0.9],
+                  },
+                },
+              }}
+              className="font-open-sans text-start font-medium lg:text-[40px] md:text-[32px] text-[24px] lg:leading-[40px] md:leading-[32px] leading-[24px] mb-4"
+            >
               with Us
             </motion.h2>
-            <motion.p 
-             variants={{
-              hidden: {
-                opacity: 0,
-                filter: "blur(4px)",
-                y: 10,
-              },
-              visible: {
-                opacity: 1,
-                filter: "blur(0px)",
-                y: 0,
-                transition: {
-                  delay: 0.4,
-                  duration: 0.8,
-                  ease: "easeOut",
+            <motion.p
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  filter: "blur(4px)",
+                  y: 10,
                 },
-              },
-            }}
-            className="font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] lg:leading-[24px] md:leading-[21px] leading-[18px] mb-6 text-[#121212] md:w-[75%] xl:w-[90%]">
+                visible: {
+                  opacity: 1,
+                  filter: "blur(0px)",
+                  y: 0,
+                  transition: {
+                    delay: 0.4,
+                    duration: 0.8,
+                    ease: "easeOut",
+                  },
+                },
+              }}
+              className="font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] lg:leading-[24px] md:leading-[21px] leading-[18px] mb-6 text-[#121212] md:w-[75%] xl:w-[90%]"
+            >
               Reach out for expert guidance, admissions support, and answers to
               all your education-related queries
             </motion.p>
             <button
-              className="flex items-center justify-center gap-2 text-white font-rubik font-medium md:text-[14px] text-[12px] leading-[20px] rounded-[6px] px-4 py-[6px]"
+              onClick={handleScroll}
+              className="flex items-center cursor-pointer justify-center gap-2 text-white font-rubik font-medium md:text-[14px] text-[12px] leading-[20px] rounded-[6px] px-4 py-[6px]"
               style={{
                 background:
                   "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
@@ -180,7 +187,6 @@ export default function HeroSection({loc}) {
               <iframe
                 // src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3770.9790556191876!2d72.8265398!3d19.2004843!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b74ec2c18775%3A0x29c5d960d7559a01!2sPanchratna%20(A)%20Co%20op.%20Housing%20Society%20Ltd!5e0!3m2!1sen!2sin!4v1712572441234!5m2!1sen!2sin"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d593.329187304031!2d72.88926899999997!3d19.11561500000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9085f4e7399%3A0xffcae387220f04e6!2sHiranandani%20Business%20Park%20-%20Lightbridge!5e1!3m2!1sen!2sin!4v1754891958333!5m2!1sen!2sin"
-                
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

@@ -5,19 +5,18 @@ import { BlogFetch, BlogSlugFetch, SeoFetch } from "@/services/api";
 
 
 
-// export async function generateMetadata() {
+export async function generateMetadata({ params }) {
+  const slug = params.id;
+  const data = await BlogSlugFetch(slug);
 
-//   const seo = await SeoFetch('blogs_inner')  
-
-
-//   return {
-//     title: seo.meta_title,
-//     description: seo.meta_description,
-//     alternates: {
-//       canonical: `https://www.asha.education/blogs/${seo.slug}`,
-//     },
-//   };
-// }
+  return {
+    title: data?.meta_title || data?.title,
+    description: data?.meta_description || "",
+    alternates: {
+      canonical: `https://www.asha.education/blogs/${slug}`,
+    },
+  };
+}
 
 export default async function page({params}) {
   const slug = params.id;
