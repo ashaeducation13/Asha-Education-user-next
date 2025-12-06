@@ -337,7 +337,7 @@ export default function SendUsSection({data}) {
           </div>
           <SocialMediaSection />
         </div>
-        <div className="lg:w-[35%] md:w-[40%] w-full">
+        <div id="send-us-section" className="lg:w-[35%] md:w-[40%] w-full">
           <ContactForm />
         </div>
       </div>
