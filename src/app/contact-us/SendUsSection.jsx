@@ -1,4 +1,6 @@
 "use client";
+import Swal from "sweetalert2";
+
 import { contactForm } from "@/services/api";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -19,8 +21,10 @@ import one from "../../assets/contact-us/1.svg";
 import two from "../../assets/contact-us/2.svg";
 import three from "../../assets/contact-us/3.svg";
 import four from "../../assets/contact-us/4.svg";
+import PhoneVerifyModal from "@/components/otp/PhoneVerifyModal";
 
 const ContactCard = ({ item }) => (
+
   <div className="px-4 py-2 rounded-[20px] bg-white flex flex-col justify-center shadow-2xl transition duration-300 hover:bg-gradient-to-r hover:from-[#0A0078] hover:to-[#FF383B] hover:text-white group">
     <div className="flex items-start gap-2 md:gap-1 lg:gap-4">
       <Image
@@ -91,7 +95,7 @@ const SocialMediaSection = () => (
   </div>
 );
 
-const ContactForm = () => {
+const ContactForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -142,16 +146,20 @@ const ContactForm = () => {
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length > 0 || !consent) return;
 
-    try {
-      await contactForm(formData);
-      toast.success("Message sent successfully!");
-      setFormData({ name: "", phone: "", email: "", message: "" });
-      setConsent(false);
-      setSubmitted(false);
-      setErrors({});
-    } catch (err) {
-      toast.error("Something went wrong. Please try again.");
-    }
+    // try {
+    //   await contactForm(formData);
+    //   toast.success("Message sent successfully!");
+    //   setFormData({ name: "", phone: "", email: "", message: "" });
+    //   setConsent(false);
+    //   setSubmitted(false);
+    //   setErrors({});
+    // } catch (err) {
+    //   toast.error("Something went wrong. Please try again.");
+    // }
+    onSubmit({
+      phone: formData.phone,
+      formData,
+    });
   };
 
   return (
@@ -172,9 +180,8 @@ const ContactForm = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className={`border rounded-lg p-2 focus:outline-none ${
-                errors.name ? "border-red-500" : "border-gray-300"
-              } focus:border-[#FF383B]`}
+              className={`border rounded-lg p-2 focus:outline-none ${errors.name ? "border-red-500" : "border-gray-300"
+                } focus:border-[#FF383B]`}
               placeholder="Brian Clark"
             />
             {errors.name && (
@@ -210,9 +217,8 @@ const ContactForm = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`border rounded-lg p-2 focus:outline-none ${
-                errors.email ? "border-red-500" : "border-gray-300"
-              } focus:border-[#FF383B]`}
+              className={`border rounded-lg p-2 focus:outline-none ${errors.email ? "border-red-500" : "border-gray-300"
+                } focus:border-[#FF383B]`}
               placeholder="example@youremail.com"
             />
             {errors.email && (
@@ -227,9 +233,8 @@ const ContactForm = () => {
               rows="4"
               value={formData.message}
               onChange={handleChange}
-              className={`border rounded-lg p-2 focus:outline-none ${
-                errors.message ? "border-red-500" : "border-gray-300"
-              } focus:border-[#FF383B]`}
+              className={`border rounded-lg p-2 focus:outline-none ${errors.message ? "border-red-500" : "border-gray-300"
+                } focus:border-[#FF383B]`}
               placeholder="Type ..."
             ></textarea>
             {errors.message && (
@@ -260,11 +265,10 @@ const ContactForm = () => {
           <button
             type="submit"
             disabled={!consent}
-            className={`relative flex items-center justify-center mt-2 text-white rounded-lg font-semibold transition w-3/5 px-3 py-[6px] lg:py-3 text-sm leading-5 ${
-              consent
-                ? "bg-[#FF383B] hover:bg-[#e02e33]"
-                : "bg-gray-400 cursor-not-allowed"
-            }`}
+            className={`relative flex items-center justify-center mt-2 text-white rounded-lg font-semibold transition w-3/5 px-3 py-[6px] lg:py-3 text-sm leading-5 ${consent
+              ? "bg-[#FF383B] hover:bg-[#e02e33]"
+              : "bg-gray-400 cursor-not-allowed"
+              }`}
           >
             Submit Inquiry
             <Image
@@ -281,9 +285,11 @@ const ContactForm = () => {
   );
 };
 
-export default function SendUsSection({data}) {
-  console.log("dataasadas",data);
-  
+export default function SendUsSection({ data }) {
+  const [showOtpModal, setShowOtpModal] = useState(false);
+  const [pendingFormData, setPendingFormData] = useState(null);
+
+
   const contactInfo = [
     {
       title: "Address",
@@ -338,10 +344,44 @@ export default function SendUsSection({data}) {
           <SocialMediaSection />
         </div>
         <div id="send-us-section" className="lg:w-[35%] md:w-[40%] w-full">
-          <ContactForm />
+          <ContactForm
+            onSubmit={({ phone, formData }) => {
+              setPendingFormData(formData);
+              setShowOtpModal(true);
+            }}
+          />
+
         </div>
       </div>
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+      {showOtpModal && pendingFormData && (
+        <PhoneVerifyModal
+          isOpen={showOtpModal}
+          phone={pendingFormData.phone}
+          onClose={() => setShowOtpModal(false)}
+          onVerified={async () => {
+            try {
+              await contactForm(pendingFormData);
+
+              Swal.fire({
+                title: "✅ Message Received",
+                text: "Thanks for reaching out. Our team will contact you shortly.",
+                icon: "success",
+                confirmButtonText: "Okay",
+                confirmButtonColor: "#0A0078",
+                timer: 4000,
+                timerProgressBar: true,
+              });
+
+              setShowOtpModal(false);
+              setPendingFormData(null);
+            } catch (err) {
+              toast.error("Something went wrong. Please try again.");
+            }
+          }}
+        />
+      )}
+
     </div>
   );
 }
