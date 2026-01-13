@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { submitCounselForm, UniversityFetch } from "@/services/api";
 import Swal from "sweetalert2";
 
-export default function MainForm({ onClose, course = null }) {
+export default function MainForm({ onClose, onSubmit, course = null }) {
   const modalRef = useRef(null);
 
   const [universities, setUniversities] = useState([]);
@@ -116,54 +116,10 @@ export default function MainForm({ onClose, course = null }) {
       return;
     }
 
-    try {
-      console.log(formData);
-
-      await submitCounselForm(formData);
-      if (typeof window !== "undefined") {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: "form_submit" });
-      }
-      Swal.fire({
-        title: "🎓 Enquiry Received!",
-        text: "Thanks for your interest! Our team will contact you shortly",
-        icon: "success",
-        confirmButtonText: "Perfect!",
-        confirmButtonColor: "#007bff",
-        timer: 5000,
-        timerProgressBar: true,
-        showClass: {
-          popup: "animate__animated animate__zoomIn",
-        },
+      onSubmit({
+        phone: formData.phone,
+        formData,
       });
-
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        university: course?.university?.id || "",
-        program: course?.program_name?.id || "",
-      });
-
-      setConsentChecked(false);
-
-      onClose();
-
-      if (!course) {
-        setSelectedUniversityId("");
-        setPrograms([]);
-      }
-    } catch (error) {
-      Swal.fire({
-        title: "❌ Submission Error",
-        text: "Unable to submit your Enquiry. Please verify your details and try again.",
-        icon: "error",
-        confirmButtonText: "Sure thing!",
-        confirmButtonColor: "#dc3545",
-        timer: 6000,
-        timerProgressBar: true,
-      });
-    }
   };
 
   useEffect(() => {

@@ -1,11 +1,18 @@
 "use client";
+import Swal from "sweetalert2";
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import logo from "../assets/navbar/logo.png";
 import Link from "next/link";
 import circle from "../assets/about-us/circle-ellipsis 1.svg";
 import MainForm from "./Forms/MainForm";
-import { ProgramFetch, TypeFetch, UniversityFetch } from "@/services/api";
+import {
+  ProgramFetch,
+  submitCounselForm,
+  TypeFetch,
+  UniversityFetch,
+} from "@/services/api";
+import PhoneVerifyModal from "./otp/PhoneVerifyModal";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,8 +20,12 @@ const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [program, setProgram] = useState([]);
   const [univ, setUniv] = useState([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [showOtpModal, setShowOtpModal] = useState(false);
+  const [phoneForOtp, setPhoneForOtp] = useState("");
+
+  const [pendingFormData, setPendingFormData] = useState(null);
 
   const navRef = useRef(null);
   const programsContainerRef = useRef(null);
@@ -27,7 +38,7 @@ const Navbar = () => {
     { name: "Online PG Cources", url: "/programs?pg=PG" },
     { name: "Online UG Cources", url: "/programs?ug=UG" },
     { name: "Certifications", url: "/programs?cert=Certifications" },
-    { name: "Executive Cources", url: "/programs?ex=ex" }
+    { name: "Executive Cources", url: "/programs?ex=ex" },
   ];
   useEffect(() => {
     const getData = async () => {
@@ -42,10 +53,10 @@ const Navbar = () => {
           setProgram(data2);
         }
         if (!data1 && !data2) {
-          setError('Failed to load data');
+          setError("Failed to load data");
         }
       } catch (error) {
-        setError('Error fetching data');
+        setError("Error fetching data");
       }
       setLoading(false);
     };
@@ -121,7 +132,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <div className="h-[45px] aspect-[2.45]">
-              <Link href="/" >
+              <Link href="/">
                 <Image
                   src={logo}
                   alt="Logo"
@@ -130,16 +141,21 @@ const Navbar = () => {
                 />
               </Link>
             </div>
-
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-4 font-rubik">
             <div className="hidden lg:flex items-center space-x-4 lg:space-x-0 xl:space-x-4 font-rubik font-normal lg:text-[16px] md:text-[14px] text-[12px] leading-[20px] text-[#9C9C9C] ">
-              <Link href="/" className="px-3 py-2 rounded-md hover:text-[#FF383B] transition-colors">
+              <Link
+                href="/"
+                className="px-3 py-2 rounded-md hover:text-[#FF383B] transition-colors"
+              >
                 Home
               </Link>
-              <Link href="/about-us" className="px-3 py-2 rounded-md hover:text-[#FF383B] transition-colors">
+              <Link
+                href="/about-us"
+                className="px-3 py-2 rounded-md hover:text-[#FF383B] transition-colors"
+              >
                 About Us
               </Link>
 
@@ -159,8 +175,11 @@ const Navbar = () => {
                     className="ml-2 cursor-pointer"
                   >
                     <svg
-                      className={`h-5 w-5 transition-transform duration-200 ${activeDropdown === "programs" ? "rotate-180 text-[#FF383B]" : ""
-                        } group-hover:text-[#FF383B]`}
+                      className={`h-5 w-5 transition-transform duration-200 ${
+                        activeDropdown === "programs"
+                          ? "rotate-180 text-[#FF383B]"
+                          : ""
+                      } group-hover:text-[#FF383B]`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -188,7 +207,9 @@ const Navbar = () => {
                           </Link>
                         ))
                       ) : (
-                        <div className="px-4 py-2 text-center text-gray-500">No programs available</div>
+                        <div className="px-4 py-2 text-center text-gray-500">
+                          No programs available
+                        </div>
                       )}
                     </div>
                   </div>
@@ -196,10 +217,7 @@ const Navbar = () => {
               </div>
 
               {/* Universities Dropdown */}
-              <div
-                className="relative"
-                ref={universitiesContainerRef}
-              >
+              <div className="relative" ref={universitiesContainerRef}>
                 <div className="flex items-center px-3 py-2 rounded-md group">
                   <Link
                     href="/universities"
@@ -209,13 +227,16 @@ const Navbar = () => {
                   </Link>
 
                   <button
-                    className={`flex items-center px-3 py-2 rounded-md hover:text-[#FF383B] transition-colors ${activeDropdown === "universities" ? "text-[#FF383B]" : ""}`}
+                    className={`flex items-center px-3 py-2 rounded-md hover:text-[#FF383B] transition-colors ${
+                      activeDropdown === "universities" ? "text-[#FF383B]" : ""
+                    }`}
                     onClick={() => toggleDropdown("universities")}
                     onMouseEnter={() => handleMouseEnter("universities")}
                   >
-
                     <svg
-                      className={`ml-1 h-5 w-5 transition-transform duration-200 ${activeDropdown === "universities" ? "rotate-180" : ""}`}
+                      className={`ml-1 h-5 w-5 transition-transform duration-200 ${
+                        activeDropdown === "universities" ? "rotate-180" : ""
+                      }`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -248,27 +269,29 @@ const Navbar = () => {
                           </Link>
                         ))
                       ) : (
-                        <div className="px-4 py-2 text-center text-gray-500">No universities available</div>
+                        <div className="px-4 py-2 text-center text-gray-500">
+                          No universities available
+                        </div>
                       )}
                     </div>
                   </div>
-
                 )}
               </div>
 
               {/* More Dropdown */}
-              <div
-                className="relative"
-                ref={moreContainerRef}
-              >
+              <div className="relative" ref={moreContainerRef}>
                 <button
-                  className={`flex items-center px-3 py-2 rounded-md hover:text-[#FF383B] transition-colors ${activeDropdown === "more" ? "text-[#FF383B]" : ""}`}
+                  className={`flex items-center px-3 py-2 rounded-md hover:text-[#FF383B] transition-colors ${
+                    activeDropdown === "more" ? "text-[#FF383B]" : ""
+                  }`}
                   onClick={() => toggleDropdown("more")}
                   onMouseEnter={() => handleMouseEnter("more")}
                 >
                   More
                   <svg
-                    className={`ml-1 h-5 w-5 transition-transform duration-200 ${activeDropdown === "more" ? "rotate-180" : ""}`}
+                    className={`ml-1 h-5 w-5 transition-transform duration-200 ${
+                      activeDropdown === "more" ? "rotate-180" : ""
+                    }`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -407,12 +430,18 @@ const Navbar = () => {
             {/* Programs Dropdown Mobile */}
             <div>
               <button
-                className={`w-full flex justify-between items-center px-3 py-2 rounded-md hover:text-[#FF383B] hover:bg-gray-50 transition-colors ${activeDropdown === "programs-mobile" ? "text-[#FF383B] bg-gray-50" : ""}`}
+                className={`w-full flex justify-between items-center px-3 py-2 rounded-md hover:text-[#FF383B] hover:bg-gray-50 transition-colors ${
+                  activeDropdown === "programs-mobile"
+                    ? "text-[#FF383B] bg-gray-50"
+                    : ""
+                }`}
                 onClick={() => toggleDropdown("programs-mobile")}
               >
                 <span>Programs</span>
                 <svg
-                  className={`h-5 w-5 transition-transform duration-200 ${activeDropdown === "programs-mobile" ? "rotate-180" : ""}`}
+                  className={`h-5 w-5 transition-transform duration-200 ${
+                    activeDropdown === "programs-mobile" ? "rotate-180" : ""
+                  }`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -423,7 +452,7 @@ const Navbar = () => {
                   />
                 </svg>
               </button>
-              {activeDropdown === 'programs-mobile' && (
+              {activeDropdown === "programs-mobile" && (
                 <div className="ml-4 space-y-1 font-rubik font-normal lg:text-[16px] text-[14px] leading-[20px] text-[#9C9C9C] bg-gray-50 rounded-md mt-1">
                   {loading ? (
                     <div className="px-3 py-3 text-center">
@@ -443,7 +472,9 @@ const Navbar = () => {
                       </Link>
                     ))
                   ) : (
-                    <div className="px-3 py-2 text-center text-gray-500">No programs available</div>
+                    <div className="px-3 py-2 text-center text-gray-500">
+                      No programs available
+                    </div>
                   )}
                 </div>
               )}
@@ -452,12 +483,18 @@ const Navbar = () => {
             {/* Universities Dropdown Mobile */}
             <div>
               <button
-                className={`w-full flex justify-between items-center px-3 py-2 rounded-md hover:text-[#FF383B] hover:bg-gray-50 transition-colors ${activeDropdown === "universities-mobile" ? "text-[#FF383B] bg-gray-50" : ""}`}
+                className={`w-full flex justify-between items-center px-3 py-2 rounded-md hover:text-[#FF383B] hover:bg-gray-50 transition-colors ${
+                  activeDropdown === "universities-mobile"
+                    ? "text-[#FF383B] bg-gray-50"
+                    : ""
+                }`}
                 onClick={() => toggleDropdown("universities-mobile")}
               >
                 <span>Universities</span>
                 <svg
-                  className={`h-5 w-5 transition-transform duration-200 ${activeDropdown === "universities-mobile" ? "rotate-180" : ""}`}
+                  className={`h-5 w-5 transition-transform duration-200 ${
+                    activeDropdown === "universities-mobile" ? "rotate-180" : ""
+                  }`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -468,7 +505,7 @@ const Navbar = () => {
                   />
                 </svg>
               </button>
-              {activeDropdown === 'universities-mobile' && (
+              {activeDropdown === "universities-mobile" && (
                 <div className="ml-4 space-y-1 font-rubik font-normal lg:text-[16px] text-[14px] leading-[20px] text-[#9C9C9C] bg-gray-50 rounded-md mt-1">
                   {loading ? (
                     <div className="px-3 py-3 text-center">
@@ -488,7 +525,9 @@ const Navbar = () => {
                       </Link>
                     ))
                   ) : (
-                    <div className="px-3 py-2 text-center text-gray-500">No universities available</div>
+                    <div className="px-3 py-2 text-center text-gray-500">
+                      No universities available
+                    </div>
                   )}
                 </div>
               )}
@@ -522,8 +561,51 @@ const Navbar = () => {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 z-[9999] bg-black/50 bg-opacity-50 flex items-center justify-center">
-          <MainForm onClose={() => setShowModal(false)} />
+          <MainForm
+            onClose={() => setShowModal(false)}
+            onSubmit={({ phone, formData }) => {
+              setPhoneForOtp(phone);
+              setPendingFormData(formData);
+              setShowModal(false);
+              setShowOtpModal(true);
+            }}
+          />
         </div>
+      )}
+      {showOtpModal && pendingFormData && (
+        <PhoneVerifyModal
+          isOpen={showOtpModal}
+          onClose={() => setShowOtpModal(false)}
+          phone={pendingFormData.phone}
+          formData={{
+            phone: pendingFormData.phone,
+            email: pendingFormData.email,
+            firstName: pendingFormData.name?.split(" ")[0] || "",
+            lastName: pendingFormData.name?.split(" ").slice(1).join(" ") || "",
+          }}
+          onVerified={async () => {
+            try {
+              await submitCounselForm(pendingFormData);
+
+              await Swal.fire({
+                title: "🎓 Enquiry Submitted!",
+                text: "Our team will contact you shortly.",
+                icon: "success",
+                confirmButtonColor: "#FF383B",
+              });
+
+              setPendingFormData(null);
+              setShowOtpModal(false);
+            } catch (err) {
+              Swal.fire({
+                title: "Submission Failed",
+                text: "Something went wrong. Please try again.",
+                icon: "error",
+                confirmButtonColor: "#FF383B",
+              });
+            }
+          }}
+        />
       )}
     </nav>
   );

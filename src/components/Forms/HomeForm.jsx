@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { trackFormSubmit } from "@/lib/gtm";
 
-const HomeForm = () => {
+const HomeForm = ({ onSubmit, resetKey }) => {
   const [universities, setUniversities] = useState([]);
   const [selectedUniversityId, setSelectedUniversity] = useState("");
   const [programs, setPrograms] = useState([]);
@@ -26,6 +26,18 @@ const HomeForm = () => {
   const handleConsentChange = (e) => {
     setConsentChecked(e.target.checked);
   };
+  useEffect(() => {
+    setFormData({
+      name: "",
+      phone: "",
+      email: "",
+      university: "",
+      program: "",
+    });
+    setSelectedUniversity("");
+    setPrograms([]);
+    setConsentChecked(false);
+  }, [resetKey]);
 
   useEffect(() => {
     const fetchUniversities = async () => {
@@ -48,7 +60,8 @@ const HomeForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const finalValue = name === "university" || name === "program" ? parseInt(value) : value;
+    const finalValue =
+      name === "university" || name === "program" ? parseInt(value) : value;
     setFormData((prev) => ({
       ...prev,
       [name]: finalValue,
@@ -73,45 +86,10 @@ const HomeForm = () => {
       return; // Stop submission
     }
 
-
-    try {
-      await submitCounselForm(formData);
-      trackFormSubmit("Navbar Form");
-      Swal.fire({
-        title: "🎓 Enquiry Received!",
-        text: "Thanks for your interest! Our team will contact you shortly",
-        icon: "success",
-        confirmButtonText: "Perfect!",
-        confirmButtonColor: "#007bff",
-        timer: 5000,
-        timerProgressBar: true,
-        showClass: {
-          popup: 'animate__animated animate__zoomIn'
-        }
-      });
-
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        university: "",
-        program: "",
-      });
-
-      setSelectedUniversity("");
-      setPrograms([]);
-    } catch (error) {
-
-      Swal.fire({
-        title: "❌ Submission Error",
-        text: "Unable to submit your Enquiry. Please verify your details and try again.",
-        icon: "error",
-        confirmButtonText: "Sure thing!",
-        confirmButtonColor: "#dc3545",
-        timer: 6000,
-        timerProgressBar: true
-      });
-    }
+    onSubmit({
+      phone: formData.phone,
+      formData,
+    });
   };
 
   return (
@@ -222,8 +200,8 @@ const HomeForm = () => {
               className="text-[#FF383B] underline hover:text-red-600"
             >
               Terms and Conditions
-            </Link>
-            {" "}and{" "}
+            </Link>{" "}
+            and{" "}
             <Link
               href="/privacy-policy"
               target="_blank"
@@ -231,7 +209,8 @@ const HomeForm = () => {
             >
               Privacy Policy
             </Link>
-            . I consent to receiving communication about educational programs and services.
+            . I consent to receiving communication about educational programs
+            and services.
           </label>
         </div>
         <motion.button
@@ -239,11 +218,11 @@ const HomeForm = () => {
           disabled={!consentChecked}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-
-          className={`w-full flex justify-center items-center gap-2 px-4 py-2 text-white rounded transition-colors ${consentChecked
-              ? 'bg-[#FF383B] hover:bg-red-600 cursor-pointer'
-              : 'bg-gray-400 cursor-not-allowed'
-            }`}
+          className={`w-full flex justify-center items-center gap-2 px-4 py-2 text-white rounded transition-colors ${
+            consentChecked
+              ? "bg-[#FF383B] hover:bg-red-600 cursor-pointer"
+              : "bg-gray-400 cursor-not-allowed"
+          }`}
         >
           Submit
           <Image src={arrow} alt="Arrow" className="w-[8.4px] h-[8.24px]" />

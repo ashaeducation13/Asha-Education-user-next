@@ -24,6 +24,8 @@ const Footer = () => {
   const [error, setError] = useState(null);
 
   const [email, setEmail] = useState("");
+  const currentYear = new Date().getFullYear();
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -314,8 +316,8 @@ const Footer = () => {
           <p className="inline-flex items-center w-full sm:w-auto justify-center sm:justify-start lg:w-auto">
             Copyright
             <Image src={copyright} alt="copyright" className="h-4 mx-1" />
-            2024{" "}
-            <span className="text-[#FF383B] font-medium mx-1">
+           {currentYear}{" "}
+            <span className="text-[#FF383B] fonfft-medium mx-1">
               Asha Education
             </span>{" "}
             All Rights Reserved

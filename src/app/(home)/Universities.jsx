@@ -12,12 +12,19 @@ import { motion } from "framer-motion";
 import arrow from "../../assets/home/herosection/Arrow.svg";
 import arrowright from "../../assets/home/partnersection/darkarrowright.svg";
 import MainForm from "@/components/Forms/MainForm";
+import PhoneVerifyModal from "@/components/otp/PhoneVerifyModal";
+import Swal from "sweetalert2";
+import { submitCounselForm } from "@/services/api";
 
 const Universities = ({ data }) => {
   const [univ, setUniv] = useState(data || []);
-  const [selectedUniversity, setSelectedUniversity] = useState(data?.[0] || null);
+  const [selectedUniversity, setSelectedUniversity] = useState(
+    data?.[0] || null
+  );
   const [showModal, setShowModal] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const [showOtpModal, setShowOtpModal] = useState(false);
+  const [pendingFormData, setPendingFormData] = useState(null);
 
   return (
     <>
@@ -28,7 +35,8 @@ const Universities = ({ data }) => {
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
           viewport={{ once: true, amount: 0.5 }}
-          className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 font-open-sans">
+          className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 font-open-sans"
+        >
           Our Prestigious Partner Universities
         </motion.h2>
         <motion.p
@@ -36,7 +44,8 @@ const Universities = ({ data }) => {
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
           viewport={{ once: true, amount: 0.5 }}
-          className="mt-3 md:mt-4 text-xs md:text-sm lg:text-base text-gray-600 w-full md:w-3/4 lg:w-1/2 mx-auto font-inter font-normal leading-relaxed">
+          className="mt-3 md:mt-4 text-xs md:text-sm lg:text-base text-gray-600 w-full md:w-3/4 lg:w-1/2 mx-auto font-inter font-normal leading-relaxed"
+        >
           Explore our network of globally recognized partner universities,
           offering diverse programs and exceptional academic opportunities for
           students worldwide
@@ -57,10 +66,11 @@ const Universities = ({ data }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 className={`w-4/5 md:w-full flex flex-col md:flex-row items-center gap-2 px-1 md:px-2 py-2 border rounded-md text-xs md:text-sm font-normal transition-all font-rubik mx-auto md:mx-0
-        ${selectedUniversity?.id === university.id
-                    ? "border-[#0A0078] text-black bg-[#F1F4FF]"
-                    : "border-gray-300 bg-white hover:bg-gray-100"
-                  }`}
+        ${
+          selectedUniversity?.id === university.id
+            ? "border-[#0A0078] text-black bg-[#F1F4FF]"
+            : "border-gray-300 bg-white hover:bg-gray-100"
+        }`}
                 onClick={() => setSelectedUniversity(university)}
               >
                 <div className="flex-shrink-0">
@@ -72,11 +82,12 @@ const Universities = ({ data }) => {
                     className="object-contain"
                   />
                 </div>
-                <span className="text-center md:text-left break-words whitespace-normal">{university.name}</span>
+                <span className="text-center md:text-left break-words whitespace-normal">
+                  {university.name}
+                </span>
               </motion.button>
             ))}
           </div>
-
 
           {/* Desktop Buttons (Hidden on small screens) */}
           <div className="flex-col justify-between w-full gap-3 items-center hidden md:flex mt-3">
@@ -95,11 +106,7 @@ const Universities = ({ data }) => {
             <Link href="/comparison" passHref className="w-full">
               <button className="cursor-pointer flex items-center justify-center font-inter font-semibold gap-2 px-3 py-2 rounded-lg shadow-md transition duration-300 text-xs md:text-sm w-full border border-gray-300 bg-white hover:bg-gray-100">
                 Compare Universities
-                <Image
-                  src={arrowright}
-                  alt="Arrow"
-                  className="w-3 h-3"
-                />
+                <Image src={arrowright} alt="Arrow" className="w-3 h-3" />
               </button>
             </Link>
           </div>
@@ -124,13 +131,13 @@ const Universities = ({ data }) => {
             {selectedUniversity?.programs?.map((course) => (
               <SwiperSlide key={course.id} className="pb-12 md:py-12">
                 <div className="flex justify-center w-full h-full">
-                <PartnerCard
-                  course={course}
-                  onApplyClick={(course) => {
-                    setSelectedCourse(course);
-                    setShowModal(true);
-                  }}
-                />
+                  <PartnerCard
+                    course={course}
+                    onApplyClick={(course) => {
+                      setSelectedCourse(course);
+                      setShowModal(true);
+                    }}
+                  />
                 </div>
               </SwiperSlide>
             ))}
@@ -144,7 +151,8 @@ const Universities = ({ data }) => {
           <button
             className="flex items-center justify-center font-semibold gap-1 text-white px-2 py-2 rounded-lg shadow transition duration-300 text-xs w-full"
             style={{
-              backgroundImage: "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
+              backgroundImage:
+                "linear-gradient(90deg, #0A0078 5.5%, #FF383B 96.5%)",
             }}
           >
             Browse all Programs
@@ -153,9 +161,7 @@ const Universities = ({ data }) => {
         </Link>
 
         <Link href="/comparison" passHref className="w-1/2">
-          <button
-            className="flex items-center justify-center font-semibold gap-1 px-2 py-2 rounded-lg shadow transition duration-300 text-xs w-full border border-gray-300 bg-white hover:bg-gray-100"
-          >
+          <button className="flex items-center justify-center font-semibold gap-1 px-2 py-2 rounded-lg shadow transition duration-300 text-xs w-full border border-gray-300 bg-white hover:bg-gray-100">
             Compare Universities
             <Image src={arrowright} alt="Arrow" className="w-2 h-2" />
           </button>
@@ -166,10 +172,48 @@ const Universities = ({ data }) => {
       {showModal && (
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
           <div className="w-full max-w-lg">
-            <MainForm onClose={() => setShowModal(false)} course={selectedCourse} />
+            <MainForm
+              course={selectedCourse}
+              onClose={() => setShowModal(false)}
+              onSubmit={({ phone, formData }) => {
+                setPendingFormData(formData);
+                setShowModal(false);
+                setShowOtpModal(true);
+              }}
+            />
           </div>
         </div>
       )}
+
+      {showOtpModal && pendingFormData && (
+  <PhoneVerifyModal
+    isOpen={showOtpModal}
+    phone={pendingFormData.phone}
+    onClose={() => setShowOtpModal(false)}
+    onVerified={async () => {
+      try {
+        await submitCounselForm(pendingFormData);
+
+        Swal.fire({
+          title: "🎓 Enquiry Received!",
+          text: "Our team will contact you shortly.",
+          icon: "success",
+          confirmButtonColor: "#0A0078",
+        });
+
+        setShowOtpModal(false);
+        setPendingFormData(null);
+      } catch (err) {
+        Swal.fire({
+          title: "Submission Failed",
+          text: "Please try again later.",
+          icon: "error",
+        });
+      }
+    }}
+  />
+)}
+
     </>
   );
 };
