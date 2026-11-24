@@ -45,7 +45,7 @@ export default async function Home() {
       <TrustSection />
       <CounselSection />
       <SuccessfulStudents data={testimData} />
-      <InformedSection data={blogdata2} />
+      {blogdata2 && <InformedSection data={blogdata2} />}
       <CommunitySection />
       <Footer />
     </>

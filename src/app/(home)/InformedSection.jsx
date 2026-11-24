@@ -5,6 +5,11 @@ import Link from "next/link";
 
 
 const InformedSection = ({ data }) => {
+  if (!Array.isArray(data) || data.length === 0) {
+    return null; // or fallback UI
+  }
+
+  const first = data[0];
   return (
     <div className="py-32 bg-[#F5F5F5]">
       {/* Header Section */}
