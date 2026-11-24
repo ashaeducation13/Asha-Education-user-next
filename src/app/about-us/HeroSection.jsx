@@ -149,7 +149,7 @@ function HeroSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
               viewport={{ once: true }} className="font-normal leading-[18px] md:leading-[21px] lg:leading-[24px] w-full md:w-[80%] lg:w-[70%] xl:w-[95%] text-[12px] md:text-[16px] text-[#121212] font-rubik mt-3 md:mt-4 mb-6 md:mb-8 text-start">
-              At Asha Education, we believe that every dream deserves a path, and every learner deserves the opportunity to succeed. Rooted in the word “Asha”— meaning hope, our mission is to empower students with the knowledge, skills, and confidence they need to shape a brighter future. We offer flexible, career-focused programs in collaboration with leading institutions and our strategic partner, Hike Education.
+              At Asha Education, we believe that every dream deserves a path, and every learner deserves the opportunity to succeed. Rooted in the word “Asha”— meaning hope, our mission is to empower students with the knowledge, skills, and confidence they need to shape a brighter future. We offer flexible, career-focused programs in collaboration with leading institutions and our strategic partner.
 
             </motion.p>
             <Link href='/contact-us' >
